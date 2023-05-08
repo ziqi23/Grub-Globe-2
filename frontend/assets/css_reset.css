@@ -1,4 +1,5 @@
-/* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@200;300;400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -31,7 +32,6 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background-color: #F1F1F1;
 }
 ol, ul {
 	list-style: none;

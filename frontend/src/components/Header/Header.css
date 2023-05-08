@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@200;300;400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+
+.header-container {
+    width: 100vw;
+    height: 11vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    align-items: center;
+    /* border: 1px solid green; */
+    box-sizing: border-box;
+  }
+  
+  .header-container h1 {
+    font-family: 'Archivo Black', sans-serif;
+    letter-spacing: -2px;
+    font-size: 59px;
+    padding: 5px;
+    color: transparent;
+    /* margin-left: 50px; */
+    background-image: url('https://img.freepik.com/free-vector/earth-globe-icon-white-background_1308-122819.jpg');
+    background-size: fill;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-position: 10%;
+    /* border: 1px solid green; */
+  }
