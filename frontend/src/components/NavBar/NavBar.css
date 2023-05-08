@@ -5,21 +5,37 @@
     /* border: 1px dotted blue; */
     justify-content: space-around;
     width: 50%;
-  }
-  
-  .header-container a {
+}
+
+.header-container .nav-bar a {
     text-decoration: none;
-    font-family: 'Archivo', sans-serif;
     color: black;
     transition: 0.3s all ease;
-    font-size: 20px;
-    font-weight: 300;
-    border: 1px solid blue;
-  }
-  
-  .header-container a:visited {
+    /* border: 1px solid blue; */
+}
+
+.header-container .nav-bar a:visited {
     color: black;
-  }
-  .header-container a:hover {
+}
+.header-container .nav-bar div:hover {
     color: white;
-  }
+}
+
+.header-container .nav-bar {
+  text-transform: uppercase;
+  font-family: 'Kanit', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.nav-bar div {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  /* border: 3px solid black; */
+  border-radius: 999px;
+}
+
+.nav-bar div img {
+  margin-right: 5px;
+}

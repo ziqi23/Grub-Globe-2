@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
 import './NavBar.css'
+import logoutIcon from '../../assets/icons/general-icons/icons8-log-out-24.png'
 
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
@@ -15,9 +16,10 @@ function NavBar () {
   if (loggedIn) {
     return (
       <div className="nav-bar">
-        <Link to="#">link 1</Link>
-        <Link to="#">Profile</Link>
-        <button onClick={logoutUser}>Logout</button>
+        <Link to="#"><div>link 1</div></Link>
+        <Link to="#"><div>link 2</div></Link>
+        <Link to="#"><div>Profile</div></Link>
+        <div onClick={logoutUser}><img src={logoutIcon} alt="logout icon" />Logout</div>
 
       </div>
     );

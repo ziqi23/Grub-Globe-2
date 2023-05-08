@@ -9,9 +9,9 @@
     align-items: center;
     /* border: 1px solid green; */
     box-sizing: border-box;
-  }
+}
   
-  .header-container h1 {
+.header-container h1 {
     font-family: 'Archivo Black', sans-serif;
     letter-spacing: -5px;
     font-size: 49px;

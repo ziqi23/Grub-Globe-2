@@ -28,6 +28,7 @@
     color: #F1F1F1;
     text-shadow: 7px 7px 14px #e0e0e0,
                -7px -7px 14px #ffffff;
+    cursor: default;
 }
 
 .recipe-index-title {
@@ -36,7 +37,10 @@
     font-size: 48px;
     font-weight: 500;
     color: rgb(46, 46, 46);
+
+    
 }
+
   
 .recipes-index {
     /* padding: 30px; */
