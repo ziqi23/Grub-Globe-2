@@ -20,14 +20,10 @@ function NavBar () {
   else {
     return (
       <div className="nav-bar">
-        {/* <div> */}
           <Link to="#">link 1</Link>
           <Link to="#">link 2</Link>
-        {/* </div>
-        <div> */}
           <Link to={'/signup'}>Signup</Link>
           <Link to={'/login'}>Login</Link>
-        {/* </div> */}
       </div>
     );
   }

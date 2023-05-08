@@ -3,20 +3,14 @@
     display: flex;
     box-sizing: border-box;
     /* border: 1px dotted blue; */
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 50%;
   }
-  
-  /* .header-container .nav-bar > div {
-    border: 1px dotted green;
-    margin: 0px 75px;
-  } */
   
   .header-container a {
     text-decoration: none;
     font-family: 'Archivo', sans-serif;
     color: black;
-
     transition: 0.3s all ease;
     font-size: 20px;
     font-weight: 300;

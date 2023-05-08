@@ -13,11 +13,10 @@
   
   .header-container h1 {
     font-family: 'Archivo Black', sans-serif;
-    letter-spacing: -2px;
-    font-size: 59px;
+    letter-spacing: -5px;
+    font-size: 49px;
     padding: 5px;
     color: transparent;
-    /* margin-left: 50px; */
     background-image: url('https://img.freepik.com/free-vector/earth-globe-icon-white-background_1308-122819.jpg');
     background-size: fill;
     background-clip: text;
