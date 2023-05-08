@@ -16,11 +16,12 @@
     letter-spacing: -5px;
     font-size: 49px;
     padding: 5px;
-    color: transparent;
+    color: black;
+    /* color: transparent;
     background-image: url('https://img.freepik.com/free-vector/earth-globe-icon-white-background_1308-122819.jpg');
     background-size: fill;
     background-clip: text;
     -webkit-background-clip: text;
-    background-position: 10%;
+    background-position: 10%; */
     /* border: 1px solid green; */
   }
