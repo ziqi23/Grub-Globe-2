@@ -1,7 +1,7 @@
 .below-header-container {
     width: 100vw;
     height: auto;
-    border: 1px dotted red;
+    /* border: 1px dotted red; */
     position: relative;
 
     /* carousel testing */
@@ -16,13 +16,11 @@
     font-size: 9vw;
     box-sizing: border-box;
     /* border: 1px solid red; */
-    /* transform: rotate(90deg); */
+
     position: absolute;
     bottom: 0;
+    right: 0;
 
-    /* right: calc(-9vw * 3.33); */
-    /* top: calc(9vw * 3.33) */
-  /*   overflow: hidden; */
 }
 .below-header-container .side-region-text h1 {
     margin: 0;
@@ -44,9 +42,8 @@
     /* padding: 30px; */
     box-sizing: border-box;
     width: 90%;
-
     position: relative;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     height: auto;
     margin: auto;
     display: flex;
@@ -59,7 +56,7 @@
         /* carousel testing */
 }
 
-.recipes-index .recipe-card:nth-child(odd) {
+.recipes-index .swiper-slide:nth-child(odd) .recipe-card {
     background-color: #DDE5B6;
 }
   
@@ -121,6 +118,7 @@
 
 .view-recipe-button:active {
     box-shadow: inset 0px 0px 5px rgba(12, 1, 1, 0.55);
+    transform: translateY(4px);
 }
   
 .recipe-quick-info-container h1 {
@@ -184,4 +182,16 @@
 
 .swiper-button-next {
     color: #353535 !important; 
+}
+
+@media (max-width: 1978px) {
+    .recipe-card {
+        width: 90%;
+        height: 90%;
+        border: 3px solid rgb(47, 48, 47);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        background-color: #E8A87C;
+    }
 }
