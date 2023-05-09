@@ -1,0 +1,41 @@
+.header-container .nav-bar {
+    /* position: absolute; */
+    display: flex;
+    box-sizing: border-box;
+    /* border: 1px dotted blue; */
+    justify-content: space-around;
+    width: 50%;
+}
+
+.header-container .nav-bar a {
+    text-decoration: none;
+    color: black;
+    transition: 0.3s all ease;
+    /* border: 1px solid blue; */
+}
+
+.header-container .nav-bar a:visited {
+    color: black;
+}
+.header-container .nav-bar div:hover {
+    color: white;
+}
+
+.header-container .nav-bar {
+  text-transform: uppercase;
+  font-family: 'Kanit', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.nav-bar div {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  /* border: 3px solid black; */
+  border-radius: 999px;
+}
+
+.nav-bar div img {
+  margin-right: 5px;
+}
