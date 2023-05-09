@@ -9,6 +9,17 @@ import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./store/session";
 import RecipeIndexPage from "./components/RecipeIndexPage/RecipeIndexPage";
 import AiChat from "./components/RecipeAssistant";
+import { Switch } from "react-router-dom";
+import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
+import NavBar from "./components/NavBar/NavBar";
+import SignupForm from "./components/SessionForms/SignUpForm";
+import LoginForm from "./components/SessionForms/LoginForm";
+import MainPage from "./components/MainPage/MainPage";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getCurrentUser } from "./store/session";
+import RecipeIndexPage from "./components/RecipeIndexPage/RecipeIndexPage";
+import { Route } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -21,11 +32,10 @@ function App() {
   return (
     loaded && (
       <>
-        {/* <NavBar /> */}
         <Switch>
-          <AuthRoute exact path="/" component={MainPage} />
-          <AuthRoute exact path="/login" component={LoginForm} />
-          <AuthRoute exact path="/signup" component={SignupForm} />
+          <Route exact path="/" component={MainPage} />
+          <AuthRoute exact path="/login" component={MainPage} />
+          <AuthRoute exact path="/signup" component={MainPage} />
           <ProtectedRoute path="/ai" component={AiChat} />
           <ProtectedRoute path="/recipes" component={RecipeIndexPage} />
         </Switch>
