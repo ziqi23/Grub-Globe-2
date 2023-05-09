@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./RecipeAssistant.css";
+import jwtFetch from "../../store/jwt";
 
-export default function Home() {
+export default function AiChat() {
   const [questionInput, setQuestionInput] = useState("");
   const [recipeName, setRecipeName] = useState("Saurkraut");
   const [recipeStep, setRecipeStep] = useState(
@@ -11,10 +12,9 @@ export default function Home() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    // setRecipeName("Saurkraut");
-    // setRecipeStep("Ensure all cabbage is submerged in brine.");
     try {
-      const response = await fetch("/api/generate", {
+      //   const response = await fetch("/api/generate", {
+      const response = await jwtFetch("/api/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,33 +37,26 @@ export default function Home() {
       setResult(data.result);
       setQuestionInput("");
     } catch (error) {
-      // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
     }
   }
 
   return (
-    <div>
-      <Head>
-        <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
-      </Head>
-
-      <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
+    <div id="ai-chatbox">
+      <main id="ai-chatbox-content-container">
         <h3>Ask for help on a recipe</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
             name="question"
-            placeholder="Enter your question"
+            placeholder="Enter your recipe question"
             value={questionInput}
             onChange={(e) => setQuestionInput(e.target.value)}
           />
-          <input type="submit" value="Answer" />
+          <input type="submit" value="Ask" />
         </form>
-        <div className={styles.result}>{result}</div>
+        <div id="chatbox-answer">{result}</div>
       </main>
     </div>
   );
