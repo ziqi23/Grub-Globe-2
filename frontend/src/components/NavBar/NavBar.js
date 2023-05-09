@@ -4,7 +4,7 @@ import { logout } from '../../store/session';
 import './NavBar.css'
 import logoutIcon from '../../assets/icons/general-icons/icons8-log-out-24.png'
 
-function NavBar () {
+function NavBar ({openModal}) {
   const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
   
@@ -28,7 +28,7 @@ function NavBar () {
     return (
       <div className="nav-bar">
           <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
+          <div onClick={openModal}>Login</div>
       </div>
     );
   }
