@@ -11,7 +11,6 @@
 .recipe-show-page-container > div {
     border: 3px solid rgb(36, 36, 36);
     box-sizing: border-box;
-    padding: 20px;
     line-height: 1.6em;
     border-radius: 10px;
 }
@@ -22,21 +21,28 @@
     width: 20%;
     position: absolute;
     top: 70px;
-    left: 30px;
+    left: -10px;
+    padding: 12px;
 }
 
 .recipe-show-page-container .details-container div {
-    border: 2px solid black;
-    margin-bottom: 20px;
-    padding: 5px;
+    border: 3px solid black;
+    /* margin-bottom: 20px; */
+    padding: 10px;
     border-radius: 10px;
     /* background-color: #bae8e8; */
     background-color: #ecf0f3;
 }
 
+.recipe-show-page-container .details-container div:not(:last-child), 
+.macros-container div:not(:last-child) {
+    margin-bottom: 12px;
+}
+
 .recipe-show-page-container .main-recipe-content-container {
     width: 60%;
-    z-index: 50
+    z-index: 50;
+    padding: 20px;
 }
 
 .recipe-show-page-container .macros-container {
@@ -44,14 +50,15 @@
     /* background-color: #e3f6f5; */
     background-color: #7895B2;
     position: absolute;
-    right: 30px;
+    right: -10px;
     top: 30px;
+    padding: 12px;
+    box-sizing: border-box;
 }
 
 .recipe-show-page-container .macros-container > div {
-    border: 2px solid black;
-    margin-bottom: 20px;
-    padding: 5px;
+    border: 3px solid black;
+    padding: 10px;
     border-radius: 10px;
     /* background-color: #bae8e8; */
     background-color: #ecf0f3;
@@ -68,7 +75,7 @@
     flex-direction: column;
     align-items: center;
     background-color: #fffffe;
-    box-shadow: -5px 5px rgb(85, 85, 85);
+    /* box-shadow: -5px 5px rgb(85, 85, 85); */
     
 }
 .main-recipe-content-container h1{
@@ -132,18 +139,34 @@
     align-items: center;
 }
 
-@media (max-width: 1300px) {
-    .recipe-show-page-container {
-        width:100%;
-    }
+.ingredients-container {
+    box-sizing: border-box;
+}
 
+.ingredients-container ul li{
+    list-style:circle;
+    list-style-position: inside;
+}
+
+.ingredients-container p {
+    display: inline;
+    font-weight: 500;
+}
+
+@media (max-width: 1511px) {
     .details-container h2, .main-recipe-content-container h2,
 .macros-container h2 {
     font-size: 140%;
 }
-.main-recipe-content-container h1 {
-    font-size: 200%;
 }
+
+@media (max-width: 1300px) {
+    .recipe-show-page-container {
+        width:100%;
+    }
+    .main-recipe-content-container h1 {
+        font-size: 200%;
+    }
 
 }
 

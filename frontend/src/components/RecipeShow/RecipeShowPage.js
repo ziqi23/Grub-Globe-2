@@ -18,20 +18,20 @@ const RecipeShowPage = () => {
                             <p>Cook time: 20 minutes</p>
                             {/* <p>Cook time: {recipe.cooktime}</p> */}
                         </div>
-                        <div>
+                        <div className="ingredients-container">
                             <h2>Ingredients</h2>
                             <ul>
                                 {/* {recipe.ingredients.map(ingredient => {
                                     <li>ingredient</li>
                                 })} */}
-                                <li>4 pieces boneless chicken thighs</li>
-                                <li>1/4 cup soy sauce</li>
-                                <li>1/4 cup mirin</li>
-                                <li>1/4 cup sake</li>
-                                <li>1/4 cup sugar</li>
-                                <li>2 tbsp vegetable oil</li>
-                                <li>2 stalks green onion</li>
-                                <li>4 cups cooked rice</li>
+                                <li>4 pieces <p>boneless chicken thighs</p></li>
+                                <li>1/4 cup <p>soy sauce</p></li>
+                                <li>1/4 cup <p>mirin</p></li>
+                                <li>1/4 cup <p>sake</p> </li>
+                                <li>1/4 cup <p>sugar</p></li>
+                                <li>2 tbsp <p>vegetable oil</p></li>
+                                <li>2 stalks <p>green onion</p></li>
+                                <li>4 cups <p>cooked rice</p></li>
                             </ul>
                         </div>
                     </div>
