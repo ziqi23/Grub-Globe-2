@@ -8,6 +8,7 @@ const cors = require('cors');
 const { isProuction, isProduction } = require('./config/keys.js')
 
 require('./models/User');
+require('./models/Recipe');
 require('./config/passport')
 const passport = require('passport')
 const usersRouter = require('./routes/api/users');
