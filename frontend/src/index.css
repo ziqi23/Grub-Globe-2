@@ -33,6 +33,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 	background-color: #F1F1F1;
+	font-family: 'Kanit', sans-serif;
 }
 ol, ul {
 	list-style: none;
