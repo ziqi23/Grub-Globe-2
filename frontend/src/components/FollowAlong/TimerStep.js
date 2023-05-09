@@ -1,5 +1,6 @@
 const TimerStep = ({step}) => {
     // algorithm for timer
+    
     return (
         <div className="timer-step-container">
             <h1>Bake in oven for 30 minutes</h1>

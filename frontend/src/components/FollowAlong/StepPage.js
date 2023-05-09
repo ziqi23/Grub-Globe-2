@@ -9,7 +9,8 @@ import "./FollowAlong.css"
 import Ingredients from "../RecipeShow/Ingredients";
 
 const StepPage = ({step, stepNum, closeFollowAlong, ingredients}) => {
-    const [toggleIngredients, setToggleIngredients] = useState(false)
+    const [toggleIngredients, setToggleIngredients] = useState(false);
+    const [stepType, setStepType] = useState("normal");
 
     const handleToggleIngredients = () => {
         if (toggleIngredients) {
@@ -18,7 +19,8 @@ const StepPage = ({step, stepNum, closeFollowAlong, ingredients}) => {
             setToggleIngredients(true)
         }
     }
-    // algorithm for checking if normal step or timer step - return step type (normal/timer)
+    // algorithm for checking if normal step or timer step - reset stepType state variable if timer
+    
 
     return (
         <>
@@ -44,8 +46,9 @@ const StepPage = ({step, stepNum, closeFollowAlong, ingredients}) => {
                     </div>
                     <div className="step-instruction">
                         <TimerStep />
+                        {/* <NormalStep />  */}
                     </div>
-                    {/* {stepType === "normal" ? <NormalStep step={step} stepNum={stepNum}/> : <TimerStep step={step} stepNum={stepNum} />} */}
+                    {/* {stepType === "normal" ? <NormalStep recipeName={recipe.name} step={step} stepNum={stepNum}/> : <TimerStep recipeName={recipe.name} step={step} stepNum={stepNum} />} */}
                 </div>
 
                 {/* <div className="event-listener-options">
