@@ -4,6 +4,9 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 
+const apiKey = '602ba7298ff846909d817cce1b2d2b63';
+const apiUrl = 'https://api.spoonacular.com/recipes/complexSearch';
+
 const NUM_SEED_USERS = 10;
 
 const users = [];
@@ -30,7 +33,7 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
 
 const insertSeeds = () => {
     console.log("Resetting db and seeding users...");
-  
+
     User.collection.drop()
                    .then(() => User.insertMany(users))
                    .then(() => {
