@@ -1,13 +1,204 @@
 #ai-chatbox {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 400px;
-  height: 500px;
-  background-color: coral;
+  bottom: 50px;
+  right: 50px;
+  width: 300px;
+  height: 340px;
+  background-color: #e8a87c;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   transition: all 0.3s ease;
+  padding: 20px;
   /* transform: translateX(100%); */
+}
+
+#recipe-assistant-header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#recipe-assistant-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#recipe-assistant-input {
+  font-family: "Kanit", sans-serif;
+  border: 2px solid gray;
+  line-height: 30px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+}
+/* #recipe-assistant-input::placeholder:before {
+  content: "⏎ ";
+  color: #999;
+} */
+
+#recipe-assistant-button {
+  font-family: "Kanit", sans-serif;
+  display: none;
+}
+
+#chat-thread-container {
+  background-color: white;
+  border-radius: 5px;
+  /* border: 2px solid gray; */
+  padding: 5px;
+  margin-bottom: 10px;
+  height: 250px;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+/* #lastQ-container {
+  position: relative;
+} */
+#lastQ-text,
+#otherQ-text {
+  background-color: rgb(215, 215, 215);
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 45px;
+  width: 230px;
+  /* position: absolute; */
+  /* right: 0px; */
+  margin-bottom: 10px;
+  line-height: 18px;
+}
+
+#lastA-text,
+#otherA-text {
+  background-color: coral;
+  border-radius: 5px;
+  padding: 5px;
+  width: 230px;
+  /* position: absolute; */
+  left: 0px;
+  margin-bottom: 10px;
+  line-height: 18px;
+}
+
+#ai-chatbubble {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  z-index: 1001;
+  height: 40px;
+  width: 40px;
+  border: 10px solid white;
+  border-radius: 50%;
+  /* border-top: 10px solid rgba(255, 68, 0, 0.458); */
+  animation: spin 2s infinite linear;
+  background-color: white;
+  transition: 0.3s;
+}
+
+/* #ai-chatbubble:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+} */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+    border-top: 10px solid white;
+  }
+  25% {
+    transform: rotate(0);
+    border-top: 10px solid orangered;
+  }
+  50% {
+    border-top: 10px solid white;
+  }
+  75% {
+    transform: rotate(0);
+    border-top: 10px solid rgb(37, 146, 37);
+  }
+  100% {
+    transform: rotate(360deg);
+    border-top: 10px solid white;
+  }
+}
+
+#open-chatbox-questionmark {
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  right: 22px;
+  z-index: 1002;
+  color: rgb(24, 23, 23);
+}
+
+/* #open-chatbox-button {
+  background-color: red;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+} */
+#open-chatbox-button:hover #open-chatbox-questionmark {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#hover-container {
+  background-color: gray;
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+#hover-container:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  transition: 0.3s;
+}
+
+#spinner-container {
+  background-color: coral;
+  border-radius: 5px;
+  padding: 5px;
+  width: 230px;
+  /* position: absolute; */
+  left: 0px;
+  margin-bottom: 10px;
+  height: 50px;
+}
+
+#spinner {
+  /* position: absolute;
+  top: Calc(50% - 50px);
+  left: Calc(50% - 50px); */
+  height: 30px;
+  width: 30px;
+  border: 10px solid rgb(241, 105, 56);
+  border-radius: 50%;
+  /* border-top: 10px solid coral; */
+  animation: spiny 1s infinite linear;
+}
+
+@keyframes spiny {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    border-top: 10px solid white;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
