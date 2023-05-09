@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from './store/session';
 import RecipeIndexPage from './components/RecipeIndexPage/RecipeIndexPage';
+import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
   const [loaded, setLoaded] = useState(false)
@@ -20,11 +21,10 @@ function App() {
 
   return loaded && (
     <>
-    {/* <NavBar /> */}
     <Switch>
-      <AuthRoute exact path="/" component={MainPage} />
-      <AuthRoute exact path="/login" component={LoginForm} />
-      <AuthRoute exact path="/signup" component={SignupForm} />
+      <Route exact path="/" component={MainPage}/>
+      <AuthRoute exact path="/login" component={MainPage} />
+      <AuthRoute exact path="/signup" component={MainPage} />
 
       <ProtectedRoute path="/recipes" component={RecipeIndexPage} />
     </Switch>
