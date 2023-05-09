@@ -7,9 +7,6 @@ const RecipeShowPage = () => {
         <>
             <Header />
             <div className="below-header-container">
-                {/* <div class="side-region-text">
-                    <h1>COUNTRY/REGION</h1>
-                </div> */}
 
                 {/* this is where the show page contents start */}
                 <div className="recipe-show-page-container">
@@ -72,7 +69,17 @@ const RecipeShowPage = () => {
                     <div className="macros-container">
                         <div>
                             <h2>Macronutrients</h2>
-
+                            {/* this will probably be a separate component */}
+                            <p>Protein</p>
+                            <div className="macro-bar-1"></div>
+                            <p>Carbohydrates</p>
+                            <div className="macro-bar-2"></div>
+                            <p>Fat</p>
+                            <div className="macro-bar-1"></div>
+                            <p>Potassium</p>
+                            <div className="macro-bar-3"></div>
+                            <p>Magnesium</p>
+                            <div className="macro-bar-2"></div>
                         </div>
                     </div>
                 </div>

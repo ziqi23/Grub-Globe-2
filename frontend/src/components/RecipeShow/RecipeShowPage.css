@@ -17,7 +17,8 @@
 }
 
 .recipe-show-page-container .details-container {
-    background-color: #e3f6f5;
+    /* background-color: #e3f6f5; */
+    background-color: #7895B2;
     width: 20%;
     position: absolute;
     top: 70px;
@@ -29,7 +30,8 @@
     margin-bottom: 20px;
     padding: 5px;
     border-radius: 10px;
-    background-color: #bae8e8;
+    /* background-color: #bae8e8; */
+    background-color: #ecf0f3;
 }
 
 .recipe-show-page-container .main-recipe-content-container {
@@ -39,9 +41,10 @@
 
 .recipe-show-page-container .macros-container {
     width: 20%;
-    background-color: #e3f6f5;
+    /* background-color: #e3f6f5; */
+    background-color: #7895B2;
     position: absolute;
-    right: 20px;
+    right: 30px;
     top: 30px;
 }
 
@@ -50,7 +53,8 @@
     margin-bottom: 20px;
     padding: 5px;
     border-radius: 10px;
-    background-color: #bae8e8;
+    /* background-color: #bae8e8; */
+    background-color: #ecf0f3;
 }
 
 .image-placeholder-recipe-show {
@@ -64,6 +68,7 @@
     flex-direction: column;
     align-items: center;
     background-color: #fffffe;
+    box-shadow: -5px 5px rgb(85, 85, 85);
     
 }
 .main-recipe-content-container h1{
@@ -136,4 +141,29 @@
 .macros-container h2 {
     font-size: 140%;
 }
+.main-recipe-content-container h1 {
+    font-size: 200%;
+}
+
+}
+
+
+
+/* temporary css placeholder for macros */
+.macro-bar-1 {
+    width: 60px;
+    background-color: #ffd803;
+    height: 10px;
+}
+
+.macro-bar-2 {
+    width: 40px;
+    background-color: #ffd803;
+    height: 10px;
+}
+
+.macro-bar-3 {
+    width: 20px;
+    background-color: #ffd803;
+    height: 10px;
 }
