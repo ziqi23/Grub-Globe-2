@@ -5,19 +5,13 @@ import { useEffect, useRef } from "react";
 
 export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
   const [questionInput, setQuestionInput] = useState("");
-  const [recipeName, setRecipeName] = useState(recipeNameFromParent || "");
+  const [recipeName, setRecipeName] = useState(
+    recipeNameFromParent || "Saurkraut"
+  );
   const [recipeStep, setRecipeStep] = useState(recipeStepFromParent);
-  const [result, setResult] = useState();
-  const [pastQuestions, setPastQuestions] = useState([
-    // "How do I submerge all the cabbage?",
-    // "What is the right way to clean cabbage?",
-    // "Is it safe to ferment food at room temp?",
-  ]);
-  const [pastAnswers, setPastAnswers] = useState([
-    // "Use a heavy object like a plate to submerge food. You can also buy fermentation lids.",
-    // "Remove the outer layers of cabbage and rinse the rest.",
-    // "Yes, as long as you ferment food in a dark place and restrict oxygen intake, fermentation at room temp is safe.",
-  ]);
+  //   const [result, setResult] = useState();
+  const [pastQuestions, setPastQuestions] = useState([]);
+  const [pastAnswers, setPastAnswers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const chatThreadContainerRef = useRef(null);
@@ -34,7 +28,7 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
 
   const pastQA = () => {
     const numQuestions = pastQuestions.length;
-    if (numQuestions <= 1) return null;
+    if (numQuestions <= 0) return null;
 
     const qAndA = [];
     for (let i = numQuestions - 1; i >= 0; i--) {
@@ -75,9 +69,12 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
         );
       }
 
-      setResult(data.result);
-      setPastQuestions([questionInput, ...pastQuestions]);
-      setPastAnswers([data.result, ...pastAnswers]);
+      //   setResult(data.result);
+      console.log("data.result", data.result);
+      //   setPastQuestions([questionInput, ...pastQuestions]);
+      //   setPastAnswers([data.result, ...pastAnswers]);
+      setPastQuestions((prevState) => [questionInput, ...prevState]);
+      setPastAnswers((prevState) => [data.result, ...prevState]);
       setQuestionInput("");
     } catch (error) {
       console.error(error);

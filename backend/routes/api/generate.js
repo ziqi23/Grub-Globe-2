@@ -14,7 +14,6 @@ const openai = new OpenAIApi(configuration);
 
 // export default async function (req, res) {
 router.post("/", requireUser, async (req, res) => {
-  console.log("req.body", req.body, "in generate router!");
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
@@ -28,6 +27,8 @@ router.post("/", requireUser, async (req, res) => {
   const question = req.body.question || "";
   const recipeName = req.body.recipe || "";
   const recipeStep = req.body.step || "";
+  // console.log(generatePrompt(question, recipeName, recipeStep), "prompt");
+
   if (question.trim().length === 0) {
     res.status(400).json({
       error: {
@@ -64,7 +65,9 @@ router.post("/", requireUser, async (req, res) => {
 function generatePrompt(question, recipeName, recipeStep) {
   const capitalizedQuestion =
     question[0].toUpperCase() + question.slice(1).toLowerCase();
-  return `I'm cooking ${recipeName}. I'm at step ${recipeStep}.
+  return `I'm cooking ${recipeName}. ${
+    recipeStep === "" ? "" : `I'm at step ${recipeStep}.`
+  }
 
 Help me with this question: ${question}`;
 }
