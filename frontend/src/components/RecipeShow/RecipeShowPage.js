@@ -1,8 +1,13 @@
 import './RecipeShowPage.css'
 import Header from '../Header/Header';
 import mapPin from '../../assets/icons/general-icons/icons8-map-pin-48.png'
+import FollowAlongCarousel from '../FollowAlong/FollowAlongCarousel';
+import { useState } from 'react';
+import Ingredients from './Ingredients';
 
-const RecipeShowPage = () => {
+const RecipeShowPage = ({recipe}) => {
+    const [toggleFollowAlong, setToggleFollowAlong] = useState(false)
+
     return (
         <>
             <Header />
@@ -20,11 +25,15 @@ const RecipeShowPage = () => {
                         </div>
                         <div className="ingredients-container">
                             <h2>Ingredients</h2>
-                            <ul>
+                            <Ingredients />
+                        </div >
+                        {/* <div className="ingredients-container">
+                            <h2>Ingredients</h2>
+                            <ul> */}
                                 {/* {recipe.ingredients.map(ingredient => {
                                     <li>ingredient</li>
                                 })} */}
-                                <li>4 pieces <p>boneless chicken thighs</p></li>
+                                {/* <li>4 pieces <p>boneless chicken thighs</p></li>
                                 <li>1/4 cup <p>soy sauce</p></li>
                                 <li>1/4 cup <p>mirin</p></li>
                                 <li>1/4 cup <p>sake</p> </li>
@@ -33,7 +42,7 @@ const RecipeShowPage = () => {
                                 <li>2 stalks <p>green onion</p></li>
                                 <li>4 cups <p>cooked rice</p></li>
                             </ul>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="main-recipe-content-container">
                         {/* <h1>{recipe.name}</h1> */}
@@ -63,7 +72,10 @@ const RecipeShowPage = () => {
                         </div>
                         <div className="follow-along-button-container">
                             <h2>Ready?</h2>
-                            <div className="follow-along-button">Let's get cookin!</div>
+                            <div className="follow-along-button"
+                                onClick={() => setToggleFollowAlong(true)}>
+                                Let's get cookin!
+                            </div>
                         </div>
                     </div>
                     <div className="macros-container">
@@ -83,8 +95,19 @@ const RecipeShowPage = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
+
+            {/* {toggleFollowAlong && (
+                <FollowAlongCarousel 
+                    closeFollowAlong={() => setToggleFollowAlong(false)} 
+                    recipeSteps={recipe.steps}
+                    recipeIngredients={recipe.ingredients}/>
+            )} */}
+            {toggleFollowAlong && (
+                <FollowAlongCarousel 
+                    closeFollowAlong={() => setToggleFollowAlong(false)} 
+                />
+            )}
         </>
     );
 };
