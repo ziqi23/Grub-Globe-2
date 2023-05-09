@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { getCurrentUser } from './store/session';
 import RecipeIndexPage from './components/RecipeIndexPage/RecipeIndexPage';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+import RecipeShowPage from './components/RecipeShow/RecipeShowPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false)
@@ -26,6 +27,7 @@ function App() {
       <AuthRoute exact path="/login" component={MainPage} />
       <AuthRoute exact path="/signup" component={MainPage} />
 
+      <ProtectedRoute path="/recipes/:id" component={RecipeShowPage} />
       <ProtectedRoute path="/recipes" component={RecipeIndexPage} />
     </Switch>
     </>
