@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./store/session";
 import RecipeIndexPage from "./components/RecipeIndexPage/RecipeIndexPage";
-import AiChat from "./components/RecipeAssistant";
+// import AiChat from "./components/RecipeAssistant";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
           <Route exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={MainPage} />
           <AuthRoute exact path="/signup" component={MainPage} />
-          <ProtectedRoute path="/ai" component={AiChat} />
+          {/* <ProtectedRoute path="/ai" component={AiChat} /> */}
           <ProtectedRoute path="/recipes" component={RecipeIndexPage} />
         </Switch>
       </>
