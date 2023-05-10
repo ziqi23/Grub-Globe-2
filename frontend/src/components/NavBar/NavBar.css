@@ -4,7 +4,7 @@
     box-sizing: border-box;
     /* border: 1px dotted blue; */
     justify-content: space-around;
-    width: 50%;
+    width: 40%;
 }
 
 .header-container .nav-bar a {
@@ -18,7 +18,7 @@
     color: black;
 }
 .header-container .nav-bar div:hover {
-    color: white;
+    color: rgb(243, 161, 54);
 }
 
 .header-container .nav-bar {
@@ -34,8 +34,20 @@
   padding: 10px 20px;
   /* border: 3px solid black; */
   border-radius: 999px;
+  transition: 0.3s all ease;
+  white-space: nowrap;
 }
 
 .nav-bar div img {
   margin-right: 5px;
+}
+
+.nav-bar div img:hover {
+  color:  rgb(243, 161, 54);
+}
+
+@media (max-width: 1050px) {
+  .header-container .nav-bar {
+    width: 50%;
+  }
 }
