@@ -5,7 +5,7 @@ const csurf = require("csurf");
 const debug = require("debug");
 
 const cors = require("cors");
-const { isProduction, isProduction } = require("./config/keys.js");
+const { isProduction} = require("./config/keys.js");
 
 require('./models/User');
 require('./config/passport')
