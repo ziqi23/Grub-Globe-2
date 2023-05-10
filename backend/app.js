@@ -5,7 +5,7 @@ const csurf = require("csurf");
 const debug = require("debug");
 
 const cors = require("cors");
-const { isProuction, isProduction } = require("./config/keys.js");
+const { isProduction, isProduction } = require("./config/keys.js");
 
 require('./models/User');
 require('./config/passport')
@@ -47,7 +47,7 @@ if (!isProduction) {
 app.use(
   csurf({
     cookie: {
-      secure: isProuction,
+      secure: isProduction,
       sameSite: isProduction && "Lax",
       httpOnly: true,
     },
