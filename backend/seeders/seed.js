@@ -5,10 +5,6 @@ const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 const Recipe = require('../models/Recipe');
 
-// const apiKey = '602ba7298ff846909d817cce1b2d2b63';
-// const apiUrl = 'https://api.spoonacular.com/recipes/complexSearch';
-// const NUM_SEED_RECIPES = 150;
-
 const NUM_SEED_USERS = 10;
 
 const users = [];
@@ -3210,6 +3206,7 @@ const recipe10 = new Recipe({
     'https://www.youtube.com/watch?v=zVqunZUuwSs','https://www.youtube.com/watch?v=BFrkRFgHLVk','https://www.youtube.com/watch?v=fVDsTP-pTXs'
   ]
 })
+
 
 
 
