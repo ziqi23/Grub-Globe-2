@@ -7,6 +7,7 @@ const debug = require("debug");
 const cors = require("cors");
 
 const { isProduction} = require("./config/keys.js");
+
 require('./models/User');
 require('./config/passport')
 const passport = require('passport')
@@ -22,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize()) ;
 
-if (!isProduction) {
+if (isProduction) {
   const path = require('path');
   // Serve the frontend's index.html file at the root route
   app.get('/', (req, res) => {
