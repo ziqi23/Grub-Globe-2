@@ -3207,11 +3207,1830 @@ const recipe10 = new Recipe({
   ]
 })
 
+const recipe11 = new Recipe({
+  country: 'Italy',
+  recipeName: 'Tiramisu Infused With Amaretto (Eggless!)',
+  recipeAuthor: 'ChefPriyanka',
+  ingredients: [
+    {
+      id: 1,
+      name: 'italian lady-finger cookies',
+      amount: 1.0,
+      unit: 'pkg'
+    },
+    {
+      id: 2,
+      name: 'plain mascarpone cheese',
+      amount: 1.0,
+      unit: 'cup'
+    },
+    {
+      id: 3,
+      name: 'coffee-infused mascarpone',
+      amount: 0.25,
+      unit: ''
+    },
+    {
+      id: 4,
+      name: 'heavy cream',
+      amount: 0.5,
+      unit: ''
+    },
+    {
+      id: 5,
+      name: 'coffee/espresso- and poured into a shallow bowl',
+      amount: 1.0,
+      unit: 'cup'
+    },
+    {
+      id: 6,
+      name: 'granulated sugar',
+      amount: 0.5,
+      unit: ''
+    },
+    {
+      id: 7,
+      name: 'vanilla extract',
+      amount: 1.0,
+      unit: 'tsp'
+    },
+    {
+      id: 8,
+      name: 'amaretto',
+      amount: 3.0,
+      unit: 'Tbsps'
+    },
+    {
+      id: 9,
+      name: 'cocoa powder',
+      amount: 2.0,
+      unit: 'Tbsps'
+    },
+    {
+      id: 10,
+      name: "confectioner's sugar",
+      amount: 1.0,
+      unit: 'Tbsp'
+    },
+    {
+      id: 11,
+      name: 'raspberries',
+      amount: 10.0,
+      unit: 'servings'
+    }
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "Calories",
+        amount: 227.23,
+        unit: "kcal",
+        percentOfDailyNeeds: 11.36
+      },
+      {
+        name: "Fat",
+        amount: 12.49,
+        unit: "g",
+        percentOfDailyNeeds: 19.22
+      },
+      {
+        name: "Saturated Fat",
+        amount: 7.1,
+        unit: "g",
+        percentOfDailyNeeds: 44.36
+      },
+      {
+        name: "Carbohydrates",
+        amount: 22.74,
+        unit: "g",
+        percentOfDailyNeeds: 7.58
+      },
+      {
+        name: "Net Carbohydrates",
+        amount: 18.27,
+        unit: "g",
+        percentOfDailyNeeds: 6.64
+      },
+      {
+        name: "Sugar",
+        amount: 5.42,
+        unit: "g",
+        percentOfDailyNeeds: 6.02
+      },
+      {
+        name: "Cholesterol",
+        amount: 66.31,
+        unit: "mg",
+        percentOfDailyNeeds: 22.1
+      },
+      {
+        name: "Sodium",
+        amount: 43.19,
+        unit: "mg",
+        percentOfDailyNeeds: 1.88
+      },
+      {
+        name: "Alcohol",
+        amount: 1.31,
+        unit: "g",
+        percentOfDailyNeeds: 7.26
+      },
+      {
+        name: "Caffeine",
+        amount: 12.96,
+        unit: "mg",
+        percentOfDailyNeeds: 4.32
+      },
+      {
+        name: "Protein",
+        amount: 4.62,
+        unit: "g",
+        percentOfDailyNeeds: 9.25
+      },
+      {
+        name: "Manganese",
+        amount: 0.5,
+        unit: "mg",
+        percentOfDailyNeeds: 24.75
+      },
+      {
+        name: "Vitamin C",
+        amount: 15.72,
+        unit: "mg",
+        percentOfDailyNeeds: 19.05
+      },
+      {
+        name: "Fiber",
+        amount: 4.47,
+        unit: "g",
+        percentOfDailyNeeds: 17.87
+      },
+      {
+        name: "Vitamin A",
+        amount: 445.62,
+        unit: "IU",
+        percentOfDailyNeeds: 8.91
+      },
+      {
+        name: "Vitamin B2",
+        amount: 0.13,
+        unit: "mg",
+        percentOfDailyNeeds: 7.6
+      },
+      {
+        name: "Folate",
+        amount: 28.64,
+        unit: "µg",
+        percentOfDailyNeeds: 7.16
+      },
+      {
+        name: "Iron",
+        amount: 1.27,
+        unit: "mg",
+        percentOfDailyNeeds: 7.04
+      },
+      {
+        name: "Phosphorus",
+        amount: 60.03,
+        unit: "mg",
+        percentOfDailyNeeds: 6.0
+      },
+      {
+        name: "Calcium",
+        amount: 57.7,
+        unit: "mg",
+        percentOfDailyNeeds: 5.77
+      },
+      {
+        name: "Copper",
+        amount: 0.11,
+        unit: "mg",
+        percentOfDailyNeeds: 5.67
+      },
+      {
+        name: "Magnesium",
+        amount: 21.46,
+        unit: "mg",
+        percentOfDailyNeeds: 5.37
+      },
+      {
+        name: "Vitamin B1",
+        amount: 0.08,
+        unit: "mg",
+        percentOfDailyNeeds: 5.32
+      },
+      {
+        name: "Vitamin B5",
+        amount: 0.48,
+        unit: "mg",
+        percentOfDailyNeeds: 4.81
+      },
+      {
+        name: "Vitamin K",
+        amount: 4.73,
+        unit: "µg",
+        percentOfDailyNeeds: 4.51
+      },
+      {
+        name: "Vitamin B3",
+        amount: 0.85,
+        unit: "mg",
+        percentOfDailyNeeds: 4.25
+      },
+      {
+        name: "Potassium",
+        amount: 141.81,
+        unit: "mg",
+        percentOfDailyNeeds: 4.05
+      },
+      {
+        name: "Zinc",
+        amount: 0.55,
+        unit: "mg",
+        percentOfDailyNeeds: 3.68
+      },
+      {
+        name: "Vitamin E",
+        amount: 0.53,
+        unit: "mg",
+        percentOfDailyNeeds: 3.51
+      },
+      {
+        name: "Vitamin B6",
+        amount: 0.06,
+        unit: "mg",
+        percentOfDailyNeeds: 2.93
+      },
+      {
+        name: "Vitamin B12",
+        amount: 0.15,
+        unit: "µg",
+        percentOfDailyNeeds: 2.48
+      }
+    ]
+  },
+  recipeDescription: "Forget going out to eat or ordering takeout every time you crave Mediterranean food. Try making Tiramisu Infused With Amaretto (Eggless!) at home. For <b>$1.34 per serving</b>, you get a dessert that serves 10. One serving contains <b>227 calories</b>, <b>5g of protein</b>, and <b>12g of fat</b>. If you have lady-finger cookies, mascarpone cheese, amaretto, and a few other ingredients on hand, you can make it. 1 person has tried and liked this recipe. It is brought to you by Foodista. From preparation to the plate, this recipe takes roughly <b>45 minutes</b>. All things considered, we decided this recipe <b>deserves a spoonacular score of 15%</b>. This score is rather bad. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/amaretto-tiramisu-632296\">Amaretto Tiramisu</a>, <a href=\"https://spoonacular.com/recipes/eggless-tiramisu-553269\">Eggless tiramisu</a>, and <a href=\"https://spoonacular.com/recipes/eggless-tiramisu-565204\">Eggless Tiramisu</a>.",
+  prepTime: 45,
+  cuisineDescription: 'Italian',
+  servings: 10,
+  recipeInstructions: [
+    {
+      number: 1,
+      step: "In a very clean and cool bowl pour heavy cream, and whip with a whisk attachment on medium-high speed for about a minutes (until soft peaks). Keep mixing on medium speed and slowly add sugar (DO NOT add all at once, or the fluffiness will disappear!). Whip until youve reached firm peaks, about 1-2 minutes (DO NOT over mix!)."
+    },
+    {
+      number: 2,
+      step: "In a separate bowl add both mascarpone cheese, vanilla and amaretto. Using a hand mixer with the whisk attachment, whip the cheese until fluffy, about 2-3 minutes. DO NOT over mix."
+    },
+    {
+      number: 3,
+      step: "Fold the whip cream into the cheese using a spatula. Its important to not stir or over mix the cream with the cheese, because you want the mixture to be fluffy and light."
+    },
+    {
+      number: 4,
+      step: "Dip the lady fingers into the coffee, soaking it for about 30 seconds - 1 minutes. You want them to be soft, but not mushy and breaking."
+    },
+    {
+      number: 5,
+      step: "In a square or rectangle dish (I used square) add a layer of lady fingers. Scoop about 1/2 of the mixture on top and spread evenly. I sprinkle the layer with a little confectioners sugar. Then add another layer of lady fingers and add the remaining cheese mixture."
+    },
+    {
+      number: 6,
+      step: "Spread evenly making sure to coat all the cookies. You do not want to see any of the cookie part. After, place the cocoa powder into a small sifter and soft over the tiramisu, coating it evenly. Cover with a lid/plastic/foil wrap and place in the fridge for about 2 hours or more."
+    },
+    {
+      number: 7,
+      step: "Slice into squares, top with raspberries and confectioners sugar and serve!"
+    }
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: false
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: false
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=87V4nizNJiE','https://www.youtube.com/watch?v=7VTtenyKRg4', 'https://www.youtube.com/watch?v=HykFyrhuyMk&t=1s'
+  ]
+})
 
+const recipe12 = new Recipe({
+  country: "Spain",
+  recipeName: "Paella Catalane With Mussels, Squid & Crevettes",
+  recipeAuthor: "ChefPriyanka",
+  ingredients: [
+    {
+      id: 1,
+      name: "chicken drumsticks",
+      amount: 8.0,
+      unit: ""
+    },
+    {
+      id: 2,
+      name: "chorizo",
+      amount: 3.0,
+      unit: ""
+    },
+    {
+      id: 3,
+      name: "fresh parsley",
+      amount: 10.0,
+      unit: "servings"
+    },
+    {
+      id: 4,
+      name: "garlic cloves",
+      amount: 2.0,
+      unit: ""
+    },
+    {
+      id: 5,
+      name: "long grain rice",
+      amount: 1.102,
+      unit: "lb"
+    },
+    {
+      id: 6,
+      name: "mussels",
+      amount: 12.0,
+      unit: ""
+    },
+    {
+      id: 7,
+      name: "olive oil",
+      amount: 0.463,
+      unit: "fl. oz"
+    },
+    {
+      id: 8,
+      name: "onion",
+      amount: 1.0,
+      unit: "medium"
+    },
+    {
+      id: 9,
+      name: "black freshly cracked pepper",
+      amount: 10.0,
+      unit: "servings"
+    },
+    {
+      id: 10,
+      name: "diced pork",
+      amount: 1.102,
+      unit: "lb"
+    },
+    {
+      id: 11,
+      name: "red deep tomatoes",
+      amount: 7.055,
+      unit: "oz"
+    },
+    {
+      id: 12,
+      name: "unsalted butter",
+      amount: 0.25,
+      unit: "cup"
+    },
+    {
+      id: 13,
+      name: "water",
+      amount: 1.5,
+      unit: "L"
+    },
+    {
+      id: 14,
+      name: "petit pois",
+      amount: 7.055,
+      unit: "oz"
+    },
+    {
+      id: 15,
+      name: "crevettes",
+      amount: 8.0,
+      unit: "large"
+    },
+    {
+      id: 16,
+      name: "smoked jambon",
+      amount: 1.764,
+      unit: "oz"
+    }
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "Calories",
+        amount: 668.02,
+        unit: "kcal",
+        percentOfDailyNeeds: 33.4
+      },
+      {
+        name: "Fat",
+        amount: 36.7,
+        unit: "g",
+        percentOfDailyNeeds: 56.46
+      },
+      {
+        name: "Saturated Fat",
+        amount: 13.99,
+        unit: "g",
+        percentOfDailyNeeds: 87.44
+      },
+      {
+        name: "Carbohydrates",
+        amount: 45.61,
+        unit: "g",
+        percentOfDailyNeeds: 15.2
+      },
+      {
+        name: "Net Carbohydrates",
+        amount: 43.22,
+        unit: "g",
+        percentOfDailyNeeds: 15.72
+      },
+      {
+        name: "Sugar",
+        amount: 2.23,
+        unit: "g",
+        percentOfDailyNeeds: 2.48
+      },
+      {
+        name: "Cholesterol",
+        amount: 143.79,
+        unit: "mg",
+        percentOfDailyNeeds: 47.93
+      },
+      {
+        name: "Sodium",
+        amount: 135.04,
+        unit: "mg",
+        percentOfDailyNeeds: 5.87
+      },
+      {
+        name: "Protein",
+        amount: 34.97,
+        unit: "g",
+        percentOfDailyNeeds: 69.93
+      },
+      {
+        name: "Vitamin K",
+        amount: 75.15,
+        unit: "µg",
+        percentOfDailyNeeds: 71.57
+      },
+      {
+        name: "Selenium",
+        amount: 36.55,
+        unit: "µg",
+        percentOfDailyNeeds: 52.22
+      },
+      {
+        name: "Manganese",
+        amount: 1.04,
+        unit: "mg",
+        percentOfDailyNeeds: 52.03
+      },
+      {
+        name: "Vitamin B1",
+        amount: 0.54,
+        unit: "mg",
+        percentOfDailyNeeds: 35.76
+      },
+      {
+        name: "Vitamin B3",
+        amount: 6.67,
+        unit: "mg",
+        percentOfDailyNeeds: 33.33
+      },
+      {
+        name: "Vitamin B12",
+        amount: 1.87,
+        unit: "µg",
+        percentOfDailyNeeds: 31.13
+      },
+      {
+        name: "Phosphorus",
+        amount: 299.18,
+        unit: "mg",
+        percentOfDailyNeeds: 29.92
+      },
+      {
+        name: "Vitamin B6",
+        amount: 0.55,
+        unit: "mg",
+        percentOfDailyNeeds: 27.7
+      },
+      {
+        name: "Zinc",
+        amount: 3.34,
+        unit: "mg",
+        percentOfDailyNeeds: 22.24
+      },
+      {
+        name: "Vitamin C",
+        amount: 18.19,
+        unit: "mg",
+        percentOfDailyNeeds: 22.05
+      },
+      {
+        name: "Vitamin A",
+        amount: 1058.37,
+        unit: "IU",
+        percentOfDailyNeeds: 21.17
+      },
+      {
+        name: "Iron",
+        amount: 3.4,
+        unit: "mg",
+        percentOfDailyNeeds: 18.9
+      },
+      {
+        name: "Vitamin B2",
+        amount: 0.3,
+        unit: "mg",
+        percentOfDailyNeeds: 17.86
+      },
+      {
+        name: "Vitamin B5",
+        amount: 1.6,
+        unit: "mg",
+        percentOfDailyNeeds: 15.96
+      },
+      {
+        name: "Potassium",
+        amount: 506.93,
+        unit: "mg",
+        percentOfDailyNeeds: 14.48
+      },
+      {
+        name: "Copper",
+        amount: 0.26,
+        unit: "mg",
+        percentOfDailyNeeds: 13.2
+      },
+      {
+        name: "Magnesium",
+        amount: 51.28,
+        unit: "mg",
+        percentOfDailyNeeds: 12.82
+      },
+      {
+        name: "Fiber",
+        amount: 2.39,
+        unit: "g",
+        percentOfDailyNeeds: 9.55
+      },
+      {
+        name: "Folate",
+        amount: 36.8,
+        unit: "µg",
+        percentOfDailyNeeds: 9.2
+      },
+      {
+        name: "Calcium",
+        amount: 52.06,
+        unit: "mg",
+        percentOfDailyNeeds: 5.21
+      },
+      {
+        name: "Vitamin E",
+        amount: 0.72,
+        unit: "mg",
+        percentOfDailyNeeds: 4.8
+      }
+    ]
+  },
+  recipeDescription: "Paella Catalane With Mussels, Squid & Crevettes might be just the main course you are searching for. This recipe makes 10 servings with <b>668 calories</b>, <b>35g of protein</b>, and <b>37g of fat</b> each. For <b>$2.21 per serving</b>, this recipe <b>covers 24%</b> of your daily requirements of vitamins and minerals. This recipe is liked by 1 foodies and cooks. This recipe from Foodista requires freshly cracked pepper, chorizo, onion, and butter. It is a good option if you're following a <b>gluten free</b> diet. It is a <b>reasonably priced</b> recipe for fans of European food. From preparation to the plate, this recipe takes approximately <b>45 minutes</b>. With a spoonacular <b>score of 52%</b>, this dish is good. Try <a href=\"https://spoonacular.com/recipes/angel-hair-pasta-with-squid-mussels-and-zucchini-1368459\">Angel Hair Pasta with Squid, Mussels and Zucchini</a>, <a href=\"https://spoonacular.com/recipes/angel-hair-pasta-with-squid-mussels-and-zucchini-28356\">Angel Hair Pasta with Squid, Mussels and Zucchini</a>, and <a href=\"https://spoonacular.com/recipes/quick-paella-with-shrimp-mussels-76786\">Quick Paella With Shrimp & Mussels</a> for similar recipes.",
+  prepTime: 45,
+  cuisineDescription: 'Spanish',
+  servings: 10,
+  recipeInstructions: [
+    {
+      number: 1,
+      step: "In a paella pan heat the olive oil and butter."
+    },
+    {
+      number: 2,
+      step: "Add the chicken legs or thighs and cook until brown on both sides."
+    },
+    {
+      number: 3,
+      step: "Next add the pork pieces and jambon and continue to cook on medium heat."
+    },
+    {
+      number: 4,
+      step: "Whilst this is cooking, bring a pan of water to boil and cook the mussels for 10 minutes."
+    },
+    {
+      number: 5,
+      step: "Drain and set aside."
+    },
+    {
+      number: 6,
+      step: "Next wash the tomatoes and add them in a pan of boiling water for 2-3 minutes.  Prick each tomato at least once when it is in the water."
+    },
+    {
+      number: 7,
+      step: "Rinse the tomatoes in cold water, then peel the skins."
+    },
+    {
+      number: 8,
+      step: "Cut the tomato into 4 wedges then under cold running water, remove its seeds.  If you prefer you can skip this stage."
+    },
+    {
+      number: 9,
+      step: "Add the tomatoes and garlic to the paella pan.  Stir into the meat pieces."
+    },
+    {
+      number: 10,
+      step: "Whilst this is cooking, cut your squid into small pieces and add to the paella.1"
+    },
+    {
+      number: 11,
+      step: "Add the chopped onions and 1.5L of water and simmer.1"
+    },
+    {
+      number: 12,
+      step: "Next add the rice.  After 15 minutes, add the sliced chorizo and crevettes.  Stir often to ensure that the rice does not stick to the bottom of the pan.1"
+    },
+    {
+      number: 13,
+      step: "Finally add the petit pois, freshly cracked black pepper and the parsley.  When it is nearly done, add the mussels and cook for a few minutes.This beastly feast will serve at least 10 people.  The paella is ready once all of the liquid has been absorbed."
+    },
+    {
+      number: 14,
+      step: "Serve with white wine or ros.  This meal was delicious underneath a bright yellow sun."
+    }
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: false
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: true
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=vNBuXsTY15E','https://www.youtube.com/watch?v=z90wDOfNPbI&t=29s','https://www.youtube.com/watch?v=gkRZ61kZBH8'
+  ]
+})
 
+const recipe13 = new Recipe({
+  country: "Spain",
+  recipeName: "gazpacho with avocado cream",
+  recipeAuthor: "spoontang",
+  ingredients: [
+    {
+      id: 1,
+      name: 'avocado',
+      amount: 1.0,
+      unit: ''
+    },
+    {
+      id: 2,
+      name: 'cumin',
+      amount: 2.0,
+      unit: 'tsps'
+    },
+    {
+      id: 3,
+      name: 'english diced cucumber',
+      amount: 1.0,
+      unit: ''
+    },
+    {
+      id: 4,
+      name: 'flat-leaf parsley',
+      amount: 15.0,
+      unit: 'g'
+    },
+    {
+      id: 5,
+      name: 'greek yogurt',
+      amount: 113.398,
+      unit: 'oz'
+    },
+    {
+      id: 6,
+      name: 'honey',
+      amount: 2.0,
+      unit: 'Tbsps'
+    },
+    {
+      id: 7,
+      name: 'fresh lime juice',
+      amount: 2.0,
+      unit: 'Tbsps'
+    },
+    {
+      id: 8,
+      name: 'lime zest',
+      amount: 2.0,
+      unit: ''
+    },
+    {
+      id: 9,
+      name: 'paprika',
+      amount: 1.0,
+      unit: 'tsp'
+    },
+    {
+      id: 10,
+      name: 'diced cubanelle pepper',
+      amount: 1.0,
+      unit: ''
+    },
+    {
+      id: 11,
+      name: 'red chili flakes',
+      amount: 1.0,
+      unit: 'tsp'
+    },
+    {
+      id: 12,
+      name: 'red wine vinegar',
+      amount: 59.75,
+      unit: 'ml'
+    },
+    {
+      id: 13,
+      name: 'salt & pepper',
+      amount: 6.0,
+      unit: 'servings'
+    },
+    {
+      id: 14,
+      name: 'tomato juice',
+      amount: 1.361,
+      unit: 'kgs'
+    },
+    {
+      id: 15,
+      name: 'diced tomatoes',
+      amount: 4.0,
+      unit: ''
+    },
+    {
+      id: 16,
+      name: 'watermelon puree',
+      amount: 453.592,
+      unit: 'g'
+    },
+    {
+      id: 17,
+      name: 'white diced onion',
+      amount: 1.0,
+      unit: ''
+    },
+    {
+      id: 18,
+      name: 'yellow red green diced bell peppers',
+      amount: 3.0,
+      unit: ''
+    }
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "Calories",
+        amount: 204.94,
+        unit: "kcal",
+        percentOfDailyNeeds: 10.25
+      },
+      {
+        name: "Fat",
+        amount: 5.93,
+        unit: "g",
+        percentOfDailyNeeds: 9.12
+      },
+      {
+        name: "Saturated Fat",
+        amount: 0.88,
+        unit: "g",
+        percentOfDailyNeeds: 5.51
+      },
+      {
+        name: "Carbohydrates",
+        amount: 37.33,
+        unit: "g",
+        percentOfDailyNeeds: 12.44
+      },
+      {
+        name: "Net Carbohydrates",
+        amount: 30.51,
+        unit: "g",
+        percentOfDailyNeeds: 11.09
+      },
+      {
+        name: "Sugar",
+        amount: 26.16,
+        unit: "g",
+        percentOfDailyNeeds: 29.06
+      },
+      {
+        name: "Cholesterol",
+        amount: 0.95,
+        unit: "mg",
+        percentOfDailyNeeds: 0.31
+      },
+      {
+        name: "Sodium",
+        amount: 244.39,
+        unit: "mg",
+        percentOfDailyNeeds: 10.63
+      },
+      {
+        name: "Protein",
+        amount: 7.06,
+        unit: "g",
+        percentOfDailyNeeds: 14.13
+      },
+      {
+        name: "Vitamin C",
+        amount: 154.85,
+        unit: "mg",
+        percentOfDailyNeeds: 187.7
+      },
+      {
+        name: "Vitamin A",
+        amount: 4754.38,
+        unit: "IU",
+        percentOfDailyNeeds: 95.09
+      },
+      {
+        name: "Vitamin K",
+        amount: 72.0,
+        unit: "µg",
+        percentOfDailyNeeds: 68.57
+      },
+      {
+        name: "Potassium",
+        amount: 1288.93,
+        unit: "mg",
+        percentOfDailyNeeds: 36.83
+      },
+      {
+        name: "Vitamin B6",
+        amount: 0.71,
+        unit: "mg",
+        percentOfDailyNeeds: 35.28
+      },
+      {
+        name: "Folate",
+        amount: 130.6,
+        unit: "µg",
+        percentOfDailyNeeds: 32.65
+      },
+      {
+        name: "Fiber",
+        amount: 6.82,
+        unit: "g",
+        percentOfDailyNeeds: 27.28
+      },
+      {
+        name: "Manganese",
+        amount: 0.52,
+        unit: "mg",
+        percentOfDailyNeeds: 25.82
+      },
+      {
+        name: "Vitamin E",
+        amount: 3.24,
+        unit: "mg",
+        percentOfDailyNeeds: 21.63
+      },
+      {
+        name: "Magnesium",
+        amount: 75.95,
+        unit: "mg",
+        percentOfDailyNeeds: 18.99
+      },
+      {
+        name: "Vitamin B3",
+        amount: 3.64,
+        unit: "mg",
+        percentOfDailyNeeds: 18.19
+      },
+      {
+        name: "Copper",
+        amount: 0.35,
+        unit: "mg",
+        percentOfDailyNeeds: 17.36
+      },
+      {
+        name: "Vitamin B5",
+        amount: 1.74,
+        unit: "mg",
+        percentOfDailyNeeds: 17.36
+      },
+      {
+        name: "Vitamin B2",
+        amount: 0.29,
+        unit: "mg",
+        percentOfDailyNeeds: 17.16
+      },
+      {
+        name: "Vitamin B1",
+        amount: 0.26,
+        unit: "mg",
+        percentOfDailyNeeds: 17.14
+      },
+      {
+        name: "Iron",
+        amount: 2.85,
+        unit: "mg",
+        percentOfDailyNeeds: 15.86
+      },
+      {
+        name: "Phosphorus",
+        amount: 156.06,
+        unit: "mg",
+        percentOfDailyNeeds: 15.61
+      },
+      {
+        name: "Calcium",
+        amount: 92.74,
+        unit: "mg",
+        percentOfDailyNeeds: 9.27
+      },
+      {
+        name: "Zinc",
+        amount: 1.28,
+        unit: "mg",
+        percentOfDailyNeeds: 8.54
+      },
+      {
+        name: "Selenium",
+        amount: 3.49,
+        unit: "µg",
+        percentOfDailyNeeds: 4.99
+      },
+      {
+        name: "Vitamin B12",
+        amount: 0.13,
+        unit: "µg",
+        percentOfDailyNeeds: 2.2
+      }
+    ]
+  },
+  recipeDescription: "Gazpacho with avocado cream takes roughly <b>1 hour and 30 minutes</b> from beginning to end. For <b>$1.97 per serving</b>, you get a hor d'oeuvre that serves 6. One portion of this dish contains roughly <b>7g of protein</b>, <b>6g of fat</b>, and a total of <b>205 calories</b>. Head to the store and pick up avocado, onion, flat-leaf parsley, and a few other things to make it today. <b>Summer</b> will be even more special with this recipe. It is a good option if you're following a <b>gluten free, lacto ovo vegetarian, and primal</b> diet. It is brought to you by spoonacular user <a href=\"/profile/spoontang\">spoontang</a>. Users who liked this recipe also liked <a href=\"https://spoonacular.com/recipes/avocado-gazpacho-227233\">Avocado Gazpacho</a>, <a href=\"https://spoonacular.com/recipes/gazpacho-with-avocado-recipe-21509\">Gazpacho With Avocado Recipe</a>, and <a href=\"https://spoonacular.com/recipes/cucumber-avocado-gazpacho-101880\">Cucumber Avocado Gazpacho</a>.",
+  prepTime: 90,
+  cuisineDescription: 'Spanish anipasti',
+  servings: 6,
+  recipeInstructions: [
+    {
+      number: 1,
+      step: "puree and strain the watermelon. any strainer will work well, ideally use something very fine such as a chinois or through a cheesecloth. combine the watermelon juice with the tomato juice in a very large bowl. combine all remaining ingredients. set aside, the flavor will continue to develop with time. refrigerate & allow to set for at least one hour.pit the avocado and dice flesh. combine with remaining lime juice in a food processor and puree until smooth. mix in the greek yogurt until fully combined.serve cold, with avocado cream placed in the center of the bowl.Recipe with images at Spoontang."
+    },
+    {
+      number: 2,
+      step: "combine all the ingredients for the avocado cream in a food processor and puree until completely smooth."
+    },
+    {
+      number: 3,
+      step: "serve the chilled soup with a dollop of the avocado cream placed in the center of each bowl."
+    }
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: true
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: true
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=rbfkLv1CSI8','https://www.youtube.com/watch?v=YxN7wXeeuTw','https://www.youtube.com/watch?v=kgkRiVR4IMo'
+  ]
+})
+
+const recipe14 = new Recipe({
+  country: "Spain",
+  recipeName: "Homemade Churros",
+  recipeAuthor: "Julia",
+  ingredients: [
+    {
+      id: 1,
+      name: "flour",
+      amount: 83.333,
+      unit: "g"
+    },
+    {
+      id: 2,
+      name: "unsalted butter",
+      amount: 0.25,
+      unit: "stick"
+    },
+    {
+      id: 3,
+      name: "water",
+      amount: 236.588,
+      unit: "ml"
+    },
+    {
+      id: 4,
+      name: "salt",
+      amount: 1.0,
+      unit: "pinch"
+    },
+    {
+      id: 5,
+      name: "sugar",
+      amount: 2.0,
+      unit: "tsps"
+    },
+    {
+      id: 6,
+      name: "egg",
+      amount: 1.0,
+      unit: ""
+    },
+    {
+      id: 7,
+      name: "oil",
+      amount: 224.0,
+      unit: "ml"
+    },
+    {
+      id: 8,
+      name: "cinnamon sugar",
+      amount: 24.0,
+      unit: "servings"
+    }
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "Calories",
+        amount: 87.68,
+        unit: "kcal",
+        percentOfDailyNeeds: 4.38
+      },
+      {
+        name: "Fat",
+        amount: 3.07,
+        unit: "g",
+        percentOfDailyNeeds: 4.72
+      },
+      {
+        name: "Saturated Fat",
+        amount: 0.8,
+        unit: "g",
+        percentOfDailyNeeds: 5.03
+      },
+      {
+        name: "Carbohydrates",
+        amount: 14.95,
+        unit: "g",
+        percentOfDailyNeeds: 4.98
+      },
+      {
+        name: "Net Carbohydrates",
+        amount: 14.85,
+        unit: "g",
+        percentOfDailyNeeds: 5.4
+      },
+      {
+        name: "Sugar",
+        amount: 12.33,
+        unit: "g",
+        percentOfDailyNeeds: 13.7
+      },
+      {
+        name: "Cholesterol",
+        amount: 9.35,
+        unit: "mg",
+        percentOfDailyNeeds: 3.12
+      },
+      {
+        name: "Sodium",
+        amount: 5.03,
+        unit: "mg",
+        percentOfDailyNeeds: 0.22
+      },
+      {
+        name: "Protein",
+        amount: 0.6,
+        unit: "g",
+        percentOfDailyNeeds: 1.2
+      },
+      {
+        name: "Selenium",
+        amount: 1.83,
+        unit: "µg",
+        percentOfDailyNeeds: 2.61
+      },
+      {
+        name: "Vitamin E",
+        amount: 0.38,
+        unit: "mg",
+        percentOfDailyNeeds: 2.5
+      },
+      {
+        name: "Vitamin B1",
+        amount: 0.03,
+        unit: "mg",
+        percentOfDailyNeeds: 1.87
+      },
+      {
+        name: "Folate",
+        amount: 7.25,
+        unit: "µg",
+        percentOfDailyNeeds: 1.81
+      },
+      {
+        name: "Vitamin B2",
+        amount: 0.03,
+        unit: "mg",
+        percentOfDailyNeeds: 1.66
+      },
+      {
+        name: "Vitamin K",
+        amount: 1.43,
+        unit: "µg",
+        percentOfDailyNeeds: 1.36
+      },
+      {
+        name: "Manganese",
+        amount: 0.02,
+        unit: "mg",
+        percentOfDailyNeeds: 1.24
+      },
+      {
+        name: "Iron",
+        amount: 0.2,
+        unit: "mg",
+        percentOfDailyNeeds: 1.11
+      },
+      {
+        name: "Vitamin B3",
+        amount: 0.21,
+        unit: "mg",
+        percentOfDailyNeeds: 1.03
+      }
+    ]
+  },
+  recipeDescription: "Homemade Churros might be a good recipe to expand your dessert collection. One serving contains <b>88 calories</b>, <b>1g of protein</b>, and <b>3g of fat</b>. For <b>46 cents per serving</b>, this recipe <b>covers 1%</b> of your daily requirements of vitamins and minerals. This recipe serves 24. 1 person were impressed by this recipe. A mixture of oil, salt, water, and a handful of other ingredients are all it takes to make this recipe so yummy. From preparation to the plate, this recipe takes around <b>30 minutes</b>. It is a good option if you're following a <b>lacto ovo vegetarian</b> diet. Not a lot of people really liked this European dish. It is brought to you by Foodista. Taking all factors into account, this recipe <b>earns a spoonacular score of 7%</b>, which is improvable. Try <a href=\"https://spoonacular.com/recipes/homemade-churros-519649\">Homemade Churros</a>, <a href=\"https://spoonacular.com/recipes/homemade-churros-1438891\">Homemade Churros</a>, and <a href=\"https://spoonacular.com/recipes/easy-homemade-churros-with-chocolate-sauce-516077\">Easy Homemade Churros with Chocolate Sauce</a> for similar recipes.",
+  prepTime: 30,
+  cuisineDescription: "Spanish dessert",
+  servings: 24,
+  recipeInstructions: [
+    {
+      number: 1,
+      step: "Place water, butter, sugar, and a pinch of salt into a medium size sauce pan. Bring to a boil."
+    },
+    {
+      number: 2,
+      step: "Add the flour and mix vigorously until well blended (the dough will come together in a minute or two)."
+    },
+    {
+      number: 3,
+      step: "Remove from the stove and let it cool a bit. Once it is not too hot, add the egg and work the egg into the dough. Try to do it as fast as possible. At the beginning it might look like the churro dough doesn’t wanna bind but take your time it will."
+    },
+    {
+      number: 4,
+      step: "Pour the oil into a large frying pan and heat it up. Just make sure there is enough oil in your frying pan based on its size. Churros don’t have to be covered with oil completely.Fill a piping bag (or a ziplock bag) fitted with star piping tip with half of the dough (it is easier to handle).Check if the oil is ready for frying by dropping a tiny piece of the dough in. Once the dough turns nice brown, you are ready to pipe the churros in.Pipe the dough directly into the hot oil (choose any length you like) and cut with a fork (I found a fork to be the best tool for this). Do not pipe too many churros in as they need space for frying. It will take only about 2 minutes for them to get nice golden color and that is a sign they are ready. They should get the color gradually. If you see they are not getting dark evenly, reduce the temperature.Take them out and place them on a paper kitchen towel to get rid of the excess oil.When they are still warm, roll each of them in cinnamon sugar."
+    },
+    {
+      number: 5,
+      step: "Serve warm (ideally with thick hot chocolate!)"
+    }
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: true
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: false
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=453mpKHVaBs','https://www.youtube.com/watch?v=9W2LaPvvQaE','https://www.youtube.com/watch?v=Fw8iU-i6tbs'
+  ]
+})
+
+const recipe15 = new Recipe({
+  country: "France",
+  recipeName: "Sliced Baguette with Anchovy Chive Butter and Radishes",
+  recipeAuthor: "Sheri Wetherell",
+  ingredients: [
+    {
+      id: 1,
+      name: 'anchovy paste',
+      amount: 1.0,
+      unit: 'tsp'
+    },
+    {
+      id: 2,
+      name: 'baguette',
+      amount: 16.0,
+      unit: 'slice'
+    },
+    {
+      id: 3,
+      name: 'coarse kosher salt',
+      amount: 16.0,
+      unit: 'servings'
+    },
+    {
+      id: 4,
+      name: 'fresh chives',
+      amount: 2.0,
+      unit: 'Tbsps'
+    },
+    {
+      id: 5,
+      name: 'trimmed radishes',
+      amount: 10.0,
+      unit: ''
+    },
+    {
+      id: 6,
+      name: 'unsalted butter',
+      amount: 0.5,
+      unit: 'cup'
+    }
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "Calories",
+        amount: 135.04,
+        unit: "kcal",
+        percentOfDailyNeeds: 6.75
+      },
+      {
+        name: "Fat",
+        amount: 6.67,
+        unit: "g",
+        percentOfDailyNeeds: 10.26
+      },
+      {
+        name: "Saturated Fat",
+        amount: 3.83,
+        unit: "g",
+        percentOfDailyNeeds: 23.92
+      },
+      {
+        name: "Carbohydrates",
+        amount: 15.5,
+        unit: "g",
+        percentOfDailyNeeds: 5.17
+      },
+      {
+        name: "Net Carbohydrates",
+        amount: 14.78,
+        unit: "g",
+        percentOfDailyNeeds: 5.37
+      },
+      {
+        name: "Sugar",
+        amount: 1.56,
+        unit: "g",
+        percentOfDailyNeeds: 1.73
+      },
+      {
+        name: "Cholesterol",
+        amount: 15.57,
+        unit: "mg",
+        percentOfDailyNeeds: 5.19
+      },
+      {
+        name: "Sodium",
+        amount: 407.08,
+        unit: "mg",
+        percentOfDailyNeeds: 17.7
+      },
+      {
+        name: "Protein",
+        amount: 3.23,
+        unit: "g",
+        percentOfDailyNeeds: 6.47
+      },
+      {
+        name: "Vitamin B1",
+        amount: 0.19,
+        unit: "mg",
+        percentOfDailyNeeds: 12.5
+      },
+      {
+        name: "Folate",
+        amount: 35.52,
+        unit: "µg",
+        percentOfDailyNeeds: 8.88
+      },
+      {
+        name: "Selenium",
+        amount: 5.85,
+        unit: "µg",
+        percentOfDailyNeeds: 8.36
+      },
+      {
+        name: "Vitamin B3",
+        amount: 1.54,
+        unit: "mg",
+        percentOfDailyNeeds: 7.7
+      },
+      {
+        name: "Manganese",
+        amount: 0.15,
+        unit: "mg",
+        percentOfDailyNeeds: 7.64
+      },
+      {
+        name: "Vitamin B2",
+        amount: 0.11,
+        unit: "mg",
+        percentOfDailyNeeds: 6.35
+      },
+      {
+        name: "Iron",
+        amount: 1.14,
+        unit: "mg",
+        percentOfDailyNeeds: 6.33
+      },
+      {
+        name: "Vitamin A",
+        amount: 193.92,
+        unit: "IU",
+        percentOfDailyNeeds: 3.88
+      },
+      {
+        name: "Calcium",
+        amount: 37.26,
+        unit: "mg",
+        percentOfDailyNeeds: 3.73
+      },
+      {
+        name: "Phosphorus",
+        amount: 33.77,
+        unit: "mg",
+        percentOfDailyNeeds: 3.38
+      },
+      {
+        name: "Fiber",
+        amount: 0.72,
+        unit: "g",
+        percentOfDailyNeeds: 2.89
+      },
+      {
+        name: "Magnesium",
+        amount: 9.13,
+        unit: "mg",
+        percentOfDailyNeeds: 2.28
+      }
+    ]
+  },
+  recipeDescription: "Sliced Baguette with Anchovy Chive Butter and Radishes could be just the <b>pescatarian</b> recipe you've been looking for. This recipe makes 16 servings with <b>135 calories</b>, <b>3g of protein</b>, and <b>7g of fat</b> each. For <b>37 cents per serving</b>, this recipe <b>covers 4%</b> of your daily requirements of vitamins and minerals. 22 people have tried and liked this recipe. This recipe from Foodista requires butter, radishes, coarse kosher salt, and chives. From preparation to the plate, this recipe takes about <b>45 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 20%</b>, which is rather bad. Try <a href=\"https://spoonacular.com/recipes/sliced-baguette-with-radishes-and-anchovy-butter-26\">Sliced Baguette With Radishes And Anchovy Butter</a>, <a href=\"https://spoonacular.com/recipes/sliced-baguette-with-radishes-and-anchovy-butter-16\">Sliced Baguette With Radishes And Anchovy Butter</a>, and <a href=\"https://spoonacular.com/recipes/sliced-baguette-with-butter-radishes-sea-salt-44454\">Sliced Baguette With Butter, Radishes & Sea Salt</a> for similar recipes.",
+  prepTime: 45,
+  cuisineDescription: "French Bread",
+  servings: 16,
+  recipeInstructions: [
+    {
+      number: 1,
+      step: "In a small bowl, mix butter with anchovy paste and 2 tablespoons chives; add more anchovy paste to taste, if desired."
+    },
+    {
+      number: 2,
+      step: "Spread anchovy butter over 1 side of each baguette slice.Top each baguette slice with radish slices, overlapping slightly to cover bread."
+    },
+    {
+      number: 3,
+      step: "Garnish with additional chopped chives, sprinkle with salt and serve."
+    }
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: false
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: false
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=m08i8oXpFB0','https://www.youtube.com/watch?v=5FR__Gt0CSo','https://www.youtube.com/watch?v=ZqAE19OIfMc'
+  ]
+})
+
+const recipe16 = new Recipe({
+  country: "",
+  recipeName: "",
+  recipeAuthor: "",
+  ingredients: [
+    {
+      id: ,
+      name: '',
+      amount: ,
+      unit: ''
+    },
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "",
+        amount: ,
+        unit: "",
+        percentOfDailyNeeds:
+      }
+    ]
+  },
+  recipeDescription: "",
+  prepTime: ,
+  cuisineDescription: "",
+  servings: ,
+  recipeInstructions: [
+    {
+      number: ,
+      step: ""
+    },
+    {
+      number: ,
+      step: ""
+    },
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: true
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: true
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=rbfkLv1CSI8','https://www.youtube.com/watch?v=YxN7wXeeuTw','https://www.youtube.com/watch?v=kgkRiVR4IMo'
+  ]
+})
+
+const recipe17 = new Recipe({
+  country: "",
+  recipeName: "",
+  recipeAuthor: "",
+  ingredients: [
+    {
+      id: ,
+      name: '',
+      amount: ,
+      unit: ''
+    },
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "",
+        amount: ,
+        unit: "",
+        percentOfDailyNeeds:
+      }
+    ]
+  },
+  recipeDescription: "",
+  prepTime: ,
+  cuisineDescription: "",
+  servings: ,
+  recipeInstructions: [
+    {
+      number: ,
+      step: ""
+    },
+    {
+      number: ,
+      step: ""
+    },
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: true
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: true
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=rbfkLv1CSI8','https://www.youtube.com/watch?v=YxN7wXeeuTw','https://www.youtube.com/watch?v=kgkRiVR4IMo'
+  ]
+})
+
+const recipe18 = new Recipe({
+  country: "",
+  recipeName: "",
+  recipeAuthor: "",
+  ingredients: [
+    {
+      id: ,
+      name: '',
+      amount: ,
+      unit: ''
+    },
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "",
+        amount: ,
+        unit: "",
+        percentOfDailyNeeds:
+      }
+    ]
+  },
+  recipeDescription: "",
+  prepTime: ,
+  cuisineDescription: "",
+  servings: ,
+  recipeInstructions: [
+    {
+      number: ,
+      step: ""
+    },
+    {
+      number: ,
+      step: ""
+    },
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: true
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: true
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=rbfkLv1CSI8','https://www.youtube.com/watch?v=YxN7wXeeuTw','https://www.youtube.com/watch?v=kgkRiVR4IMo'
+  ]
+})
+
+const recipe19 = new Recipe({
+  country: "",
+  recipeName: "",
+  recipeAuthor: "",
+  ingredients: [
+    {
+      id: ,
+      name: '',
+      amount: ,
+      unit: ''
+    },
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "",
+        amount: ,
+        unit: "",
+        percentOfDailyNeeds:
+      }
+    ]
+  },
+  recipeDescription: "",
+  prepTime: ,
+  cuisineDescription: "",
+  servings: ,
+  recipeInstructions: [
+    {
+      number: ,
+      step: ""
+    },
+    {
+      number: ,
+      step: ""
+    },
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: true
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: true
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=rbfkLv1CSI8','https://www.youtube.com/watch?v=YxN7wXeeuTw','https://www.youtube.com/watch?v=kgkRiVR4IMo'
+  ]
+})
+
+const recipe20 = new Recipe({
+  country: "",
+  recipeName: "",
+  recipeAuthor: "",
+  ingredients: [
+    {
+      id: ,
+      name: '',
+      amount: ,
+      unit: ''
+    },
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "",
+        amount: ,
+        unit: "",
+        percentOfDailyNeeds:
+      }
+    ]
+  },
+  recipeDescription: "",
+  prepTime: ,
+  cuisineDescription: "",
+  servings: ,
+  recipeInstructions: [
+    {
+      number: ,
+      step: ""
+    },
+    {
+      number: ,
+      step: ""
+    },
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: true
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: true
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=rbfkLv1CSI8','https://www.youtube.com/watch?v=YxN7wXeeuTw','https://www.youtube.com/watch?v=kgkRiVR4IMo'
+  ]
+})
 
 Recipe.collection.drop()
-Recipe.create(recipe1, recipe2, recipe3, recipe4, recipe5, recipe6, recipe7, recipe8, recipe9, recipe10)
+Recipe.create(recipe1, recipe2, recipe3, recipe4, recipe5, recipe6, recipe7, recipe8, recipe9, recipe10, recipe11, recipe12, recipe13, recipe14, recipe15)
   .then(() => {
     console.log('Recipe seed inserted successfully');
     mongoose.disconnect();
