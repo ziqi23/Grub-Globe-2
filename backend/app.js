@@ -1,14 +1,13 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const csurf = require('csurf');
-const debug = require('debug');
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const csurf = require("csurf");
+const debug = require("debug");
 
-const cors = require('cors');
-const { isProuction, isProduction } = require('./config/keys.js')
+const cors = require("cors");
+const { isProuction, isProduction } = require("./config/keys.js");
 
 require('./models/User');
-require('./models/Recipe');
 require('./config/passport')
 const passport = require('passport')
 const usersRouter = require('./routes/api/users');
@@ -16,44 +15,47 @@ const csrfRouter = require('./routes/api/csrf')
 
 const app = express();
 
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(passport.initialize())
+app.use(passport.initialize());
 
 if (!isProuction) {
-    app.use(cors())
+  app.use(cors());
 }
 
-app.use(csurf({
+app.use(
+  csurf({
     cookie: {
-        secure: isProuction,
-        sameSite: isProduction && "Lax",
-        httpOnly: true
-    }
-}))
+      secure: isProuction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true,
+    },
+  })
+);
 
-app.use('/api/users', usersRouter);
-app.use('/api/csrf', csrfRouter)
+app.use("/api/users", usersRouter);
+app.use("/api/csrf", csrfRouter);
+app.use("/api/generate", aiRouter);
 
 app.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err.statusCode = 404;
-    next(err);
-})
+  const err = new Error("Not Found");
+  err.statusCode = 404;
+  next(err);
+});
 
-const serverErrorLogger = debug('backend:error')
+const serverErrorLogger = debug("backend:error");
 
 app.use((err, req, res, next) => {
-    serverErrorLogger(err);
-    const statusCode = err.statusCode || 500;
-    res.status(statusCode);
-    res.json({
-        message: err.message,
-        statusCode,
-        errors: err.errors
-    })
-})
+  serverErrorLogger(err);
+  const statusCode = err.statusCode || 500;
+  res.status(statusCode);
+  res.json({
+    message: err.message,
+    statusCode,
+    errors: err.errors,
+  });
+});
 
 module.exports = app;
