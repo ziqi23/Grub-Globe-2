@@ -1,72 +1,78 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const recipeSchema = new mongoose.Schema({
+const recipeSchema = new Schema({
   country: {
-    type: String
+    type: String,
+    required: true
   },
   recipeName: {
-    type: String
-  },
-  recipeImage: {
-    type: String
+    type: String,
+    required: true
   },
   recipeAuthor: {
     type: String,
+    required: true
   },
-  ingredients: {
-    type: [{
+  ingredients: [
+    {
       id: {
-        type: Number
+        type: Number,
+        required: true
       },
       name: {
-        type: String
+        type: String,
+        required: true
       },
       amount: {
-        type: Number
+        type: Number,
+        required: false
       },
       unit: {
-        type: String
+        type: String,
+        required: false
       }
-    }],
+    }
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: {
+          type: String,
+          required: true
+        },
+        amount: {
+          type: Number,
+          required: true
+        },
+        unit: {
+          type: String,
+          required: true
+        },
+        percentOfDailyNeeds: {
+          type: Number,
+          required: true
+        }
+      }
+    ]
   },
-  nutrition : {
-    nutrients: [{
-     name: {
-       type: String,
-       required: true
-     },
-     amount: {
-       type: Number,
-       required: true
-     },
-     unit: {
-       type: String,
-       required: true
-     },
-     percentOfDailyNeeds: {
-       type: Number,
-       required: true
-     }
-    }],
-   },
    recipeDescription: {
     type: String,
-    default: ""
+    default: "",
+    required: true
   },
   prepTime: {
-    type: Number,
-    required: true
+    type: Number
   },
   cuisineDescription: {
     type: String,
     default: ""
   },
   servings: {
-    type: Number,
-    required: true
+    type: Number
   },
-  recipeInstructions: {
-    steps: [{
+  recipeInstructions: [
+    {
       number: {
         type: Number,
         required: true
@@ -74,32 +80,11 @@ const recipeSchema = new mongoose.Schema({
       step: {
         type: String,
         required: true
-      },
-      ingredients: [{
-        id: {
-          type: Number,
-          required: true
-        },
-        name: {
-          type: String,
-          required: true
-        },
-      }],
-      equipment: [{
-        id: {
-          type: Number,
-          required: true
-        },
-        name: {
-          type: String,
-          required: true
-        }
-      }]
-    }],
-    required: true
-  },
-  tags: {
-    type: [{
+      }
+    }
+  ],
+  tags: [
+    {
       name: {
         type: String,
         required: true
@@ -108,25 +93,10 @@ const recipeSchema = new mongoose.Schema({
         type: Boolean,
         required: true
       }
-    }]
-    // dish types + diets as tags
-  },
-  reviewDocument: {
-    type: [{
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-      },
-      content: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Review'
-      }
-    }],
-    default: []
-  },
+    }
+  ],
   youtubeLinks: {
-    type: [String],
-    default: []
+    type: [String]
   }
 });
 
