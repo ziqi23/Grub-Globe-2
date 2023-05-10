@@ -1,0 +1,23 @@
+#recipe-heart {
+  font-size: 30px;
+  text-align: center;
+  color: rgb(190, 188, 188);
+  transition: 0.25s;
+}
+
+#recipe-heart:hover {
+  color: red;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.heart-clicked {
+  fill: red;
+}
+
+#recipe-heart.recipe-heart-unauth {
+  font-size: 30px;
+  color: rgb(190, 188, 188);
+  left: 0;
+  cursor: not-allowed;
+}
