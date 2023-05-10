@@ -4,6 +4,7 @@ import NavBar from './components/NavBar/NavBar';
 import SignupForm from './components/SessionForms/SignUpForm';
 import LoginForm from './components/SessionForms/LoginForm';
 import MainPage from './components/MainPage/MainPage';
+import Globe from './components/Globe/Globe';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from './store/session';
@@ -24,6 +25,7 @@ function App() {
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginForm} />
       <AuthRoute exact path="/signup" component={SignupForm} />
+      <AuthRoute exact path="/explore" component={Globe} />
     </Switch>
     </>
   );
