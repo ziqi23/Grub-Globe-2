@@ -109,10 +109,12 @@
 .session-form-names-input {
     width: 80%;
     display: flex;
+    gap: 10px;
 }
 
 .session-form-names-input input[type="text"] {
-    width: 95%;
+    width: 100%;
+    margin: 0;
 }
 
 .session-form-names-input span {

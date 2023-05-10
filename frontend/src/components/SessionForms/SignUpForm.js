@@ -132,11 +132,6 @@ function SignupForm ({openLoginModal, closeSignUpModal}) {
           <div className="switch-login-modal">
               <p>Already have an account?</p>
               <p onClick={handleSwitchModal}>Log In</p>
-              {/* {showModal && (
-              <Modal onClose={() => setShowModal(false)}>
-                  <LoginForm />
-              </Modal>
-               )} */}
           </div>
 
             <input

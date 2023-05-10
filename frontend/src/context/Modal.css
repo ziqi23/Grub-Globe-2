@@ -78,7 +78,7 @@
   position: absolute;
   background-color:white;
   border-radius: 10px;
-  width: 70vw;
+  width: min(100% - 30px, 900px);
   height: 70vh;
 }
 
