@@ -12,8 +12,23 @@ const RecipeIndex = ({recipes}) => {
     return (
         <div class="recipes-index">
              <Swiper
-                slidesPerView={3}
-                spaceBetween={30}
+                slidesPerView={1}
+                spaceBetween={10}
+                breakpoints={{
+                    1160: {
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    },
+                    800: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    420: {
+                        slidesPerView: 1,
+                        spaceBetween: 10
+                    }
+                }}
+                
                 pagination={{
                 clickable: true,
                 }}

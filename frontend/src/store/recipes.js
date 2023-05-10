@@ -28,7 +28,6 @@ export const fetchRecipes = (filters) => async dispatch => {
     try {
         const res = await jwtFetch(`/api/recipes?${filterParams}`)
         const recipes = await res.json();
-        console.log(recipes)
         dispatch(receiveRecipes(recipes));
     } catch(err) {
         const resBody = await err.json();
@@ -57,7 +56,7 @@ const RecipesReducer = (state = {}, action) => {
         case RECEIVE_RECIPES:
             return { ...action.recipes };
         case RECEIVE_RECIPE:
-            return { ...action.recipe }
+            return { [action.recipe._id]: action.recipe }
         default: 
             return state;
     };

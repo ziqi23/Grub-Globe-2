@@ -7,7 +7,6 @@ import upArrow from "../../assets/icons/general-icons/icons8-slide-up-64.png";
 import downArrow from "../../assets/icons/general-icons/icons8-down-button-64.png";
 import "./FollowAlong.css";
 import Ingredients from "../RecipeShow/Ingredients";
-import AiChat from "../RecipeAssistant";
 
 const StepPage = ({
   step,
@@ -51,7 +50,7 @@ const StepPage = ({
 
         <div className="step-container">
           <div className="ingredients-toggle" onClick={handleToggleIngredients}>
-            <img src={toggleIngredients ? upArrow : downArrow} />
+            <img src={toggleIngredients ? upArrow : downArrow} alt="arrow"/>
             <p>Ingredients</p>
             {toggleIngredients && (
               <div className="step-page-ingredients-container">
@@ -60,23 +59,15 @@ const StepPage = ({
             )}
           </div>
           <div className="step-number">
-            <h1>Step 1</h1>
+            <h1>Step {stepNum}</h1>
           </div>
           <div className="step-instruction">
             {/* <TimerStep /> */}
-            <NormalStep />
+            <NormalStep step={step}/>
           </div>
-          {/* {stepType === "normal" ? <NormalStep recipeName={recipe.name} step={step} stepNum={stepNum}/> : <TimerStep recipeName={recipe.name} step={step} stepNum={stepNum} />} */}
+          {/* {stepType === "normal" ? <NormalStep step={step}/> : <TimerStep step={step} />} */}
         </div>
-
-        {/* <div className="event-listener-options">
-                    <p>Use arrow keys bkjadhs</p>
-                </div> */}
       </div>
-      {/* <AiChat
-        recipeStepFromParent="Combine soy sauce, mirin, sake, and sugar in a small saucepan and heat over medium heat until the sugar dissolves. Let cool."
-        recipeNameFromParent="Chicken Teriyaki Bowl"
-      /> */}
     </>
   );
 };

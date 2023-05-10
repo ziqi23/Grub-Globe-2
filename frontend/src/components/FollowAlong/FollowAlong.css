@@ -91,7 +91,7 @@
 
 .step-container .step-instruction {
     margin: auto;
-    width: 50%;
+    width: 70%;
     /* border: 1px solid orange; */
     height: 40%;
     box-sizing: border-box;
@@ -179,3 +179,17 @@
 
 }
 
+@media (max-width: 1488px) {
+    .step-container .step-instruction h1 {
+        font-size: 30px;
+    
+    }
+}
+
+
+@media (max-width: 890px) {
+    .step-container .step-instruction h1 {
+        font-size: 25px;
+    
+    }
+}

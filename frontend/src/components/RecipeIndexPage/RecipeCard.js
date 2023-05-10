@@ -1,14 +1,5 @@
 import "./RecipeIndex.css"
-import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-// import required modules
-import { Pagination, Navigation } from "swiper";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-
 
 const RecipeCard = ({recipe}) => {
 
@@ -20,7 +11,7 @@ const RecipeCard = ({recipe}) => {
                     <h1>{recipe.recipeName}</h1>
                     <p>Total Duration: {recipe.prepTime} minutes</p>
                     <br></br>
-                    <p>Tags: {recipe.tags.map((tag) => `${tag.name}` + ", ")}</p>
+                    <p className="tags-p">Tags: {recipe?.tags.map((tag, i, tags) => i === (tags.length - 1) ? `${tag.name}` :`${tag.name}, `)}</p>
                     <div className="view-recipe-button"><Link to={`/recipes/${recipe._id}`}>VIEW RECIPE</Link></div>
                 </div>
             </div>

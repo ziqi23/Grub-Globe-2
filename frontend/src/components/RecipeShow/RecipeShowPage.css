@@ -153,6 +153,44 @@
     font-weight: 500;
 }
 
+.smaller-content-info, .youtube-links-container {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    gap: 2%;
+    display: flex;
+    margin-bottom: 0;
+}
+
+.smaller-content-info > div {
+    text-align:center;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 75px;
+    border: 2px solid rgb(20, 20, 20);
+    border-radius: 12px;
+    background-color: rgb(255, 255, 215);
+    line-height: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.smaller-content-info > div h2 {
+    font-size: 18px;
+    padding-bottom: 5px;
+    font-weight: 300;
+}
+
+.smaller-content-info > div p {
+    font-size: 22px;
+}
+
+.tags-p {
+    text-transform: lowercase;
+}
+
 @media (max-width: 1511px) {
     .details-container h2, .main-recipe-content-container h2,
 .macros-container h2 {

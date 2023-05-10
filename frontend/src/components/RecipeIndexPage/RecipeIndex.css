@@ -199,3 +199,9 @@
         background-color: #E8A87C;
     }
 }
+
+@media (max-width: 1500px) {
+    .recipe-quick-info-container h1 {
+        font-size: 30px;
+    }
+}
