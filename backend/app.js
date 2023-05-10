@@ -11,7 +11,8 @@ require('./models/User');
 require('./config/passport')
 const passport = require('passport')
 const usersRouter = require('./routes/api/users');
-const csrfRouter = require('./routes/api/csrf')
+const csrfRouter = require('./routes/api/csrf');
+const aiRouter = require("./routes/api/generate");
 
 const app = express();
 
