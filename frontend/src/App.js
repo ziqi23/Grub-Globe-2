@@ -66,7 +66,7 @@ function App() {
           <AuthRoute exact path="/login" component={MainPage} />
           <AuthRoute exact path="/signup" component={MainPage} />
 
-          <ProtectedRoute path="/recipes/:id" component={RecipeShowPage} />
+          <ProtectedRoute path="/recipes/:recipeId" component={RecipeShowPage} />
           <ProtectedRoute path="/recipes" component={RecipeIndexPage} />
         </Switch>
       </>

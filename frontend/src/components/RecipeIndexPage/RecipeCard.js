@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { useState } from "react";
 
 // import required modules
 import { Pagination, Navigation } from "swiper";
@@ -12,72 +11,19 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 const RecipeCard = ({recipe}) => {
-    const [swiperRef, setSwiperRef] = useState(null);
 
     return (
         <>
-            <Swiper
-                slidesPerView={3}
-                spaceBetween={30}
-                pagination={{
-                clickable: true,
-                }}
-                modules={[Pagination, Navigation]}
-                navigation={true}
-                className="mySwiper"
-            >
-                <SwiperSlide>
-                    <div className="recipe-card">
-                        <div className="image-placeholder">image placeholder</div>
-                        <div className="recipe-quick-info-container">
-                            <h1>Recipe Name</h1>
-                            <p>Total Duration: 40 minutes</p>
-                            <br></br>
-                            <p>Tags: Healthy</p>
-                            <div className="view-recipe-button"><Link to="/recipes/1">VIEW RECIPE</Link></div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="recipe-card" >
-                        <div className="image-placeholder">image placeholder</div>
-                        <div className="recipe-quick-info-container">
-                            <h1>Recipe Name</h1>
-                            <p>Total Duration: 40 minutes</p>
-                            <br></br>
-                            <p>Tags: Healthy</p>
-                            <div className="view-recipe-button">VIEW RECIPE</div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="recipe-card">
-                        <div className="image-placeholder">image placeholder</div>
-                        <div className="recipe-quick-info-container">
-                            <h1>Recipe Name</h1>
-                            <p>Total Duration: 40 minutes</p>
-                            <br></br>
-                            <p>Tags: Healthy</p>
-                            <div className="view-recipe-button">VIEW RECIPE</div>
-                        </div>
-                    </div></SwiperSlide>
-                <SwiperSlide>
-                    <div className="recipe-card">
-                        <div className="image-placeholder">image placeholder</div>
-                        <div className="recipe-quick-info-container">
-                            <h1>Recipe Name</h1>
-                            <p>Total Duration: 40 minutes</p>
-                            <br></br>
-                            <p>Tags: Healthy</p>
-                            <div className="view-recipe-button">VIEW RECIPE</div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-            </Swiper>
-
-           
-            
-            
+            <div className="recipe-card">
+                <div className="image-placeholder">image placeholder</div>
+                <div className="recipe-quick-info-container">
+                    <h1>{recipe.recipeName}</h1>
+                    <p>Total Duration: {recipe.prepTime} minutes</p>
+                    <br></br>
+                    <p>Tags: {recipe.tags.map((tag) => `${tag.name}` + ", ")}</p>
+                    <div className="view-recipe-button"><Link to={`/recipes/${recipe._id}`}>VIEW RECIPE</Link></div>
+                </div>
+            </div>
         </>
     )
 };

@@ -5,13 +5,17 @@ import FollowAlongCarousel from "../FollowAlong/FollowAlongCarousel";
 import { useEffect, useState } from "react";
 import Ingredients from "./Ingredients";
 import AiChat from "../RecipeAssistant";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-const RecipeShowPage = ({ recipe }) => {
+const RecipeShowPage = () => {
+  const { recipeId } = useParams();
   const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
   const [currentRecipeStep, setCurrentRecipeStep] = useState("");
-  useEffect(() => {
-    console.log(currentRecipeStep, "current recipe step");
-  }, [currentRecipeStep]);
+  console.log(recipeId, "recipe id")
+
+  // useEffect(() => {
+  //   console.log(currentRecipeStep, "current recipe step");
+  // }, [currentRecipeStep]);
 
   const handleFollowAlong = () => {
     setToggleFollowAlong(true);

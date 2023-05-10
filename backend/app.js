@@ -7,12 +7,14 @@ const debug = require("debug");
 const cors = require("cors");
 const { isProuction, isProduction } = require("./config/keys.js");
 
+require("./models/Recipe")
 require("./models/User");
 require("./config/passport");
 const passport = require("passport");
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
 const aiRouter = require("./routes/api/generate");
+const recipesRouter = require("./routes/api/recipes");
 
 const app = express();
 
@@ -39,6 +41,7 @@ app.use(
 app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/generate", aiRouter);
+app.use("/api/recipes", recipesRouter);
 
 app.use((req, res, next) => {
   const err = new Error("Not Found");
