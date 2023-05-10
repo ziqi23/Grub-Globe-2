@@ -76,7 +76,6 @@ function SignupForm ({openLoginModal, closeSignUpModal}) {
           <p>Explore new recipes around the world</p>
           <h2>signup</h2>
           <div className="session-form-names-input">
-
             <label>
               <span>First Name</span>
               <input type="text"

@@ -72,7 +72,7 @@
     margin: auto;
     box-sizing: border-box;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 3%;
     font-size: 15px;
     border: 2px solid black;
 }
@@ -107,7 +107,16 @@
 }
 
 .session-form-names-input {
+    width: 80%;
     display: flex;
+}
+
+.session-form-names-input input[type="text"] {
+    width: 95%;
+}
+
+.session-form-names-input span {
+    margin-left: 0;
 }
 
 .switch-login-modal {
@@ -119,3 +128,4 @@
     cursor: pointer;
     font-weight: 500;
 }
+
