@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@200;300;400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700;800;900&family=Kanit:wght@300;400;500;600&display=swap');
 /* TODO Add site wide styles */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
