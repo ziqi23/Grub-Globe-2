@@ -47,12 +47,6 @@ const insertSeeds = () => {
                  });
 }
 
-// mongoose.disconnect();
-
-const searchTerms = ['hamburger', 'fried chicken', 'apple pie', 'clam chowder', 'caesar salad', 'tacos', 'gaucamole', 'tamales', 'enchiladas', 'margarita', 'osso buco', 'lasagna', 'tiramisu', 'caprese salad', 'risotto', 'paella','gazpacho', 'churros', 'croquetas', 'sangria', 'baguette', 'beef bourguignon', 'coq a vin', 'creme brulee', 'french onion soup', 'shepherd pie','full english breakfast','trifle','yorkshire pudding','bangers and mash', 'bratwurst','sauerkraut','black forest cake','pretzel','beer','sushi','ramen','tempura','miso soup','matcha','fried rice','hot and sour soup','dim sum','kung pao chicken','chow mein', 'butter chicken','biryani','samosas','tandoori chicken','rogan josh','papaya salad','green curry','mango sticky rice','pad see ew','massaman curry','pho','banh mi','spring rolls','com tam', 'ca kho to','Feijoada','Brigadeiro','pastel','tapioca'];
-
-const country = ['United States', 'Mexico', 'Italy', 'Spain', 'France', 'United Kingdom', 'Germany', 'Japan', 'China', 'India', 'Thailand', 'Vietnam', 'Brazil'];
-
 const recipe1 = new Recipe({
   country: 'United States',
   recipeName: 'Tex-Mex Burger',
@@ -1655,7 +1649,7 @@ const recipe5 = new Recipe({
     type: []
   },
   youtubeLinks: [
-    ['https://www.youtube.com/watch?v=XwVkUK-CvhY','https://www.youtube.com/watch?v=P1KbdHVNUq0','https://www.youtube.com/watch?v=a4Z2x0sPq3A&t=207s']
+    'https://www.youtube.com/watch?v=XwVkUK-CvhY','https://www.youtube.com/watch?v=P1KbdHVNUq0','https://www.youtube.com/watch?v=a4Z2x0sPq3A&t=207s'
   ]
 })
 
@@ -1666,261 +1660,285 @@ const recipe6 = new Recipe({
   ingredients: [
     {
       id: 1,
-      name: "light caesar dressing",
-      amount: 2.0,
-      unit: "Tbsps"
+      name: "shrimp",
+      amount: 18.0,
+      unit: "medium"
     },
     {
       id: 2,
-      name: "lemon juice",
-      amount: 2.0,
-      unit: "Tbsps"
+      name: "splash of hot sauce",
+      amount: 6.0,
+      unit: "servings"
     },
     {
       id: 3,
+      name: "chili powder",
+      amount: 0.25,
+      unit: "tsps"
+    },
+    {
+      id: 4,
+      name: "salt & pepper",
+      amount: 6.0,
+      unit: "servings"
+    },
+    {
+      id: 5,
       name: "olive oil",
       amount: 1.0,
       unit: "Tbsp"
     },
     {
-      id: 4,
-      name: "paprika",
-      amount: 0.25,
-      unit: "tsps"
-    },
-    {
-      id: 5,
-      name: "shredded parmesan cheese",
-      amount: 8.0,
-      unit: "Tbsps"
-    },
-    {
       id: 6,
-      name: "black add pepper",
-      amount: 2.0,
-      unit: "servings"
+      name: "tomato",
+      amount: 1.0,
+      unit: "medium"
     },
     {
       id: 7,
-      name: "romaine",
-      amount: 8.0,
-      unit: "oz"
+      name: "red whole segments from pink",
+      amount: 6.0,
+      unit: "servings"
     },
     {
       id: 8,
-      name: "salmon fillet",
-      amount: 6.0,
-      unit: "ounces"
+      name: "avocado",
+      amount: 1.0,
+      unit: ""
     },
     {
       id: 9,
+      name: "fresh lime juice",
+      amount: 1.0,
+      unit: "Tbsp"
+    },
+    {
+      id: 10,
+      name: "fresh cilantro",
+      amount: 0.25,
+      unit: "c"
+    },
+    {
+      id: 11,
       name: "salt",
       amount: 0.25,
       unit: "tsps"
     },
     {
-      id: 10,
-      name: "slivered almonds",
+      id: 12,
+      name: "sour cream",
+      amount: 0.5,
+      unit: "c"
+    },
+    {
+      id: 13,
+      name: "tacos",
       amount: 1.0,
-      unit: "Tbsp"
+      unit: "serving"
     }
   ],
   nutrition: {
     nutrients: [
       {
         name: "Calories",
-        amount: 393.21,
+        amount: 207.15,
         unit: "kcal",
-        percentOfDailyNeeds: 19.66
+        percentOfDailyNeeds: 10.36
       },
       {
         name: "Fat",
-        amount: 28.96,
+        amount: 11.41,
         unit: "g",
-        percentOfDailyNeeds: 44.56
+        percentOfDailyNeeds: 17.55
       },
       {
         name: "Saturated Fat",
-        amount: 6.62,
+        amount: 3.04,
         unit: "g",
-        percentOfDailyNeeds: 41.38
+        percentOfDailyNeeds: 19.02
       },
       {
         name: "Carbohydrates",
-        amount: 7.17,
+        amount: 21.31,
         unit: "g",
-        percentOfDailyNeeds: 2.39
+        percentOfDailyNeeds: 7.1
       },
       {
         name: "Net Carbohydrates",
-        amount: 3.94,
+        amount: 16.29,
         unit: "g",
-        percentOfDailyNeeds: 1.43
+        percentOfDailyNeeds: 5.92
       },
       {
         name: "Sugar",
-        amount: 2.54,
+        amount: 12.08,
         unit: "g",
-        percentOfDailyNeeds: 2.83
+        percentOfDailyNeeds: 13.42
       },
       {
         name: "Cholesterol",
-        amount: 66.11,
+        amount: 59.61,
         unit: "mg",
-        percentOfDailyNeeds: 22.04
+        percentOfDailyNeeds: 19.87
       },
       {
         name: "Sodium",
-        amount: 835.98,
+        amount: 340.59,
         unit: "mg",
-        percentOfDailyNeeds: 36.35
+        percentOfDailyNeeds: 14.81
       },
       {
         name: "Protein",
-        amount: 26.9,
+        amount: 8.57,
         unit: "g",
-        percentOfDailyNeeds: 53.79
-      },
-      {
-        name: "Vitamin A",
-        amount: 10196.82,
-        unit: "IU",
-        percentOfDailyNeeds: 203.94
-      },
-      {
-        name: "Vitamin K",
-        amount: 136.59,
-        unit: "µg",
-        percentOfDailyNeeds: 130.08
-      },
-      {
-        name: "Selenium",
-        amount: 36.47,
-        unit: "µg",
-        percentOfDailyNeeds: 52.1
-      },
-      {
-        name: "Vitamin B12",
-        amount: 2.95,
-        unit: "µg",
-        percentOfDailyNeeds: 49.15
-      },
-      {
-        name: "Folate",
-        amount: 182.52,
-        unit: "µg",
-        percentOfDailyNeeds: 45.63
-      },
-      {
-        name: "Vitamin B6",
-        amount: 0.82,
-        unit: "mg",
-        percentOfDailyNeeds: 41.04
-      },
-      {
-        name: "Phosphorus",
-        amount: 371.9,
-        unit: "mg",
-        percentOfDailyNeeds: 37.19
-      },
-      {
-        name: "Vitamin B3",
-        amount: 7.32,
-        unit: "mg",
-        percentOfDailyNeeds: 36.6
-      },
-      {
-        name: "Vitamin B2",
-        amount: 0.53,
-        unit: "mg",
-        percentOfDailyNeeds: 31.15
-      },
-      {
-        name: "Calcium",
-        amount: 307.1,
-        unit: "mg",
-        percentOfDailyNeeds: 30.71
-      },
-      {
-        name: "Potassium",
-        amount: 778.75,
-        unit: "mg",
-        percentOfDailyNeeds: 22.25
-      },
-      {
-        name: "Vitamin E",
-        amount: 3.27,
-        unit: "mg",
-        percentOfDailyNeeds: 21.82
-      },
-      {
-        name: "Vitamin B1",
-        amount: 0.3,
-        unit: "mg",
-        percentOfDailyNeeds: 19.86
-      },
-      {
-        name: "Vitamin B5",
-        amount: 1.73,
-        unit: "mg",
-        percentOfDailyNeeds: 17.3
-      },
-      {
-        name: "Manganese",
-        amount: 0.33,
-        unit: "mg",
-        percentOfDailyNeeds: 16.62
-      },
-      {
-        name: "Copper",
-        amount: 0.33,
-        unit: "mg",
-        percentOfDailyNeeds: 16.61
-      },
-      {
-        name: "Magnesium",
-        amount: 64.66,
-        unit: "mg",
-        percentOfDailyNeeds: 16.16
-      },
-      {
-        name: "Iron",
-        amount: 2.4,
-        unit: "mg",
-        percentOfDailyNeeds: 13.36
-      },
-      {
-        name: "Fiber",
-        amount: 3.24,
-        unit: "g",
-        percentOfDailyNeeds: 12.95
+        percentOfDailyNeeds: 17.15
       },
       {
         name: "Vitamin C",
-        amount: 10.39,
+        amount: 55.38,
         unit: "mg",
-        percentOfDailyNeeds: 12.59
+        percentOfDailyNeeds: 67.13
+      },
+      {
+        name: "Vitamin A",
+        amount: 2189.84,
+        unit: "IU",
+        percentOfDailyNeeds: 43.8
+      },
+      {
+        name: "Fiber",
+        amount: 5.02,
+        unit: "g",
+        percentOfDailyNeeds: 20.09
+      },
+      {
+        name: "Potassium",
+        amount: 530.94,
+        unit: "mg",
+        percentOfDailyNeeds: 15.17
+      },
+      {
+        name: "Folate",
+        amount: 52.08,
+        unit: "µg",
+        percentOfDailyNeeds: 13.02
+      },
+      {
+        name: "Phosphorus",
+        amount: 129.85,
+        unit: "mg",
+        percentOfDailyNeeds: 12.98
+      },
+      {
+        name: "Copper",
+        amount: 0.25,
+        unit: "mg",
+        percentOfDailyNeeds: 12.47
+      },
+      {
+        name: "Vitamin K",
+        amount: 12.55,
+        unit: "µg",
+        percentOfDailyNeeds: 11.95
+      },
+      {
+        name: "Vitamin E",
+        amount: 1.48,
+        unit: "mg",
+        percentOfDailyNeeds: 9.86
+      },
+      {
+        name: "Vitamin B6",
+        amount: 0.2,
+        unit: "mg",
+        percentOfDailyNeeds: 9.82
+      },
+      {
+        name: "Magnesium",
+        amount: 38.8,
+        unit: "mg",
+        percentOfDailyNeeds: 9.7
+      },
+      {
+        name: "Vitamin B5",
+        amount: 0.96,
+        unit: "mg",
+        percentOfDailyNeeds: 9.59
+      },
+      {
+        name: "Calcium",
+        amount: 79.89,
+        unit: "mg",
+        percentOfDailyNeeds: 7.99
+      },
+      {
+        name: "Vitamin B2",
+        amount: 0.13,
+        unit: "mg",
+        percentOfDailyNeeds: 7.65
+      },
+      {
+        name: "Vitamin B1",
+        amount: 0.1,
+        unit: "mg",
+        percentOfDailyNeeds: 6.76
+      },
+      {
+        name: "Manganese",
+        amount: 0.12,
+        unit: "mg",
+        percentOfDailyNeeds: 6.14
       },
       {
         name: "Zinc",
-        amount: 1.55,
+        amount: 0.83,
         unit: "mg",
-        percentOfDailyNeeds: 10.32
+        percentOfDailyNeeds: 5.56
+      },
+      {
+        name: "Vitamin B3",
+        amount: 1.06,
+        unit: "mg",
+        percentOfDailyNeeds: 5.3
+      },
+      {
+        name: "Iron",
+        amount: 0.58,
+        unit: "mg",
+        percentOfDailyNeeds: 3.23
+      },
+      {
+        name: "Selenium",
+        amount: 1.03,
+        unit: "µg",
+        percentOfDailyNeeds: 1.47
       }
     ]
   },
-  recipeDescription: "The recipe Salmon Caesar Salad could satisfy your American craving in roughly <b>45 minutes</b>. One portion of this dish contains around <b>27g of protein</b>, <b>29g of fat</b>, and a total of <b>393 calories</b>. For <b>$3.01 per serving</b>, you get a main course that serves 2. It is brought to you by Foodista. 12 people were glad they tried this recipe. Head to the store and pick up parmesan cheese, lemon juice, paprika, and a few other things to make it today. It is a good option if you're following a <b>gluten free, primal, pescatarian, and ketogenic</b> diet. Taking all factors into account, this recipe <b>earns a spoonacular score of 94%</b>, which is great. Users who liked this recipe also liked <a href=\"https://spoonacular.com/recipes/salmon-caesar-salad-418441\">Salmon Caesar Salad</a>, <a href=\"https://spoonacular.com/recipes/salmon-caesar-salad-521731\">Salmon Caesar Salad</a>, and <a href=\"https://spoonacular.com/recipes/salmon-caesar-salad-1189903\">Salmon Caesar Salad</a>.",
-  prepTime: 45,
-  cuisineDescription: 'American',
-  servings: 2,
+  recipeDescription: "Forget going out to eat or ordering takeout every time you crave Mexican food. Try making Shrimp Tacos with Avocado, Grapefruit, and Creamy Cilantro Sauce at home. For <b>$1.6 per serving</b>, this recipe <b>covers 12%</b> of your daily requirements of vitamins and minerals. This recipe serves 6. Watching your figure? This gluten free and pescatarian recipe has <b>207 calories</b>, <b>9g of protein</b>, and <b>11g of fat</b> per serving. If you have salt & pepper, lime juice, tomato, and a few other ingredients on hand, you can make it. From preparation to the plate, this recipe takes approximately <b>30 minutes</b>. It is brought to you by spoonacular user <a href=\"/profile/maplewoodroad\">maplewoodroad</a>. It works well as a rather inexpensive hor d'oeuvre. Similar recipes include <a href=\"https://spoonacular.com/recipes/chicken-and-avocado-tacos-with-creamy-cilantro-sauce-999823\">Chicken and Avocado Tacos with Creamy Cilantro Sauce</a>, <a href=\"https://spoonacular.com/recipes/spicy-shrimp-tacos-with-avocado-salsa-sour-cream-cilantro-sauce-1300327\">Spicy Shrimp Tacos with Avocado Salsa & Sour Cream Cilantro Sauce</a>, and <a href=\"https://spoonacular.com/recipes/spicy-shrimp-tacos-with-avocado-salsa-sour-cream-cilantro-sauce-721265\">Spicy Shrimp Tacos with Avocado Salsa & Sour Cream Cilantro Sauce</a>.",
+  prepTime: 30,
+  cuisineDescription: 'Mexican',
+  servings: 6,
   recipeInstructions: [
     {
       number: 1,
-      step: "Heat up a skillet/frying pan and sir the Salmon in the coconut oil/olive oil (don't forget to add the salt and paprika to it) until very lightly browned on each side (i like my salmon slightly undercooked-its up to you if you want it more done). Top with freshly squeezed lemon juice and let it sit in the frying pan for about 1 minute. In a Large bowl, mix the romaine lettuce with the Caesar salad dressing and dump it out into a large plate, top off with Asiago/Parmesan cheese and you can also sprinkle the toasted almonds on now."
+      step: "Mix chili, hot sauce, salt, &amp; pepper together.&nbsp; Toss with shrimp and let marinate 10 minutes."
     },
     {
       number: 2,
-      step: "Place the Salmon (sliced) on top. You can sprinkle it with some more fresh lemon juice:) and black pepper!"
+      step: "Heat olive oil over medium-high heat in Lodge cast iron pan and cook shrimp until pink and curled, about 5 minutes.&nbsp; Set aside."
+    },
+    {
+      number: 3,
+      step: "Combine all salsa ingredients in a bowl, stir, and set aside."
+    },
+    {
+      number: 4,
+      step: "Stir together sour cream and cilantro in a bowl, and set aside."
+    },
+    {
+      number: 5,
+      step: "Assemble taco or tortilla by first putting in the salsa, add 3 shrimp to each, top with sour cream-cilantro sauce, and then add a generous squeeze of lime juice over the top."
     }
   ],
   tags: [
@@ -1949,12 +1967,1254 @@ const recipe6 = new Recipe({
     type: []
   },
   youtubeLinks: [
-    []
+    'https://www.youtube.com/watch?v=qjYP5-ZutEk','https://www.youtube.com/watch?v=d-l5NB-bRXg','https://www.youtube.com/watch?v=d-l5NB-bRXg'
   ]
 })
 
+const recipe7 = new Recipe({
+  country: 'Mexico',
+  recipeName: 'Guacamole',
+  recipeAuthor: 'Euclydes Antonio dos Santos Filho',
+  ingredients: [
+    {
+      id: 1,
+      name: "haas avocados",
+      amount: 2.0,
+      unit: "large"
+    },
+    {
+      id: 2,
+      name: "onion",
+      amount: 2.0,
+      unit: "Tbsps"
+    },
+    {
+      id: 3,
+      name: "jalapeno pepper",
+      amount: 1.0,
+      unit: "Tbsp"
+    },
+    {
+      id: 4,
+      name: "fresh cilantro",
+      amount: 0.25,
+      unit: "cup"
+    },
+    {
+      id: 5,
+      name: "salt",
+      amount: 0.5,
+      unit: "tsps"
+    },
+    {
+      id: 6,
+      name: "black pepper",
+      amount: 0.125,
+      unit: "tsps"
+    },
+    {
+      id: 7,
+      name: "fresh lime juice",
+      amount: 1.0,
+      unit: "Tbsp"
+    },
+    {
+      id: 8,
+      name: "fresh basil",
+      amount: 1.0,
+      unit: "tsp"
+    },
+    {
+      id: 9,
+      name: "fresh oregano",
+      amount: 1.0,
+      unit: "tsp"
+    }
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "Calories",
+        amount: 166.54,
+        unit: "kcal",
+        percentOfDailyNeeds: 8.33
+      },
+      {
+        name: "Fat",
+        amount: 14.82,
+        unit: "g",
+        percentOfDailyNeeds: 22.81
+      },
+      {
+        name: "Saturated Fat",
+        amount: 2.16,
+        unit: "g",
+        percentOfDailyNeeds: 13.47
+      },
+      {
+        name: "Carbohydrates",
+        amount: 10.02,
+        unit: "g",
+        percentOfDailyNeeds: 3.34
+      },
+      {
+        name: "Net Carbohydrates",
+        amount: 2.83,
+        unit: "g",
+        percentOfDailyNeeds: 1.03
+      },
+      {
+        name: "Sugar",
+        amount: 1.12,
+        unit: "g",
+        percentOfDailyNeeds: 1.25
+      },
+      {
+        name: "Cholesterol",
+        amount: 0.0,
+        unit: "mg",
+        percentOfDailyNeeds: 0.0
+      },
+      {
+        name: "Sodium",
+        amount: 298.71,
+        unit: "mg",
+        percentOfDailyNeeds: 12.99
+      },
+      {
+        name: "Protein",
+        amount: 2.19,
+        unit: "g",
+        percentOfDailyNeeds: 4.38
+      },
+      {
+        name: "Fiber",
+        amount: 7.2,
+        unit: "g",
+        percentOfDailyNeeds: 28.78
+      },
+      {
+        name: "Vitamin K",
+        amount: 28.26,
+        unit: "µg",
+        percentOfDailyNeeds: 26.91
+      },
+      {
+        name: "Folate",
+        amount: 85.58,
+        unit: "µg",
+        percentOfDailyNeeds: 21.39
+      },
+      {
+        name: "Vitamin C",
+        amount: 16.28,
+        unit: "mg",
+        percentOfDailyNeeds: 19.73
+      },
+      {
+        name: "Vitamin E",
+        amount: 2.34,
+        unit: "mg",
+        percentOfDailyNeeds: 15.61
+      },
+      {
+        name: "Potassium",
+        amount: 520.89,
+        unit: "mg",
+        percentOfDailyNeeds: 14.88
+      },
+      {
+        name: "Vitamin B6",
+        amount: 0.29,
+        unit: "mg",
+        percentOfDailyNeeds: 14.42
+      },
+      {
+        name: "Vitamin B5",
+        amount: 1.43,
+        unit: "mg",
+        percentOfDailyNeeds: 14.3
+      },
+      {
+        name: "Copper",
+        amount: 0.2,
+        unit: "mg",
+        percentOfDailyNeeds: 10.11
+      },
+      {
+        name: "Manganese",
+        amount: 0.19,
+        unit: "mg",
+        percentOfDailyNeeds: 9.58
+      },
+      {
+        name: "Vitamin B3",
+        amount: 1.84,
+        unit: "mg",
+        percentOfDailyNeeds: 9.22
+      },
+      {
+        name: "Vitamin B2",
+        amount: 0.14,
+        unit: "mg",
+        percentOfDailyNeeds: 8.21
+      },
+      {
+        name: "Magnesium",
+        amount: 32.25,
+        unit: "mg",
+        percentOfDailyNeeds: 8.06
+      },
+      {
+        name: "Phosphorus",
+        amount: 56.54,
+        unit: "mg",
+        percentOfDailyNeeds: 5.65
+      },
+      {
+        name: "Vitamin A",
+        amount: 266.78,
+        unit: "IU",
+        percentOfDailyNeeds: 5.34
+      },
+      {
+        name: "Vitamin B1",
+        amount: 0.07,
+        unit: "mg",
+        percentOfDailyNeeds: 4.91
+      },
+      {
+        name: "Zinc",
+        amount: 0.68,
+        unit: "mg",
+        percentOfDailyNeeds: 4.53
+      },
+      {
+        name: "Iron",
+        amount: 0.79,
+        unit: "mg",
+        percentOfDailyNeeds: 4.37
+      },
+      {
+        name: "Calcium",
+        amount: 23.34,
+        unit: "mg",
+        percentOfDailyNeeds: 2.33
+      }
+  ]
+  },
+  recipeDescription: "Guacamole takes roughly <b>45 minutes</b> from beginning to end. Watching your figure? This gluten free, dairy free, paleolithic, and lacto ovo vegetarian recipe has <b>167 calories</b>, <b>2g of protein</b>, and <b>15g of fat</b> per serving. This recipe serves 4. For <b>87 cents per serving</b>, this recipe <b>covers 9%</b> of your daily requirements of vitamins and minerals. 20 people found this recipe to be flavorful and satisfying. A mixture of haas avocados, salt, cilantro, and a handful of other ingredients are all it takes to make this recipe so tasty. It works well as a very affordable hor d'oeuvre. A couple people really liked this Mexican dish. It is brought to you by Foodista. With a spoonacular <b>score of 81%</b>, this dish is amazing. If you like this recipe, you might also like recipes such as <a href=\"https://spoonacular.com/recipes/guacamole-how-to-make-guacamole-mexican-guacamole-486710\">guacamole , how to make guacamole | mexican guacamole</a>, <a href=\"https://spoonacular.com/recipes/fried-green-plantain-with-guacamole-and-shrimp-tostada-de-pltano-con-camarones-y-guacamole-1213029\">Fried Green Plantain with Guacamole and Shrimp (Tostada de Plátano con Camarones y Guacamole)</a>, and <a href=\"https://spoonacular.com/recipes/fried-green-plantain-with-guacamole-and-shrimp-tostada-de-pltano-con-camarones-y-guacamole-226105\">Fried Green Plantain with Guacamole and Shrimp (Tostada de Plátano con Camarones y Guacamole)</a>.",
+  prepTime: 45,
+  cuisineDescription: 'Mexican',
+  servings: 4,
+  recipeInstructions: [
+    {
+      number: 1,
+      step: "Cut the avocados in half lengthwise. Drive chef's knife into large pit and twist to remove.  Scoop the avocado out from the skin into a bowl."
+    },
+    {
+      number: 2,
+      step: "Mash the avocado with a fork, add in onion and cilantro, oregano and basil.."
+    },
+    {
+      number: 3,
+      step: "Mix to incorporate."
+    },
+    {
+      number: 4,
+      step: "Season to taste with salt, pepper and lime juice."
+    },
+    {
+      number: 5,
+      step: "Serve immediately or chill.  If you are not going to eat the guacamole immediately, store in refrigerator with plastic film wrap pressed onto the guacamole."
+    }
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: true
+    },
+    {
+      name: 'vegan',
+      value: true
+    },
+    {
+      name: 'glutenFree',
+      value: true
+    },
+    {
+      name: 'dairyFree',
+      value: true
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=23tGra9KBa0','https://www.youtube.com/watch?v=HoToW7cYna0&t=1s','https://www.youtube.com/watch?v=tHVzFLtvbGQ'
+  ]
+})
+
+const recipe8 = new Recipe({
+  country: 'Mexico',
+  recipeName: 'Beef, Poblano & Cheese Tamales',
+  recipeAuthor: 'raichement',
+  ingredients: [
+    {
+      id: 1,
+      name: 'dried corn husks',
+      amount: 20.0,
+      unit: ''
+    },
+    {
+      id: 2,
+      name: 'dried california chili pods',
+      amount: 6.0,
+      unit: ''
+    },
+    {
+      id: 3,
+      name: 'ground beef',
+      amount: 1.5,
+      unit: 'cups'
+    },
+    {
+      id: 4,
+      name: 'shredded mozzarella cheese',
+      amount: 1.0,
+      unit: 'cup'
+    },
+    {
+      id: 5,
+      name: 'diced poblano pepper',
+      amount: 0.5,
+      unit: ''
+    },
+    {
+      id: 6,
+      name: 'garlic',
+      amount: 4.0,
+      unit: 'cloves'
+    },
+    {
+      id: 7,
+      name: 'olive oil',
+      amount: 2.0,
+      unit: 'Tbsps'
+    },
+    {
+      id: 8,
+      name: 'goya seasoning',
+      amount: 1.5,
+      unit: 'packets'
+    },
+    {
+      id: 9,
+      name: 'salt',
+      amount: 2.0,
+      unit: 'tsps'
+    },
+    {
+      id: 10,
+      name: 'chili powder',
+      amount: 1.0,
+      unit: 'tsp'
+    }
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "Calories",
+        amount: 372.47,
+        unit: "kcal",
+        percentOfDailyNeeds: 18.62
+      },
+      {
+        name: "Fat",
+        amount: 30.3,
+        unit: "g",
+        percentOfDailyNeeds: 46.62
+      },
+      {
+        name: "Saturated Fat",
+        amount: 11.16,
+        unit: "g",
+        percentOfDailyNeeds: 69.74
+      },
+      {
+        name: "Carbohydrates",
+        amount: 3.33,
+        unit: "g",
+        percentOfDailyNeeds: 1.11
+      },
+      {
+        name: "Net Carbohydrates",
+        amount: 2.46,
+        unit: "g",
+        percentOfDailyNeeds: 0.9
+      },
+      {
+        name: "Sugar",
+        amount: 1.03,
+        unit: "g",
+        percentOfDailyNeeds: 1.15
+      },
+      {
+        name: "Cholesterol",
+        amount: 82.03,
+        unit: "mg",
+        percentOfDailyNeeds: 27.34
+      },
+      {
+        name: "Sodium",
+        amount: 1404.9,
+        unit: "mg",
+        percentOfDailyNeeds: 61.08
+      },
+      {
+        name: "Protein",
+        amount: 21.19,
+        unit: "g",
+        percentOfDailyNeeds: 42.39
+      },
+      {
+        name: "Vitamin B12",
+        amount: 2.44,
+        unit: "µg",
+        percentOfDailyNeeds: 40.73
+      },
+      {
+        name: "Zinc",
+        amount: 4.44,
+        unit: "mg",
+        percentOfDailyNeeds: 29.61
+      },
+      {
+        name: "Selenium",
+        amount: 17.99,
+        unit: "µg",
+        percentOfDailyNeeds: 25.7
+      },
+      {
+        name: "Phosphorus",
+        amount: 243.25,
+        unit: "mg",
+        percentOfDailyNeeds: 24.32
+      },
+      {
+        name: "Vitamin B3",
+        amount: 3.83,
+        unit: "mg",
+        percentOfDailyNeeds: 19.14
+      },
+      {
+        name: "Vitamin B6",
+        amount: 0.37,
+        unit: "mg",
+        percentOfDailyNeeds: 18.69
+      },
+      {
+        name: "Calcium",
+        amount: 172.27,
+        unit: "mg",
+        percentOfDailyNeeds: 17.23
+      },
+      {
+        name: "Vitamin C",
+        amount: 13.14,
+        unit: "mg",
+        percentOfDailyNeeds: 15.93
+      },
+      {
+        name: "Vitamin B2",
+        amount: 0.23,
+        unit: "mg",
+        percentOfDailyNeeds: 13.37
+      },
+      {
+        name: "Iron",
+        amount: 2.18,
+        unit: "mg",
+        percentOfDailyNeeds: 12.11
+      },
+      {
+        name: "Vitamin A",
+        amount: 597.88,
+        unit: "IU",
+        percentOfDailyNeeds: 11.96
+      },
+      {
+        name: "Vitamin E",
+        amount: 1.75,
+        unit: "mg",
+        percentOfDailyNeeds: 11.65
+      },
+      {
+        name: 'Vitamin K',
+        amount: 11.2,
+        unit: 'µg',
+        percentOfDailyNeeds: 10.67
+      },
+      {
+        name: 'Potassium',
+        amount: 315.96,
+        unit: 'mg',
+        percentOfDailyNeeds: 9.03
+      },
+      {
+        name: 'Magnesium',
+        amount: 24.63,
+        unit: 'mg',
+        percentOfDailyNeeds: 6.16
+      },
+      {
+        name: 'Manganese',
+        amount: 0.12,
+        unit: 'mg',
+        percentOfDailyNeeds: 6.08
+      },
+      {
+        name: 'Vitamin B5',
+        amount: 0.51,
+        unit: 'mg',
+        percentOfDailyNeeds: 5.11
+      },
+      {
+        name: 'Copper',
+        amount: 0.08,
+        unit: 'mg',
+        percentOfDailyNeeds: 4.17
+      },
+      {
+        name: 'Vitamin B1',
+        amount: 0.06,
+        unit: 'mg',
+        percentOfDailyNeeds: 4.11
+      },
+      {
+        name: 'Fiber',
+        amount: 0.86,
+        unit: 'g',
+        percentOfDailyNeeds: 3.46
+      },
+      {
+        name: 'Folate',
+        amount: 10.86,
+        unit: 'µg',
+        percentOfDailyNeeds: 2.71
+      },
+      {
+        name: 'Vitamin D',
+        amount: 0.2,
+        unit: 'µg',
+        percentOfDailyNeeds: 1.31
+      }
+    ]
+  },
+  recipeDescription: "You can never have too many Mexican recipes, so give Beef, Poblano & Cheese Tamales a try. This recipe serves 4 and costs $1.49 per serving. Watching your figure? This gluten free and ketogenic recipe has <b>372 calories</b>, <b>21g of protein</b>, and <b>30g of fat</b> per serving. It works well as a rather inexpensive main course. This recipe from Foodista has 5 fans. Head to the store and pick up poblano pepper, california chili pods, ground beef, and a few other things to make it today. From preparation to the plate, this recipe takes roughly <b>45 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 53%</b>, which is good. <a href=\"https://spoonacular.com/recipes/beef-poblano-cheese-tamales-1443305\">Beef, Poblano & Cheese Tamales</a>, <a href=\"https://spoonacular.com/recipes/roasted-poblano-and-cheese-tamales-611384\">Roasted Poblano and Cheese Tamales</a>, and <a href=\"https://spoonacular.com/recipes/roasted-poblano-tamales-276566\">Roasted Poblano Tamales</a> are very similar to this recipe.",
+  prepTime: 45,
+  cuisineDescription: 'Mexican',
+  servings: 4,
+  recipeInstructions: [
+    {
+      number: 1,
+      step: "In a large bowl, allow corn husks to soak in hot water. In a large saucepan, bring 4 cups of water to a boil."
+    },
+    {
+      number: 2,
+      step: "Remove any string-like particles from the chili pods."
+    },
+    {
+      number: 3,
+      step: "Add them to the boiling water along with half of a packet of Goya seasoning. Cover and let boil for about 20 minutes."
+    },
+    {
+      number: 4,
+      step: "Afterwards, place chili pods with 2 cups of the stock in a blender to coalesce."
+    },
+    {
+      number: 5,
+      step: "Drain the saucepan of the remaining stock and place back on the stove top. Return the heat to medium, and add olive oil once the remaining stock evaporates."
+    },
+    {
+      number: 6,
+      step: "Add onion and beef, and immediately begin to break apart the beef."
+    },
+    {
+      number: 7,
+      step: "Add 1 packet of Goya seasoning and chili powder, and allow to cook for 5 minutes."
+    },
+    {
+      number: 8,
+      step: "Add the chili sauce and cook an additional 5 minutes."
+    },
+    {
+      number: 9,
+      step: "Add garlic and 2 teaspoon salt. I added the poblano pepper at this point, but I should have added it with the beef and onion."
+    },
+    {
+      number: 10,
+      step: "Reduce heat to medium-low, and cook for one hour. For the last twenty minutes, partially cover the pan in order to slightly reduce. Most of the liquid should be reduced and thickened.",
+    },
+    {
+      number: 11,
+      step: "In a large bowl, add instant corn masa mix, water, baking powder, salt, and olive oil to create corn masa mix. The mixture should be spongy."
+    },
+    {
+      number: 12,
+      step: "Whats surprisingly tricky is assembling the tamales. The best technique Ive found is to thinly spread the tamale masa mix starting from the right-hand side of the corn husks, and leaving about 2 inches on the left-hand side of the husk. When rolling the tamale together, take the right-hand side and fold it onto the rest of the corn husk covered with tamale masa mix. The 1-2 inches left over should roll perfectly over the actual tamale. Dont overstuff the tamales! Id say 2 tablespoon of meat mixture and just a sparse amount of cheese."
+    },
+    {
+      number: 13,
+      step: "O cook, you should have a double boiler. If you dont, like me, then use a metal colander and place it in a large pot."
+    },
+    {
+      number: 14,
+      step: "Place the tamales in the colander (or double boiler) where they are not squished, nor are they loose enough to unravel themselves. While doing this, boil 2 cups of water in the pot or what equates to 1 inch in height of the water."
+    },
+    {
+      number: 15,
+      step: "Once water comes to a boil, reduce heat and add the tamales."
+    },
+    {
+      number: 16,
+      step: "Place a towel between the colander and lid, and cook for 30 minutes."
+    }
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: false
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: true
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=r5VTKIR_Tik', 'https://www.youtube.com/watch?v=54-ztsdId9g','https://www.youtube.com/watch?v=4xiwU4mNDwY&t=11s'
+  ]
+})
+
+const recipe9 = new Recipe({
+  country: 'Italy',
+  recipeName: 'Osso Buco',
+  recipeAuthor: 'Frank Fariello',
+  ingredients: [
+    {
+      id: 1,
+      name: 'veal shanks',
+      amount: 6.0,
+      unit: ''
+    },
+    {
+      id: 2,
+      name: 'parsley',
+      amount: 4.0,
+      unit: 'Tbsps'
+    },
+    {
+      id: 3,
+      name: 'rind lemon',
+      amount: 1.0,
+      unit: 'of'
+    },
+    {
+      id: 4,
+      name: 'flour',
+      amount: 6.0,
+      unit: 'servings'
+    },
+    {
+      id: 5,
+      name: 'bell pepper',
+      amount: 6.0,
+      unit: 'servings'
+    },
+    {
+      id: 6,
+      name: 'olive oil',
+      amount: 4.0,
+      unit: 'Tbsps'
+    },
+    {
+      id: 7,
+      name: 'garlic',
+      amount: 3.0,
+      unit: 'cloves'
+    },
+    {
+      id: 8,
+      name: 'onion',
+      amount: 1.0,
+      unit: ''
+    },
+    {
+      id: 9,
+      name: 'chicken stock',
+      amount: 1.0,
+      unit: 'cup'
+    },
+    {
+      id: 10,
+      name: 'dry white wine',
+      amount: 1.0,
+      unit: 'cup'
+    },
+    {
+      id: 11,
+      name: 'tomato sauce',
+      amount: 4.0,
+      unit: 'Tbsps'
+    }
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        "name": "Calories",
+        "amount": 444.76,
+        "unit": "kcal",
+        "percentOfDailyNeeds": 22.24
+      },
+      {
+        "name": "Fat",
+        "amount": 18.05,
+        "unit": "g",
+        "percentOfDailyNeeds": 27.77
+      },
+      {
+        "name": "Saturated Fat",
+        "amount": 3.88,
+        "unit": "g",
+        "percentOfDailyNeeds": 24.28
+      },
+      {
+        "name": "Carbohydrates",
+        "amount": 15.6,
+        "unit": "g",
+        "percentOfDailyNeeds": 5.2
+      },
+      {
+        "name": "Net Carbohydrates",
+        "amount": 13.24,
+        "unit": "g",
+        "percentOfDailyNeeds": 4.81
+      },
+      {
+        "name": "Sugar",
+        "amount": 5.34,
+        "unit": "g",
+        "percentOfDailyNeeds": 5.94
+      },
+      {
+        "name": "Cholesterol",
+        "amount": 170.7,
+        "unit": "mg",
+        "percentOfDailyNeeds": 56.9
+      },
+      {
+        "name": "Sodium",
+        "amount": 302.25,
+        "unit": "mg",
+        "percentOfDailyNeeds": 13.14
+      },
+      {
+        "name": "Alcohol",
+        "amount": 4.12,
+        "unit": "g",
+        "percentOfDailyNeeds": 22.89
+      },
+      {
+        "name": "Protein",
+        "amount": 46.33,
+        "unit": "g",
+        "percentOfDailyNeeds": 92.65
+      },
+      {
+        "name": "Vitamin C",
+        "amount": 101.73,
+        "unit": "mg",
+        "percentOfDailyNeeds": 123.3
+      },
+      {
+        "name": "Vitamin B3",
+        "amount": 18.87,
+        "unit": "mg",
+        "percentOfDailyNeeds": 94.34
+      },
+      {
+        "name": "Vitamin B6",
+        "amount": 1.31,
+        "unit": "mg",
+        "percentOfDailyNeeds": 65.26
+      },
+      {
+        "name": "Zinc",
+        "amount": 9.46,
+        "unit": "mg",
+        "percentOfDailyNeeds": 63.06
+      },
+      {
+        "name": "Vitamin A",
+        "amount": 2602.32,
+        "unit": "IU",
+        "percentOfDailyNeeds": 52.05
+      },
+      {
+        "name": "Vitamin B12",
+        "amount": 3.07,
+        "unit": "µg",
+        "percentOfDailyNeeds": 51.23
+      },
+      {
+        "name": "Vitamin K",
+        "amount": 53.64,
+        "unit": "µg",
+        "percentOfDailyNeeds": 51.09
+      },
+      {
+        "name": "Phosphorus",
+        "amount": 489.01,
+        "unit": "mg",
+        "percentOfDailyNeeds": 48.9
+      },
+      {
+        "name": "Vitamin B2",
+        "amount": 0.76,
+        "unit": "mg",
+        "percentOfDailyNeeds": 44.82
+      },
+      {
+        "name": "Vitamin B5",
+        "amount": 3.28,
+        "unit": "mg",
+        "percentOfDailyNeeds": 32.78
+      },
+      {
+        "name": "Selenium",
+        "amount": 21.76,
+        "unit": "µg",
+        "percentOfDailyNeeds": 31.08
+      },
+      {
+        "name": "Potassium",
+        "amount": 1022.88,
+        "unit": "mg",
+        "percentOfDailyNeeds": 29.23
+      },
+      {
+        "name": "Folate",
+        "amount": 92.8,
+        "unit": "µg",
+        "percentOfDailyNeeds": 23.2
+      },
+      {
+        "name": "Vitamin B1",
+        "amount": 0.31,
+        "unit": "mg",
+        "percentOfDailyNeeds": 20.66
+      },
+      {
+        "name": "Vitamin E",
+        "amount": 2.71,
+        "unit": "mg",
+        "percentOfDailyNeeds": 18.05
+      },
+      {
+        "name": "Magnesium",
+        "amount": 68.72,
+        "unit": "mg",
+        "percentOfDailyNeeds": 17.18
+      },
+      {
+        "name": "Iron",
+        "amount": 2.96,
+        "unit": "mg",
+        "percentOfDailyNeeds": 16.43
+      },
+      {
+        "name": "Manganese",
+        "amount": 0.27,
+        "unit": "mg",
+        "percentOfDailyNeeds": 13.27
+      },
+      {
+        "name": "Copper",
+        "amount": 0.24,
+        "unit": "mg",
+        "percentOfDailyNeeds": 12.06
+      },
+      {
+        "name": "Fiber",
+        "amount": 2.37,
+        "unit": "g",
+        "percentOfDailyNeeds": 9.46
+      },
+      {
+        "name": "Calcium",
+        "amount": 68.67,
+        "unit": "mg",
+        "percentOfDailyNeeds": 6.87
+      }
+    ]
+  },
+  recipeDescription: "Originating from Milan, Italy, osso buco is a dish of braised veal shank, often served with gremolata, a lemon-parsley garnish. In English it is most commonly spelled osso bucco in Italian ossobuco or osso buco",
+  prepTime: 45,
+  cuisineDescription: 'Italian',
+  servings: 6,
+  recipeInstructions: [
+    {
+      number: 1,
+      step: 'Dredge veal in seasoned flour and saute in olive oil until lightly browned on all sides.'
+    },
+    {
+      number: 2,
+      step: 'Add garlic and onion.'
+    },
+    {
+      number: 3,
+      step: 'Pour boiling stock, white wine and tomato sauce over meat. Cover pan and simmer 1 1/2 hours or until meat is tender.'
+    },
+    {
+      number: 4,
+      step: 'Add parsley and grated lemon rind.'
+    },
+    {
+      number: 5,
+      step: 'Serve over saffron rice.'
+    }
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: false
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: false
+    },
+    {
+      name: 'dairyFree',
+      value: true
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=zmj3U1VvYdU','https://www.youtube.com/watch?v=f1ydTuESo7g','https://www.youtube.com/watch?v=Sqog5ILMAV0'
+  ]
+})
+
+const recipe10 = new Recipe({
+  country: 'Italy',
+  recipeName: 'Lasagna Silvia',
+  recipeAuthor: 'KC Quaretti-Lee',
+  ingredients: [
+    {
+      id: 1,
+      name: 'sweet onion',
+      amount: 1.0,
+      unit: 'medium'
+    },
+    {
+      id: 2,
+      name: 'virgin olive oil',
+      amount: 4.0,
+      unit: 'Tbsps'
+    },
+    {
+      id: 3,
+      name: 'portabella mushroom',
+      amount: 8.0,
+      unit: 'ounces'
+    },
+    {
+      id: 4,
+      name: 'butter',
+      amount: 2.0,
+      unit: 'Tbsps'
+    },
+    {
+      id: 5,
+      name: 'frozen spinach',
+      amount: 16.0,
+      unit: 'ounces'
+    },
+    {
+      id: 6,
+      name: 'zucchini',
+      amount: 3.0,
+      unit: ''
+    },
+    {
+      id: 7,
+      name: 'ricotta cheese',
+      amount: 30.0,
+      unit: 'ounces'
+    },
+    {
+      id: 8,
+      name: 'eggs',
+      amount: 2.0,
+      unit: ''
+    },
+    {
+      id: 9,
+      name: 'mozzarella cheese',
+      amount: 2.0,
+      unit: 'cups'
+    },
+    {
+      id: 10,
+      name: 'parmesan',
+      amount: 0.5,
+      unit: 'cup'
+    },
+    {
+      id: 11,
+      name: 'pacific natural foods creamy tomato soup',
+      amount: 1.0,
+      unit: 'quart'
+    }
+  ],
+  nutrition: {
+    nutrients: [
+      {
+        name: "Calories",
+        amount: 522.67,
+        unit: "kcal",
+        percentOfDailyNeeds: 26.13
+      },
+      {
+        name: "Fat",
+        amount: 33.77,
+        unit: "g",
+        percentOfDailyNeeds: 51.95
+      },
+      {
+        name: "Saturated Fat",
+        amount: 16.87,
+        unit: "g",
+        percentOfDailyNeeds: 105.46
+      },
+      {
+        name: "Carbohydrates",
+        amount: 31.03,
+        unit: "g",
+        percentOfDailyNeeds: 10.34
+      },
+      {
+        name: "Net Carbohydrates",
+        amount: 26.6,
+        unit: "g",
+        percentOfDailyNeeds: 9.67
+      },
+      {
+        name: "Sugar",
+        amount: 15.4,
+        unit: "g",
+        percentOfDailyNeeds: 17.11
+      },
+      {
+        name: "Cholesterol",
+        amount: 129.03,
+        unit: "mg",
+        percentOfDailyNeeds: 43.01
+      },
+      {
+        name: "Sodium",
+        amount: 902.92,
+        unit: "mg",
+        percentOfDailyNeeds: 39.26
+      },
+      {
+        name: "Protein",
+        amount: 27.43,
+        unit: "g",
+        percentOfDailyNeeds: 54.86
+      },
+      {
+        name: "Vitamin K",
+        amount: 224.4,
+        unit: "µg",
+        percentOfDailyNeeds: 213.72
+      },
+      {
+        name: "Vitamin A",
+        amount: 8117.7,
+        unit: "IU",
+        percentOfDailyNeeds: 162.35
+      },
+      {
+        name: "Calcium",
+        amount: 551.94,
+        unit: "mg",
+        percentOfDailyNeeds: 55.19
+      },
+      {
+        name: "Selenium",
+        amount: 37.57,
+        unit: "µg",
+        percentOfDailyNeeds: 53.67
+      },
+      {
+        name: "Phosphorus",
+        amount: 467.26,
+        unit: "mg",
+        percentOfDailyNeeds: 46.73
+      },
+      {
+        name: "Vitamin C",
+        amount: 33.52,
+        unit: "mg",
+        percentOfDailyNeeds: 40.63
+      },
+      {
+        name: "Potassium",
+        amount: 1360.0,
+        unit: "mg",
+        percentOfDailyNeeds: 38.86
+      },
+      {
+        name: "Manganese",
+        amount: 0.76,
+        unit: "mg",
+        percentOfDailyNeeds: 38.13
+      },
+      {
+        name: "Vitamin B2",
+        amount: 0.62,
+        unit: "mg",
+        percentOfDailyNeeds: 36.34
+      },
+      {
+        name: "Folate",
+        amount: 137.74,
+        unit: "µg",
+        percentOfDailyNeeds: 34.43
+      },
+      {
+        name: "Vitamin B6",
+        amount: 0.5,
+        unit: "mg",
+        percentOfDailyNeeds: 24.77
+      },
+      {
+        name: "Magnesium",
+        amount: 97.47,
+        unit: "mg",
+        percentOfDailyNeeds: 24.37
+      }
+    ]
+  },
+  recipeDescription: "The recipe Lasagna Silvian is ready <b>in around 45 minutes</b> and is definitely an amazing <b>gluten free</b> option for lovers of Mediterranean food. This recipe serves 8 and costs $2.64 per serving. One serving contains <b>523 calories</b>, <b>27g of protein</b>, and <b>34g of fat</b>. 1 person were impressed by this recipe. A mixture of zucchini, pacific natural foods creamy tomato soup, portabella mushroom, and a handful of other ingredients are all it takes to make this recipe so delicious. Only a few people really liked this main course. It is brought to you by Foodista. Overall, this recipe earns a <b>solid spoonacular score of 66%</b>. Try <a href=\"https://spoonacular.com/recipes/silvias-focaccia-pugliese-553085\">Silvia’s Focaccia Pugliese</a>, <a href=\"https://spoonacular.com/recipes/vegetable-lasagna-with-homemade-lasagna-sheets-without-pasta-machine-627913\">Vegetable Lasagna With Homemade Lasagna Sheets (Without Pasta Machine)</a>, and <a href=\"https://spoonacular.com/recipes/lasagna-de-pollo-con-championes-chicken-and-mushroom-lasagna-226408\">Lasagna de Pollo con Champiñones (Chicken and Mushroom Lasagna)</a> for similar recipes.",
+  prepTime: 45,
+  cuisineDescription: 'Italian',
+  servings: 8,
+  recipeInstructions: [
+    {
+      number: 1,
+      step: "Preheat oven to 350F. In a large stock pot  prepare 12 Lasagna noodles per package instructions (make sure to salt the water). When done, leave noodles in the water and remove the stock pot from the heat.In a stainless steel skillet, melt the butter and then add the chopped onion. Allow to cook over medium heat for 3-4 minutes."
+    },
+    {
+      number: 2,
+      step: "Add the minced garlic cloves and the chorizo. Cook over medium heat until the chorizo is cooked through."
+    },
+    {
+      number: 3,
+      step: "Add the can of diced tomatoes and the jar of pasta sauce (I used Ragu Chunky"
+    },
+    {
+      number: 4,
+      step: "Sauteed Onion and Garlic Flavor Pasta Sauce."
+    },
+    {
+      number: 5,
+      step: "Remove the lasagna noodles from the water using tongs and lay out flat."
+    },
+    {
+      number: 6,
+      step: "Spread 1 heaping tsp of ricotta cheese on each noodle. On top of the ricotta spread some of the Serrano ham."
+    },
+    {
+      number: 7,
+      step: "Roll up the lasagna noodles and place in an oven proof baking dish.Top the rolled noodles with the sauce. Gently lift up each noodle roll and allow some of the sauce to run beneath."
+    },
+    {
+      number: 8,
+      step: "Sprinkle the shredded mozzarella over the top and place the baking dish on top of a baking sheet."
+    },
+    {
+      number: 9,
+      step: "Bake for 45 minutes until the sauce is bubbly and the cheese is browned slightly. Just before removing from the oven, set the broiler to finish the cheese if necessary."
+    },
+    {
+      number: 10,
+      step: "Garnish with cilantro and Mexican crumbling cheese if desired."
+    }
+  ],
+  tags: [
+    {
+      name: 'vegetarian',
+      value: false
+    },
+    {
+      name: 'vegan',
+      value: false
+    },
+    {
+      name: 'glutenFree',
+      value: true
+    },
+    {
+      name: 'dairyFree',
+      value: false
+    },
+    {
+      name: 'sustainable',
+      value: false
+    }
+  ],
+  reviewDocument: {
+    type: []
+  },
+  youtubeLinks: [
+    'https://www.youtube.com/watch?v=zVqunZUuwSs','https://www.youtube.com/watch?v=BFrkRFgHLVk','https://www.youtube.com/watch?v=fVDsTP-pTXs'
+  ]
+})
+
+
+
 Recipe.collection.drop()
-Recipe.create(recipe1, recipe2, recipe3, recipe4, recipe5, recipe6)
+Recipe.create(recipe1, recipe2, recipe3, recipe4, recipe5, recipe6, recipe7, recipe8, recipe9, recipe10)
   .then(() => {
     console.log('Recipe seed inserted successfully');
     mongoose.disconnect();
