@@ -27,7 +27,7 @@ router.post("/", requireUser, async (req, res) => {
   const question = req.body.question || "";
   const recipeName = req.body.recipe || "";
   const recipeStep = req.body.step || "";
-  // console.log(generatePrompt(question, recipeName, recipeStep), "prompt");
+  console.log(generatePrompt(question, recipeName, recipeStep), "prompt");
 
   if (question.trim().length === 0) {
     res.status(400).json({

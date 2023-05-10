@@ -5,9 +5,7 @@ import { useEffect, useRef } from "react";
 
 export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
   const [questionInput, setQuestionInput] = useState("");
-  const [recipeName, setRecipeName] = useState(
-    recipeNameFromParent || "Saurkraut"
-  );
+  const [recipeName, setRecipeName] = useState(recipeNameFromParent);
   const [recipeStep, setRecipeStep] = useState(recipeStepFromParent);
   //   const [result, setResult] = useState();
   const [pastQuestions, setPastQuestions] = useState([]);
@@ -20,6 +18,10 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
     const container = chatThreadContainerRef.current;
     container.scrollTop = container.scrollHeight;
   }, [pastQuestions, pastAnswers, isLoading]);
+
+  useEffect(() => {
+    setRecipeStep(recipeStepFromParent);
+  }, [recipeStepFromParent]);
 
   const toggleChatbox = () => {
     const chatbox = document.getElementById("ai-chatbox");
@@ -92,7 +94,7 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
           <h1 id="open-chatbox-questionmark">?</h1>
         </div>
       </div>
-      <div id="ai-chatbox">
+      <div id="ai-chatbox" className="hidden">
         <main id="ai-chatbox-content-container">
           <h3 id="recipe-assistant-header">Need help on this recipe?</h3>
           <div id="chat-thread-container" ref={chatThreadContainerRef}>

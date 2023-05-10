@@ -7,9 +7,10 @@
   background-color: #e8a87c;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  z-index: 500;
   transition: all 0.3s ease;
   padding: 20px;
+  /* display: none; */
   /* transform: translateX(100%); */
 }
 
@@ -81,9 +82,10 @@
 }
 
 #ai-chatbubble {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
+  /* position: absolute; */
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
   z-index: 1001;
   height: 40px;
   width: 40px;
@@ -128,9 +130,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  /* position: absolute;
   bottom: 10px;
-  right: 22px;
+  right: 22px; */
+  position: fixed;
+  bottom: 30px;
+  right: 42px;
   z-index: 1002;
   color: rgb(24, 23, 23);
 }
@@ -155,11 +160,15 @@
   background-color: gray;
   height: 70px;
   width: 70px;
-  position: absolute;
+  /* position: absolute;
+  bottom: 20px;
+  right: 20px; */
+  position: fixed;
   bottom: 20px;
   right: 20px;
   border-radius: 50%;
   transition: 0.3s;
+  z-index: 501;
 }
 
 #hover-container:hover {
