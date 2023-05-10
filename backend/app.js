@@ -20,7 +20,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(passport.initialize());
+app.use(passport.initialize()) ;
 
 if (!isProduction) {
   const path = require('path');
