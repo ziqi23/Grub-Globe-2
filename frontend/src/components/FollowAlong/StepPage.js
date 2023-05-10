@@ -2,7 +2,7 @@ import NormalStep from "./NormalStep";
 import TimerStep from "./TimerStep";
 import cookingUtensils from "../../assets/images/seasons-cooking-utensils.png";
 import fruitsVeggies from "../../assets/images/seasons-fruits-and-vegetables-harvest.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import upArrow from "../../assets/icons/general-icons/icons8-slide-up-64.png";
 import downArrow from "../../assets/icons/general-icons/icons8-down-button-64.png";
 import "./FollowAlong.css";
@@ -14,6 +14,7 @@ const StepPage = ({
   closeFollowAlong,
   ingredients,
   setCurrentRecipeStep,
+  currentRecipeStep
 }) => {
   const [toggleIngredients, setToggleIngredients] = useState(false);
   const [stepType, setStepType] = useState("normal");
@@ -25,11 +26,36 @@ const StepPage = ({
       setToggleIngredients(true);
     }
   };
-  // algorithm for checking if normal step or timer step - reset stepType state variable if timer
   const handleExit = () => {
     closeFollowAlong();
     setCurrentRecipeStep("");
   };
+  // algorithm for checking if normal step or timer step - reset stepType state variable if timer
+  const analyzeStep = (step) => {
+    const metricTime = ["seconds", "second", "minute", "minutes", "hour", "hours"]
+    let words = step.split(" ");
+    let timerKeywords = [];
+    words.forEach((word) => {
+      if (metricTime.includes(word)) {
+        console.log(word)
+      }
+    })
+    console.log(timerKeywords)
+    return timerKeywords;
+  }
+
+  useEffect(() => {
+    const timerKeywords = analyzeStep(step);
+
+    if (timerKeywords.length > 0) {
+      setStepType("timer");
+      console.log(stepType);
+    }
+
+  }, [currentRecipeStep, stepType])
+
+  // console.log(stepType)
+
   return (
     <>
       <div className="step-page-container">
@@ -63,9 +89,9 @@ const StepPage = ({
           </div>
           <div className="step-instruction">
             {/* <TimerStep /> */}
-            <NormalStep step={step}/>
+            {/* <NormalStep step={step}/> */}
+            {stepType === "normal" ? <NormalStep step={step}/> : <TimerStep step={step} />}
           </div>
-          {/* {stepType === "normal" ? <NormalStep step={step}/> : <TimerStep step={step} />} */}
         </div>
       </div>
     </>

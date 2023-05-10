@@ -12,11 +12,15 @@ const FollowAlongCarousel = ({
   closeFollowAlong,
   recipeIngredients,
   setCurrentRecipeStep,
+  currentRecipeStep
 }) => {
+
+
   const handleSlideChange = (swiper) => {
     const currentStep = swiper.realIndex || 0;
     setCurrentRecipeStep(recipeSteps[currentStep]);
   };
+
 
   return (
     <>
@@ -30,7 +34,7 @@ const FollowAlongCarousel = ({
           className="mySwiper"
           onSlideChange={handleSlideChange}
         >
-          {recipeSteps.map((step, i) => (
+          {recipeSteps?.map((step, i) => (
               <SwiperSlide>
                 <StepPage 
                   step={step.step} 
@@ -39,6 +43,7 @@ const FollowAlongCarousel = ({
                   closeFollowAlong={closeFollowAlong} 
                   setCurrentRecipeStep={setCurrentRecipeStep}
                   ingredients={recipeIngredients}
+                  currentRecipeStep={currentRecipeStep}
                 />
               </SwiperSlide>
             ))}

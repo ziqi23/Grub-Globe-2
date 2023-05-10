@@ -44,11 +44,11 @@ const RecipeShowPage = () => {
             <div className="main-recipe-info-header">
               <h1>{recipe?.recipeName}</h1>
               <div>
-                <img src={mapPin} alt="map pin" />
+                <img src={mapPin} alt="map pin" className="map-pin"/>
                 <h3>{recipe?.country}</h3>
               </div>
               <div className="image-placeholder-recipe-show">
-                image placeholder
+                <img className="actual-image" src={recipe?.photoUrl} alt="recipe image"/>
               </div>
               <h3>Recipe by: {recipe?.recipeAuthor}</h3>
               <p className="tags-p">Tags: {recipe?.tags.map((tag, i, tags) => i === (tags.length - 1) ? `${tag.name}` :`${tag.name}, `)}</p>
@@ -90,18 +90,7 @@ const RecipeShowPage = () => {
           <div className="macros-container">
             <div>
               <h2>Macronutrients</h2>
-              {/* this will probably be a separate component */}
               <Macronutrients macronutrients={recipe?.nutrition.nutrients} />
-              <p>Protein</p>
-              <div className="macro-bar-1"></div>
-              <p>Carbohydrates</p>
-              <div className="macro-bar-2"></div>
-              <p>Fat</p>
-              <div className="macro-bar-1"></div>
-              <p>Potassium</p>
-              <div className="macro-bar-3"></div>
-              <p>Magnesium</p>
-              <div className="macro-bar-2"></div>
             </div>
           </div>
         </div>
@@ -110,9 +99,10 @@ const RecipeShowPage = () => {
       {toggleFollowAlong && (
           <FollowAlongCarousel 
               closeFollowAlong={() => setToggleFollowAlong(false)} 
-              recipeSteps={recipe.recipeInstructions}
-              recipeIngredients={recipe.ingredients}
+              recipeSteps={recipe?.recipeInstructions}
+              recipeIngredients={recipe?.ingredients}
               setCurrentRecipeStep={setCurrentRecipeStep} 
+              currentRecipeStep={currentRecipeStep}
           />
       )}
 

@@ -29,7 +29,7 @@ export const fetchRecipes = (filters) => async dispatch => {
         const res = await jwtFetch(`/api/recipes?${filterParams}`)
         const recipes = await res.json();
         dispatch(receiveRecipes(recipes));
-    } catch(err) {
+    } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
             dispatch(receiveErrors(resBody.errors))
