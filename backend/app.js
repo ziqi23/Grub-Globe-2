@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize());
 
-if (!isProuction) {
+if (!isProduction) {
   const path = require('path');
   // Serve the frontend's index.html file at the root route
   app.get('/', (req, res) => {
