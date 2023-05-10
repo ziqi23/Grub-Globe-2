@@ -28,6 +28,10 @@ const RecipeShowPage = () => {
     setCurrentRecipeStep(0);
   };
 
+  // const mapTags = (tags) => {
+  //   return tags.map((tag, i, tags) => {i === (tags.length - 1) ? `${tag.name}` :`${tag.name}, `})
+  // }
+
   return (
     <>
       <Header />
@@ -51,7 +55,8 @@ const RecipeShowPage = () => {
                 <img className="actual-image" src={recipe?.photoUrl} alt="recipe image"/>
               </div>
               <h3>Recipe by: {recipe?.recipeAuthor}</h3>
-              <p className="tags-p">Tags: {recipe?.tags.map((tag, i, tags) => i === (tags.length - 1) ? `${tag.name}` :`${tag.name}, `)}</p>
+              <p className="tags-p">Tags: </p>
+
             </div>
             <div className="smaller-content-info">
                 <div>
