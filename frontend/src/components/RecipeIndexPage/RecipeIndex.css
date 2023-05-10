@@ -91,9 +91,10 @@
     height: 50%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     text-align: center;
     align-items: center;
-    border-radius: 10px;
+    border: 1px solid green;
 }
   
 .view-recipe-button {
@@ -101,7 +102,7 @@
     padding: 15px 0px;
     border-radius: 999px;
     border: 3px solid rgb(47, 48, 47);
-    margin-top: 5%;
+    margin: 10px 0px;
     font-family: 'Kanit', sans-serif;
     transition: 0.3s all ease;
     background-color: #F0EAD2;

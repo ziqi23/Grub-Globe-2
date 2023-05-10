@@ -6,6 +6,8 @@ const debug = require("debug");
 
 const cors = require("cors");
 
+const { isProduction} = require("./config/keys.js");
+
 require("./models/Recipe")
 require("./models/User");
 require("./config/passport");
