@@ -8,6 +8,7 @@ import { useState } from "react";
 
 // import required modules
 import { Pagination, Navigation } from "swiper";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 const RecipeCard = ({recipe}) => {
@@ -33,7 +34,7 @@ const RecipeCard = ({recipe}) => {
                             <p>Total Duration: 40 minutes</p>
                             <br></br>
                             <p>Tags: Healthy</p>
-                            <div className="view-recipe-button">VIEW RECIPE</div>
+                            <div className="view-recipe-button"><Link to="/recipes/1">VIEW RECIPE</Link></div>
                         </div>
                     </div>
                 </SwiperSlide>
