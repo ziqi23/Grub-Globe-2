@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
+import './NavBar.css'
+import logoutIcon from '../../assets/icons/general-icons/icons8-log-out-24.png'
 
-function NavBar () {
+function NavBar ({openLoginModal, openSignupModal}) {
   const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
   
@@ -13,14 +15,20 @@ function NavBar () {
 
   if (loggedIn) {
     return (
-      <button onClick={logoutUser}>Logout</button>
+      <div className="nav-bar">
+        <Link to="#"><div>link 1</div></Link>
+        <Link to="#"><div>link 2</div></Link>
+        <Link to="#"><div>Profile</div></Link>
+        <Link to="/"><div onClick={logoutUser}><img src={logoutIcon} alt="logout icon" />Logout</div></Link>
+
+      </div>
     );
   } 
   else {
     return (
-      <div className="links-auth">
-        <Link to={'/signup'}>Signup</Link>
-        <Link to={'/login'}>Login</Link>
+      <div className="nav-bar">
+          <div onClick={openSignupModal}>Signup</div>
+          <div onClick={openLoginModal}>Login</div>
       </div>
     );
   }

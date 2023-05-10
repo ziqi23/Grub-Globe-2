@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 import { useState, useEffect, useRef } from 'react';
-import { Canvas } from '@react-three/fiber'
 import texture from './high-res-world-map-partially-colored-30-filled.png'
 import countryTexture from './high-res-world-map-partially-colored-30-filled-blue.png'
-
+import Header from '../Header/Header'
+import './Globe.css'
+import { Redirect, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Globe(props) {
     const colorMapping = {
@@ -105,6 +106,7 @@ function Globe(props) {
     }
 
     const ref = useRef();
+    const history = useHistory();
     const [uv, setUv] = useState();
     const [countryHovered, setCountryHovered] = useState(false);
     const countryHoveredRef = useRef(countryHovered)
@@ -239,7 +241,7 @@ function Globe(props) {
         }
         animate();
 
-        return () => ref.current.removeChild(renderer.domElement);
+        // return () => ref.current.removeChild(renderer.domElement);
     }, [])
     
     // Use UV coordinates to determine if user is hovering over a in-scope country
@@ -363,19 +365,22 @@ function Globe(props) {
 
     return (
         <div id="explore-page-root">
-            <div ref={ref} id="explore-page-globe"></div>
-            {countryHoveredRef.current && (
-            <div id="explore-page-country-popup">
-                <div>{countryHoveredRef.current}</div>
-                <div>{countryDescription[countryHoveredRef.current]}</div>
-                <div>Take me there!</div>
+            <Header />
+            <div id="explore-page-main">
+                <div ref={ref} id="explore-page-globe"></div>
+                {countryHoveredRef.current && (
+                <div id="explore-page-country-popup">
+                    <div>{countryHoveredRef.current}</div>
+                    <div>{countryDescription[countryHoveredRef.current]}</div>
+                    <div onClick={() => history.push('/recipes')} >Take me there!</div>
+                </div>
+                )}
+                {!countryHoveredRef.current && (
+                <div id="explore-page-country-popup">
+                </div>
+                )}
+                <canvas id='placeholder-canvas' display="none"></canvas>
             </div>
-            )}
-            {!countryHoveredRef.current && (
-            <div id="explore-page-country-popup">
-            </div>
-            )}
-            <canvas id='placeholder-canvas' display="none"></canvas>
         </div>
     );
 }
