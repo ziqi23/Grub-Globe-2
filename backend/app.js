@@ -10,12 +10,14 @@ const { isProduction } = require("./config/keys.js");
 
 require("./models/User");
 require("./models/Favorite.js");
+require("./models/Recipe");
 require("./config/passport");
 const passport = require("passport");
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
 const favoritesRouter = require("./routes/api/favorites");
 const aiRouter = require("./routes/api/generate");
+const recipesRouter = require("./routes/api/recipes");
 
 const app = express();
 
@@ -43,6 +45,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/generate", aiRouter);
 app.use("/api/favorites", favoritesRouter);
+app.use("/api/recipes", recipesRouter);
 
 if (isProduction) {
   const path = require("path");

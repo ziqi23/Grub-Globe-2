@@ -8,19 +8,29 @@ import AiChat from "../RecipeAssistant";
 import FavHeart from "../FavHeart";
 import { fetchFavorites } from "../../store/favorites";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRecipe } from "../../store/recipes";
+import Macronutrients from "./Macronutrients";
 
-const RecipeShowPage = ({ recipe }) => {
+const RecipeShowPage = () => {
+  const dispatch = useDispatch();
+  const { recipeId } = useParams();
+
+  const recipe = useSelector((state) =>
+    state.recipes ? state.recipes[recipeId] : null
+  );
+
   const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
   const [currentRecipeStep, setCurrentRecipeStep] = useState("");
-  const dispatch = useDispatch();
 
   const sessionUser = useSelector((state) => state.session.user);
 
   const favorites = useSelector((state) => Object.values(state.favorites));
 
   useEffect(() => {
-    console.log(currentRecipeStep, "current recipe step");
-  }, [currentRecipeStep]);
+    dispatch(fetchRecipe(recipeId));
+  }, [recipeId, dispatch]);
 
   useEffect(() => {
     dispatch(fetchFavorites());
@@ -30,129 +40,94 @@ const RecipeShowPage = ({ recipe }) => {
     setToggleFollowAlong(true);
     setCurrentRecipeStep(0);
   };
+
+  // const mapTags = (tags) => {
+  //   return tags.map((tag, i, tags) => {i === (tags.length - 1) ? `${tag.name}` :`${tag.name}, `})
+  // }
+
   return (
     <>
       <Header />
       <div className="below-header-container">
-        {/* this is where the show page contents start */}
         <div className="recipe-show-page-container">
           <div className="details-container">
-            <div>
-              <h2>Duration</h2>
-              <p>Prep time: 15 minutes</p>
-              {/* <p>Pret time: {recipe.preptime}</p> */}
-              <p>Cook time: 20 minutes</p>
-              {/* <p>Cook time: {recipe.cooktime}</p> */}
-            </div>
             <div className="ingredients-container">
               <h2>Ingredients</h2>
-              <Ingredients />
+              <Ingredients ingredients={recipe?.ingredients} />
             </div>
-            {/* <div className="ingredients-container">
-                            <h2>Ingredients</h2>
-                            <ul> */}
-            {/* {recipe.ingredients.map(ingredient => {
-                                    <li>ingredient</li>
-                                })} */}
-            {/* <li>4 pieces <p>boneless chicken thighs</p></li>
-                                <li>1/4 cup <p>soy sauce</p></li>
-                                <li>1/4 cup <p>mirin</p></li>
-                                <li>1/4 cup <p>sake</p> </li>
-                                <li>1/4 cup <p>sugar</p></li>
-                                <li>2 tbsp <p>vegetable oil</p></li>
-                                <li>2 stalks <p>green onion</p></li>
-                                <li>4 cups <p>cooked rice</p></li>
-                            </ul>
-                        </div> */}
           </div>
           <div className="main-recipe-content-container">
             {/* <h1>{recipe.name}</h1> */}
             <div className="main-recipe-info-header">
-              <h1>Chicken Teriyaki Bowl</h1>
+              <h1>{recipe?.recipeName}</h1>
               <div>
-                <img src={mapPin} alt="map pin" />
-                <h3>japan</h3>
+                <img src={mapPin} alt="map pin" className="map-pin" />
+                <h3>{recipe?.country}</h3>
               </div>
               <div className="image-placeholder-recipe-show">
-                image placeholder
+                <img
+                  className="actual-image"
+                  src={recipe?.photoUrl}
+                  alt="recipe image"
+                />
+              </div>
+              <h3>Recipe by: {recipe?.recipeAuthor}</h3>
+              <p className="tags-p">Tags: </p>
+            </div>
+            <div className="smaller-content-info">
+              <div>
+                <h2>Duration</h2>
+                <p>{recipe?.prepTime} minutes</p>
+              </div>
+              <div>
+                <h2>Servings </h2>
+                <p>{recipe?.servings}</p>
               </div>
             </div>
+
             <div>
               <h2>Directions</h2>
-              {/* <ul>
-                                {recipe.directions.map((step, i) => {
-                                    <li>{i}. {step}</li>
-                                })}
-                            </ul> */}
               <ul>
-                <li>
-                  1. Combine soy sauce, mirin, sake, and sugar in a small
-                  saucepan and heat over medium heat until the sugar dissolves.
-                  Let cool.
-                </li>
-                <li>
-                  2. Cut chicken into bite-size pieces and sprinkle with salt
-                  and pepper.
-                </li>
-                <li>
-                  3. Heat vegetable oil in a large skillet over medium-high
-                  heat. Add chicken and cook until browned on all sides.
-                </li>
-                <li>
-                  4. Pour the teriyaki sauce over the chicken and let it simmer
-                  until the sauce thickens and the chicken is cooked through.
-                </li>
-                <li>
-                  5. Divide the rice into 4 bowls and top each bowl with the
-                  chicken and teriyaki sauce.
-                </li>
-                <li>6. Garnish with sliced green onions.</li>
+                {recipe?.recipeInstructions.map((step, i) => (
+                  <li key={step?._id}>
+                    {step?.number}. {step?.step}
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="follow-along-button-container">
               <h2>Ready?</h2>
-              <div
-                className="follow-along-button"
-                // onClick={() => setToggleFollowAlong(true)}
-                onClick={handleFollowAlong}
-              >
+              <div className="follow-along-button" onClick={handleFollowAlong}>
                 Let's get cookin!
               </div>
             </div>
+            {/* <div className="youtube-links-container">
+                {recipe?.youtubeLinks.map((link, i) => 
+                  <iframe src={link}></iframe>
+                )}
+            </div> */}
           </div>
           <div className="macros-container">
             <div>
               <h2>Macronutrients</h2>
-              {/* this will probably be a separate component */}
-              <p>Protein</p>
-              <div className="macro-bar-1"></div>
-              <p>Carbohydrates</p>
-              <div className="macro-bar-2"></div>
-              <p>Fat</p>
-              <div className="macro-bar-1"></div>
-              <p>Potassium</p>
-              <div className="macro-bar-3"></div>
-              <p>Magnesium</p>
-              <div className="macro-bar-2"></div>
+              <Macronutrients macronutrients={recipe?.nutrition.nutrients} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* {toggleFollowAlong && (
-                <FollowAlongCarousel 
-                    closeFollowAlong={() => setToggleFollowAlong(false)} 
-                    recipeSteps={recipe.steps}
-                    recipeIngredients={recipe.ingredients}/>
-            )} */}
       {toggleFollowAlong && (
         <FollowAlongCarousel
           closeFollowAlong={() => setToggleFollowAlong(false)}
+          recipeSteps={recipe?.recipeInstructions}
+          recipeIngredients={recipe?.ingredients}
           setCurrentRecipeStep={setCurrentRecipeStep}
+          currentRecipeStep={currentRecipeStep}
         />
       )}
+
       <AiChat
-        recipeNameFromParent="Chicken Teriyaki Bowl"
+        recipeNameFromParent={recipe?.recipeName}
         recipeStepFromParent={currentRecipeStep}
       />
       <FavHeart recipe={recipe} favorites={favorites} />

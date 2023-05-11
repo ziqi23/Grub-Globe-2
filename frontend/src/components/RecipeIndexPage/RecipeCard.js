@@ -1,83 +1,26 @@
+import { useEffect } from "react";
 import "./RecipeIndex.css"
-import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { useState } from "react";
-
-// import required modules
-import { Pagination, Navigation } from "swiper";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-
 const RecipeCard = ({recipe}) => {
-    const [swiperRef, setSwiperRef] = useState(null);
 
     return (
         <>
-            <Swiper
-                slidesPerView={3}
-                spaceBetween={30}
-                pagination={{
-                clickable: true,
-                }}
-                modules={[Pagination, Navigation]}
-                navigation={true}
-                className="mySwiper"
-            >
-                <SwiperSlide>
-                    <div className="recipe-card">
-                        <div className="image-placeholder">image placeholder</div>
-                        <div className="recipe-quick-info-container">
-                            <h1>Recipe Name</h1>
-                            <p>Total Duration: 40 minutes</p>
-                            <br></br>
-                            <p>Tags: Healthy</p>
-                            <div className="view-recipe-button"><Link to="/recipes/1">VIEW RECIPE</Link></div>
-                        </div>
+            <div className="recipe-card">
+                <div className="image-placeholder">
+                    <img className="actual-image" src={recipe?.photoUrl} alt="recipe image"/>
+                </div>
+                    
+                <div className="recipe-quick-info-container">
+                    <div>
+                        <h1>{recipe.recipeName}</h1>
+                        <p>Total Duration: {recipe.prepTime} minutes</p>
                     </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="recipe-card" >
-                        <div className="image-placeholder">image placeholder</div>
-                        <div className="recipe-quick-info-container">
-                            <h1>Recipe Name</h1>
-                            <p>Total Duration: 40 minutes</p>
-                            <br></br>
-                            <p>Tags: Healthy</p>
-                            <div className="view-recipe-button">VIEW RECIPE</div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="recipe-card">
-                        <div className="image-placeholder">image placeholder</div>
-                        <div className="recipe-quick-info-container">
-                            <h1>Recipe Name</h1>
-                            <p>Total Duration: 40 minutes</p>
-                            <br></br>
-                            <p>Tags: Healthy</p>
-                            <div className="view-recipe-button">VIEW RECIPE</div>
-                        </div>
-                    </div></SwiperSlide>
-                <SwiperSlide>
-                    <div className="recipe-card">
-                        <div className="image-placeholder">image placeholder</div>
-                        <div className="recipe-quick-info-container">
-                            <h1>Recipe Name</h1>
-                            <p>Total Duration: 40 minutes</p>
-                            <br></br>
-                            <p>Tags: Healthy</p>
-                            <div className="view-recipe-button">VIEW RECIPE</div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-            </Swiper>
-
-           
-            
-            
+                    {/* <br></br> */}
+                    <p className="tags-p">Tags: {recipe?.tags.map((tag, i, tags) => tag.value ? `${tag.name}` : "")}</p>
+                    <div className="view-recipe-button"><Link to={`/recipes/${recipe._id}`}>VIEW RECIPE</Link></div>
+                </div>
+            </div>
         </>
     )
 };
