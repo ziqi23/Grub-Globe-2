@@ -59,7 +59,6 @@ const allRecipes = recipeData.map((recipe, idx) => {
         tagArray.push(tag);
       }
     })
-    // console.log(tagArray);
     return tagArray;
   }
 
