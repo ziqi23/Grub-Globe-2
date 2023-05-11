@@ -9,7 +9,6 @@ import FavHeart from "../FavHeart";
 import { fetchFavorites } from "../../store/favorites";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipe } from "../../store/recipes";
 import Macronutrients from "./Macronutrients";
 
@@ -20,7 +19,7 @@ const RecipeShowPage = () => {
   const recipe = useSelector((state) =>
     state.recipes ? state.recipes[recipeId] : null
   );
-
+  // if (recipe) console.log(recipe.recipeName, "recipe name");
   const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
   const [currentRecipeStep, setCurrentRecipeStep] = useState("");
 
@@ -38,7 +37,7 @@ const RecipeShowPage = () => {
 
   const handleFollowAlong = () => {
     setToggleFollowAlong(true);
-    setCurrentRecipeStep(0);
+    setCurrentRecipeStep(recipe?.recipeInstructions[0].step);
   };
 
   // const mapTags = (tags) => {

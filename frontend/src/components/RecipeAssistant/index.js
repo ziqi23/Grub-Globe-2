@@ -21,7 +21,12 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
 
   useEffect(() => {
     setRecipeStep(recipeStepFromParent);
+    console.log("recipeStepFromParent", recipeStepFromParent);
   }, [recipeStepFromParent]);
+
+  useEffect(() => {
+    setRecipeName(recipeNameFromParent);
+  }, [recipeNameFromParent]);
 
   const toggleChatbox = () => {
     const chatbox = document.getElementById("ai-chatbox");
