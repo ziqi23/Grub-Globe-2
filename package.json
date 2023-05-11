@@ -24,5 +24,8 @@
   "homepage": "https://github.com/ziqi23/Grub-Globe-2#readme",
   "engines": {
     "node": "16.19"
+  },
+  "dependencies": {
+    "react-icons": "^4.8.0"
   }
 }

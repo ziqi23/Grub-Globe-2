@@ -49,6 +49,7 @@ import { getCurrentUser } from "./store/session";
 import RecipeIndexPage from "./components/RecipeIndexPage/RecipeIndexPage";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import RecipeShowPage from "./components/RecipeShow/RecipeShowPage";
+import RecipeSearch from "./components/SearchBar/Search";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -65,7 +66,7 @@ function App() {
           <Route exact path="/" component={MainPage} />
           <AuthRoute exact path="/login" component={MainPage} />
           <AuthRoute exact path="/signup" component={MainPage} />
-
+          <ProtectedRoute path="/search" component={RecipeSearch} />
           <ProtectedRoute path="/recipes/:id" component={RecipeShowPage} />
           <ProtectedRoute path="/recipes" component={RecipeIndexPage} />
         </Switch>
