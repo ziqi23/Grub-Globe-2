@@ -17,10 +17,7 @@ const validateRecipeInput = [
   check('nutrition')
     .exists({ checkFalsy: true })
     .withMessage('Nutrition information is required'),
-  check('recipeDescription')
-    .exists({ checkFalsy: true })
-    .withMessage('Recipe description is required'),
-  check('recipeInstructions') 
+  check('recipeInstructions')
         .exists({ checkFalsy: true })
         .withMessage('Recipe instructions are required'),
   handleValidationErrors

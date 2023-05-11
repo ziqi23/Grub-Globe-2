@@ -19,6 +19,7 @@
 }
 .header-container .nav-bar div:hover {
     color: rgb(243, 161, 54);
+    cursor: pointer;
 }
 
 .header-container .nav-bar {

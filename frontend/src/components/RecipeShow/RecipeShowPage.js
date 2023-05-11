@@ -11,14 +11,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchRecipe } from "../../store/recipes";
 import Macronutrients from "./Macronutrients";
+import ReviewIndex from "../Reviews/ReviewIndex";
+import glutenFreeIcon from "../../assets/icons/general-icons/icons8-no-gluten-100.png";
+import dairyFreeIcon from "../../assets/icons/general-icons/icons8-non-lactose-food-100.png";
+import sustainableIcon from "../../assets/icons/general-icons/icons8-sustainable-100.png";
+import veganIcon from "../../assets/icons/general-icons/icons8-vegan-100.png";
+import vegetarianIcon from "../../assets/icons/general-icons/icons8-vegetarian-100.png";
+import timerIcon from "../../assets/icons/general-icons/icons8-timer-100.png";
+import plateIcon from "../../assets/icons/general-icons/icons8-plate-100.png";
 
 const RecipeShowPage = () => {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
 
+  const icons = {
+    glutenFree: glutenFreeIcon,
+    dairyFree: dairyFreeIcon,
+    sustainable: sustainableIcon,
+    vegan: veganIcon,
+    vegetarian: vegetarianIcon,
+  };
+
   const recipe = useSelector((state) =>
     state.recipes ? state.recipes[recipeId] : null
   );
+
+  const displayTags = recipe?.tags.map((tag, i) => (
+    <div key={i}>
+      <figure>
+        <img src={icons.tag} alt={`${tag} icon`} />
+      </figure>
+      <h2>{tag}</h2>
+    </div>
+  ));
   const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
   const [currentRecipeStep, setCurrentRecipeStep] = useState("");
 
@@ -28,6 +53,7 @@ const RecipeShowPage = () => {
 
   useEffect(() => {
     dispatch(fetchRecipe(recipeId));
+    console.log(recipe?.tags);
   }, [recipeId, dispatch]);
 
   useEffect(() => {
@@ -75,13 +101,25 @@ const RecipeShowPage = () => {
             </div>
             <div className="smaller-content-info">
               <div>
+                <img className="icon" src={timerIcon} />
                 <h2>Duration</h2>
                 <p>{recipe?.prepTime} minutes</p>
               </div>
               <div>
+                <img className="icon" src={plateIcon} />
                 <h2>Servings </h2>
                 <p>{recipe?.servings}</p>
               </div>
+
+              {/* iterate through tags here and create div */}
+              {/* {recipe?.tags.map((tag, i) => (
+                  <div>
+                    <img className="icon" src={icons.tag} alt={`${tag} icon`} />
+                    <h2>{tag}</h2>
+                  </div>
+                ))} */}
+              {/* d */}
+              {displayTags?.map((tag) => tag)}
             </div>
 
             <div>
@@ -106,6 +144,7 @@ const RecipeShowPage = () => {
                 )}
             </div> */}
           </div>
+
           <div className="macros-container">
             <div>
               <h2>Macronutrients</h2>
@@ -113,6 +152,7 @@ const RecipeShowPage = () => {
             </div>
           </div>
         </div>
+        <ReviewIndex recipeId={recipeId} />
       </div>
 
       {toggleFollowAlong && (

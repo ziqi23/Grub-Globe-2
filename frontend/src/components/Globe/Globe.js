@@ -7,6 +7,7 @@ import './Globe.css'
 import { Redirect, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Globe(props) {
+    
     const colorMapping = {
         "70744C": "United States",
         "847233": "Italy",
@@ -203,8 +204,8 @@ function Globe(props) {
         const raycaster = new THREE.Raycaster();
         const mousePos = new THREE.Vector2();
         ref.current.addEventListener('mousemove', handleMouseMoveForRaycaster);
-        let canvasWidth = 1000;
-        let canvasHeight = 1000;
+        let canvasWidth = window.innerWidth * 0.6;
+        let canvasHeight = window.innerWidth * 0.6;
         let lastCall = Date.now();
         function handleMouseMoveForRaycaster(e) {
             if (Date.now() - lastCall < 200) {
@@ -228,7 +229,7 @@ function Globe(props) {
     
         // Render above scene
         const renderer = new THREE.WebGLRenderer( {antialias: false, alpha: true} );
-        renderer.setSize(1000, 1000); // changed
+        renderer.setSize(0.6 * window.innerWidth, window.innerWidth * 0.6); // changed
         renderer.render(scene, camera);
         ref.current.appendChild(renderer.domElement);
 
@@ -240,7 +241,7 @@ function Globe(props) {
             renderer.render(scene, camera)
         }
         animate();
-
+        console.log(window.innerWidth)
         // return () => ref.current.removeChild(renderer.domElement);
     }, [])
     
@@ -370,16 +371,24 @@ function Globe(props) {
                 <div ref={ref} id="explore-page-globe"></div>
                 {countryHoveredRef.current && (
                 <div id="explore-page-country-popup">
-                    <div>{countryHoveredRef.current}</div>
-                    <div>{countryDescription[countryHoveredRef.current]}</div>
-                    <div onClick={() => history.push('/recipes')} >Take me there!</div>
+                    <div id="country-description">
+                        <h1>{countryHoveredRef.current}</h1>
+                        <p>{countryDescription[countryHoveredRef.current]}</p>
+                    </div>
+                    <div onClick={() => history.push({
+                        pathname: "/recipes",
+                        search: `?country=${countryHoveredRef.current}`
+                    })}>Take me there!</div>
                 </div>
                 )}
                 {!countryHoveredRef.current && (
-                <div id="explore-page-country-popup">
-                </div>
+                    <>
+                        <canvas id='placeholder-canvas' display="none"></canvas>
+                        <div id="explore-page-country-popup">
+                            <h1>Try hovering over a country</h1>
+                        </div>
+                    </>
                 )}
-                <canvas id='placeholder-canvas' display="none"></canvas>
             </div>
         </div>
     );
