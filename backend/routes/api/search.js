@@ -5,15 +5,15 @@ const Recipe = mongoose.model('Recipe');
 
 router.get('/', async (req, res) => {
   const query = req.query.q;
-    console.log(query, "query")
   try {
     const recipes = await Recipe.find({
       $or: [
         { recipeName: { $regex: query, $options: "i" } },
         { country: { $regex: query, $options: "i" } },
-        { tags: { $elemMatch: { $regex: query, $options: "i" } } },
+        { tags: { $elemMatch: { $regex: query.replace(/\s+/g, ''), $options: "i" } } },
         
       ]
+
     }).sort({ createdAt: -1 });
     console.log(recipes);
     return res.json(recipes);
