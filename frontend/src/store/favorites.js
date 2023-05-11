@@ -25,13 +25,6 @@ const receiveErrors = (errors) => ({
   errors,
 });
 
-// export const fetchFavorites = () => async (dispatch) => {
-//   const response = await jwtFetch(`/api/favorites`);
-//   const data = await response.json();
-//   dispatch(setFavorites(data)); // might be just favorites?
-//   return response;
-// };
-
 export const fetchFavorites = () => async (dispatch) => {
   try {
     const res = await jwtFetch("/api/favorites");
@@ -44,23 +37,6 @@ export const fetchFavorites = () => async (dispatch) => {
     }
   }
 };
-
-// export const fetchFavorite = (favoriteId) => async (dispatch) => {
-//   const response = await jwtFetch(`/api/favorites/${favoriteId}`);
-//   const data = await response.json();
-//   dispatch(addFavorite(data));
-//   return response;
-// };
-
-// export const createFavorite = (favoriteFormData) => async (dispatch) => {
-//   const response = await jwtFetch("/api/favorites", {
-//     method: "POST",
-//     body: JSON.stringify(favoriteFormData),
-//   });
-//   const data = await response.json();
-//   dispatch(addFavorite(data.favorite));
-//   return response;
-// };
 
 export const createFavorite = (data) => async (dispatch) => {
   try {
@@ -79,7 +55,6 @@ export const createFavorite = (data) => async (dispatch) => {
 };
 
 export const deleteFavorite = (favoriteId) => async (dispatch) => {
-  console.log("in deleteFavorite", "favoriteId", favoriteId);
   const response = await jwtFetch(`/api/favorites/${favoriteId}`, {
     method: "DELETE",
   });

@@ -19,7 +19,6 @@ const RecipeShowPage = () => {
   const recipe = useSelector((state) =>
     state.recipes ? state.recipes[recipeId] : null
   );
-  // if (recipe) console.log(recipe.recipeName, "recipe name");
   const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
   const [currentRecipeStep, setCurrentRecipeStep] = useState("");
 

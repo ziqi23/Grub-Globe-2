@@ -7,7 +7,6 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
   const [questionInput, setQuestionInput] = useState("");
   const [recipeName, setRecipeName] = useState(recipeNameFromParent);
   const [recipeStep, setRecipeStep] = useState(recipeStepFromParent);
-  //   const [result, setResult] = useState();
   const [pastQuestions, setPastQuestions] = useState([]);
   const [pastAnswers, setPastAnswers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +20,6 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
 
   useEffect(() => {
     setRecipeStep(recipeStepFromParent);
-    console.log("recipeStepFromParent", recipeStepFromParent);
   }, [recipeStepFromParent]);
 
   useEffect(() => {
@@ -52,10 +50,8 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
   async function onSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
-    // setPastQuestions([questionInput, ...pastQuestions]);
 
     try {
-      //   const response = await fetch("/api/generate", {
       const response = await jwtFetch("/api/generate", {
         method: "POST",
         headers: {
@@ -76,10 +72,7 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
         );
       }
 
-      //   setResult(data.result);
       console.log("data.result", data.result);
-      //   setPastQuestions([questionInput, ...pastQuestions]);
-      //   setPastAnswers([data.result, ...pastAnswers]);
       setPastQuestions((prevState) => [questionInput, ...prevState]);
       setPastAnswers((prevState) => [data.result, ...prevState]);
       setQuestionInput("");
@@ -111,13 +104,6 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
                 </div>
               </div>
             )}
-
-            {/* {pastQuestions && !isLoading && (
-              <div id="lastQ-container">
-                <p id="lastQ-text">{pastQuestions[0]}</p>
-                <h3 id="lastA-text">{pastAnswers[0]}</h3>
-              </div>
-            )} */}
           </div>
           <form onSubmit={onSubmit} id="recipe-assistant-form">
             <input
@@ -140,7 +126,6 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
               id="recipe-assistant-button"
             />
           </form>
-          {/* <div id="chatbox-answer">{result}</div> */}
         </main>
       </div>
     </>
