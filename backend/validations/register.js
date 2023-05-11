@@ -6,6 +6,12 @@ const validateRegisterInput = [
     .exists({ checkFalsy: true })
     .isEmail()
     .withMessage('Email is invalid'),
+  check('firstName')
+    .exists({ checkFalsy: true })
+    .withMessage('First name is required'),
+  check('lastName')
+    .exists({ checkFalsy: true })
+    .withMessage('Last name is required'),
   check('username')
     .exists({ checkFalsy: true })
     .isLength({ min: 2, max: 30 })

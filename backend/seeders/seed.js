@@ -13,6 +13,8 @@ const users = [];
 users.push(
   new User ({
     username: 'demo-user',
+    firstName: 'Iam',
+    lastName: 'Demo',
     email: 'demo-user@appacademy.io',
     hashedPassword: bcrypt.hashSync('starwars', 10)
   })
@@ -24,6 +26,8 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
   users.push(
     new User ({
       username: faker.internet.userName(firstName, lastName),
+      firstName: firstName,
+      lastName: lastName,
       email: faker.internet.email(firstName, lastName),
       hashedPassword: bcrypt.hashSync(faker.internet.password(), 10)
     })
