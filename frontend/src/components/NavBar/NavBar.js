@@ -18,7 +18,7 @@ function NavBar ({openLoginModal, openSignupModal}) {
       <div className="nav-bar">
         <Link to="#"><div>link 1</div></Link>
         <Link to="#"><div>link 2</div></Link>
-        <Link to="#"><div>Profile</div></Link>
+        <Link to="/profile"><div>Profile</div></Link>
         <Link to="/"><div onClick={logoutUser}><img src={logoutIcon} alt="logout icon" />Logout</div></Link>
 
       </div>

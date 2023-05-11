@@ -8,6 +8,19 @@ const {loginUser, restoreUser} = require('../../config/passport')
 const { isProduction } = require('../../config/keys')
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
+const multer = require("multer");
+const upload = multer({dest: 'uploads/'})
+
+// Upload profile picture route
+router.post('/upload', upload.single("file"), async (req, res) => {
+  if (req.file === undefined) {
+    return res.send("you must select a file.");
+  }
+  // const imgUrl = `http://localhost:8080/file/${req.file.filename}`;
+  // return res.send(imgUrl);
+  // Add req.file to current user and save
+})
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
