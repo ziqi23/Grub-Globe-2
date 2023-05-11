@@ -24,16 +24,22 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 	background-color: #F1F1F1;
 	font-family: 'Kanit', sans-serif;
+}
+
+body * {
+	/* border: 1px solid red; */
 }
 a {
 	text-decoration: none;

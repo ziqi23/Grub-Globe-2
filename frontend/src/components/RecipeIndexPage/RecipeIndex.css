@@ -1,9 +1,13 @@
 .below-header-container {
-    width: 100vw;
+    width: 100%;
     height: auto;
     /* border: 1px dotted red; */
     position: relative;
-
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-direction: column;
+    flex-grow: 1;
     /* carousel testing */
     height: 87vh;
 }
@@ -34,7 +38,7 @@
 .recipe-index-title {
     text-align: center;
     font-family: 'Kanit', sans-serif;
-    font-size: 48px;
+    font-size: 40px;
     font-weight: 500;
     color: rgb(46, 46, 46);
 }
@@ -45,7 +49,7 @@
     width: 90%;
     position: relative;
     height: auto;
-    margin: auto;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -113,7 +117,10 @@
     background-color: #F0EAD2;
     
 }
-  
+
+.actual-image {
+    border-radius: 9px;
+}
 .view-recipe-button:hover {
     cursor: pointer;
     background-color: #F0EAD2;
@@ -144,6 +151,7 @@
   }
   
   .swiper-slide {
+    width: 30%;
     text-align: center;
     font-size: 18px;
     background: #F1F1F1;
