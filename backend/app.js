@@ -8,8 +8,9 @@ const cors = require("cors");
 
 const { isProduction} = require("./config/keys.js");
 
-require("./models/Recipe")
+require("./models/Recipe");
 require("./models/User");
+require("./models/Achievement");
 require("./config/passport");
 const passport = require("passport");
 const usersRouter = require("./routes/api/users");
@@ -53,10 +54,10 @@ if (isProduction) {
         path.resolve(__dirname, '../frontend', 'build', 'index.html')
       );
     });
-  
+
     // Serve the static assets in the frontend's build folder
     app.use(express.static(path.resolve("../frontend/build")));
-  
+
     // Serve the frontend's index.html file at all other routes NOT starting with /api
     app.get(/^(?!\/?api).*/, (req, res) => {
       res.cookie('CSRF-TOKEN', req.csrfToken());
