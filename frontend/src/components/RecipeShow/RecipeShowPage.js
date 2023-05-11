@@ -5,13 +5,26 @@ import FollowAlongCarousel from "../FollowAlong/FollowAlongCarousel";
 import { useEffect, useState } from "react";
 import Ingredients from "./Ingredients";
 import AiChat from "../RecipeAssistant";
+import FavHeart from "../FavHeart";
+import { fetchFavorites } from "../../store/favorites";
+import { useDispatch, useSelector } from "react-redux";
 
 const RecipeShowPage = ({ recipe }) => {
   const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
   const [currentRecipeStep, setCurrentRecipeStep] = useState("");
+  const dispatch = useDispatch();
+
+  const sessionUser = useSelector((state) => state.session.user);
+
+  const favorites = useSelector((state) => Object.values(state.favorites));
+
   useEffect(() => {
     console.log(currentRecipeStep, "current recipe step");
   }, [currentRecipeStep]);
+
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch, sessionUser]);
 
   const handleFollowAlong = () => {
     setToggleFollowAlong(true);
@@ -142,6 +155,7 @@ const RecipeShowPage = ({ recipe }) => {
         recipeNameFromParent="Chicken Teriyaki Bowl"
         recipeStepFromParent={currentRecipeStep}
       />
+      <FavHeart recipe={recipe} favorites={favorites} />
     </>
   );
 };

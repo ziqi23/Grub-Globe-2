@@ -6,15 +6,17 @@ import { deleteFavorite, createFavorite } from "../../store/favorites";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-const FavHeart = ({ recipe, favorites }) => {
+const FavHeart = ({ favorites }) => {
+  //remove recipe for now
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [heartClick, setHeartClick] = useState(false);
-
+  const recipe = { id: 1 };
   let fav;
+
   if (favorites) {
     favorites.forEach((favorite) => {
-      if (favorite.userId === recipe.id) {
+      if (favorite.recipe._id === recipe.id) {
         fav = favorite;
       }
     });
@@ -36,7 +38,7 @@ const FavHeart = ({ recipe, favorites }) => {
   const handleHeartClick = async () => {
     if (!heartClick) {
       try {
-        dispatch(createFavorite({ recipeId: recipe.id }));
+        dispatch(createFavorite({ recipe: recipe }));
         setHeartClick(true);
       } catch (error) {
         console.error(error);
