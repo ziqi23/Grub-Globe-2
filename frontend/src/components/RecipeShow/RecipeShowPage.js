@@ -30,8 +30,17 @@ const RecipeShowPage = () => {
     vegetarian: vegetarianIcon
   }
 
+  
   const recipe = useSelector(state => state.recipes ? state.recipes[recipeId] : null)
-
+  
+  const displayTags = recipe?.tags.map((tag, i) => (
+    <div key={i}>
+      <figure>
+        <img src={icons.tag} alt={`${tag} icon`} />
+      </figure>
+      <h2>{tag}</h2>
+    </div>
+  ))
   const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
   const [currentRecipeStep, setCurrentRecipeStep] = useState("");
 
@@ -86,14 +95,16 @@ const RecipeShowPage = () => {
                   <h2>Servings </h2>
                   <p>{recipe?.servings}</p>
                 </div>
+
                 {/* iterate through tags here and create div */}
-                {/* {tags.map((tag, i) => (
+                {/* {recipe?.tags.map((tag, i) => (
                   <div>
-                    <img className="icon" src={icons.tag} />
+                    <img className="icon" src={icons.tag} alt={`${tag} icon`} />
                     <h2>{tag}</h2>
                   </div>
                 ))} */}
                 {/* d */}
+                {displayTags?.map((tag) => tag)}
             </div>
             
             <div>
