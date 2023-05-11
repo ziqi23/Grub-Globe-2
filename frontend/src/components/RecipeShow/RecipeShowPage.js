@@ -38,9 +38,9 @@ const RecipeShowPage = () => {
 
   const displayTags = recipe?.tags.map((tag, i) => (
     <div key={i}>
-      <figure>
-        <img src={icons.tag} alt={`${tag} icon`} />
-      </figure>
+      {/* <figure> */}
+      <img className="icon" src={icons[tag]} alt={`${tag} icon`} />
+      {/* </figure> */}
       <h2>{tag}</h2>
     </div>
   ));
