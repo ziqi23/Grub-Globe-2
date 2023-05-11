@@ -16,7 +16,7 @@ const FavHeart = ({ favorites, recipe }) => {
   let fav;
   if (favorites) {
     favorites.forEach((favorite) => {
-      if (favorite.recipe === recipe._id) {
+      if (favorite.recipe === recipe?._id) {
         fav = favorite;
       }
     });
@@ -40,9 +40,9 @@ const FavHeart = ({ favorites, recipe }) => {
   const handleHeartClick = async () => {
     if (!fav && !buttonDisabled) {
       try {
-        dispatch(
-          createFavorite({ recipe: recipe._id, user: sessionUser._id })
-        ).then(dispatch(fetchFavorites()));
+        dispatch(createFavorite({ recipe: recipe._id })).then(
+          dispatch(fetchFavorites())
+        );
       } catch (error) {
         console.error(error);
       } finally {
@@ -64,7 +64,7 @@ const FavHeart = ({ favorites, recipe }) => {
   };
 
   return (
-    <div>
+    <div id="heart-div">
       <FaHeart
         id="recipe-heart"
         className={heartClick ? "heart-clicked" : ""}

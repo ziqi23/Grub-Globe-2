@@ -57,6 +57,7 @@ const RecipeShowPage = () => {
           <div className="main-recipe-content-container">
             {/* <h1>{recipe.name}</h1> */}
             <div className="main-recipe-info-header">
+              <FavHeart recipe={recipe} favorites={favorites} />
               <h1>{recipe?.recipeName}</h1>
               <div>
                 <img src={mapPin} alt="map pin" className="map-pin" />
@@ -128,7 +129,6 @@ const RecipeShowPage = () => {
         recipeNameFromParent={recipe?.recipeName}
         recipeStepFromParent={currentRecipeStep}
       />
-      <FavHeart recipe={recipe} favorites={favorites} />
     </>
   );
 };

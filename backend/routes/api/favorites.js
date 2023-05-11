@@ -31,7 +31,7 @@ router.post("/", requireUser, validateFavoriteInput, async (req, res, next) => {
   try {
     const newFav = new Favorite({
       recipe: req.body.recipe,
-      user: req.body.user,
+      user: req.user._id,
     });
     let fav = await newFav.save();
     return res.json(fav);
