@@ -110,7 +110,7 @@
   }
   25% {
     transform: rotate(0);
-    border-top: 10px solid orangered;
+    border-top: 10px solid rgb(240, 140, 104);
   }
   50% {
     border-top: 10px solid white;

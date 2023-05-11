@@ -9,7 +9,7 @@ const cors = require("cors");
 const { isProduction } = require("./config/keys.js");
 
 require("./models/User");
-require("./models/Favorite.js");
+require("./models/Favorite");
 require("./models/Recipe");
 require("./config/passport");
 const passport = require("passport");

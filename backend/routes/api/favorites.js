@@ -56,7 +56,7 @@ router.get("/", requireUser, async (req, res, next) => {
     return next(error);
   }
   try {
-    const favorites = await Favorite.find({ user: user._id }).sort({
+    const favorites = await Favorite.find({ user: user }).sort({
       createdAt: -1,
     });
     //   .populate("author", "_id username");
@@ -100,15 +100,33 @@ router.get("/", requireUser, async (req, res, next) => {
 //   }
 // });
 
+// router.post("/", requireUser, validateFavoriteInput, async (req, res, next) => {
+//   try {
+//     const newFavorite = new Favorite({
+//       recipe: req.body.recipe,
+//       user: req.user._id,
+//     });
+
+//     let favorite = await newFavorite.save();
+//     favorite = await favorite.populate("user", "recipe");
+//     return res.json(favorite);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
 router.post("/", requireUser, validateFavoriteInput, async (req, res, next) => {
+  //   console.log(req.body, "req.body", req.user, "req.user");
+  //   debugger;
   try {
     const newFavorite = new Favorite({
       recipe: req.body.recipe,
-      user: req.user._id,
+      user: req.body.user,
     });
 
     let favorite = await newFavorite.save();
-    favorite = await favorite.populate("user", "recipe");
+    // favorite = await favorite.populate("user", "recipe").execPopulate();
+    // favorite = await favorite.populate("recipe");
     return res.json(favorite);
   } catch (err) {
     next(err);

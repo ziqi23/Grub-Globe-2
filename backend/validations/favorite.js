@@ -1,20 +1,25 @@
 const { check } = require("express-validator");
 const handleValidationErrors = require("./handleValidationErrors");
-const { Favorite } = require("../models/Favorite.js");
+// const { Favorite } = require("../models/Favorite");
 
 const validateFavoriteInput = [
   check("recipe")
     .exists({ checkFalsy: true })
     .withMessage("Recipe is required"),
+  // console.log("recipe", recipe, "user", user)
   check("user").exists({ checkFalsy: true }).withMessage("User is required"),
 
-  check("recipe").custom(async (recipe, { req }) => {
-    const user = req.body.user;
-    const favorite = await Favorite.findOne({ recipe, user });
-    if (favorite) {
-      throw new Error("You have already favorited this recipe.");
-    }
-  }),
+  // check("recipe").custom(async (recipe, { req }) => {
+  //   const user = req.body.user;
+  // console.log("recipe", recipe, "user", user)
+  //   const favorite = await Favorite.findOne({
+  //     recipe: recipe._id,
+  //     user: user._id,
+  //   });
+  //   if (favorite) {
+  //     throw new Error("You have already favorited this recipe.");
+  //   }
+  // }),
   // // add a custom validator to check for duplicates
   // check("userId")
   //   .custom(async (value, { req }) => {

@@ -3,26 +3,27 @@ import jwtFetch from "./jwt";
 const SET_FAVORITES = "favorites/setFavorites";
 const ADD_FAVORITE = "favorites/addFavorite";
 const REMOVE_FAVORITE = "favorites/removeFavorite";
+const RECEIVE_FAVORITE_ERRORS = "favorites/RECEIVE_FAVORITE_ERRORS";
 
 const setFavorites = (favorites) => ({
   type: SET_FAVORITES,
-  payload: favorites,
+  favorites,
 });
 
 export const addFavorite = (favorite) => ({
   type: ADD_FAVORITE,
-  payload: favorite,
+  favorite,
 });
 
 export const removeFavorite = (favoriteId) => ({
   type: REMOVE_FAVORITE,
-  payload: favoriteId,
+  favoriteId,
 });
 
-// const receiveErrors = (errors) => ({
-//   type: RECEIVE_TWEET_ERRORS,
-//   errors,
-// });
+const receiveErrors = (errors) => ({
+  type: RECEIVE_FAVORITE_ERRORS,
+  errors,
+});
 
 // export const fetchFavorites = () => async (dispatch) => {
 //   const response = await jwtFetch(`/api/favorites`);
@@ -39,7 +40,7 @@ export const fetchFavorites = () => async (dispatch) => {
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
-      //   dispatch(receiveErrors(resBody.errors));
+      dispatch(receiveErrors(resBody.errors));
     }
   }
 };
@@ -72,7 +73,7 @@ export const createFavorite = (data) => async (dispatch) => {
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
-      //   return dispatch(receiveErrors(resBody.errors));
+      return dispatch(receiveErrors(resBody.errors));
     }
   }
 };
@@ -88,13 +89,12 @@ export const deleteFavorite = (favoriteId) => async (dispatch) => {
 function favoritesReducer(state = {}, action) {
   switch (action.type) {
     case SET_FAVORITES:
-      return action.payload;
+      return { ...action.favorites };
     case ADD_FAVORITE:
-      const favorite = action.payload;
-      return { ...state, [favorite.id]: favorite };
+      return { ...state, [action.favorite._id]: action.favorite };
     case REMOVE_FAVORITE:
       const newState = { ...state };
-      delete newState[action.payload];
+      delete newState[action.favoriteId];
       return newState;
     default:
       return state;
