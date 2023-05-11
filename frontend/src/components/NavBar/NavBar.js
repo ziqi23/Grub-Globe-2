@@ -4,6 +4,7 @@ import { logout } from '../../store/session';
 import './NavBar.css'
 import logoutIcon from '../../assets/icons/general-icons/icons8-log-out-24.png'
 
+
 function NavBar ({openLoginModal, openSignupModal}) {
   const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();

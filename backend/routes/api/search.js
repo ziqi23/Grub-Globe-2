@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 const Recipe = mongoose.model('Recipe');
 
 router.get('/', async (req, res) => {
+    
   const query = req.query.q;
+  console.log(query)
   const queryArray = query.split(" , ");
-  console.log(queryArray, 'queryArray');
   if (queryArray.length === 1) {
       try {
         const recipes = await Recipe.find({
