@@ -372,7 +372,10 @@ function Globe(props) {
                 <div id="explore-page-country-popup">
                     <div>{countryHoveredRef.current}</div>
                     <div>{countryDescription[countryHoveredRef.current]}</div>
-                    <div onClick={() => history.push('/recipes')} >Take me there!</div>
+                    <div onClick={() => history.push({
+                        pathname: "/recipes",
+                        search: `?country=${countryHoveredRef.current}`
+                    })}>Take me there!</div>
                 </div>
                 )}
                 {!countryHoveredRef.current && (
