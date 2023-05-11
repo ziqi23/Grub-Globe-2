@@ -46,7 +46,8 @@ import { getCurrentUser } from "./store/session";
 import RecipeIndexPage from "./components/RecipeIndexPage/RecipeIndexPage";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import RecipeShowPage from "./components/RecipeShow/RecipeShowPage";
-
+import RecipeSearch from "./components/SearchBar/Search";
+import Globe from "./components/Globe/Globe";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();

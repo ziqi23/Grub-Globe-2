@@ -15,6 +15,8 @@ const passport = require("passport");
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
 const aiRouter = require("./routes/api/generate");
+const recipesRouter = require("./routes/api/recipes");
+const searchRouter = require("./routes/api/search");
 
 const app = express();
 

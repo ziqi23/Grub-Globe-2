@@ -25,14 +25,14 @@ function RecipeSearch() {
         />
         <button type="submit">Search</button>
       </form>
-      {/* <ul>
+      <ul>
         {results.map((result) => (
           <li key={result._id}>
             <h3>{result.recipeName}</h3>
-            <p>{result.description}</p>
+            {/* <p>{result.description}</p> */}
           </li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 }

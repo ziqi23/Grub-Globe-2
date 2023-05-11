@@ -84,16 +84,7 @@ const recipeSchema = new Schema({
     }
   ],
   tags: [
-    {
-      name: {
-        type: String,
-        required: true
-      },
-      value: {
-        type: Boolean,
-        required: true
-      }
-    }
+        
   ],
   youtubeLinks: {
     type: [String]
