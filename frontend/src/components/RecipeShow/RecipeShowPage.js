@@ -21,6 +21,14 @@ const RecipeShowPage = () => {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
 
+  const icons = {
+    glutenFree: glutenFreeIcon,
+    dairyFree: dairyFreeIcon,
+    sustainable: sustainableIcon,
+    vegan: veganIcon,
+    vegetarian: vegetarianIcon
+  }
+
   const recipe = useSelector(state => state.recipes ? state.recipes[recipeId] : null)
 
   const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
