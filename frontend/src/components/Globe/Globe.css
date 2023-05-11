@@ -48,6 +48,6 @@
     background-color: rgb(75, 68, 152);
 }
 
-.header-container h1 {
+#explore-page-root .header-container h1 {
     color: white;
 }
