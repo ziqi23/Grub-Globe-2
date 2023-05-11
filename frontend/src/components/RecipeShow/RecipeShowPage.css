@@ -157,6 +157,7 @@
     width: 100%;
     box-sizing: border-box;
     justify-content: center;
+    border: 1px solid red;
     gap: 2%;
     display: flex;
     margin-bottom: 0;
@@ -166,15 +167,14 @@
     text-align:center;
     display: flex;
     flex-direction: column;
-    width: 40%;
-    height: 75px;
+    align-items: center;
     border: 2px solid rgb(20, 20, 20);
     border-radius: 12px;
     background-color: rgb(255, 255, 215);
     line-height: 1;
     padding: 10px;
     box-sizing: border-box;
-    justify-content: center;
+
 }
 
 .smaller-content-info > div h2 {
@@ -189,6 +189,12 @@
 
 .tags-p {
     text-transform: lowercase;
+}
+
+.smaller-content-info .icon {
+    width: 60px;
+    height: 60px;
+
 }
 
 @media (max-width: 1511px) {

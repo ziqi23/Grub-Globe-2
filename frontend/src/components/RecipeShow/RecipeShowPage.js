@@ -16,6 +16,7 @@ import sustainableIcon from "../../assets/icons/general-icons/icons8-sustainable
 import veganIcon from "../../assets/icons/general-icons/icons8-vegan-100.png"
 import vegetarianIcon from "../../assets/icons/general-icons/icons8-vegetarian-100.png"
 import timerIcon from "../../assets/icons/general-icons/icons8-timer-100.png"
+import plateIcon from "../../assets/icons/general-icons/icons8-plate-100.png"
 
 const RecipeShowPage = () => {
   const dispatch = useDispatch();
@@ -76,14 +77,22 @@ const RecipeShowPage = () => {
             </div>
             <div className="smaller-content-info">
                 <div>
-                  {/* <img src={timerIcon} /> */}
+                  <img className="icon" src={timerIcon} />
                   <h2>Duration</h2>
                   <p>{recipe?.prepTime} minutes</p>
                 </div>
                 <div>
+                  <img className="icon" src={plateIcon} />
                   <h2>Servings </h2>
                   <p>{recipe?.servings}</p>
                 </div>
+                {/* iterate through tags here and create div */}
+                {/* {tags.map((tag, i) => (
+                  <div>
+                    <img className="icon" src={icons.tag} />
+                    <h2>{tag}</h2>
+                  </div>
+                ))} */}
             </div>
             
             <div>
