@@ -7,17 +7,18 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const FavHeart = ({ favorites, recipe }) => {
-  //remove recipe for now
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [heartClick, setHeartClick] = useState(false);
-  //   const recipe = { id: 1 };
-  let fav;
 
+  let fav;
   if (favorites) {
+    console.log(favorites, "favorites");
     favorites.forEach((favorite) => {
-      if (favorite.recipe._id === recipe._id) {
+      console.log(favorite.recipe, "favorite.recipe", recipe._id, "recipe._id");
+      if (favorite.recipe === recipe._id) {
         fav = favorite;
+        console.log(fav, "fav");
       }
     });
   }
@@ -36,17 +37,19 @@ const FavHeart = ({ favorites, recipe }) => {
     );
 
   const handleHeartClick = async () => {
-    console.log(recipe, "recipe", sessionUser, "sessionUser");
+    // console.log(recipe, "recipe", sessionUser, "sessionUser");
+    // dispatch(deleteFavorite("645d2da66f35ae160fc141be"));
     if (!heartClick) {
       try {
-        dispatch(createFavorite({ recipe: recipe, user: sessionUser }));
-        setHeartClick(true);
+        dispatch(
+          createFavorite({ recipe: recipe._id, user: sessionUser._id })
+        ).then(setHeartClick(true));
       } catch (error) {
         console.error(error);
       }
     } else if (fav) {
       try {
-        dispatch(deleteFavorite(fav.id));
+        dispatch(deleteFavorite(fav._id));
         setHeartClick(false);
       } catch (error) {
         console.error(error);

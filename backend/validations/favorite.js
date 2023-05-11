@@ -7,11 +7,11 @@ const validateFavoriteInput = [
     .exists({ checkFalsy: true })
     .withMessage("Recipe is required"),
   // console.log("recipe", recipe, "user", user)
-  check("user").exists({ checkFalsy: true }).withMessage("User is required"),
+  // check("user").exists({ checkFalsy: true }).withMessage("User is required"),
 
   // check("recipe").custom(async (recipe, { req }) => {
   //   const user = req.body.user;
-  // console.log("recipe", recipe, "user", user)
+  //   console.log("recipe", recipe, "user", user);
   //   const favorite = await Favorite.findOne({
   //     recipe: recipe._id,
   //     user: user._id,

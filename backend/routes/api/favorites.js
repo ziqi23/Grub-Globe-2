@@ -116,30 +116,36 @@ router.get("/", requireUser, async (req, res, next) => {
 // });
 
 router.post("/", requireUser, validateFavoriteInput, async (req, res, next) => {
-  //   console.log(req.body, "req.body", req.user, "req.user");
-  //   debugger;
+  console.log(req.body, "req.body", req.user, "req.user");
+  //   debugger; validateFavoriteInput, requireUser
   try {
-    const newFavorite = new Favorite({
+    const newFav = new Favorite({
       recipe: req.body.recipe,
       user: req.body.user,
     });
-
-    let favorite = await newFavorite.save();
+    console.log(newFav, "newFav");
+    let fav = await newFav.save();
+    console.log(fav, "favorite");
     // favorite = await favorite.populate("user", "recipe").execPopulate();
     // favorite = await favorite.populate("recipe");
-    return res.json(favorite);
+    return res.json(fav);
   } catch (err) {
+    const error = new Error("fav not saved");
+    error.statusCode = 404;
+    error.errors = { message: "fav not saved" };
     next(err);
   }
 });
 
 router.delete("/:favoriteId", async (req, res, next) => {
   try {
-    favorite = await Favorite.findById(req.body._id);
+    // const favorite = await Favorite.findById(req.body._id);
+    console.log(req.params.favoriteId, "req.params.favoriteId in backend");
+    await Favorite.deleteOne({ _id: req.params.favoriteId });
   } catch (err) {
-    const error = new Error("User not found");
+    const error = new Error("delete error");
     error.statusCode = 404;
-    error.errors = { message: "No user found with that id" };
+    error.errors = { message: "delete error" };
     return next(error);
   }
 });

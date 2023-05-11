@@ -79,6 +79,7 @@ export const createFavorite = (data) => async (dispatch) => {
 };
 
 export const deleteFavorite = (favoriteId) => async (dispatch) => {
+  console.log("in deleteFavorite", "favoriteId", favoriteId);
   const response = await jwtFetch(`/api/favorites/${favoriteId}`, {
     method: "DELETE",
   });
