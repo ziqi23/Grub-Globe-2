@@ -9,6 +9,13 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipe } from "../../store/recipes";
 import Macronutrients from "./Macronutrients";
+import ReviewIndex from "../Reviews/ReviewIndex";
+import glutenFreeIcon from "../../assets/icons/general-icons/icons8-no-gluten-100.png"
+import dairyFreeIcon from "../../assets/icons/general-icons/icons8-non-lactose-food-100.png"
+import sustainableIcon from "../../assets/icons/general-icons/icons8-sustainable-100.png"
+import veganIcon from "../../assets/icons/general-icons/icons8-vegan-100.png"
+import vegetarianIcon from "../../assets/icons/general-icons/icons8-vegetarian-100.png"
+import timerIcon from "../../assets/icons/general-icons/icons8-timer-100.png"
 
 const RecipeShowPage = () => {
   const dispatch = useDispatch();
@@ -21,6 +28,7 @@ const RecipeShowPage = () => {
 
   useEffect(() => {
     dispatch(fetchRecipe(recipeId));
+    console.log(recipe?.tags)
   }, [recipeId, dispatch]);
 
   const handleFollowAlong = () => {
@@ -60,6 +68,7 @@ const RecipeShowPage = () => {
             </div>
             <div className="smaller-content-info">
                 <div>
+                  {/* <img src={timerIcon} /> */}
                   <h2>Duration</h2>
                   <p>{recipe?.prepTime} minutes</p>
                 </div>
@@ -92,6 +101,7 @@ const RecipeShowPage = () => {
                 )}
             </div> */}
           </div>
+            
           <div className="macros-container">
             <div>
               <h2>Macronutrients</h2>
@@ -99,6 +109,7 @@ const RecipeShowPage = () => {
             </div>
           </div>
         </div>
+        <ReviewIndex recipeId={recipeId} />
       </div>
 
       {toggleFollowAlong && (
