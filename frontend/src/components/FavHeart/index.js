@@ -32,7 +32,7 @@ const FavHeart = ({ favorites, recipe }) => {
 
   if (!sessionUser)
     return (
-      <div>
+      <div id="heart-div">
         <FaHeart id="recipe-heart" className="recipe-heart-unauth" />
       </div>
     );
