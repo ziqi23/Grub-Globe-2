@@ -18,6 +18,6 @@
 #recipe-heart.recipe-heart-unauth {
   font-size: 30px;
   color: rgb(190, 188, 188);
-  left: 0;
+  /* left: 0; */
   cursor: not-allowed;
 }

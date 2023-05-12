@@ -57,6 +57,10 @@
   background-color: #dde5b6;
 }
 
+.recipes-index .swiper-slide:nth-child(even) .recipe-card p {
+  color: rgb(233, 232, 231);
+}
+
 .recipe-card {
   width: 572px;
   height: 600px;
@@ -168,6 +172,20 @@
 
 .swiper-button-next {
   color: #353535 !important;
+}
+
+.country-container {
+  display: flex;
+  color: rgb(46, 46, 46);
+  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.country-container .map-pin {
+  width: 30px;
+  height: 30px;
+  box-shadow: none;
 }
 
 @media (max-width: 1978px) {
