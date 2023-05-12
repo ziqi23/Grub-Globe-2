@@ -9,6 +9,8 @@
     align-items: center;
     /* border: 1px solid green; */
     box-sizing: border-box;
+    z-index: 1000;
+    position: relative;
 }
   
 .header-container h1 {
