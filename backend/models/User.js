@@ -28,7 +28,7 @@ const userSchema = new Schema({
         recipeId: {
           type: Schema.Types.ObjectId,
           ref: 'Recipe'
-        },
+        }
         // dateCompleted: {
         //   type: Date,
         //   default: Date.now
