@@ -9,7 +9,7 @@
     align-items: center;
     /* border: 1px solid green; */
     box-sizing: border-box;
-    z-index: 1000;
+    z-index: 100;
     position: relative;
 }
   
