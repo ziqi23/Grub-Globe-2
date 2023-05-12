@@ -1,13 +1,16 @@
 import './Header.css'
 import NavBar from '../NavBar/NavBar';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import RecipeSearch from '../SearchBar/Search';
+import { useLocation } from 'react-router-dom';
 
 const Header = ({openLoginModal, openSignupModal}) => {
-    const history = useHistory();
-    
+    const location = useLocation();
+    const isRecipePage = location.pathname === '/recipes';
+
     return(
         <div className="header-container">
-            <div className="logo" onClick={() => history.push("/")} ><h1>grubGlobe</h1></div>
+            <div className="logo"><h1>grubGlobe</h1></div>
+            {isRecipePage && <RecipeSearch />}
             <NavBar openLoginModal={openLoginModal} openSignupModal={openSignupModal}/>
         </div>
     )

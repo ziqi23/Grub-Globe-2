@@ -50,6 +50,17 @@ export const fetchRecipe = recipeId => async dispatch => {
     }
 }
 
+export const fetchSearchRecipes = recipes => async dispatch => {
+    try {
+        dispatch(receiveRecipes(recipes));
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            dispatch(receiveErrors(resBody.errors))
+        }
+    }
+}
+
 // REDUCER
 const RecipesReducer = (state = {}, action) => {
     switch(action.type) {
