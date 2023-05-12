@@ -16,10 +16,6 @@ const recipeSchema = new Schema({
   },
   ingredients: [
     {
-      id: {
-        type: Number,
-        required: true
-      },
       name: {
         type: String,
         required: true
@@ -56,17 +52,8 @@ const recipeSchema = new Schema({
       }
     ]
   },
-   recipeDescription: {
-    type: String,
-    default: "",
-    required: true
-  },
   prepTime: {
     type: Number
-  },
-  cuisineDescription: {
-    type: String,
-    default: ""
   },
   servings: {
     type: Number
@@ -83,11 +70,15 @@ const recipeSchema = new Schema({
       }
     }
   ],
-  tags: [
-        
-  ],
+  tags: {
+    type: [String]
+  },
   youtubeLinks: {
     type: [String]
+  },
+  photoUrl: {
+    type: String,
+    required: true
   }
 });
 
