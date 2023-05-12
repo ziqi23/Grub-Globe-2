@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchRecipeReviews } from "../../store/reviews";
+import NewReviewForm from "./NewReviewForm";
 
 const ReviewIndex = ({ recipeId }) => {
   const recipeReviews = useSelector((state) =>
@@ -34,6 +35,7 @@ const ReviewIndex = ({ recipeId }) => {
   return (
     <>
       <div className="review-index-container">
+        <NewReviewForm recipeId={recipeId} />
         <h1 className="review-index-container-title">Reviews</h1>
         {reviews.map((review, i) => (
           <ReviewBox key={i} review={review} />
