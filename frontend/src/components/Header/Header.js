@@ -1,14 +1,16 @@
 import './Header.css'
 import NavBar from '../NavBar/NavBar';
 import RecipeSearch from '../SearchBar/Search';
-import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 const Header = ({openLoginModal, openSignupModal}) => {
-    const loggedIn = useSelector(state => !!state.session.user);
+    const location = useLocation();
+    const isRecipePage = location.pathname === '/recipes';
+
     return(
         <div className="header-container">
             <div className="logo"><h1>grubGlobe</h1></div>
-            {loggedIn ? <RecipeSearch /> : null}
+            {isRecipePage && <RecipeSearch />}
             <NavBar openLoginModal={openLoginModal} openSignupModal={openSignupModal}/>
         </div>
     )
