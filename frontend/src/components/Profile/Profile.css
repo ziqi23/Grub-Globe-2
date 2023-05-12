@@ -194,10 +194,9 @@
 
 .profile-picture-upload-panel {
     position: absolute;
-    top: 30%;
-    left: 30%;
+    bottom: -20px;
+    left: 0px;
     z-index: 10;
-    width: 500px;
-    height: 200px;
+    width: 320px;
     background-color: brown;
 }

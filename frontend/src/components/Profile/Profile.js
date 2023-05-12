@@ -40,7 +40,7 @@ function Profile(props) {
         Object.values(favorites).forEach(favorite=> {
             dispatch(fetchRecipe(favorite.recipe))
         })
-    }, [favorites])
+    }, [favorites, user])
 
 
     let bufferArr;
@@ -63,16 +63,16 @@ function Profile(props) {
     function handlePanelClick(e) {
         e.preventDefault()
         setUploadPanelOpen(!uploadPanelOpen)
-        document.addEventListener('mousedown', closePanel)
-        console.log(e.currentTarget.className)
-        function closePanel(e) {
-            e.preventDefault()
-            if (e.currentTarget.className !== 'profile-page-upload-panel-toggle' && e.target.className !== "profile-picture-upload-panel") {
-                setUploadPanelOpen(false)
-                console.log(e.target.className)
-                document.removeEventListener('click', closePanel)
-            }
-        }
+        // document.addEventListener('mousedown', closePanel)
+        // console.log(e.currentTarget.className)
+        // function closePanel(e) {
+        //     e.preventDefault()
+        //     if (e.currentTarget.className !== 'profile-page-upload-panel-toggle' && e.target.className !== "profile-picture-upload-panel") {
+        //         setUploadPanelOpen(false)
+        //         console.log(e.target.className)
+        //         document.removeEventListener('click', closePanel)
+        //     }
+        // }
     }
 
     return (
