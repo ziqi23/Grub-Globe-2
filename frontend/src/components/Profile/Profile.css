@@ -1,87 +1,188 @@
 .profile-page-root {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
+    background-color: beige;
+    flex-grow: 1;
 }
 
-.profile-page-header {
-    padding: 0px 30px;
-}
 .profile-page-top {
     display: flex;
-    height: 450px;
+    flex-grow: 1;
+    height: fit-content;
     padding: 0px 30px;
 }
 
 .profile-page-left {
     display: flex;
     flex-direction: column;
-    width: 30vw;
-    height: 400px;
     box-sizing: border-box;
-    border: 1px solid black;
+    max-height: 461px;
 }
 
 .profile-page-picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    margin: 1vw;
-    width: 28vw;
-    height: 30vh;
-    border: 1px solid black;
+    min-width: 300px;
+    min-height: 300px;
     object-fit: cover;
-    
+    border-radius: 200px;
 }
 
 .profile-page-upload-panel-toggle {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 0px;
+    right: 6px;
+    color: rgb(228, 223, 223);
+    background-color: rgb(55, 53, 47, 0.8);
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.profile-page-upload-panel-toggle:hover {
+    background-color: rgb(55, 53, 47);
+    transition-duration: 200ms;
+    cursor: pointer;
 }
 
 .profile-page-picture-file {
-    width: inherit;
-    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
-    border: 1px solid rgba(55, 53, 47, 0.09);
     border-radius: 200px;
     background-color: white;
-    margin-right: 12px;
 }
 
 .profile-page-user-details {
     margin: 1vw;
-    height: 10vh;
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.profile-page-user-details h1 {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    font-size: 20px;
 }
 
 .profile-page-user-details h2 {
     display: flex;
     align-items: center;
-    padding-left: 15px;
-    padding-right: 14px;
-    background-color: gray;
+    margin-top: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    color: rgb(55, 53, 47, 0.5);
+    background-color: rgb(55, 53, 47, 0.08);
     height: 20px;
     border-radius: 5px;
 }
 
+.profile-page-user-details h3 {
+    margin-top: 8px;
+}
+
 .profile-page-right {
+    margin-left: 20px;
+    padding-left: 30px;
     display: flex;
-    width: 60vw;
-    margin: 1vw;
+    flex-grow: 1;
+    flex-direction: column;
+    overflow-y: scroll;
+    margin-right: 50px;
+    height: 461px;
+    /* width: 60vw; */
     box-sizing: border-box;
-    border: 1px solid black;
+}
+
+.profile-page-right h1 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.profile-page-right div {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    background-color: rgb(252, 250, 250);
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-right: 20px;
+    border-radius: 20px;
+}
+
+.profile-page-right div img {
+    filter: grayscale(100%);
+}
+
+.profile-page-right h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-page-right img {
+    width: 100px;
+    height: 100px;
 }
 
 .profile-page-bottom {
+    padding: 0px 30px;
+    margin-top: 30px;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    width: 92vw;
-    height: 35vh;
-    margin: 1vw;
+    flex-direction: row;
+    width: 100%;
+    height: 60vh;
     box-sizing: border-box;
-    border: 1px solid black;
+}
+
+.profile-page-bottom h1 {
+    font-size: 20px;
+}
+
+.profile-page-bottom .recipe-card {
+    top: 20px;
+    left: 20px;
+    height: 520px;
+    width: 30%;
+}
+
+.profile-page-bottom .recipe-card .tags-p {
+    visibility: hidden;
+}
+
+.profile-page-bottom .image-placeholder {
+    object-fit: cover;
+}
+
+.profile-page-bottom .recipe-quick-info-container {
+    margin: 0px;
+}
+
+.profile-page-bottom .recipe-quick-info-container #view-recipe-and-heart-container #heart-div {
+    visibility: hidden;
+}
+
+.profile-page-bottom .recipe-quick-info-container #view-recipe-and-heart-container .view-recipe-button {
+    height: 30px;
+}
+
+.profile-page-bottom img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .profile-page-bottom div {
@@ -89,17 +190,6 @@
     width: 90%;
     height: 100px;
     border-radius: 10px;
-    background-color: gray;
-}
-
-.profile-page-upload-panel-toggle {
-    display: flex;
-}
-
-.profile-page-upload-panel-toggle:hover {
-    background-color: gray;
-    transition-duration: 200px;
-    cursor: pointer;
 }
 
 .profile-picture-upload-panel {
