@@ -1,7 +1,7 @@
 #explore-page-root {
     display: flex;
     flex-direction: column;
-    background-color: black;
+    background-color: rgb(17, 16, 16);
     width: 100vw;
     height: 100vh;
 }
@@ -11,19 +11,26 @@
     flex-direction: row;
 }
 #explore-page-globe {
-    width: 1000px;
-    height: 1000px;
+    /* width: 1000px; */
+    height: 89vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #explore-page-country-popup {
-    background-color: black;
-    color: white;
-    width: calc(100vw - 1000px);
-    height: 700px;
-    margin: 50px;
-    padding: 20px;
-    border: 1px solid white;
+    background-color: rgb(17, 16, 16);
+    color: rgb(219, 216, 216);
+    margin-right: 50px;
+    height: 89vh;
+
+    /* border: 1px solid rgb(219, 216, 216); */
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 #explore-page-country-popup div:first-child{
@@ -32,22 +39,73 @@
 }
 
 #explore-page-country-popup div:last-child{
-    background-color: rgb(103, 23, 225);
+    background-color: rgb(17, 16, 16);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 50vh;
+    border-radius: 999px;
+    width: 80%;
+    padding: 10px 0px;
     height: 50px;
-    border: 1px dotted white;
-    border-radius: 5px;
+    color: rgb(225, 222, 222);
+    border: 1px solid rgb(225, 222, 222);
+    transition: 0.3s all ease;
+    text-transform: uppercase;
+    
 }
 
 #explore-page-country-popup div:last-child:hover{
     cursor: pointer;
     transition-duration: 200ms;
-    background-color: rgb(75, 68, 152);
+    color: rgb(17, 16, 16);
+    background-color: rgb(225, 222, 222);
 }
 
-.header-container h1 {
-    color: white;
+#explore-page-root .header-container h1 {
+    color: rgb(225, 222, 222);
+}
+
+#explore-page-root .header-container h1:hover {
+      color: transparent;
+      background-image: url('https://img.freepik.com/free-vector/earth-globe-icon-white-background_1308-122819.jpg');
+      background-size: fill;
+      background-clip: text;
+      -webkit-background-clip: text;
+      background-position: 10%;
+      /* border: 1px solid green; */
+  }
+
+#explore-page-root .header-container .nav-bar a {
+    color: rgb(225, 222, 222);
+}
+
+#explore-page-country-popup p {
+    font-size: 20px;
+    text-align: center;
+    line-height: 1.2;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+#explore-page-country-popup h1 {
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+
+#country-description {
+    text-align:center;
+}
+
+#explore-page-root .header-container .nav-bar div {
+    transition: 0.3s all ease;
+    color: rgb(225, 222, 222);
+}
+
+#explore-page-root .header-container .nav-bar div:hover {
+    color: rgb(243, 161, 54);
+    cursor: pointer;
 }

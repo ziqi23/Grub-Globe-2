@@ -5,13 +5,19 @@ import defaultPicture from './default-profile.png'
 import { useState } from 'react'
 import jwtFetch from '../../store/jwt'
 
+// Add header
+// Chef XXX Large Font
+// Badges PH
+// Favorites integration and ability to unfavorite from page
+
 function Profile(props) {
     const Buffer = require('buffer/').Buffer
     const [uploadPanelOpen, setUploadPanelOpen] = useState(false)
     const [photoFile, setPhotoFile] = useState(null)
     const user = useSelector(state => state.session.user)
     const arr = new Uint8Array(user.photo.data)
-    const base64 = Buffer.from(arr).toString('base64')
+    const image = Buffer.from(arr).toString('base64')
+
     function handleSubmit(e) {
         e.preventDefault()
 
@@ -29,7 +35,8 @@ function Profile(props) {
             <div className='profile-page-top'>
                 <div className='profile-page-left'>
                     <div className='profile-page-picture'>
-                        <img className='profile-page-picture-file' src={defaultPicture}></img>
+                        <img className='profile-page-picture-file' 
+                        src={image ? `data:image/image/png;base64,${image}` : defaultPicture} />
                         <div className='profile-page-upload-panel-toggle' onClick={() => setUploadPanelOpen(!uploadPanelOpen)}>
                             <h1>Update Profile Picture</h1>
                         </div>
@@ -64,10 +71,6 @@ function Profile(props) {
                 <div></div>
                 <div></div>
                 <div></div>
-            </div>
-            <div>
-                <img src={`data:image/image/png;base64,
-                ${base64}`} width='1080px' />
             </div>
         </div>
     )

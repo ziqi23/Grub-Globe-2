@@ -13,12 +13,10 @@ const upload = multer()
 
 // Upload profile picture route
 router.post('/upload', restoreUser, upload.single("image"), async (req, res) => {
-  console.log(req.user)
   if (req.file === undefined) {
     return res.send("you must select a file.");
   }
   await User.findOneAndUpdate( {username: req.user.username}, {profilePhoto: req.file.buffer})
-  console.log(req.user)
 })
 
 

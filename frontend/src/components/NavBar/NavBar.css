@@ -1,29 +1,31 @@
 .header-container .nav-bar {
-    /* position: absolute; */
-    display: flex;
-    box-sizing: border-box;
-    /* border: 1px dotted blue; */
-    justify-content: space-around;
-    width: 40%;
+  /* position: absolute; */
+  display: flex;
+  box-sizing: border-box;
+  /* border: 1px dotted blue; */
+  justify-content: space-around;
+  align-items: center;
+  width: 40%;
 }
 
 .header-container .nav-bar a {
-    text-decoration: none;
-    color: rgb(36, 35, 35);
-    transition: 0.3s all ease;
-    /* border: 1px solid blue; */
+  text-decoration: none;
+  color: rgb(36, 35, 35);
+  transition: 0.3s all ease;
+  /* border: 1px solid blue; */
 }
 
 .header-container .nav-bar a:visited {
-    color: rgb(36, 35, 35);
+  color: rgb(36, 35, 35);
 }
 .header-container .nav-bar div:hover {
-    color: rgb(243, 161, 54);
+  color: rgb(243, 161, 54);
+  cursor: pointer;
 }
 
 .header-container .nav-bar {
   text-transform: uppercase;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
   font-size: 20px;
   font-weight: 500;
 }
@@ -43,11 +45,16 @@
 }
 
 .nav-bar div img:hover {
-  color:  rgb(243, 161, 54);
+  color: rgb(243, 161, 54);
 }
 
 @media (max-width: 1050px) {
   .header-container .nav-bar {
     width: 50%;
   }
+}
+
+#logout-icon {
+  font-size: 25px;
+  margin-right: 10px;
 }
