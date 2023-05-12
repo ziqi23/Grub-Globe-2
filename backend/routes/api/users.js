@@ -4,10 +4,21 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const passport = require('passport')
-const {loginUser, restoreUser} = require('../../config/passport')
+const {loginUser, restoreUser, requireUser} = require('../../config/passport')
 const { isProduction } = require('../../config/keys')
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
+const validateCompleteRecipeInput = require('../../validations/completeRecipe');
+const multer = require("multer");
+const upload = multer()
+
+// Upload profile picture route
+router.post('/upload', restoreUser, upload.single("image"), async (req, res) => {
+  if (req.file === undefined) {
+    return res.send("you must select a file.");
+  }
+  await User.findOneAndUpdate( {username: req.user.username}, {profilePhoto: req.file.buffer})
+})
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -25,7 +36,10 @@ router.get('/current', restoreUser, function(req, res, next) {
   res.json({
     _id: req.user._id,
     username: req.user.username,
-    email: req.user.email
+    email: req.user.email,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    photo: req.user.profilePhoto
   });
 });
 
@@ -63,6 +77,8 @@ router.post('/register', validateRegisterInput, async function(req, res, next) {
 
   const newUser = new User({
     username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email
   });
 
@@ -81,5 +97,24 @@ router.post('/register', validateRegisterInput, async function(req, res, next) {
     })
   })
 })
+
+
+router.post('/complete-recipe', validateCompleteRecipeInput, async function(req, res, next) {
+  try {
+    const { userId, recipeId } = req.body;
+
+    // push the completed recipe object into completedRecipe array
+    await User.findByIdAndUpdate(userId, {
+      $push: { completedRecipe: { recipeId: recipeId }}
+    });
+
+  } catch (err) {
+    const error = new Error("completion unsuccessful");
+    error.statusCode = 400;
+    error.errors = { message: "recipe completion unsuccessful"};
+    return next(error);
+  }
+})
+
 
 module.exports = router;
