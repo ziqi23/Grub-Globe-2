@@ -83,11 +83,23 @@ router.post('/register', validateRegisterInput, async function(req, res, next) {
   })
 })
 
+
 router.post('/complete-recipe', validateCompleteRecipeInput, async function(req, res, next) {
-  if (validateCompleteRecipeInput === true) {
-    $push
-      await req 
+  try {
+    const { userId, recipeId } = req.body;
+
+    // push the completed recipe object into completedRecipe array
+    await User.findByIdAndUpdate(userId, {
+      $push: { completedRecipe: { recipeId: recipeId }}
+    });
+
+  } catch (err) {
+    const error = new Error("completion unsuccessful");
+    error.statusCode = 400;
+    error.errors = { message: "recipe completion unsuccessful"};
+    return next(error);
   }
 })
+
 
 module.exports = router;
