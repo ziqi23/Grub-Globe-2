@@ -4,11 +4,13 @@ import sessionReducer from "./session";
 import errorsReducer from "./errors";
 import RecipesReducer from "./recipes";
 import favorites from "./favorites";
+import reviewsReducer from "./reviews";
 const rootReducer = combineReducers({
   session: sessionReducer,
   errors: errorsReducer,
   favorites,
   recipes: RecipesReducer,
+  reviews: reviewsReducer,
 });
 
 let enhancer;
