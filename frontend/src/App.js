@@ -46,7 +46,7 @@ import { getCurrentUser } from "./store/session";
 import RecipeIndexPage from "./components/RecipeIndexPage/RecipeIndexPage";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import RecipeShowPage from "./components/RecipeShow/RecipeShowPage";
-import Globe from './components/Globe/Globe';
+import Globe from "./components/Globe/Globe";
 import Profile from "./components/Profile/Profile";
 
 function App() {
@@ -62,8 +62,8 @@ function App() {
       <>
         <Switch>
           {/* <Route exact path="/" component={MainPage} /> */}
-          <AuthRoute exact path="/login" component={MainPage} />
-          <AuthRoute exact path="/signup" component={MainPage} />
+          <AuthRoute exact path="/login" component={Globe} />
+          <AuthRoute exact path="/signup" component={Globe} />
 
           <Route path="/recipes/:recipeId" component={RecipeShowPage} />
           <Route exact path="/" component={Globe} />
