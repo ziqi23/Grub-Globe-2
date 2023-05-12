@@ -18,6 +18,43 @@ function Profile(props) {
     const arr = new Uint8Array(user.photo.data)
     const image = Buffer.from(arr).toString('base64')
 
+    let numCompleted = user.completedRecipe.length;
+
+    let uniqueCountries = new Set();
+    user.completedRecipe.forEach(recipe => {
+        uniqueCountries.add(recipe.country);
+    });
+
+    const getBadge = () => {
+        let badges = [];
+        if (uniqueCountries.size === 5) {
+            badges.push(
+                <div>
+                    <img src={roadmapIcon}></img>
+                    <h2>Tried recipes from 5 different countries.</h2>
+                </div>
+            );
+        }
+        if (uniqueCountries.size === 10) {
+            badges.push(
+                <div>
+                    <img src={aroundTheWorldIcon}></img>
+                    <h2>Tried recipes from 10 different countries.</h2>
+                </div>
+            )
+          }
+        if (numCompleted === 10) {
+            badges.push(
+                <div>
+                    <img src={spachelorIcon}></img>
+                    <h2>Cooked 10 recipes.</h2>
+                </div>
+            )
+        }
+        return badges;
+    }
+
+
     function handleSubmit(e) {
         e.preventDefault()
 
@@ -35,7 +72,7 @@ function Profile(props) {
             <div className='profile-page-top'>
                 <div className='profile-page-left'>
                     <div className='profile-page-picture'>
-                        <img className='profile-page-picture-file' 
+                        <img className='profile-page-picture-file'
                         src={image ? `data:image/image/png;base64,${image}` : defaultPicture} />
                         <div className='profile-page-upload-panel-toggle' onClick={() => setUploadPanelOpen(!uploadPanelOpen)}>
                             <h1>Update Profile Picture</h1>
@@ -63,6 +100,11 @@ function Profile(props) {
                 </div>
                 <div className='profile-page-right'>
                     <h1>Badges</h1>
+                    {getBadge().map((badge, index) => (
+                        <div key={index}>
+                            {badge}
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className='profile-page-bottom'>
@@ -88,7 +130,7 @@ export default Profile
 //         formData.append('pin[title]', title);
 //         formData.append('pin[caption]', caption);
 //         formData.append('pin[link]', link);
-        
+
 //         if (imageFile) {
 //             formData.append('pin[image]', imageFile);
 //         }
@@ -98,7 +140,7 @@ export default Profile
 //     onSuccess:(pin) => {
 //         dispatch(createSave(selectedBoard, pin.payload.id))
 //         history.push('/created')},
-    
+
 // });
 
 
