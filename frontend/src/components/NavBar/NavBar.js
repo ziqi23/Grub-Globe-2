@@ -31,7 +31,7 @@ function NavBar() {
         <Link to="#">
           <div>link 2</div>
         </Link>
-        <Link to="#">
+        <Link to="/profile">
           <div>Profile</div>
         </Link>
         <Link to="/">
