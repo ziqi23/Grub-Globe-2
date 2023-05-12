@@ -6,14 +6,16 @@ const debug = require("debug");
 
 const cors = require("cors");
 
-const { isProduction} = require("./config/keys.js");
+const { isProduction } = require("./config/keys.js");
 
-require("./models/Recipe");
 require("./models/User");
+require("./models/Favorite");
+require("./models/Recipe");
 require("./config/passport");
 const passport = require("passport");
 const usersRouter = require("./routes/api/users");
 const csrfRouter = require("./routes/api/csrf");
+const favoritesRouter = require("./routes/api/favorites");
 const aiRouter = require("./routes/api/generate");
 const recipesRouter = require("./routes/api/recipes");
 
@@ -23,10 +25,10 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(passport.initialize()) ;
+app.use(passport.initialize());
 
 if (!isProduction) {
-    app.use(cors());
+  app.use(cors());
 }
 
 app.use(
@@ -42,29 +44,26 @@ app.use(
 app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/generate", aiRouter);
+app.use("/api/favorites", favoritesRouter);
 app.use("/api/recipes", recipesRouter);
 
 if (isProduction) {
-    const path = require('path');
-    // Serve the frontend's index.html file at the root route
-    app.get('/', (req, res) => {
-      res.cookie('CSRF-TOKEN', req.csrfToken());
-      res.sendFile(
-        path.resolve(__dirname, '../frontend', 'build', 'index.html')
-      );
-    });
+  const path = require("path");
+  // Serve the frontend's index.html file at the root route
+  app.get("/", (req, res) => {
+    res.cookie("CSRF-TOKEN", req.csrfToken());
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
 
-    // Serve the static assets in the frontend's build folder
-    app.use(express.static(path.resolve("../frontend/build")));
+  // Serve the static assets in the frontend's build folder
+  app.use(express.static(path.resolve("../frontend/build")));
 
-    // Serve the frontend's index.html file at all other routes NOT starting with /api
-    app.get(/^(?!\/?api).*/, (req, res) => {
-      res.cookie('CSRF-TOKEN', req.csrfToken());
-      res.sendFile(
-        path.resolve(__dirname, '../frontend', 'build', 'index.html')
-      );
-    });;
-  }
+  // Serve the frontend's index.html file at all other routes NOT starting with /api
+  app.get(/^(?!\/?api).*/, (req, res) => {
+    res.cookie("CSRF-TOKEN", req.csrfToken());
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
+}
 
 app.use((req, res, next) => {
   const err = new Error("Not Found");
