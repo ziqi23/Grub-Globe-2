@@ -1,10 +1,15 @@
 import "./FavoritesTile.css";
 import mapPin from "../../assets/icons/general-icons/icons8-map-pin-48.png";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const FavoritesTile = ({ recipe }) => {
+  const history = useHistory();
   return (
     <>
-      <div id="favorites-tile-container">
+      <div
+        onClick={() => history.push(`/recipes/${recipe._id}`)}
+        id="favorites-tile-container"
+      >
         <div className="image-placeholder">
           <img
             className="actual-image"
