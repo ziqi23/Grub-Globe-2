@@ -4,7 +4,7 @@ import './Profile.css'
 import defaultPicture from './default-profile.png'
 import { useState } from 'react'
 import jwtFetch from '../../store/jwt'
-
+import Header from '../Header/Header'
 // Add header
 // Chef XXX Large Font
 // Badges PH
@@ -14,16 +14,15 @@ function Profile(props) {
     const Buffer = require('buffer/').Buffer
     const [uploadPanelOpen, setUploadPanelOpen] = useState(false)
     const [photoFile, setPhotoFile] = useState(null)
+    const [updatePhoto, setUpdatePhoto] = useState(false)
     const user = useSelector(state => state.session.user)
     const arr = new Uint8Array(user.photo.data)
     const image = Buffer.from(arr).toString('base64')
 
     function handleSubmit(e) {
         e.preventDefault()
-
         const formData = new FormData()
         formData.append('image', photoFile)
-
         jwtFetch('/api/users/upload', {
             method: "POST",
             body: formData
@@ -32,14 +31,23 @@ function Profile(props) {
 
     return (
         <div className='profile-page-root'>
+            <Header />
+            <div className='profile-page-header'>
+                <h1>Welcome home, chef.</h1>
+            </div>
             <div className='profile-page-top'>
                 <div className='profile-page-left'>
-                    <div className='profile-page-picture'>
+                    <div className='profile-page-picture'
+                    onMouseEnter={() => setUpdatePhoto(true)}
+                    onMouseLeave={() => setUpdatePhoto(false)}>
                         <img className='profile-page-picture-file' 
                         src={image ? `data:image/image/png;base64,${image}` : defaultPicture} />
+                        {updatePhoto && (
                         <div className='profile-page-upload-panel-toggle' onClick={() => setUploadPanelOpen(!uploadPanelOpen)}>
-                            <h1>Update Profile Picture</h1>
+                            <h1>Update Picture</h1>
                         </div>
+                        )}
+
                         {uploadPanelOpen && (
                             <div className='profile-picture-upload-panel'>
                                 <form id="profile-picture-upload-form" onSubmit={handleSubmit}>
@@ -50,7 +58,7 @@ function Profile(props) {
                         )}
                     </div>
                     <div className='profile-page-user-details'>
-                        <div>Chef First Name Last Name</div>
+                        <div>Chef {user.firstName} {user.lastName}</div>
                         <div>
                             <h1>Username</h1>
                             <h2>{user.username}</h2>

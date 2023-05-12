@@ -4,9 +4,13 @@
     flex-direction: row;
 }
 
+.profile-page-header {
+    padding: 0px 30px;
+}
 .profile-page-top {
     display: flex;
     height: 450px;
+    padding: 0px 30px;
 }
 
 .profile-page-left {
@@ -14,23 +18,34 @@
     flex-direction: column;
     width: 30vw;
     height: 400px;
-    margin: 1vw;
     box-sizing: border-box;
     border: 1px solid black;
 }
 
 .profile-page-picture {
+    position: relative;
     margin: 1vw;
     width: 28vw;
     height: 30vh;
     border: 1px solid black;
     object-fit: cover;
+    
+}
+
+.profile-page-upload-panel-toggle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .profile-page-picture-file {
     width: inherit;
     height: inherit;
     object-fit: cover;
+    border: 1px solid rgba(55, 53, 47, 0.09);
+    border-radius: 200px;
+    background-color: white;
+    margin-right: 12px;
 }
 
 .profile-page-user-details {
