@@ -55,7 +55,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getCurrentUser()).then(() => setLoaded(true));
-  }, [dispatch]);
+  }, [dispatch] );
 
   return (
     loaded && (
