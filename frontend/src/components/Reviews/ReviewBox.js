@@ -15,7 +15,7 @@ const ReviewBox = ({ review }) => {
         </div>
       </div>
       <hr></hr>
-      <div className="review-box-container">
+      {/* <div className="review-box-container">
         <div className="review-user-info">
           <div className="circle"></div>
         </div>
@@ -32,7 +32,7 @@ const ReviewBox = ({ review }) => {
             laoreet hendrerit vulputate.{" "}
           </p>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
