@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Modal } from "../../context/Modal";
 import LoginForm from "../SessionForms/LoginForm";
 import SignupForm from "../SessionForms/SignUpForm";
-
+import { addCompletedRecipe } from "../../store/session";
 
 const CompleteFollowAlongButton = ({
-    closeFollowAlong, 
+    closeFollowAlong,
     setCurrentRecipeStep,
     recipeId
 }) => {
@@ -43,7 +43,7 @@ const CompleteFollowAlongButton = ({
     if (!sessionUser) {
         return (
             <>
-                <div 
+                <div
                     onClick={handleLoggedOutUser}
                     className="last-step-exit-button">
                         Log in to add to completed collection
@@ -75,12 +75,12 @@ const CompleteFollowAlongButton = ({
 
     return (
         <>
-            <div 
-                onClick={handleFinishedFollowAlong} 
+            <div
+                onClick={handleFinishedFollowAlong}
                 className="last-step-exit-button">
                     Finished!
             </div>
-            
+
         </>
     )
 };

@@ -9,7 +9,7 @@ const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
   currentUser
 });
-  
+
 const receiveErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
   errors
@@ -27,7 +27,7 @@ export const signup = user => startSession(user, 'api/users/register');
 export const login = user => startSession(user, 'api/users/login');
 
 const startSession = (userInfo, route) => async dispatch => {
-  try {  
+  try {
     const res = await jwtFetch(route, {
       method: "POST",
       body: JSON.stringify(userInfo)
@@ -57,7 +57,17 @@ export const getCurrentUser = () => async dispatch => {
   const user = await res.json();
   return dispatch(receiveCurrentUser(user));
 };
-  
+
+export const addCompletedRecipe = (recipe) => async dispatch => {
+  const res = await jwtFetch('/api/users/complete-recipe', {
+    method: "PATCH",
+    body: JSON.stringify(recipe)
+  });
+
+  const user = await res.json();
+  return dispatch(receiveCurrentUser(user))
+}
+
 const sessionReducer = (state = initialState, action) => {
 switch (action.type) {
     case RECEIVE_CURRENT_USER:
