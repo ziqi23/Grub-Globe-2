@@ -18,6 +18,7 @@ const csrfRouter = require("./routes/api/csrf");
 const favoritesRouter = require("./routes/api/favorites");
 const aiRouter = require("./routes/api/generate");
 const recipesRouter = require("./routes/api/recipes");
+const searchRouter = require("./routes/api/search");
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use("/api/csrf", csrfRouter);
 app.use("/api/generate", aiRouter);
 app.use("/api/favorites", favoritesRouter);
 app.use("/api/recipes", recipesRouter);
+app.use("/api/search", searchRouter);
 
 if (isProduction) {
   const path = require("path");
