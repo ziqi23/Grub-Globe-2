@@ -8,6 +8,7 @@ const {loginUser, restoreUser} = require('../../config/passport')
 const { isProduction } = require('../../config/keys')
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
+const validateCompleteRecipeInput = require('../../validations/completeRecipe');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -81,5 +82,24 @@ router.post('/register', validateRegisterInput, async function(req, res, next) {
     })
   })
 })
+
+
+router.post('/complete-recipe', validateCompleteRecipeInput, async function(req, res, next) {
+  try {
+    const { userId, recipeId } = req.body;
+
+    // push the completed recipe object into completedRecipe array
+    await User.findByIdAndUpdate(userId, {
+      $push: { completedRecipe: { recipeId: recipeId }}
+    });
+
+  } catch (err) {
+    const error = new Error("completion unsuccessful");
+    error.statusCode = 400;
+    error.errors = { message: "recipe completion unsuccessful"};
+    return next(error);
+  }
+})
+
 
 module.exports = router;
