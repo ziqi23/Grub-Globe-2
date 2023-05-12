@@ -31,7 +31,7 @@ router.get("/user/:userId", async (req, res, next) => {
   try {
     const reviews = await Review.find({ user: user._id })
       .sort({ createdAt: -1 })
-      .populate("user", "_id firstName lastName");
+      .populate("user", "_id firstName lastName username");
     return res.json(reviews);
   } catch (err) {
     return res.json([]);
@@ -51,7 +51,7 @@ router.get("/recipe/:recipeId", async (req, res, next) => {
   try {
     const reviews = await Review.find({ recipe: recipe._id })
       .sort({ createdAt: -1 })
-      .populate("user", "_id firstName lastName");
+      .populate("user", "_id firstName lastName username");
     return res.json(reviews);
   } catch (err) {
     return res.json([]);
@@ -62,7 +62,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const review = await Review.findById(req.params.id).populate(
       "user",
-      "_id firstName lastName"
+      "_id firstName lastName username"
     );
     return res.json(review);
   } catch (err) {
@@ -86,7 +86,7 @@ router.post("/", requireUser, validateReviewInput, async (req, res, next) => {
     });
 
     let review = await newReview.save();
-    review = await review.populate("user", "_id firstName lastName");
+    review = await review.populate("user", "_id firstName lastName username");
     return res.json(review);
   } catch (err) {
     next(err);

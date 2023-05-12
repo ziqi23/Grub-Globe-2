@@ -37,7 +37,7 @@ const ReviewIndex = ({ recipeId }) => {
       <div className="review-index-container">
         <NewReviewForm recipeId={recipeId} />
         <h1 className="review-index-container-title">Reviews</h1>
-        {reviews.map((review, i) => (
+        {recipeReviews.map((review, i) => (
           <ReviewBox key={i} review={review} />
         ))}
       </div>
