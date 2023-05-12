@@ -5,6 +5,7 @@ const RECEIVE_REVIEWS = "reviews/RECEIVE_REVIEWS";
 const RECEIVE_USER_REVIEWS = "reviews/RECEIVE_USER_REVIEWS";
 const RECEIVE_RECIPE_REVIEWS = "reviews/RECEIVE_RECIPE_REVIEWS";
 const RECEIVE_NEW_REVIEW = "reviews/RECEIVE_NEW_REVIEW";
+const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
 const RECEIVE_REVIEW_ERRORS = "reviews/RECEIVE_REVIEW_ERRORS";
 const CLEAR_REVIEW_ERRORS = "reviews/CLEAR_REVIEW_ERRORS";
 
@@ -36,6 +37,11 @@ const receiveErrors = (errors) => ({
 export const clearReviewErrors = (errors) => ({
   type: CLEAR_REVIEW_ERRORS,
   errors,
+});
+
+export const removeReview = (reviewId) => ({
+  type: REMOVE_REVIEW,
+  reviewId,
 });
 
 export const fetchReviews = () => async (dispatch) => {
@@ -129,7 +135,7 @@ export const reviewErrorsReducer = (state = nullErrors, action) => {
 };
 
 const reviewsReducer = (
-  state = { all: {}, user: {}, new: undefined },
+  state = { all: {}, user: {}, recipe: {}, new: undefined },
   action
 ) => {
   switch (action.type) {
@@ -137,10 +143,18 @@ const reviewsReducer = (
       return { ...state, all: action.reviews, new: undefined };
     case RECEIVE_USER_REVIEWS:
       return { ...state, user: action.reviews, new: undefined };
+    case RECEIVE_RECIPE_REVIEWS:
+      return { ...state, recipe: action.reviews, new: undefined };
     case RECEIVE_NEW_REVIEW:
       return { ...state, new: action.review };
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined };
+    case REMOVE_REVIEW:
+      //   const newState = { ...state };
+      //   delete newState[action.reviewId];
+      const newState = { ...state };
+      delete newState.all[action.reviewId];
+      return newState;
     default:
       return state;
   }
