@@ -185,6 +185,7 @@
 .country-container .map-pin {
   width: 30px;
   height: 30px;
+  box-shadow: none;
 }
 
 @media (max-width: 1978px) {
