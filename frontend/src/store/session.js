@@ -64,6 +64,10 @@ export const addCompletedRecipe = (recipe) => async dispatch => {
     body: JSON.stringify(recipe)
   });
 
+  if (!res.ok) {
+    throw Error(res.statusText);
+  }
+
   const user = await res.json();
   return dispatch(receiveCurrentUser(user))
 }
