@@ -46,7 +46,8 @@ import { getCurrentUser } from "./store/session";
 import RecipeIndexPage from "./components/RecipeIndexPage/RecipeIndexPage";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import RecipeShowPage from "./components/RecipeShow/RecipeShowPage";
-import Globe from "./components/Globe/Globe";
+import Globe from './components/Globe/Globe';
+import Profile from "./components/Profile/Profile";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -68,6 +69,8 @@ function App() {
           <Route exact path="/" component={Globe} />
           {/* <Route path="/recipes/:id" component={RecipeShowPage} /> */}
           <Route path="/recipes" component={RecipeIndexPage} />
+          <Route exact path="/explore" component={Globe} />
+          <ProtectedRoute path="/profile" component={Profile} />
         </Switch>
       </>
     )
