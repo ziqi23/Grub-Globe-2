@@ -14,7 +14,6 @@ import spachelorIcon from '../../assets/icons/badge-icons/icons8-spachelor-50.pn
 import { fetchFavorites } from '../../store/favorites'
 import { useDispatch } from 'react-redux'
 import { getCurrentUser } from '../../store/session'
-import { fetchRecipe } from '../../store/recipes'
 import RecipeCard from '../RecipeIndexPage/RecipeCard'
 // Add header
 // Chef XXX Large Font
@@ -29,18 +28,11 @@ function Profile(props) {
     const [updatePhoto, setUpdatePhoto] = useState(false)
     const user = useSelector(state => state.session.user)
     const favorites = useSelector(state => state.favorites)
-    const favoriteRecipes = useSelector(state => state.recipes)
 
     useEffect(() => {
         dispatch(getCurrentUser())
         dispatch(fetchFavorites())
     }, [])
-
-    useEffect(() => {
-        Object.values(favorites).forEach(favorite=> {
-            dispatch(fetchRecipe(favorite.recipe))
-        })
-    }, [favorites, user])
 
 
     let bufferArr;
@@ -149,9 +141,9 @@ function Profile(props) {
             </div>
             <div className='profile-page-bottom'>
                 <h1>Favorites</h1>
-                {Object.values(favoriteRecipes).length && (
-                    Object.values(favoriteRecipes).map(recipe => {
-                        return <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>
+                {favorites && (
+                    Object.values(favorites).map(favorite => {
+                        return <RecipeCard key={favorite.recipe._id} recipe={favorite.recipe} />
                     })
                 )}
             </div>
