@@ -37,8 +37,8 @@
     width: 400px;
     height: 350px;
     position: absolute;
-    bottom: 0;
-    left: 20px;
+    bottom: -10px;
+    left: 10px;
 
 }
 
@@ -59,7 +59,7 @@
 }
 .exit-container div {
     padding: 10px 20px;
-    border: 2px solid black;
+    border: 2px solid rgb(36, 35, 35);
     width: 70px;
     display: flex;
     justify-content: center;
@@ -91,7 +91,7 @@
 
 .step-container .step-instruction {
     margin: auto;
-    width: 50%;
+    width: 80%;
     /* border: 1px solid orange; */
     height: 40%;
     box-sizing: border-box;
@@ -101,7 +101,8 @@
 }
 
 .step-container .step-instruction h1 {
-    font-size: 40px;
+    font-size: 33.5px;
+    
 
 }
 
@@ -116,7 +117,7 @@
 .start-timer-button {
     width: 200px;
     display: flex;
-    border: 2px solid black;
+    border: 2px solid rgb(36, 35, 35);
     padding: 10px 0px;
     justify-content: center;
     border-radius: 999px;
@@ -137,7 +138,7 @@
 }
 
 .ingredients-toggle {
-    border: 2px solid rgba(124, 124, 124, 0.603);
+    border: 2px solid rgba(17, 17, 17, 0.87);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -164,7 +165,8 @@
 }
 .ingredients-toggle p {
     display: inline-block;
-    color: #5f5f5f;
+    color: #202020;
+    font-weight: 500;
 }
 
 .step-page-ingredients-container {
@@ -176,6 +178,31 @@
     box-sizing: border-box;
     width: 270px;
     border-radius: 10px;
+    background-color: #DDE5B6;
 
+}
+
+.normal-step-container {
+    /* height: 200px; */
+}
+
+@media (max-width: 1488px) {
+    .step-container .step-instruction h1 {
+        font-size: 30px;
+    }
+}
+
+
+@media (max-width: 1150px) {
+    .step-container .step-instruction h1 {
+        font-size: 25px;
+    }
+}
+
+@media (max-height: 895px) {
+    .step-container .step-instruction h1 {
+        font-size: 25px;
+    
+    }
 }
 

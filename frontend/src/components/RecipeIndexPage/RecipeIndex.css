@@ -37,27 +37,20 @@
     font-size: 48px;
     font-weight: 500;
     color: rgb(46, 46, 46);
-
-    
 }
 
   
 .recipes-index {
-    /* padding: 30px; */
     box-sizing: border-box;
     width: 90%;
     position: relative;
-    /* border: 1px solid green; */
     height: auto;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-        /* carousel testing */
-        /* width: 100%; */
-        height: 70%;
-        /* carousel testing */
+    height: 70%;
 }
 
 .recipes-index .swiper-slide:nth-child(odd) .recipe-card {
@@ -90,16 +83,23 @@
     height: 50%;
     background-color: rgb(238, 237, 237);
     border-radius: 10px;
-    border: 3px solid rgb(47, 48, 47);
+    border: 3px solid rgb(17, 17, 17);
+    box-sizing: border-box;
 }
+
+.image-placeholder img {
+    box-sizing: border-box;
+}
+
 .recipe-card .recipe-quick-info-container {
     width: 100%;
     height: 50%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     text-align: center;
     align-items: center;
-    border-radius: 10px;
+    /* border: 1px solid green; */
 }
   
 .view-recipe-button {
@@ -107,7 +107,7 @@
     padding: 15px 0px;
     border-radius: 999px;
     border: 3px solid rgb(47, 48, 47);
-    margin-top: 10%;
+    margin: 10px 0px;
     font-family: 'Kanit', sans-serif;
     transition: 0.3s all ease;
     background-color: #F0EAD2;
@@ -129,6 +129,7 @@
     font-family: 'Kanit', sans-serif;
     color: rgb(46, 46, 46);
     font-size: 40px;
+    margin-bottom: 5px;
 }
 
 .recipe-quick-info-container p {
@@ -136,26 +137,6 @@
     font-weight: 300;
     color: #858484;
 }
-
-
-/* carousel */
-/* .card--active {
-    opacity: 1;
-    transform: scale(1);
-    z-index: 99;
-}
-
-.card--left {
-    transform: translateX(-80%) scale(0.9);
-    transition: 500ms;
-    opacity: 0.7;
-}
-
-.card--right {
-    transform: translateX(80%) scale(0.9);
-    transition: 500ms;
-    opacity: 0.7;
-} */
 
 .swiper {
     width: 100%;
@@ -199,3 +180,10 @@
         background-color: #E8A87C;
     }
 }
+
+@media (max-width: 1500px) {
+    .recipe-quick-info-container h1 {
+        font-size: 30px;
+    }
+}
+

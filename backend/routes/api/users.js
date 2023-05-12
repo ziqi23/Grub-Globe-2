@@ -4,21 +4,21 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const passport = require('passport')
-const {loginUser, restoreUser} = require('../../config/passport')
+const {loginUser, restoreUser, requireUser} = require('../../config/passport')
 const { isProduction } = require('../../config/keys')
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 const multer = require("multer");
-const upload = multer({dest: 'uploads/'})
+const upload = multer()
 
 // Upload profile picture route
-router.post('/upload', upload.single("file"), async (req, res) => {
+router.post('/upload', restoreUser, upload.single("image"), async (req, res) => {
+  console.log(req.user)
   if (req.file === undefined) {
     return res.send("you must select a file.");
   }
-  // const imgUrl = `http://localhost:8080/file/${req.file.filename}`;
-  // return res.send(imgUrl);
-  // Add req.file to current user and save
+  await User.findOneAndUpdate( {username: req.user.username}, {profilePhoto: req.file.buffer})
+  console.log(req.user)
 })
 
 
@@ -38,7 +38,10 @@ router.get('/current', restoreUser, function(req, res, next) {
   res.json({
     _id: req.user._id,
     username: req.user.username,
-    email: req.user.email
+    email: req.user.email,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    photo: req.user.profilePhoto
   });
 });
 
@@ -76,6 +79,8 @@ router.post('/register', validateRegisterInput, async function(req, res, next) {
 
   const newUser = new User({
     username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email
   });
 

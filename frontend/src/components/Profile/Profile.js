@@ -3,10 +3,27 @@ import {store} from '../../index'
 import './Profile.css'
 import defaultPicture from './default-profile.png'
 import { useState } from 'react'
+import jwtFetch from '../../store/jwt'
 
 function Profile(props) {
+    const Buffer = require('buffer/').Buffer
     const [uploadPanelOpen, setUploadPanelOpen] = useState(false)
+    const [photoFile, setPhotoFile] = useState(null)
     const user = useSelector(state => state.session.user)
+    const arr = new Uint8Array(user.photo.data)
+    const base64 = Buffer.from(arr).toString('base64')
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        const formData = new FormData()
+        formData.append('image', photoFile)
+
+        jwtFetch('/api/users/upload', {
+            method: "POST",
+            body: formData
+        })
+    }
+
     return (
         <div className='profile-page-root'>
             <div className='profile-page-top'>
@@ -18,8 +35,8 @@ function Profile(props) {
                         </div>
                         {uploadPanelOpen && (
                             <div className='profile-picture-upload-panel'>
-                                <form action='/users/upload' enctype="multipart/form-data">
-                                    <input type='file' name="uploaded_file"></input>
+                                <form id="profile-picture-upload-form" onSubmit={handleSubmit}>
+                                    <input accept="image/*" type='file' name="uploaded_file" onChange={e => setPhotoFile(e.target.files[0])}></input>
                                     <input type='submit'></input>
                                 </form>
                             </div>
@@ -47,6 +64,10 @@ function Profile(props) {
                 <div></div>
                 <div></div>
                 <div></div>
+            </div>
+            <div>
+                <img src={`data:image/image/png;base64,
+                ${base64}`} width='1080px' />
             </div>
         </div>
     )
@@ -77,10 +98,7 @@ export default Profile
     
 // });
 
-{/* <div>
-<img src="data:image/image/png;base64,
-  <%=user.avatar.toString('base64')%>" width='1080px'>
-<div> */}
+
 
 
 
