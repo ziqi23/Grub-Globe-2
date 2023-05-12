@@ -10,7 +10,6 @@ const { isProduction} = require("./config/keys.js");
 
 require("./models/Recipe");
 require("./models/User");
-require("./models/Achievement");
 require("./config/passport");
 const passport = require("passport");
 const usersRouter = require("./routes/api/users");
