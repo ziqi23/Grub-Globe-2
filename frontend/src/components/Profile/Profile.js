@@ -1,22 +1,53 @@
 import { useSelector } from 'react-redux'
-import {store} from '../../index'
 import './Profile.css'
 import defaultPicture from './default-profile.png'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import jwtFetch from '../../store/jwt'
-
+import Header from '../Header/Header'
+import aroundTheWorldIcon from '../../assets/icons/badge-icons/icons8-around-the-globe-50.png'
+import broccoliIcon from '../../assets/icons/badge-icons/icons8-broccoli-50.png'
+import composeIcon from '../../assets/icons/badge-icons/icons8-compose-50.png'
+import kawaiiIceCreamIcon from '../../assets/icons/badge-icons/icons8-kawaii-ice-cream-50.png'
+import restaurantIcon from '../../assets/icons/badge-icons/icons8-restaurant-50.png'
+import roadmapIcon from '../../assets/icons/badge-icons/icons8-roadmap-50.png'
+import spachelorIcon from '../../assets/icons/badge-icons/icons8-spachelor-50.png'
+import { fetchFavorites } from '../../store/favorites'
+import { useDispatch } from 'react-redux'
+import { getCurrentUser } from '../../store/session'
+import { fetchRecipe } from '../../store/recipes'
+import RecipeCard from '../RecipeIndexPage/RecipeCard'
 // Add header
 // Chef XXX Large Font
 // Badges PH
 // Favorites integration and ability to unfavorite from page
 
 function Profile(props) {
+    const dispatch = useDispatch()
     const Buffer = require('buffer/').Buffer
     const [uploadPanelOpen, setUploadPanelOpen] = useState(false)
     const [photoFile, setPhotoFile] = useState(null)
+    const [updatePhoto, setUpdatePhoto] = useState(false)
     const user = useSelector(state => state.session.user)
-    const arr = new Uint8Array(user.photo.data)
-    const image = Buffer.from(arr).toString('base64')
+    const favorites = useSelector(state => state.favorites)
+    const favoriteRecipes = useSelector(state => state.recipes)
+
+    useEffect(() => {
+        dispatch(getCurrentUser())
+        dispatch(fetchFavorites())
+    }, [])
+
+    useEffect(() => {
+        Object.values(favorites).forEach(favorite=> {
+            dispatch(fetchRecipe(favorite.recipe))
+        })
+    }, [favorites, user])
+
+
+    let bufferArr;
+    let image;
+    if (user.photo) {
+        bufferArr = new Uint8Array(user.photo.data)
+        image = Buffer.from(bufferArr).toString('base64')
 
     let numCompleted = user.completedRecipe.length;
 
@@ -54,29 +85,47 @@ function Profile(props) {
         return badges;
     }
 
+    }
 
     function handleSubmit(e) {
         e.preventDefault()
-
         const formData = new FormData()
         formData.append('image', photoFile)
-
         jwtFetch('/api/users/upload', {
             method: "POST",
             body: formData
         })
     }
 
+    function handlePanelClick(e) {
+        e.preventDefault()
+        setUploadPanelOpen(!uploadPanelOpen)
+        // document.addEventListener('mousedown', closePanel)
+        // console.log(e.currentTarget.className)
+        // function closePanel(e) {
+        //     e.preventDefault()
+        //     if (e.currentTarget.className !== 'profile-page-upload-panel-toggle' && e.target.className !== "profile-picture-upload-panel") {
+        //         setUploadPanelOpen(false)
+        //         console.log(e.target.className)
+        //         document.removeEventListener('click', closePanel)
+        //     }
+        // }
+    }
+
     return (
         <div className='profile-page-root'>
+            <Header />
             <div className='profile-page-top'>
                 <div className='profile-page-left'>
                     <div className='profile-page-picture'>
                         <img className='profile-page-picture-file'
                         src={image ? `data:image/image/png;base64,${image}` : defaultPicture} />
-                        <div className='profile-page-upload-panel-toggle' onClick={() => setUploadPanelOpen(!uploadPanelOpen)}>
-                            <h1>Update Profile Picture</h1>
+                        {updatePhoto && (
+                        <div className='profile-page-upload-panel-toggle' onClick={handlePanelClick}>
+                            <h1>Update Picture</h1>
                         </div>
+                        )}
+
                         {uploadPanelOpen && (
                             <div className='profile-picture-upload-panel'>
                                 <form id="profile-picture-upload-form" onSubmit={handleSubmit}>
@@ -87,32 +136,30 @@ function Profile(props) {
                         )}
                     </div>
                     <div className='profile-page-user-details'>
-                        <div>Chef First Name Last Name</div>
                         <div>
-                            <h1>Username</h1>
+                            <h1>Chef {user.firstName} {user.lastName}</h1>
+                        </div>
+                        <div>
+                            <h3>Username</h3>
                             <h2>{user.username}</h2>
                         </div>
                         <div>
-                            <h1>Email</h1>
+                            <h3>Email</h3>
                             <h2>{user.email}</h2>
                         </div>
                     </div>
                 </div>
                 <div className='profile-page-right'>
                     <h1>Badges</h1>
-                    {getBadge().map((badge, index) => (
-                        <div key={index}>
-                            {badge}
-                        </div>
-                    ))}
                 </div>
             </div>
             <div className='profile-page-bottom'>
                 <h1>Favorites</h1>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                {Object.values(favoriteRecipes).length && (
+                    Object.values(favoriteRecipes).map(recipe => {
+                        return <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>
+                    })
+                )}
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 // import { Configuration, OpenAIApi } from "openai";
 const { Configuration, OpenAIApi } = require("openai");
-const { requireUser } = require("../../config/passport");
+// const { requireUser } = require("../../config/passport");
 
 const express = require("express");
 const router = express.Router();
@@ -13,7 +13,9 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 // export default async function (req, res) {
-router.post("/", requireUser, async (req, res) => {
+router.post("/", async (req, res) => {
+  // router.post("/", requireUser, async (req, res) => {
+
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
