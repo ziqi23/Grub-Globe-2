@@ -311,9 +311,9 @@ function Globe(props) {
       const context = canvas.getContext("2d", { willReadFrequently: true });
       context.drawImage(img, 0, 0);
       imgColor = context.getImageData(0, 0, img.width, img.height);
-      for (let i = 0; i < 50000; i++) {
-        const phi = Math.acos(-1 + (2 * i) / 50000);
-        const theta = Math.sqrt(50000 * Math.PI) * phi;
+      for (let i = 0; i < 20000; i++) {
+        const phi = Math.acos(-1 + (2 * i) / 20000);
+        const theta = Math.sqrt(20000 * Math.PI) * phi;
         const vector = new THREE.Vector3();
         vector.setFromSphericalCoords(30, phi, theta);
 
