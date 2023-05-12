@@ -8,9 +8,7 @@ const Header = ({openLoginModal, openSignupModal}) => {
     return(
         <div className="header-container">
             <div className="logo"><h1>grubGlobe</h1></div>
-            {loggedIn ? <RecipeSearch styles={{
-                    zIndex: 9999 
-                }}/> : null}
+            {loggedIn ? <RecipeSearch /> : null}
             <NavBar openLoginModal={openLoginModal} openSignupModal={openSignupModal}/>
         </div>
     )

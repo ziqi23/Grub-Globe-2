@@ -8,7 +8,7 @@ import {fetchSearchRecipes} from "../../store/recipes.js"
 
 function RecipeSearch() {
   const [query, setQuery] = useState("");
-  const [queryTags, setQueryTags] = useState([]);
+  // const [queryTags, setQueryTags] = useState([]);
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
 
@@ -95,23 +95,9 @@ function RecipeSearch() {
                   const selectedCountries = selected.filter((option) => option.category !== 'Tags');
                   const selectedTags = selected.filter((option) => option.category === 'Tags');
                   setQuery(selected.map((option) => option.value).join(" , ") );
-                  // setQueryTags(selectedTags.map((option) => option.value));
                 }}
         />
       </form>
-      {/* {results.length ? (
-      <ul className="search-results">
-        {results.map((recipe, idx) => (
-          <li key={idx}>
-            <h3>{recipe.recipeName}</h3> */}
-            {/* <p>{result.description}</p> */}
-             {/* <RecipeCard key={recipe.id} recipe={recipe} /> */}
-          {/* </li>
-        ))}
-      </ul>
-      ) : (
-         query && <p className="no-result-message">{error || "No results found, please try again."}</p>
-      )} */}
     </div>
   );
 }
