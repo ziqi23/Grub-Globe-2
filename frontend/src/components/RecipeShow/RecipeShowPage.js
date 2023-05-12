@@ -24,6 +24,12 @@ const RecipeShowPage = () => {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
 
+  const sessionUser = useSelector((state) => state.session.user);
+  const favorites = useSelector((state) => Object.values(state.favorites));
+
+  const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
+  const [currentRecipeStep, setCurrentRecipeStep] = useState("");
+
   const icons = {
     glutenFree: glutenFreeIcon,
     dairyFree: dairyFreeIcon,
@@ -44,16 +50,12 @@ const RecipeShowPage = () => {
       <h2>{tag}</h2>
     </div>
   ));
-  const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
-  const [currentRecipeStep, setCurrentRecipeStep] = useState("");
 
-  const sessionUser = useSelector((state) => state.session.user);
 
-  const favorites = useSelector((state) => Object.values(state.favorites));
+
 
   useEffect(() => {
     dispatch(fetchRecipe(recipeId));
-    console.log(recipe?.tags);
   }, [recipeId, dispatch]);
 
   useEffect(() => {
@@ -64,10 +66,6 @@ const RecipeShowPage = () => {
     setToggleFollowAlong(true);
     setCurrentRecipeStep(recipe?.recipeInstructions[0].step);
   };
-
-  // const mapTags = (tags) => {
-  //   return tags.map((tag, i, tags) => {i === (tags.length - 1) ? `${tag.name}` :`${tag.name}, `})
-  // }
 
   return (
     <>
@@ -110,15 +108,6 @@ const RecipeShowPage = () => {
                 <h2>Servings </h2>
                 <p>{recipe?.servings}</p>
               </div>
-
-              {/* iterate through tags here and create div */}
-              {/* {recipe?.tags.map((tag, i) => (
-                  <div>
-                    <img className="icon" src={icons.tag} alt={`${tag} icon`} />
-                    <h2>{tag}</h2>
-                  </div>
-                ))} */}
-              {/* d */}
               {displayTags?.map((tag) => tag)}
             </div>
 
@@ -162,6 +151,7 @@ const RecipeShowPage = () => {
           recipeIngredients={recipe?.ingredients}
           setCurrentRecipeStep={setCurrentRecipeStep}
           currentRecipeStep={currentRecipeStep}
+          recipeId={recipeId}
         />
       )}
 

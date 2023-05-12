@@ -14,7 +14,6 @@
     z-index: 105;
 }
 
-
 .step-page-container {
     display: flex;
     width: 100%;
@@ -184,6 +183,27 @@
 
 .normal-step-container {
     /* height: 200px; */
+}
+
+.last-step-exit-button {
+    width: 300px;
+    padding: 15px 0px;
+    border: 2px solid rgb(8, 8, 8);
+    background-color: rgb(178, 195, 171);
+    border-radius: 999px;
+    margin: auto;
+    transition: 0.3s ease all;
+    text-transform: uppercase;
+}
+
+.last-step-exit-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.last-step-exit-button:active {
+    box-shadow: inset 0px 0px 5px rgba(12, 1, 1, 0.55);
+    transform: translateY(4px);
 }
 
 @media (max-width: 1488px) {

@@ -6,6 +6,9 @@ import "swiper/css/navigation";
 import "./FollowAlong.css";
 import { Pagination, Navigation } from "swiper";
 import StepPage from "./StepPage";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const FollowAlongCarousel = ({
   recipeSteps,
@@ -13,11 +16,22 @@ const FollowAlongCarousel = ({
   recipeIngredients,
   setCurrentRecipeStep,
   currentRecipeStep,
+  recipeId
 }) => {
   const handleSlideChange = (swiper) => {
     const currentStep = swiper.realIndex || 0;
     setCurrentRecipeStep(recipeSteps[currentStep].step);
   };
+
+  const lastStep = recipeSteps[recipeSteps.length - 1];
+
+  const checkIfLastStep = (step) => {
+    if (step === lastStep.step) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   return (
     <>
@@ -41,6 +55,8 @@ const FollowAlongCarousel = ({
                 setCurrentRecipeStep={setCurrentRecipeStep}
                 ingredients={recipeIngredients}
                 currentRecipeStep={currentRecipeStep}
+                lastStep={checkIfLastStep(step.step)}
+                recipeId={recipeId}
               />
             </SwiperSlide>
           ))}

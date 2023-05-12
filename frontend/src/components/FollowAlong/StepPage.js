@@ -7,6 +7,7 @@ import upArrow from "../../assets/icons/general-icons/icons8-slide-up-64.png";
 import downArrow from "../../assets/icons/general-icons/icons8-down-button-64.png";
 import "./FollowAlong.css";
 import Ingredients from "../RecipeShow/Ingredients";
+import CompleteFollowAlongButton from "./CompleteFollowAlongButton";
 
 const StepPage = ({
   step,
@@ -14,8 +15,11 @@ const StepPage = ({
   closeFollowAlong,
   ingredients,
   setCurrentRecipeStep,
-  currentRecipeStep
+  currentRecipeStep,
+  lastStep,
+  recipeId
 }) => {
+
   const [toggleIngredients, setToggleIngredients] = useState(false);
   const [stepType, setStepType] = useState("normal");
 
@@ -26,10 +30,14 @@ const StepPage = ({
       setToggleIngredients(true);
     }
   };
+
   const handleExit = () => {
     closeFollowAlong();
     setCurrentRecipeStep("");
   };
+
+
+
   // algorithm for checking if normal step or timer step - reset stepType state variable if timer
   const analyzeStep = (step) => {
     const metricTime = ["seconds", "second", "minute", "minutes", "hour", "hours"]
@@ -43,18 +51,6 @@ const StepPage = ({
     console.log(timerKeywords)
     return timerKeywords;
   }
-
-  useEffect(() => {
-    const timerKeywords = analyzeStep(step);
-
-    if (timerKeywords.length > 0) {
-      setStepType("timer");
-      console.log(stepType);
-    }
-
-  }, [currentRecipeStep, stepType])
-
-  // console.log(stepType)
 
   return (
     <>
@@ -92,6 +88,14 @@ const StepPage = ({
             {/* <NormalStep step={step}/> */}
             {stepType === "normal" ? <NormalStep step={step}/> : <TimerStep step={step} />}
           </div>
+          {lastStep && (
+            <CompleteFollowAlongButton 
+              closeFollowAlong={closeFollowAlong} 
+              setCurrentRecipeStep={setCurrentRecipeStep}
+              recipeId={recipeId}
+              />
+            // <div onClick={handleFinishedFollowAlong} className="last-step-exit-button">Finished!</div>
+          )}
         </div>
       </div>
     </>
