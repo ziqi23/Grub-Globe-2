@@ -20,14 +20,14 @@ const ReviewIndex = ({ recipeId }) => {
 
   const composeReviewSection = () => {
     let hasWrittenReview = false;
-    if (recipeReviews) {
+    if (recipeReviews && sessionUser) {
       for (let i = 0; i < recipeReviews.length; i++) {
         if (recipeReviews[i].user._id === sessionUser._id) {
           hasWrittenReview = true;
         }
       }
     }
-    if (!hasWrittenReview) {
+    if (sessionUser && !hasWrittenReview) {
       return <NewReviewForm recipeId={recipeId} />;
     }
   };

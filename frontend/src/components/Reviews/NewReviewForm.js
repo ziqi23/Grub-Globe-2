@@ -28,7 +28,7 @@ const NewReviewForm = ({ recipeId }) => {
 
   let bufferArr;
   let image;
-  if (sessionUser.photo) {
+  if (sessionUser?.photo) {
     bufferArr = new Uint8Array(sessionUser.photo.data);
     image = Buffer.from(bufferArr).toString("base64");
   }

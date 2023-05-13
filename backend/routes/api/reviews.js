@@ -10,7 +10,7 @@ const validateReviewInput = require("../../validations/review");
 router.get("/", async (req, res) => {
   try {
     const reviews = await Review.find()
-      .populate("author", "_id firstName lastName")
+      .populate("user", "_id firstName lastName username")
       .sort({ createdAt: -1 });
     return res.json(reviews);
   } catch (err) {
