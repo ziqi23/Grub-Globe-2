@@ -3,11 +3,11 @@ const handleValidationErrors = require("./handleValidationErrors");
 
 const validateReviewInput = [
   check("title")
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
     .isLength({ min: 5, max: 100 })
     .withMessage("Review title must be between 5 and 100 characters"),
   check("text")
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
     .isLength({ min: 10, max: 500 })
     .withMessage("Review must be between 10 and 500 characters"),
   check("wouldMakeAgain")

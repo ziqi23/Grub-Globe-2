@@ -29,8 +29,15 @@
 .review-user-info .circle {
   width: 90px;
   height: 90px;
-  background-color: rgb(165, 165, 165);
-  border: 1px solid rgb(108, 108, 108);
+  background-color: rgb(255, 236, 229);
+  border: 1px solid orange;
+  border-radius: 50%;
+}
+
+.review-profile-picture-file {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 
@@ -153,6 +160,7 @@
   padding: 5px;
   font-family: "Kanit", sans-serif;
   height: 150px;
+  margin-bottom: 5px;
 }
 
 #new-review-submit {
@@ -173,4 +181,16 @@
   background-color: rgb(234, 154, 5);
   /* color: #e2e0e0; */
   transform: translateY(3px);
+}
+
+#write-review-title {
+  font-size: 2em;
+  padding-bottom: 20px;
+}
+
+.errors {
+  color: red;
+  font-size: 0.9em;
+  font-weight: 300;
+  margin-bottom: 10px;
 }

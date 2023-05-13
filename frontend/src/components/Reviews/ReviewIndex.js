@@ -12,10 +12,25 @@ const ReviewIndex = ({ recipeId }) => {
     Object.values(state.reviews.recipe)
   );
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(fetchRecipeReviews(recipeId));
   }, [dispatch]);
+
+  const composeReviewSection = () => {
+    let hasWrittenReview = false;
+    if (recipeReviews) {
+      for (let i = 0; i < recipeReviews.length; i++) {
+        if (recipeReviews[i].user._id === sessionUser._id) {
+          hasWrittenReview = true;
+        }
+      }
+    }
+    if (!hasWrittenReview) {
+      return <NewReviewForm recipeId={recipeId} />;
+    }
+  };
   //   const reviews = [
   //     {
   //       0: {
@@ -36,7 +51,8 @@ const ReviewIndex = ({ recipeId }) => {
   return (
     <>
       <div className="review-index-container">
-        <NewReviewForm recipeId={recipeId} />
+        {/* <NewReviewForm recipeId={recipeId} /> */}
+        {composeReviewSection()}
         <h1 className="review-index-container-title">Reviews</h1>
         {recipeReviews.map((review, i) => (
           <ReviewBox key={i} review={review} />

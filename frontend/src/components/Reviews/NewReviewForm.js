@@ -3,8 +3,11 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { HiThumbUp, HiThumbDown } from "react-icons/hi";
 import { useState } from "react";
-import { composeReview } from "../../store/reviews";
+import { composeReview, clearReviewErrors } from "../../store/reviews";
 import StarRatingInput from "./stars";
+import defaultPicture from "../Profile/default-profile.png";
+import { useEffect } from "react";
+import { fetchRecipeReviews } from "../../store/reviews";
 
 const NewReviewForm = ({ recipeId }) => {
   const [title, setTitle] = useState("");
@@ -12,19 +15,26 @@ const NewReviewForm = ({ recipeId }) => {
   const [wouldMakeAgain, setWouldMakeAgain] = useState(true);
   const [wouldRecommend, setWouldRecommend] = useState(true);
   const [starRating, setStarRating] = useState(5);
-  const [errors, setErrors] = useState([]);
+  //   const [errors, setErrors] = useState([]);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [clickedMakeAgain, setClickedMakeAgain] = useState(false);
   const [clickedRecommend, setClickedRecommend] = useState(false);
+  const errors = useSelector((state) => state.errors.reviews);
+
+  useEffect(() => {
+    return () => dispatch(clearReviewErrors());
+  }, [dispatch]);
+
+  let bufferArr;
+  let image;
+  if (sessionUser.photo) {
+    bufferArr = new Uint8Array(sessionUser.photo.data);
+    image = Buffer.from(bufferArr).toString("base64");
+  }
 
   const onStarClick = (number) => {
     setStarRating(parseInt(number));
-    // const button = document.querySelector("thumb-clicked");
-    // button.classList.add("btn-bigger");
-    // setTimeout(() => {
-    //   button.classList.remove("btn-bigger");
-    // }, 200);
   };
 
   const handleMakeAgainClick = (val) => {
@@ -41,7 +51,6 @@ const NewReviewForm = ({ recipeId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
     const review = {
       title,
       text,
@@ -50,14 +59,24 @@ const NewReviewForm = ({ recipeId }) => {
       starRating,
       recipe: recipeId,
     };
-    dispatch(composeReview(review));
+    dispatch(composeReview(review)).then(() => {
+      dispatch(fetchRecipeReviews(recipeId));
+    });
   };
 
   return (
     <>
+      <h1 id="write-review-title">You cooked this - write a review!</h1>
       <div className="review-box-container">
         <div className="review-user-info">
-          <div className="circle"></div>
+          <div className="circle">
+            <img
+              className="review-profile-picture-file"
+              src={
+                image ? `data:image/image/png;base64,${image}` : defaultPicture
+              }
+            />
+          </div>
         </div>
 
         <form id="new-review-form" onSubmit={handleSubmit}>
@@ -119,20 +138,6 @@ const NewReviewForm = ({ recipeId }) => {
                 />
               </div>
             </div>
-
-            {/* </div> */}
-
-            {/* <select
-              value={starRating}
-              onChange={(e) => setStarRating(e.target.value)}
-            >
-              <option value="">Select a rating</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select> */}
           </div>
           <div id="new-review-text-inputs">
             <input
@@ -142,12 +147,14 @@ const NewReviewForm = ({ recipeId }) => {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Title your review..."
             />
+            {errors && <div className="errors">{errors?.title}</div>}
             <textarea
               placeholder="Write a review..."
               id="new-review-text"
               value={text}
               onChange={(e) => setText(e.target.value)}
             ></textarea>
+            {errors && <div className="errors">{errors?.text}</div>}
           </div>
           <button id="new-review-submit" type="submit">
             Post review!
@@ -157,41 +164,5 @@ const NewReviewForm = ({ recipeId }) => {
     </>
   );
 };
-{
-  /* <h1>Title of the review</h1>
-          <h3>John Doe</h3>
-          <p>
-            Duis dapibus nisl dictum, blandit mi eget, mattis nulla. Nam sed
-            augue sit amet sem venenatis hendrerit. Donec convallis magna et
-            vulputate pulvinar. Proin tempor dolor orci, ut gravida velit
-            aliquam id. Maecenas egestas nibh diam, et dignissim augue mollis
-            eget. Quisque pellentesque faucibus velit ut ultrices. Nullam
-            laoreet hendrerit vulputate.{" "}
-          </p>
-        </div>
-      </div>
-      <hr></hr>
-      <div className="review-box-container">
-        <div className="review-user-info">
-          <div className="circle"></div>
-        </div>
-
-        <div className="review-details-container">
-          <h1>Title of the review</h1>
-          <h3>Jane Doe</h3>
-          <p>
-            Duis dapibus nisl dictum, blandit mi eget, mattis nulla. Nam sed
-            augue sit amet sem venenatis hendrerit. Donec convallis magna et
-            vulputate pulvinar. Proin tempor dolor orci, ut gravida velit
-            aliquam id. Maecenas egestas nibh diam, et dignissim augue mollis
-            eget. Quisque pellentesque faucibus velit ut ultrices. Nullam
-            laoreet hendrerit vulputate.{" "}
-          </p>
-        </div>
-      </div>
-    </>
-  );
-}; */
-}
 
 export default NewReviewForm;

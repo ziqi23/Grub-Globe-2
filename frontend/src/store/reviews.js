@@ -146,7 +146,21 @@ const reviewsReducer = (
     case RECEIVE_RECIPE_REVIEWS:
       return { ...state, recipe: action.reviews, new: undefined };
     case RECEIVE_NEW_REVIEW:
-      return { ...state, new: action.review };
+      //   const newRecipe = action.review.recipe; // extract the recipe object from the new review
+      //   const newRecipeReviews = [
+      //     ...state.recipe[newRecipe.id], // get the existing reviews for the recipe
+      //     action.review, // add the new review to the reviews array
+      //   ];
+      //   return {
+      //     ...state,
+      //     recipe: { ...state.recipe, [newRecipe.id]: newRecipeReviews },
+      //     new: action.review,
+      //   };
+
+      return {
+        ...state,
+        new: action.review,
+      };
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined };
     case REMOVE_REVIEW:
