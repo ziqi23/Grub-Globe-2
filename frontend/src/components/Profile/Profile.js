@@ -23,25 +23,18 @@ import FavoritesTile from "./FavoritesTile";
 // Favorites integration and ability to unfavorite from page
 
 function Profile(props) {
-  const dispatch = useDispatch();
-  const Buffer = require("buffer/").Buffer;
-  const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
-  const [photoFile, setPhotoFile] = useState(null);
-  const [updatePhoto, setUpdatePhoto] = useState(false);
-  const user = useSelector((state) => state.session.user);
-  const favorites = useSelector((state) => state.favorites);
-  const favoriteRecipes = useSelector((state) => state.recipes);
+    const dispatch = useDispatch()
+    const Buffer = require('buffer/').Buffer
+    const [uploadPanelOpen, setUploadPanelOpen] = useState(false)
+    const [photoFile, setPhotoFile] = useState(null)
+    const [updatePhoto, setUpdatePhoto] = useState(false)
+    const user = useSelector(state => state.session.user)
+    const favorites = useSelector(state => state.favorites)
 
   useEffect(() => {
     dispatch(getCurrentUser());
     dispatch(fetchFavorites());
   }, []);
-
-  useEffect(() => {
-    Object.values(favorites).forEach((favorite) => {
-      dispatch(fetchRecipe(favorite.recipe));
-    });
-  }, [favorites, user]);
 
   let bufferArr;
   let image;
@@ -63,16 +56,6 @@ function Profile(props) {
   function handlePanelClick(e) {
     e.preventDefault();
     setUploadPanelOpen(!uploadPanelOpen);
-    // document.addEventListener('mousedown', closePanel)
-    // console.log(e.currentTarget.className)
-    // function closePanel(e) {
-    //     e.preventDefault()
-    //     if (e.currentTarget.className !== 'profile-page-upload-panel-toggle' && e.target.className !== "profile-picture-upload-panel") {
-    //         setUploadPanelOpen(false)
-    //         console.log(e.target.className)
-    //         document.removeEventListener('click', closePanel)
-    //     }
-    // }
   }
 
   return (
@@ -166,10 +149,10 @@ function Profile(props) {
       <div className="profile-page-bottom">
         <h1>Favorites</h1>
         <div id="favorites-container">
-          {Object.values(favoriteRecipes).length &&
-            Object.values(favoriteRecipes).map((recipe) => {
+          {favorites &&
+            Object.values(favorites).map((favorite) => {
               return (
-                <FavoritesTile key={recipe._id} recipe={recipe}></FavoritesTile>
+                <FavoritesTile key={favorite.recipe._id} recipe={favorite.recipe}></FavoritesTile>
               );
               //   return <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>;
             })}
