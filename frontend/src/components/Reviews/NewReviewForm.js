@@ -86,7 +86,6 @@ const NewReviewForm = ({ recipeId }) => {
               <div id="form-input-accuracy">
                 <StarRatingInput
                   disabled={false}
-                  s
                   onChange={onStarClick}
                   rating={starRating}
                 />

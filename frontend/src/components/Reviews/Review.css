@@ -102,8 +102,25 @@
   margin-bottom: 10px;
 }
 
-#new-review-form {
+#new-review-form,
+#past-review-container {
   display: flex;
+}
+
+.review-box-container {
+  margin-bottom: 15px;
+}
+
+#past-review-title {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  width: 470px;
+}
+
+#past-review-text {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  width: 470px;
 }
 
 #new-review-ratings-inputs {
@@ -111,6 +128,10 @@
   flex-direction: column;
   margin-right: 10px;
   /* width: 250px; */
+}
+
+.review-unclickable {
+  pointer-events: none;
 }
 
 .thumbs-container {

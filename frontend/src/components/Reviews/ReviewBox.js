@@ -1,38 +1,71 @@
 import "./Review.css";
+import { HiThumbUp, HiThumbDown } from "react-icons/hi";
+import StarRatingInput from "./stars";
 
 const ReviewBox = ({ review }) => {
   return (
     <>
       <div className="review-box-container">
         <div className="review-user-info">
-          <div className="circle"></div>
+          <div className="circle">
+            {/* <img
+                className="review-profile-picture-file"
+                src={
+                  image
+                    ? `data:image/image/png;base64,${image}`
+                    : defaultPicture
+                }
+              /> */}
+          </div>
         </div>
 
-        <div className="review-details-container">
-          <h1>{review.title}</h1>
-          <h3>{review.user.username}</h3>
-          <p>{review.text}</p>
+        <div id="past-review-container">
+          <div id="new-review-ratings-inputs">
+            <div className="star-and-title-container">
+              <div id="form-input-accuracy" className="review-unclickable">
+                <StarRatingInput disabled={true} rating={review.starRating} />
+              </div>
+            </div>
+            <div className="thumbs-container">
+              <h2>Would you make this again?</h2>
+              <div className="thumbs-buttons-container">
+                <HiThumbUp
+                  className={`${
+                    review.wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
+                  } review-unclickable`}
+                />
+                <HiThumbDown
+                  className={`${
+                    !review.wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
+                  } review-unclickable`}
+                />
+              </div>
+            </div>
+            <div className="thumbs-container">
+              <h2>Would you recommend this?</h2>
+              <div className="thumbs-buttons-container">
+                <HiThumbUp
+                  className={`${
+                    review.wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
+                  } review-unclickable`}
+                />
+                <HiThumbDown
+                  className={`${
+                    !review.wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
+                  } review-unclickable`}
+                />
+              </div>
+            </div>
+          </div>
+          <div id="new-review-text-inputs">
+            <h1 id="past-review-title">{review.title}</h1>
+            <p id="past-review-text">{review.text}</p>
+          </div>
+          {/* <button id="new-review-submit" type="submit">
+              Post review!
+            </button> */}
         </div>
       </div>
-      <hr></hr>
-      {/* <div className="review-box-container">
-        <div className="review-user-info">
-          <div className="circle"></div>
-        </div>
-
-        <div className="review-details-container">
-          <h1>Title of the review</h1>
-          <h3>Jane Doe</h3>
-          <p>
-            Duis dapibus nisl dictum, blandit mi eget, mattis nulla. Nam sed
-            augue sit amet sem venenatis hendrerit. Donec convallis magna et
-            vulputate pulvinar. Proin tempor dolor orci, ut gravida velit
-            aliquam id. Maecenas egestas nibh diam, et dignissim augue mollis
-            eget. Quisque pellentesque faucibus velit ut ultrices. Nullam
-            laoreet hendrerit vulputate.{" "}
-          </p>
-        </div>
-      </div> */}
     </>
   );
 };
