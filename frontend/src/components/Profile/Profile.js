@@ -149,10 +149,10 @@ function Profile(props) {
       <div className="profile-page-bottom">
         <h1>Favorites</h1>
         <div id="favorites-container">
-          {Object.values(favoriteRecipes).length &&
-            Object.values(favoriteRecipes).map((recipe) => {
+          {favorites &&
+            Object.values(favorites).map((favorite) => {
               return (
-                <FavoritesTile key={recipe._id} recipe={recipe}></FavoritesTile>
+                <FavoritesTile key={favorite.recipe._id} recipe={favorite.recipe}></FavoritesTile>
               );
               //   return <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>;
             })}
