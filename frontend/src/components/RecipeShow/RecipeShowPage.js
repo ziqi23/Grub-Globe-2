@@ -24,12 +24,6 @@ const RecipeShowPage = () => {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
 
-  const sessionUser = useSelector((state) => state.session.user);
-  const favorites = useSelector((state) => Object.values(state.favorites));
-
-  const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
-  const [currentRecipeStep, setCurrentRecipeStep] = useState("");
-
   const icons = {
     glutenFree: glutenFreeIcon,
     dairyFree: dairyFreeIcon,
@@ -44,18 +38,21 @@ const RecipeShowPage = () => {
 
   const displayTags = recipe?.tags.map((tag, i) => (
     <div key={i}>
-      {/* <figure> */}
       <img className="icon" src={icons[tag]} alt={`${tag} icon`} />
-      {/* </figure> */}
       <h2>{tag}</h2>
     </div>
   ));
 
+  const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
+  const [currentRecipeStep, setCurrentRecipeStep] = useState("");
 
+  const sessionUser = useSelector((state) => state.session.user);
 
+  const favorites = useSelector((state) => Object.values(state.favorites));
 
   useEffect(() => {
     dispatch(fetchRecipe(recipeId));
+    console.log(recipe?.tags);
   }, [recipeId, dispatch]);
 
   useEffect(() => {
@@ -128,7 +125,7 @@ const RecipeShowPage = () => {
               </div>
             </div>
             {/* <div className="youtube-links-container">
-                {recipe?.youtubeLinks.map((link, i) => 
+                {recipe?.youtubeLinks.map((link, i) =>
                   <iframe src={link}></iframe>
                 )}
             </div> */}

@@ -6,9 +6,6 @@ import "swiper/css/navigation";
 import "./FollowAlong.css";
 import { Pagination, Navigation } from "swiper";
 import StepPage from "./StepPage";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
 
 const FollowAlongCarousel = ({
   recipeSteps,
@@ -23,14 +20,15 @@ const FollowAlongCarousel = ({
     setCurrentRecipeStep(recipeSteps[currentStep].step);
   };
 
-  const lastStep = recipeSteps[recipeSteps.length - 1];
-
-  const checkIfLastStep = (step) => {
-    if (step === lastStep.step) {
-      return true
-    } else {
-      return false
+  // analyzeStep function determines if the step is a normalStep or timerStep
+  const analyzeStep = (step) => {
+    const timerKeywords = ["seconds", "second", "minute", "minutes", "hour", "hours"]
+    for (let i = 0; i < timerKeywords.length; i++) {
+      if (step.includes(timerKeywords[i])) {
+        return false //timer step
+      }
     }
+    return true // normal step
   }
 
   return (
@@ -55,7 +53,7 @@ const FollowAlongCarousel = ({
                 setCurrentRecipeStep={setCurrentRecipeStep}
                 ingredients={recipeIngredients}
                 currentRecipeStep={currentRecipeStep}
-                lastStep={checkIfLastStep(step.step)}
+                normalStep={analyzeStep(step.step)}
                 recipeId={recipeId}
               />
             </SwiperSlide>
