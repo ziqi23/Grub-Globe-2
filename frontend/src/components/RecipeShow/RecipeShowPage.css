@@ -42,6 +42,10 @@
   padding: 12px;
   box-sizing: border-box;
   font-weight: 300;
+  overflow-y: scroll;
+  height: fit-content;
+  max-height: 800px;
+  min-width: 400px;
 }
 
 .recipe-show-page-container .macros-container > div {
@@ -109,6 +113,10 @@
   font-size: 170%;
   padding-bottom: 10px;
   font-weight: 500;
+}
+
+.macros-container h2 {
+  padding: 0px 20px 20px 20px;
 }
 
 .follow-along-button {

@@ -19,6 +19,17 @@ const FollowAlongCarousel = ({
     setCurrentRecipeStep(recipeSteps[currentStep].step);
   };
 
+  // analyzeStep function determines if the step is a normalStep or timerStep
+  const analyzeStep = (step) => {
+    const timerKeywords = ["seconds", "second", "minute", "minutes", "hour", "hours"]
+    for (let i = 0; i < timerKeywords.length; i++) {
+      if (step.includes(timerKeywords[i])) {
+        return false //timer step
+      }
+    }
+    return true // normal step
+  }
+
   return (
     <>
       <div className="follow-along-carousel">
@@ -41,6 +52,7 @@ const FollowAlongCarousel = ({
                 setCurrentRecipeStep={setCurrentRecipeStep}
                 ingredients={recipeIngredients}
                 currentRecipeStep={currentRecipeStep}
+                normalStep={analyzeStep(step.step)}
               />
             </SwiperSlide>
           ))}

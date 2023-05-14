@@ -23,6 +23,7 @@ import plateIcon from "../../assets/icons/general-icons/icons8-plate-100.png";
 const RecipeShowPage = () => {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
+  const [tooltipOpen, setTooltipOpen] = useState(-1)
 
   const icons = {
     glutenFree: glutenFreeIcon,
@@ -38,12 +39,11 @@ const RecipeShowPage = () => {
 
   const displayTags = recipe?.tags.map((tag, i) => (
     <div key={i}>
-      {/* <figure> */}
       <img className="icon" src={icons[tag]} alt={`${tag} icon`} />
-      {/* </figure> */}
       <h2>{tag}</h2>
     </div>
   ));
+  
   const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
   const [currentRecipeStep, setCurrentRecipeStep] = useState("");
 
@@ -68,6 +68,11 @@ const RecipeShowPage = () => {
   // const mapTags = (tags) => {
   //   return tags.map((tag, i, tags) => {i === (tags.length - 1) ? `${tag.name}` :`${tag.name}, `})
   // }
+  
+  const handleMouseLeave = (e) => {
+    e.preventDefault()
+    setTooltipOpen(-1)
+  }
 
   return (
     <>
@@ -146,9 +151,9 @@ const RecipeShowPage = () => {
           </div>
 
           <div className="macros-container">
-            <div>
+            <div onMouseLeave={handleMouseLeave}>
               <h2>Macronutrients</h2>
-              <Macronutrients macronutrients={recipe?.nutrition.nutrients} />
+              <Macronutrients macronutrients={recipe?.nutrition.nutrients} tooltipOpen={tooltipOpen} setTooltipOpen={setTooltipOpen}/>
             </div>
           </div>
         </div>
