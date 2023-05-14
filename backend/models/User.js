@@ -29,25 +29,8 @@ const userSchema = new Schema({
           type: Schema.Types.ObjectId,
           ref: 'Recipe'
         }
-        // dateCompleted: {
-        //   type: Date,
-        //   default: Date.now
-        // }
       }
     ],
-    // achievement: [
-    //   {
-    //     achievementId: {
-    //       type: Schema.Types.ObjectId,
-    //       ref: 'Achievement'
-    //     },
-    //     dateEarned: {
-    //       type: Date,
-    //       default: Date.now
-    //     }
-    //   }
-    // ],
-
 }, {
     timestamps: true
 })

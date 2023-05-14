@@ -11,6 +11,7 @@ const validateLoginInput = require('../../validations/login');
 const validateCompleteRecipeInput = require('../../validations/completeRecipe');
 const multer = require("multer");
 const upload = multer()
+const Recipe = mongoose.model('Recipe');
 
 // Upload profile picture route
 router.post('/upload', restoreUser, upload.single("image"), async (req, res) => {
@@ -113,7 +114,9 @@ router.patch('/complete-recipe', validateCompleteRecipeInput, async function(req
       user = await User.findByIdAndUpdate(userId,
         { $push: { "completedRecipe": {recipeId: recipeId } }}, { new: true }
       );
-      return res.json(user);
+
+      // user = await User.findById(userId).populate('completedRecipe')
+      // return res.json(user);
     }
 
   } catch (err) {
@@ -123,6 +126,8 @@ router.patch('/complete-recipe', validateCompleteRecipeInput, async function(req
     return next(error);
   }
 })
+
+
 
 
 module.exports = router;
