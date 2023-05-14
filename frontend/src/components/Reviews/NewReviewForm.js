@@ -8,8 +8,10 @@ import StarRatingInput from "./stars";
 import defaultPicture from "../Profile/default-profile.png";
 import { useEffect } from "react";
 import { fetchRecipeReviews } from "../../store/reviews";
+import { updateReview } from "../../store/reviews";
+import ReviewBox from "./ReviewBox";
 
-const NewReviewForm = ({ recipeId }) => {
+const NewReviewForm = ({ recipeId, message, review }) => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [wouldMakeAgain, setWouldMakeAgain] = useState(true);
@@ -22,6 +24,7 @@ const NewReviewForm = ({ recipeId }) => {
   const [clickedRecommend, setClickedRecommend] = useState(false);
   const errors = useSelector((state) => state.errors.reviews);
   const Buffer = require("buffer/").Buffer;
+  const [updateReviewClicked, setUpdateReviewClicked] = useState(false);
 
   useEffect(() => {
     return () => dispatch(clearReviewErrors());
@@ -33,6 +36,25 @@ const NewReviewForm = ({ recipeId }) => {
     bufferArr = new Uint8Array(sessionUser.photo.data);
     image = Buffer.from(bufferArr).toString("base64");
   }
+
+  //   if (review) {
+  //     console.log(review, "review");
+  //     setTitle(review.title);
+  //     setText(review.text);
+  //     setWouldMakeAgain(review.wouldMakeAgain);
+  //     setWouldRecommend(review.wouldRecommend);
+  //     setStarRating(review.starRating);
+  //   }
+
+  useEffect(() => {
+    if (review) {
+      setTitle(review.title);
+      setText(review.text);
+      setWouldMakeAgain(review.wouldMakeAgain);
+      setWouldRecommend(review.wouldRecommend);
+      setStarRating(review.starRating);
+    }
+  }, [review]);
 
   const onStarClick = (number) => {
     setStarRating(parseInt(number));
@@ -52,7 +74,7 @@ const NewReviewForm = ({ recipeId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const review = {
+    const reviewContents = {
       title,
       text,
       wouldMakeAgain,
@@ -60,14 +82,28 @@ const NewReviewForm = ({ recipeId }) => {
       starRating,
       recipe: recipeId,
     };
-    dispatch(composeReview(review)).then(() => {
-      dispatch(fetchRecipeReviews(recipeId));
-    });
+
+    if (review) {
+      dispatch(updateReview(reviewContents, review._id)).then(() => {
+        dispatch(fetchRecipeReviews(recipeId));
+        setUpdateReviewClicked(true);
+      });
+    } else {
+      // console.log("dispatch new", review)
+      dispatch(composeReview(reviewContents)).then(() => {
+        dispatch(fetchRecipeReviews(recipeId));
+      });
+    }
   };
+
+  if (updateReviewClicked) {
+    return <ReviewBox review={review} />;
+  }
 
   return (
     <>
-      <h1 id="write-review-title">You cooked this - write a review!</h1>
+      {/* <h1 id="write-review-title">You cooked this - write a review!</h1> */}
+      <h1 id="write-review-title">{message}</h1>
       <div className="review-box-container">
         <div className="review-user-info">
           <div className="circle">
@@ -157,7 +193,8 @@ const NewReviewForm = ({ recipeId }) => {
             {errors && <div className="errors">{errors?.text}</div>}
           </div>
           <button id="new-review-submit" type="submit">
-            Post review!
+            {/* Post review! */}
+            {review ? "Update review!" : "Post review!"}
           </button>
         </form>
       </div>

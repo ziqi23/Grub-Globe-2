@@ -28,7 +28,12 @@ const ReviewIndex = ({ recipeId }) => {
       }
     }
     if (sessionUser && !hasWrittenReview) {
-      return <NewReviewForm recipeId={recipeId} />;
+      return (
+        <NewReviewForm
+          recipeId={recipeId}
+          message={"You cooked this - write a review!"}
+        />
+      );
     }
   };
   //   const reviews = [
@@ -53,7 +58,11 @@ const ReviewIndex = ({ recipeId }) => {
       <div className="review-index-container">
         {/* <NewReviewForm recipeId={recipeId} /> */}
         {composeReviewSection()}
-        <h1 className="review-index-container-title">Reviews</h1>
+        <h1 className="review-index-container-title">
+          {recipeReviews.length > 0
+            ? "Reviews"
+            : "No reviews yet - get cookin'!"}
+        </h1>
         {recipeReviews.map((review, i) => (
           <ReviewBox key={i} review={review} />
         ))}

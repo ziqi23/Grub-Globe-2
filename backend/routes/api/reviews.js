@@ -96,6 +96,44 @@ router.post("/", requireUser, validateReviewInput, async (req, res, next) => {
   }
 });
 
+router.put(
+  "/:reviewId",
+  requireUser,
+  validateReviewInput,
+  async (req, res, next) => {
+    try {
+      const updatedReview = {
+        title: req.body.title,
+        text: req.body.text,
+        wouldMakeAgain: req.body.wouldMakeAgain,
+        wouldRecommend: req.body.wouldRecommend,
+        starRating: req.body.starRating,
+      };
+
+      let review = await Review.findOneAndUpdate(
+        { _id: req.params.reviewId, user: req.user._id },
+        updatedReview,
+        { new: true }
+      );
+
+      if (!review) {
+        const error = new Error("Review not found or not owned by user");
+        error.statusCode = 404;
+        throw error;
+      }
+
+      review = await review.populate(
+        "user",
+        "_id firstName lastName username profilePhoto"
+      );
+
+      return res.json(review);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
 // router.delete("/:reviewId", async (req, res, next) => {
 //   try {
 //     await Review.deleteOne({ _id: req.params.reviewId });
