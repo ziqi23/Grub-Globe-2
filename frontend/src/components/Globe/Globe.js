@@ -271,8 +271,11 @@ function Globe(props) {
       renderer.render(scene, camera);
     }
     animate();
-    console.log(window.innerWidth);
-    // return () => ref.current.removeChild(renderer.domElement);
+    return () => {
+      while (scene.children.length > 0) {
+        scene.remove(scene.children[0])
+      }
+    }
   }, []);
 
   // Use UV coordinates to determine if user is hovering over a in-scope country
@@ -301,7 +304,11 @@ function Globe(props) {
 
   let imgColor;
   useEffect(() => {
-    img.onload = () => createDots();
+    if (img.complete) {
+      createDots()
+    } else {
+      img.onload = () => createDots();
+    }
 
     function createDots() {
       const canvas = document.getElementById("placeholder-canvas");
