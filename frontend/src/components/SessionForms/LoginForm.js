@@ -12,6 +12,10 @@ function LoginForm ({openSignupModal, closeLoginModal}) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(email)
+  }, [email])
+
+  useEffect(() => {
     return () => {
       dispatch(clearSessionErrors());
     };

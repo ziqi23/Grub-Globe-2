@@ -8,6 +8,7 @@ import {
   Redirect,
   useHistory,
 } from "react-router-dom/cjs/react-router-dom.min";
+import Footer from "../Footer/Footer";
 
 function Globe(props) {
   const colorMapping = {
@@ -446,6 +447,7 @@ function Globe(props) {
         )}
         <canvas id="placeholder-canvas" display="none"></canvas>
       </div>
+      <Footer />
     </div>
   );
 }

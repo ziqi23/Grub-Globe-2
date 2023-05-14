@@ -14,10 +14,11 @@ const StepPage = ({
   closeFollowAlong,
   ingredients,
   setCurrentRecipeStep,
-  currentRecipeStep
+  currentRecipeStep,
+  normalStep
 }) => {
   const [toggleIngredients, setToggleIngredients] = useState(false);
-  const [stepType, setStepType] = useState("normal");
+  // const [stepType, setStepType] = useState("normal");
 
   const handleToggleIngredients = () => {
     if (toggleIngredients) {
@@ -30,31 +31,7 @@ const StepPage = ({
     closeFollowAlong();
     setCurrentRecipeStep("");
   };
-  // algorithm for checking if normal step or timer step - reset stepType state variable if timer
-  const analyzeStep = (step) => {
-    const metricTime = ["seconds", "second", "minute", "minutes", "hour", "hours"]
-    let words = step.split(" ");
-    let timerKeywords = [];
-    words.forEach((word) => {
-      if (metricTime.includes(word)) {
-        console.log(word)
-      }
-    })
-    console.log(timerKeywords)
-    return timerKeywords;
-  }
 
-  useEffect(() => {
-    const timerKeywords = analyzeStep(step);
-
-    if (timerKeywords.length > 0) {
-      setStepType("timer");
-      console.log(stepType);
-    }
-
-  }, [currentRecipeStep, stepType])
-
-  // console.log(stepType)
 
   return (
     <>
@@ -90,7 +67,7 @@ const StepPage = ({
           <div className="step-instruction">
             {/* <TimerStep /> */}
             {/* <NormalStep step={step}/> */}
-            {stepType === "normal" ? <NormalStep step={step}/> : <TimerStep step={step} />}
+            {normalStep ? <NormalStep step={step}/> : <TimerStep step={step} />}
           </div>
         </div>
       </div>

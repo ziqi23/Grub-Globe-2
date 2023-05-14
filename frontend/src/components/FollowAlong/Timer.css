@@ -1,0 +1,21 @@
+#timer-container {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer-unit-container {
+    margin: 0;
+}
+
+.increase-decrease-button {
+    margin: 0;
+    cursor: pointer;
+    color: gray;
+    border: 1px solid rgb(219, 212, 212);
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: rgb(218, 215, 215);
+}
+
