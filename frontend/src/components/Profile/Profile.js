@@ -42,31 +42,48 @@ function Profile(props) {
         })
     }, [favorites, user])
 
+    useEffect(() => {
+        if (user && user.completedRecipe) {
+
+            const fetchPromises = user.completedRecipe.map(({ recipeId }) =>
+                dispatch(fetchRecipe(recipeId)));
+
+            Promise.all(fetchPromises)
+                .then(fetchedRecipes => {
+                    const numCompleted = fetchedRecipes.length;
+                    const uniqueCountries = new Set(fetchedRecipes.map(recipe => {
+                        return recipe.recipe.country;
+                    }));
+
+                    const badges = getBadge(numCompleted, uniqueCountries.size);
+                    console.log("Badges: ", badges);
+                })
+                .catch(error => {
+                    console.error("Error fetching recipes: ", error);
+                });
+        }
+    }, [user, dispatch]);
 
     let bufferArr;
     let image;
     if (user.photo) {
         bufferArr = new Uint8Array(user.photo.data)
         image = Buffer.from(bufferArr).toString('base64')
+    }
 
-    let numCompleted = user.completedRecipe.length;
-
-    let uniqueCountries = new Set();
-    user.completedRecipe.forEach(recipe => {
-        uniqueCountries.add(recipe.country);
-    });
-
-    const getBadge = () => {
+    const getBadge = (numCompleted, uniqueCountriesSize) => {
         let badges = [];
-        if (uniqueCountries.size === 5) {
+
+        if (uniqueCountriesSize === 5) {
             badges.push(
                 <div>
                     <img src={roadmapIcon}></img>
                     <h2>Tried recipes from 5 different countries.</h2>
                 </div>
             );
+            console.log("badge1");
         }
-        if (uniqueCountries.size === 10) {
+        if (uniqueCountriesSize === 10) {
             badges.push(
                 <div>
                     <img src={aroundTheWorldIcon}></img>
@@ -74,17 +91,16 @@ function Profile(props) {
                 </div>
             )
           }
-        if (numCompleted === 10) {
+        if (numCompleted === 1) {
             badges.push(
                 <div>
                     <img src={spachelorIcon}></img>
-                    <h2>Cooked 10 recipes.</h2>
+                    <h2>Cooked my first recipe.</h2>
                 </div>
-            )
+            );
+            console.log("badge2");
         }
         return badges;
-    }
-
     }
 
     function handleSubmit(e) {
@@ -150,7 +166,28 @@ function Profile(props) {
                     </div>
                 </div>
                 <div className='profile-page-right'>
-                    <h1>Badges</h1>
+                    <h1>Badges & Achievements</h1>
+                        <div>
+                            <img src={broccoliIcon}></img>
+                            <h2>Cooked 3 recipes with the "healthy" tag.</h2>
+                        </div>
+                        <div>
+                            <img src={kawaiiIceCreamIcon}></img>
+                            <h2>Cooked 3 recipes with the "dessert" tag.</h2>
+                        </div>
+                        <div>
+                            <img src={composeIcon}></img>
+                            <h2>Written 5 recipe reviews.</h2>
+                        </div>
+                        <div>
+                            <img src={restaurantIcon}></img>
+                            <h2>Added 5 recipes as favorites.</h2>
+                        </div>
+                        {getBadge().map((badge, index) => (
+                            <div key={index}>
+                                {badge}
+                            </div>
+                        ))}
                 </div>
             </div>
             <div className='profile-page-bottom'>
