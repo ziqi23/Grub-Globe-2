@@ -10,7 +10,7 @@ const validateReviewInput = require("../../validations/review");
 router.get("/", async (req, res) => {
   try {
     const reviews = await Review.find()
-      .populate("user", "_id firstName lastName username")
+      .populate("user", "_id firstName lastName username profilePhoto ")
       .sort({ createdAt: -1 });
     return res.json(reviews);
   } catch (err) {
@@ -31,7 +31,7 @@ router.get("/user/:userId", async (req, res, next) => {
   try {
     const reviews = await Review.find({ user: user._id })
       .sort({ createdAt: -1 })
-      .populate("user", "_id firstName lastName username");
+      .populate("user", "_id firstName lastName username profilePhoto");
     return res.json(reviews);
   } catch (err) {
     return res.json([]);
@@ -51,7 +51,7 @@ router.get("/recipe/:recipeId", async (req, res, next) => {
   try {
     const reviews = await Review.find({ recipe: recipe._id })
       .sort({ createdAt: -1 })
-      .populate("user", "_id firstName lastName username");
+      .populate("user", "_id firstName lastName username profilePhoto");
     return res.json(reviews);
   } catch (err) {
     return res.json([]);
@@ -62,7 +62,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const review = await Review.findById(req.params.id).populate(
       "user",
-      "_id firstName lastName username"
+      "_id firstName lastName username profilePhoto"
     );
     return res.json(review);
   } catch (err) {
@@ -86,16 +86,31 @@ router.post("/", requireUser, validateReviewInput, async (req, res, next) => {
     });
 
     let review = await newReview.save();
-    review = await review.populate("user", "_id firstName lastName username");
+    review = await review.populate(
+      "user",
+      "_id firstName lastName username profilePhoto"
+    );
     return res.json(review);
   } catch (err) {
     next(err);
   }
 });
 
+// router.delete("/:reviewId", async (req, res, next) => {
+//   try {
+//     await Review.deleteOne({ _id: req.params.reviewId });
+//   } catch (err) {
+//     const error = new Error("delete error");
+//     error.statusCode = 404;
+//     error.errors = { message: "delete error" };
+//     return next(error);
+//   }
+// });
+
 router.delete("/:reviewId", async (req, res, next) => {
   try {
     await Review.deleteOne({ _id: req.params.reviewId });
+    res.status(200).json({ message: "Review deleted successfully" });
   } catch (err) {
     const error = new Error("delete error");
     error.statusCode = 404;

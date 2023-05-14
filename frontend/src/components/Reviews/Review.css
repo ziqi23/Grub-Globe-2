@@ -115,12 +115,39 @@
   font-size: 1.4em;
   margin-bottom: 10px;
   width: 470px;
+  word-wrap: break-word;
 }
 
 #past-review-text {
   font-size: 1.2em;
   margin-bottom: 10px;
   width: 470px;
+  word-wrap: break-word;
+}
+
+#edit-delete-review-container {
+  right: 0;
+  position: relative;
+  margin-left: 60px;
+}
+
+#review-edit-icon,
+#review-delete-icon {
+  font-size: 20px;
+  /* color: orange; */
+  cursor: pointer;
+  margin-right: 3px;
+}
+
+#past-review-username {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+#review-edit-icon:hover,
+#review-delete-icon:hover {
+  color: orange;
+  cursor: pointer;
 }
 
 #new-review-ratings-inputs {

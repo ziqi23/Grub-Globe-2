@@ -21,6 +21,7 @@ const NewReviewForm = ({ recipeId }) => {
   const [clickedMakeAgain, setClickedMakeAgain] = useState(false);
   const [clickedRecommend, setClickedRecommend] = useState(false);
   const errors = useSelector((state) => state.errors.reviews);
+  const Buffer = require("buffer/").Buffer;
 
   useEffect(() => {
     return () => dispatch(clearReviewErrors());

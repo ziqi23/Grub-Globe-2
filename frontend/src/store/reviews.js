@@ -168,7 +168,14 @@ const reviewsReducer = (
       //   delete newState[action.reviewId];
       const newState = { ...state };
       delete newState.all[action.reviewId];
+      delete newState.recipe[action.reviewId];
+      delete newState.user[action.reviewId];
       return newState;
+    //   const { [action.reviewId]: removedReview, ...newAll } = state.all;
+    //   const { [action.reviewId]: removedRecipeReview, ...newRecipe } =
+    //     state.recipe;
+    //   const { [action.reviewId]: removedUserReview, ...newUser } = state.user;
+    //   return { ...state, all: newAll, recipe: newRecipe, user: newUser };
     default:
       return state;
   }
