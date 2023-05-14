@@ -23,7 +23,6 @@ const ReviewBox = ({ review }) => {
     bufferArr = new Uint8Array(review.user.profilePhoto.data);
     image = Buffer.from(bufferArr).toString("base64");
   }
-  //get reviews from state for recipe. put into useeffect.
 
   const handleReviewDelete = () => {
     console.log(review.recipe, "recipe", review, "review");

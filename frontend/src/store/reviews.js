@@ -118,22 +118,6 @@ export const composeReview = (data) => async (dispatch) => {
   }
 };
 
-// export const updateReview = (data, reviewId) => async (dispatch) => {
-//   try {
-//     const res = await jwtFetch(`/api/reviews/${reviewId}`, {
-//       method: "PATCH",
-//       body: JSON.stringify(data),
-//     });
-//     const review = await res.json();
-//     dispatch(receiveNewReview(review));
-//   } catch (err) {
-//     const resBody = await err.json();
-//     if (resBody.statusCode === 400) {
-//       return dispatch(receiveErrors(resBody.errors));
-//     }
-//   }
-// };
-
 export const updateReview = (data, reviewId) => async (dispatch) => {
   try {
     const res = await jwtFetch(`/api/reviews/${reviewId}`, {
@@ -184,32 +168,11 @@ const reviewsReducer = (
     case RECEIVE_RECIPE_REVIEWS:
       return { ...state, recipe: action.reviews, new: undefined };
     case RECEIVE_NEW_REVIEW:
-      //   const newRecipe = action.review.recipe; // extract the recipe object from the new review
-      //   const newRecipeReviews = [
-      //     ...state.recipe[newRecipe.id], // get the existing reviews for the recipe
-      //     action.review, // add the new review to the reviews array
-      //   ];
-      //   return {
-      //     ...state,
-      //     recipe: { ...state.recipe, [newRecipe.id]: newRecipeReviews },
-      //     new: action.review,
-      //   };
-
       return {
         ...state,
         new: action.review,
       };
     case RECEIVE_UPDATED_REVIEW:
-      // const updatedReview = action.review;
-      // const updatedRecipeReviews = [
-      //     ...state.recipe[updatedReview.recipeId],
-      //     updatedReview,
-      // ];
-      // return {
-      //     ...state,
-      //     recipe: { ...state.recipe, [updatedReview.recipeId]: updatedRecipeReviews },
-      //     new: updatedReview,
-      // };
       return {
         ...state,
         new: action.review,
@@ -217,18 +180,12 @@ const reviewsReducer = (
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined };
     case REMOVE_REVIEW:
-      //   const newState = { ...state };
-      //   delete newState[action.reviewId];
       const newState = { ...state };
       delete newState.all[action.reviewId];
       delete newState.recipe[action.reviewId];
       delete newState.user[action.reviewId];
       return newState;
-    //   const { [action.reviewId]: removedReview, ...newAll } = state.all;
-    //   const { [action.reviewId]: removedRecipeReview, ...newRecipe } =
-    //     state.recipe;
-    //   const { [action.reviewId]: removedUserReview, ...newUser } = state.user;
-    //   return { ...state, all: newAll, recipe: newRecipe, user: newUser };
+
     default:
       return state;
   }

@@ -10,7 +10,6 @@
 
 .review-box-container {
   width: 94%;
-  /* border: 1px solid red; */
   padding: 10px 0px;
   display: flex;
   gap: 5px;
@@ -18,11 +17,8 @@
 
 .review-user-info {
   width: 14%;
-  /* border: 1px solid blue; */
-  /* white-space: wrap; */
   display: flex;
   flex-direction: column;
-
   align-items: center;
 }
 
@@ -131,10 +127,16 @@
   margin-left: 60px;
 }
 
+#cancel-delete-review-container {
+  display: flex;
+  width: 60px;
+  background-color: pink;
+}
+
 #review-edit-icon,
-#review-delete-icon {
+#review-delete-icon,
+#review-cancel-icon {
   font-size: 20px;
-  /* color: orange; */
   cursor: pointer;
   margin-right: 3px;
 }
@@ -145,16 +147,30 @@
 }
 
 #review-edit-icon:hover,
-#review-delete-icon:hover {
+#review-delete-icon:hover,
+#review-cancel-icon:hover {
   color: orange;
   cursor: pointer;
+}
+
+#review-edit-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+}
+
+.update-buttons {
+  display: flex;
+  margin-right: 0;
+  padding-right: 0;
+  margin-bottom: 5px;
+  margin-left: 80px;
 }
 
 #new-review-ratings-inputs {
   display: flex;
   flex-direction: column;
   margin-right: 10px;
-  /* width: 250px; */
 }
 
 .review-unclickable {
@@ -174,7 +190,6 @@
 .thumbs-buttons-container {
   width: 65px;
   display: flex;
-  /* background-color: red; */
 }
 
 .btn-bigger {
@@ -199,6 +214,7 @@
 #new-review-title {
   border: 1px solid orange;
   padding: 5px;
+  font-size: 1.4em;
   font-family: "Kanit", sans-serif;
   margin-bottom: 5px;
 }
@@ -208,6 +224,8 @@
   padding: 5px;
   font-family: "Kanit", sans-serif;
   height: 150px;
+  font-size: 1.2em;
+
   margin-bottom: 5px;
 }
 
@@ -215,7 +233,6 @@
   border: none;
   padding: 5px;
   font-family: "Kanit", sans-serif;
-  /* height: 150px; */
   height: 100%;
   margin-right: 10px;
   background-color: orange;
@@ -227,7 +244,6 @@
 #new-review-submit:hover {
   cursor: pointer;
   background-color: rgb(234, 154, 5);
-  /* color: #e2e0e0; */
   transform: translateY(3px);
 }
 

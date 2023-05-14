@@ -10,6 +10,9 @@ import { useEffect } from "react";
 import { fetchRecipeReviews } from "../../store/reviews";
 import { updateReview } from "../../store/reviews";
 import ReviewBox from "./ReviewBox";
+import { AiTwotoneDelete } from "react-icons/ai";
+import { MdCancel } from "react-icons/md";
+import { deleteReview } from "../../store/reviews";
 
 const NewReviewForm = ({ recipeId, message, review }) => {
   const [title, setTitle] = useState("");
@@ -17,7 +20,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
   const [wouldMakeAgain, setWouldMakeAgain] = useState(true);
   const [wouldRecommend, setWouldRecommend] = useState(true);
   const [starRating, setStarRating] = useState(5);
-  //   const [errors, setErrors] = useState([]);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [clickedMakeAgain, setClickedMakeAgain] = useState(false);
@@ -36,15 +38,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
     bufferArr = new Uint8Array(sessionUser.photo.data);
     image = Buffer.from(bufferArr).toString("base64");
   }
-
-  //   if (review) {
-  //     console.log(review, "review");
-  //     setTitle(review.title);
-  //     setText(review.text);
-  //     setWouldMakeAgain(review.wouldMakeAgain);
-  //     setWouldRecommend(review.wouldRecommend);
-  //     setStarRating(review.starRating);
-  //   }
 
   useEffect(() => {
     if (review) {
@@ -72,6 +65,32 @@ const NewReviewForm = ({ recipeId, message, review }) => {
     setTimeout(() => setClickedRecommend(false), 1000);
   };
 
+  const editButtons = () => {
+    if (review) {
+      return (
+        <div className="update-buttons">
+          <MdCancel
+            id="review-cancel-icon"
+            onClick={() => {
+              setUpdateReviewClicked(true);
+            }}
+          />
+          <AiTwotoneDelete
+            id="review-delete-icon"
+            onClick={handleReviewDelete}
+          />
+        </div>
+      );
+    }
+  };
+
+  const handleReviewDelete = () => {
+    console.log(review.recipe, "recipe", review, "review");
+    dispatch(deleteReview(review._id)).then(() => {
+      dispatch(fetchRecipeReviews(review.recipe));
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const reviewContents = {
@@ -89,7 +108,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
         setUpdateReviewClicked(true);
       });
     } else {
-      // console.log("dispatch new", review)
       dispatch(composeReview(reviewContents)).then(() => {
         dispatch(fetchRecipeReviews(recipeId));
       });
@@ -102,7 +120,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
 
   return (
     <>
-      {/* <h1 id="write-review-title">You cooked this - write a review!</h1> */}
       <h1 id="write-review-title">{message}</h1>
       <div className="review-box-container">
         <div className="review-user-info">
@@ -119,7 +136,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
         <form id="new-review-form" onSubmit={handleSubmit}>
           <div id="new-review-ratings-inputs">
             <div className="star-and-title-container">
-              {/* <p className="form-field-title-stars">Rating</p> */}
               <div id="form-input-accuracy">
                 <StarRatingInput
                   disabled={false}
@@ -133,18 +149,12 @@ const NewReviewForm = ({ recipeId, message, review }) => {
               <div className="thumbs-buttons-container">
                 <HiThumbUp
                   onClick={() => handleMakeAgainClick(true)}
-                  //   className={
-                  //     wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
-                  //   }
                   className={`${
                     wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
                   } ${clickedMakeAgain && wouldMakeAgain ? "btn-bigger" : ""}`}
                 />
                 <HiThumbDown
                   onClick={() => handleMakeAgainClick(false)}
-                  //   className={
-                  //     !wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
-                  //   }
                   className={`${
                     !wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
                   } ${clickedMakeAgain && !wouldMakeAgain ? "btn-bigger" : ""}`}
@@ -156,18 +166,12 @@ const NewReviewForm = ({ recipeId, message, review }) => {
               <div className="thumbs-buttons-container">
                 <HiThumbUp
                   onClick={() => handleRecommendClick(true)}
-                  //   className={
-                  //     wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
-                  //   }
                   className={`${
                     wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
                   } ${clickedRecommend && wouldRecommend ? "btn-bigger" : ""}`}
                 />
                 <HiThumbDown
                   onClick={() => handleRecommendClick(false)}
-                  //   className={
-                  //     !wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
-                  //   }
                   className={`${
                     !wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
                   } ${clickedRecommend && !wouldRecommend ? "btn-bigger" : ""}`}
@@ -192,10 +196,12 @@ const NewReviewForm = ({ recipeId, message, review }) => {
             ></textarea>
             {errors && <div className="errors">{errors?.text}</div>}
           </div>
-          <button id="new-review-submit" type="submit">
-            {/* Post review! */}
-            {review ? "Update review!" : "Post review!"}
-          </button>
+          <div id="review-edit-buttons-container">
+            {editButtons()}
+            <button id="new-review-submit" type="submit">
+              {review ? "Update review!" : "Post review!"}
+            </button>
+          </div>
         </form>
       </div>
     </>

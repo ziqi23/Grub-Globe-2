@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { AiFillStar } from "react-icons/ai";
 import { FaGrinStars } from "react-icons/fa";
 import "./Review.css";
 
@@ -25,7 +24,6 @@ const StarRatingInput = ({ rating, disabled, onChange }) => {
     return (
       <div
         key={number}
-        // className={activeRating >= number ? "filled" : "empty"}
         className={`star-icon ${activeRating >= number ? "filled" : "empty"} ${
           clicked && activeRating >= number ? "btn-bigger" : ""
         }`}

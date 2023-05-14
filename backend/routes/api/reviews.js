@@ -134,17 +134,6 @@ router.put(
   }
 );
 
-// router.delete("/:reviewId", async (req, res, next) => {
-//   try {
-//     await Review.deleteOne({ _id: req.params.reviewId });
-//   } catch (err) {
-//     const error = new Error("delete error");
-//     error.statusCode = 404;
-//     error.errors = { message: "delete error" };
-//     return next(error);
-//   }
-// });
-
 router.delete("/:reviewId", async (req, res, next) => {
   try {
     await Review.deleteOne({ _id: req.params.reviewId });
