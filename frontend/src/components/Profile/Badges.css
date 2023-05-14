@@ -1,0 +1,72 @@
+#badges-index-container {
+    /* border: 1px solid red; */
+    height: 100%;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.badge-info-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.badge-info-container p {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.RSPBprogressBar {
+    margin-top: 30px;
+    width: 60%;
+    /* display:flex; */
+    box-sizing: border-box;
+}
+
+.milestone-container {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.milestone-container h1 {
+    position: absolute;
+    margin-top: 60px;
+}
+
+.milestone-dot {
+    /* position: absolute; */
+    width: 20px;
+    height: 20px;
+    border: 1px solid green;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background-color: rgb(194, 194, 194);
+}
+
+.accomplished-milestone-dot {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(241, 232, 206);
+    border-radius: 50%;
+    box-sizing: border-box;
+    background-color: rgb(244, 252, 129);
+}
+
+
+.badge-info-container h1 {
+    font-weight: 500;
+}
+
+.milestone-container h1 {
+    font-weight: 300;
+    font-size: 20px;
+}

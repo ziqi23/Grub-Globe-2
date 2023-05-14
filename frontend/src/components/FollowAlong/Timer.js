@@ -28,33 +28,11 @@ const Timer = () => {
         }
     }
 
-    const countdown = () => {
-        if (seconds === 0 && minutes === 0 && hours === 0 ) {
-            setStartCountdown(false);
-            return undefined
-        };
-        if (seconds === 0) {
-            setTimeout(setMinutes(minutes - 1), 1000)
-            setTimeout(setSeconds(59), 1000)
-        } else if (seconds > 0 && seconds < 60) {
-            setTimeout(setSeconds(seconds - 1), 1000)
-        }
-
-        if (minutes === 0) {
-            setHours(hours - 1)
-        }
-    }
-
-    useEffect(() => {
-        if (startCountdown) {
-            countdown();
-        }
-    }, [startCountdown, seconds, minutes, hours])
     return (
         <>
             <form>
                 <select name="hours" id="hours">
-                    
+
 
                 </select>
             </form>

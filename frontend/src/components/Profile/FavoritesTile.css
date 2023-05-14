@@ -34,3 +34,7 @@
   height: 60%;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
+
+#favorites-tile-container .country-container {
+  margin-right: 20px;
+}

@@ -17,6 +17,7 @@ import { getCurrentUser } from "../../store/session";
 import { fetchRecipe } from "../../store/recipes";
 import RecipeCard from "../RecipeIndexPage/RecipeCard";
 import FavoritesTile from "./FavoritesTile";
+import BadgesIndex from "./BadgesIndex"
 // Add header
 // Chef XXX Large Font
 // Badges PH
@@ -28,6 +29,8 @@ function Profile(props) {
     const [uploadPanelOpen, setUploadPanelOpen] = useState(false)
     const [photoFile, setPhotoFile] = useState(null)
     const [updatePhoto, setUpdatePhoto] = useState(false)
+    const [toggleBadges, setToggleBadges] = useState(true);
+    const [toggleFavorites, setToggleFavorites] = useState(false);
     const user = useSelector(state => state.session.user)
     const favorites = useSelector(state => state.favorites)
 
@@ -56,6 +59,31 @@ function Profile(props) {
   function handlePanelClick(e) {
     e.preventDefault();
     setUploadPanelOpen(!uploadPanelOpen);
+  }
+
+  const toggleNav = (selectedTab) => {
+    const tabs = ["badges", "favorites"];
+    let setFalse = [];
+    tabs.forEach((tab) => {
+      let setState;
+      switch (tab) {
+        case 'badges':
+          setState = setToggleBadges;
+          console.log("hello")
+          break;
+        case 'favorites':
+          setState = setToggleFavorites
+          break;
+        default: 
+          throw Error('Unknown field')
+      }
+      if (tab !== selectedTab && setState) {
+        setFalse.push(setState)
+      } else {
+        setState(true)
+      }
+    })
+    return setFalse.forEach(setState => setState(false))
   }
 
   return (
@@ -103,50 +131,39 @@ function Profile(props) {
                 Chef {user.firstName} {user.lastName}
               </h1>
             </div>
-            <div>
-              <h3>Username</h3>
-              <h2>{user.username}</h2>
-            </div>
-            <div>
-              <h3>Email</h3>
-              <h2>{user.email}</h2>
-            </div>
+
           </div>
         </div>
         <div className="profile-page-right">
-          <h1>Badges & Achievements</h1>
+          <div className="profile-nav-bar">
+            <h1 
+              className={toggleBadges ? "active" : ""} 
+              onClick={() =>toggleNav("badges")}
+              >Badges & Achievements
+            </h1>
+            <h1 
+              onClick={() => toggleNav("favorites")}
+              className={toggleFavorites ? "active" : ""}
+              >Favorites
+            </h1>
+            <h1>Reviews</h1>
 
-          <div>
-            <img className="badge-icon" src={broccoliIcon}></img>
-            <h2>Cooked 3 recipes with the "healthy" tag.</h2>
           </div>
-          <div>
-            <img src={kawaiiIceCreamIcon}></img>
-            <h2>Cooked 3 recipes with the "dessert" tag.</h2>
+          {toggleBadges && <BadgesIndex /> }
+          {toggleFavorites && (
+            <div id="favorites-container">
+            {favorites &&
+              Object.values(favorites).map((favorite) => {
+                return (
+                  <FavoritesTile key={favorite.recipe._id} recipe={favorite.recipe}></FavoritesTile>
+                );
+                //   return <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>;
+              })}
           </div>
-          <div>
-            <img src={roadmapIcon}></img>
-            <h2>Tried recipes from 5 different countries.</h2>
-          </div>
-          <div>
-            <img src={aroundTheWorldIcon}></img>
-            <h2>Tried recipes from 10 different countries.</h2>
-          </div>
-          <div>
-            <img src={composeIcon}></img>
-            <h2>Written 5 recipe reviews.</h2>
-          </div>
-          <div>
-            <img src={restaurantIcon}></img>
-            <h2>Added 5 recipes as favorites.</h2>
-          </div>
-          <div>
-            <img src={spachelorIcon}></img>
-            <h2>Added 10 recipes as favorites.</h2>
-          </div>
+          )}
         </div>
       </div>
-      <div className="profile-page-bottom">
+      {/* <div className="profile-page-bottom">
         <h1>Favorites</h1>
         <div id="favorites-container">
           {favorites &&
@@ -157,7 +174,7 @@ function Profile(props) {
               //   return <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>;
             })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
