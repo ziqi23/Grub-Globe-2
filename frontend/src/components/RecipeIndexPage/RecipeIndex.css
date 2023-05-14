@@ -30,6 +30,7 @@
   color: #f1f1f1;
   text-shadow: 7px 7px 14px #e0e0e0, -7px -7px 14px #ffffff;
   cursor: default;
+  font-size: 13vh;
 }
 
 .recipe-index-title {
@@ -205,6 +206,8 @@
     font-size: 30px;
   }
 }
+
+
 
 #view-recipe-and-heart-container #heart-div {
   position: absolute;
