@@ -5,6 +5,7 @@ const RECEIVE_REVIEWS = "reviews/RECEIVE_REVIEWS";
 const RECEIVE_USER_REVIEWS = "reviews/RECEIVE_USER_REVIEWS";
 const RECEIVE_RECIPE_REVIEWS = "reviews/RECEIVE_RECIPE_REVIEWS";
 const RECEIVE_NEW_REVIEW = "reviews/RECEIVE_NEW_REVIEW";
+const RECEIVE_UPDATED_REVIEW = "reviews/RECEIVE_UPDATED_REVIEW";
 const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
 const RECEIVE_REVIEW_ERRORS = "reviews/RECEIVE_REVIEW_ERRORS";
 const CLEAR_REVIEW_ERRORS = "reviews/CLEAR_REVIEW_ERRORS";
@@ -26,6 +27,11 @@ const receiveRecipeReviews = (reviews) => ({
 
 const receiveNewReview = (review) => ({
   type: RECEIVE_NEW_REVIEW,
+  review,
+});
+
+const receiveUpdatedReview = (review) => ({
+  type: RECEIVE_UPDATED_REVIEW,
   review,
 });
 
@@ -112,6 +118,22 @@ export const composeReview = (data) => async (dispatch) => {
   }
 };
 
+export const updateReview = (data, reviewId) => async (dispatch) => {
+  try {
+    const res = await jwtFetch(`/api/reviews/${reviewId}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
+    const review = await res.json();
+    dispatch(receiveUpdatedReview(review));
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
 export const deleteReview = (reviewId) => async (dispatch) => {
   const response = await jwtFetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
@@ -146,15 +168,24 @@ const reviewsReducer = (
     case RECEIVE_RECIPE_REVIEWS:
       return { ...state, recipe: action.reviews, new: undefined };
     case RECEIVE_NEW_REVIEW:
-      return { ...state, new: action.review };
+      return {
+        ...state,
+        new: action.review,
+      };
+    case RECEIVE_UPDATED_REVIEW:
+      return {
+        ...state,
+        new: action.review,
+      };
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined };
     case REMOVE_REVIEW:
-      //   const newState = { ...state };
-      //   delete newState[action.reviewId];
       const newState = { ...state };
       delete newState.all[action.reviewId];
+      delete newState.recipe[action.reviewId];
+      delete newState.user[action.reviewId];
       return newState;
+
     default:
       return state;
   }
