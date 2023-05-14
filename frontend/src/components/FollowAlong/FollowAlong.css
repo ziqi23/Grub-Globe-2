@@ -106,6 +106,10 @@
 
 }
 
+.timer-step-container {
+    margin-top: 50px;
+}
+
 .timer-step-container * {
     margin: 15px;
 }

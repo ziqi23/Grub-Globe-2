@@ -3,8 +3,9 @@
   margin: 5px 10px;
   text-align: center;
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
   width: calc(100% - 20px);
 }
 
@@ -33,4 +34,14 @@
   width: 98%;
   height: 60%;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+#favorites-tile-container .country-container {
+  margin-right: 20px;
+}
+
+#favorites-tile-container .actual-image {
+  width: 100%;
+  height: 100%;
 }

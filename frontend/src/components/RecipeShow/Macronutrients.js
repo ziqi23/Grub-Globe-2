@@ -134,7 +134,7 @@ const Macronutrients = ({macronutrients, tooltipOpen, setTooltipOpen}) => {
                     )}
                 </div>
             ))}
-            <div onClick={handleExpandClick}><MdOutlineExpandMore /> See More</div>
+            <div className="nutrient-expand-info" onClick={handleExpandClick}><MdOutlineExpandMore /> See More</div>
         </>
     )};
 };
