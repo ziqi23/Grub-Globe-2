@@ -3,7 +3,7 @@ import "react-step-progress-bar/styles.css";
 import "./Badges.css"
 const BadgesProgressBar = ({badge}) => {
 
-    const levels = ["Beginner", "Intermediate", "Expert", "Master", "Legend"]
+    const levels = ["Rookie", "Adept", "Expert", "Wizardly", "Legendary"]
 
     return (
         <div className="badge-info-container">
@@ -12,14 +12,15 @@ const BadgesProgressBar = ({badge}) => {
             <p>{badge.description}</p>
             <ProgressBar 
                 percent={55}
-                filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"    
+                filledBackground="#f0bb31"    
+                // filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"  
             >
                 {levels.map((level, i) => (
                     <Step transition="scale" >
                     {({accomplished}) => (
                             <div className="milestone-container">
                                 <div className={ accomplished ? "accomplished-milestone-dot" : "milestone-dot"} />
-                                <h1>{level}</h1>
+                                <h1 style={ accomplished ? {fontWeight: "500"} : {fontWeight: "300"}}>{level}</h1>
                             </div>
                     )}
                 </Step>

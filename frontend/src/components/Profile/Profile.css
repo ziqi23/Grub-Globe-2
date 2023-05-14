@@ -2,15 +2,14 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  background-color: beige;
   flex-grow: 1;
 }
 
 .profile-page-top {
   display: flex;
   flex-grow: 1;
-  height: fit-content;
-  padding: 0px 30px;
+
+  box-sizing: border-box;
 }
 
 .profile-page-left {
@@ -18,6 +17,7 @@
   flex-direction: column;
   box-sizing: border-box;
   max-height: 461px;
+  margin-left: 20px;
 }
 
 .profile-page-picture {
@@ -29,6 +29,7 @@
   min-height: 300px;
   object-fit: cover;
   border-radius: 200px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .profile-page-upload-panel-toggle {
@@ -98,10 +99,10 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   margin-right: 50px;
-  height: 461px;
-  /* width: 60vw; */
+  /* height: 461px; */
+  width: 60vw;
   box-sizing: border-box;
 }
 
@@ -109,17 +110,6 @@
   font-size: 20px;
   
 }
-
-/* .profile-page-right div {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  background-color: rgb(252, 250, 250);
-  margin-top: 12px;
-  margin-bottom: 12px;
-  margin-right: 20px;
-  border-radius: 20px;
-} */
 
 .profile-page-right div img {
   /* filter: grayscale(100%); */
@@ -136,67 +126,13 @@
   height: 100px;
 }
 
-.profile-page-bottom {
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 20px;
-}
-
-.profile-page-bottom h1 {
-  font-size: 20px;
-  /* margin-left: 25px; */
-}
-
-.profile-page-bottom .recipe-card {
-  top: 20px;
-  left: 20px;
-  height: 520px;
-  width: 30%;
-}
-
-.profile-page-bottom .recipe-card .tags-p {
-  visibility: hidden;
-}
-
-.profile-page-bottom .image-placeholder {
-  object-fit: cover;
-}
-
-.profile-page-bottom .recipe-quick-info-container {
-  margin: 0px;
-}
-
-.profile-page-bottom
-  .recipe-quick-info-container
-  #view-recipe-and-heart-container
-  #heart-div {
-  visibility: hidden;
-}
-
-.profile-page-bottom
-  .recipe-quick-info-container
-  #view-recipe-and-heart-container
-  .view-recipe-button {
-  height: 30px;
-}
-
-.profile-page-bottom img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-}
-
 .profile-picture-upload-panel {
   position: absolute;
   bottom: -20px;
   left: 0px;
   z-index: 10;
   width: 320px;
-  background-color: brown;
+
 }
 
 .profile-nav-bar {
@@ -208,9 +144,31 @@
 
 .profile-nav-bar h1 {
   cursor: pointer;
+  transition: 0.2s ease all;
+  /* white-space: nowrap; */
+}
+
+.profile-nav-bar h1:hover {
+  color: rgb(236, 177, 66);
+  transform: scale(1.05);
 }
 
 .profile-nav-bar .active {
   font-weight: 500;
   color: rgb(236, 177, 66);
+}
+
+@media (max-width: 920px) {
+  .profile-page-top {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-page-right {
+    width: 95%;
+  }
+
+  .profile-nav-bar {
+    justify-content: center;
+  }
 }

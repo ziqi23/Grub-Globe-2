@@ -4,33 +4,30 @@ import defaultPicture from "./default-profile.png";
 import { useState, useEffect } from "react";
 import jwtFetch from "../../store/jwt";
 import Header from "../Header/Header";
-import aroundTheWorldIcon from "../../assets/icons/badge-icons/icons8-around-the-globe-100.png";
-import broccoliIcon from "../../assets/icons/badge-icons/icons8-broccoli-100.png";
-import composeIcon from "../../assets/icons/badge-icons/icons8-compose-100.png";
-import kawaiiIceCreamIcon from "../../assets/icons/badge-icons/icons8-kawaii-ice-cream-100.png";
-import restaurantIcon from "../../assets/icons/badge-icons/icons8-restaurant-100.png";
-import roadmapIcon from "../../assets/icons/badge-icons/icons8-roadmap-100.png";
-import spachelorIcon from "../../assets/icons/badge-icons/icons8-spachelor-100.png";
 import { fetchFavorites } from "../../store/favorites";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "../../store/session";
 import { fetchRecipe } from "../../store/recipes";
-import RecipeCard from "../RecipeIndexPage/RecipeCard";
 import FavoritesTile from "./FavoritesTile";
 import BadgesIndex from "./BadgesIndex"
-// Add header
-// Chef XXX Large Font
-// Badges PH
+
 // Favorites integration and ability to unfavorite from page
 
 function Profile(props) {
     const dispatch = useDispatch()
+
+    // for uploading profile photo
     const Buffer = require('buffer/').Buffer
     const [uploadPanelOpen, setUploadPanelOpen] = useState(false)
-    const [photoFile, setPhotoFile] = useState(null)
-    const [updatePhoto, setUpdatePhoto] = useState(false)
+    const [photoFile, setPhotoFile] = useState(null);
+    const [updatePhoto, setUpdatePhoto] = useState(false);
+
+    // for toggling profile nav
     const [toggleBadges, setToggleBadges] = useState(true);
     const [toggleFavorites, setToggleFavorites] = useState(false);
+
+    // for users acquired badges; can choose which one to display
+
     const user = useSelector(state => state.session.user)
     const favorites = useSelector(state => state.favorites)
 
@@ -147,6 +144,7 @@ function Profile(props) {
               >Favorites
             </h1>
             <h1>Reviews</h1>
+            <h1>Completed Recipes</h1>
 
           </div>
           {toggleBadges && <BadgesIndex /> }
@@ -157,61 +155,13 @@ function Profile(props) {
                 return (
                   <FavoritesTile key={favorite.recipe._id} recipe={favorite.recipe}></FavoritesTile>
                 );
-                //   return <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>;
               })}
           </div>
           )}
         </div>
       </div>
-      {/* <div className="profile-page-bottom">
-        <h1>Favorites</h1>
-        <div id="favorites-container">
-          {favorites &&
-            Object.values(favorites).map((favorite) => {
-              return (
-                <FavoritesTile key={favorite.recipe._id} recipe={favorite.recipe}></FavoritesTile>
-              );
-              //   return <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>;
-            })}
-        </div>
-      </div> */}
     </div>
   );
 }
 
 export default Profile;
-
-//leahseyoum@gmail.com
-
-//Password: Leahmela99!
-// const [errors, onSubmit] = useSubmit({
-//     createAction: () => {
-//         const formData = new FormData();
-//         formData.append('pin[title]', title);
-//         formData.append('pin[caption]', caption);
-//         formData.append('pin[link]', link);
-
-//         if (imageFile) {
-//             formData.append('pin[image]', imageFile);
-//         }
-//         return createPin(formData);
-//     },
-
-//     onSuccess:(pin) => {
-//         dispatch(createSave(selectedBoard, pin.payload.id))
-//         history.push('/created')},
-
-// });
-
-// const handleFileChange = e => {
-//     const file = e.target.files[0];
-//     if (file) {
-//       const fileReader = new FileReader();
-//       fileReader.readAsDataURL(file);
-//       fileReader.onload = () => {
-//         setImageFile(file);
-//         setImageUrl(fileReader.result);
-//         setPreview(fileReader.result);
-//       };
-//     }
-//   }

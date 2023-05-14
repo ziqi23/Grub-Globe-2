@@ -37,6 +37,10 @@
     align-items: center;
 }
 
+.accomplished-milestone-level {
+    font-weight: 700;
+}
+
 .milestone-container h1 {
     position: absolute;
     margin-top: 60px;
@@ -46,7 +50,7 @@
     /* position: absolute; */
     width: 20px;
     height: 20px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     border-radius: 50%;
     box-sizing: border-box;
     background-color: rgb(194, 194, 194);
@@ -55,18 +59,28 @@
 .accomplished-milestone-dot {
     width: 20px;
     height: 20px;
-    border: 1px solid rgb(241, 232, 206);
+    border: 1px solid #f7ba20;
     border-radius: 50%;
     box-sizing: border-box;
-    background-color: rgb(244, 252, 129);
+    background-color: #f0bb31;
 }
+
 
 
 .badge-info-container h1 {
     font-weight: 500;
+    font-size: 26px;
+    margin-bottom: 5px;
 }
 
 .milestone-container h1 {
     font-weight: 300;
     font-size: 20px;
+}
+
+
+@media (max-width: 1224px) {
+    .RSPBprogressBar {
+        width: 90%;
+    }
 }
