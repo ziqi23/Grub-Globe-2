@@ -1,0 +1,60 @@
+.single-macro-container {
+    padding: 0px 20px;
+    border-radius: 20px;
+}
+
+.single-macro-container:hover {
+    background-color: rgb(55, 53, 47, 0.3);
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+
+.nutrient-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nutrient-text p:first-child {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.nutrient-square-container {
+    position: relative;
+    opacity: 0.7;
+}
+
+.nutrient-filled-square-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.nutrient-filled-square {
+    border-radius: 50px;
+    font-size: 30px;
+    transition-duration: 1000ms;
+    transition-property: fill;
+}
+
+.nutrient-empty-square {
+    font-size: 30px;
+    border-radius: 50px;
+}
+
+.nutrient-half-filled-square {
+    font-size: 30px;
+    border-radius: 50px;
+}
+
+.nutrient-half-filled-square rect {
+    height: 18px;
+    width: 9px;
+}
+
+.macro-tooltip {
+    color:rgb(245, 245, 245);   font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+}
