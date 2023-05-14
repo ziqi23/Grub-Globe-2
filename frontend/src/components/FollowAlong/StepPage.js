@@ -17,6 +17,7 @@ const StepPage = ({
   setCurrentRecipeStep,
   currentRecipeStep,
   normalStep,
+  lastStep,
   recipeId
 }) => {
 

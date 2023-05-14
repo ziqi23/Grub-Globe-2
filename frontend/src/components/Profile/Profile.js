@@ -10,11 +10,15 @@ import { getCurrentUser } from "../../store/session";
 import { fetchRecipe } from "../../store/recipes";
 import FavoritesTile from "./FavoritesTile";
 import BadgesIndex from "./BadgesIndex"
+import CompletedRecipes from "./CompletedReciped";
 
 // Favorites integration and ability to unfavorite from page
 
 function Profile(props) {
     const dispatch = useDispatch()
+
+    // for storing completed recipes
+    const [completedRecipes, setCompletedRecipes] = useState([]);
 
     // for uploading profile photo
     const Buffer = require('buffer/').Buffer
@@ -25,6 +29,7 @@ function Profile(props) {
     // for toggling profile nav
     const [toggleBadges, setToggleBadges] = useState(true);
     const [toggleFavorites, setToggleFavorites] = useState(false);
+    const [toggleCompleted, setToggleCompleted] = useState(false);
 
     // for users acquired badges; can choose which one to display
 
@@ -35,6 +40,29 @@ function Profile(props) {
     dispatch(getCurrentUser());
     dispatch(fetchFavorites());
   }, []);
+
+  useEffect(() => {
+    if (user && user.completedRecipe) {
+
+      const fetchPromises = user.completedRecipe.map(({ recipeId }) =>
+        dispatch(fetchRecipe(recipeId)));
+
+      Promise.all(fetchPromises)
+        .then(fetchedRecipes => {
+          setCompletedRecipes(fetchedRecipes);
+          const numCompleted = fetchedRecipes.length;
+          const uniqueCountries = new Set(fetchedRecipes.map(recipe => {
+            return recipe.recipe.country;
+        }));
+
+          const badges = getBadge(numCompleted, uniqueCountries.size);
+          console.log("Badges: ", badges);
+        })
+        .catch(error => {
+        console.error("Error fetching recipes: ", error);
+        });
+    }
+  }, [user, dispatch]);
 
   let bufferArr;
   let image;
@@ -59,7 +87,7 @@ function Profile(props) {
   }
 
   const toggleNav = (selectedTab) => {
-    const tabs = ["badges", "favorites"];
+    const tabs = ["badges", "favorites", "completed"];
     let setFalse = [];
     tabs.forEach((tab) => {
       let setState;
@@ -70,6 +98,9 @@ function Profile(props) {
           break;
         case 'favorites':
           setState = setToggleFavorites
+          break;
+        case 'completed':
+          setState = setToggleCompleted
           break;
         default:
           throw Error('Unknown field')
@@ -144,8 +175,14 @@ function Profile(props) {
               >Favorites
             </h1>
             <h1>Reviews</h1>
-            <h1>Completed Recipes</h1>
-
+            <h1
+              onClick={() => {
+                toggleNav("completed")
+                console.log(toggleCompleted);
+              }}
+              className={toggleCompleted ? "active": ""}
+              >Completed Recipes
+            </h1>
           </div>
           {toggleBadges && <BadgesIndex /> }
           {toggleFavorites && (
@@ -157,6 +194,9 @@ function Profile(props) {
                 );
               })}
           </div>
+          )}
+          {toggleCompleted && (
+            <CompletedRecipes recipes={completedRecipes} />
           )}
         </div>
       </div>

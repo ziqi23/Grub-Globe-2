@@ -55,6 +55,7 @@ const FollowAlongCarousel = ({
                 currentRecipeStep={currentRecipeStep}
                 normalStep={analyzeStep(step.step)}
                 recipeId={recipeId}
+                lastStep={i === recipeSteps.length - 1}
               />
             </SwiperSlide>
           ))}
