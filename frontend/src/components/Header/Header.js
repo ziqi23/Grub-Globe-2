@@ -7,14 +7,14 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Header = ({ openLoginModal, openSignupModal }) => {
   const location = useLocation();
   const history = useHistory();
-  const isRecipePage = location.pathname === "/recipes";
+  const show = location.pathname !== "/explore" && location.pathname !== "/";
 
   return (
     <div className="header-container">
       <div onClick={() => history.push("/")} className="logo">
         <h1>grubGlobe</h1>
       </div>
-      {isRecipePage && <RecipeSearch />}
+      {show && <RecipeSearch />}
       <NavBar
         openLoginModal={openLoginModal}
         openSignupModal={openSignupModal}
