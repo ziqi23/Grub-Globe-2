@@ -71,8 +71,8 @@ const StepPage = ({
           </div>
           <div className="step-instruction">
             {/* <TimerStep /> */}
-            {/* <NormalStep step={step}/> */}
-            {normalStep ? <NormalStep step={step}/> : <TimerStep step={step} />}
+            <NormalStep step={step}/>
+            {/* {normalStep ? <NormalStep step={step}/> : <TimerStep step={step} />} */}
           </div>
           {lastStep && (
             <CompleteFollowAlongButton

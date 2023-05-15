@@ -143,7 +143,7 @@ const RecipeShowPage = () => {
 
           <div className="macros-container">
             <div onMouseLeave={handleMouseLeave}>
-              <h2>Macronutrients</h2>
+              <h2>Nutrition</h2>
               <Macronutrients macronutrients={recipe?.nutrition.nutrients} tooltipOpen={tooltipOpen} setTooltipOpen={setTooltipOpen}/>
             </div>
           </div>

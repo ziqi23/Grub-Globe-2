@@ -28,6 +28,10 @@ const Timer = () => {
         }
     }
 
+    const startTimer = () => {
+        
+    }
+
     return (
         <>
             <form>
