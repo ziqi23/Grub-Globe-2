@@ -11,18 +11,19 @@ import "./Badges.css"
 const BadgesIndex = ({numCompleted, numReviews, uniqueCountries, numHealthyRecipes}) => {
 
     const calculateBadgeProgress = (progress) => {
-        if (progress >= 25) {
-            return 100;
-        } else if (progress >= 20) {
-            return 75;
-        } else if (progress >= 15) {
-            return 50;
-        } else if (progress >=10) {
-            return 25;
-        } else if (progress >=5) {
-            return 0;
-        }
-        return 0;
+        return (progress / 25) * 100
+        // if (progress >= 25) {
+        //     return 100;
+        // } else if (progress >= 20) {
+        //     return 75;
+        // } else if (progress >= 15) {
+        //     return 50;
+        // } else if (progress >=10) {
+        //     return 25;
+        // } else if (progress >=5) {
+        //     return 0;
+        // }
+        // return 0;
     }
     const badges = {
         explorer: {

@@ -11,11 +11,8 @@ import { fetchRecipe } from "../../store/recipes";
 import FavoritesTile from "./FavoritesTile";
 import BadgesIndex from "./BadgesIndex";
 import { fetchUserReviews } from "../../store/reviews";
-<<<<<<< HEAD
 import ReviewsTiles from "./ReviewsTile";
-=======
 import CompletedRecipes from "./CompletedRecipes";
->>>>>>> main
 
 // Favorites integration and ability to unfavorite from page
 
@@ -46,11 +43,8 @@ function Profile(props) {
   // for toggling profile nav
   const [toggleBadges, setToggleBadges] = useState(true);
   const [toggleFavorites, setToggleFavorites] = useState(false);
-<<<<<<< HEAD
   const [toggleReviews, setToggleReviews] = useState(false);
-=======
   const [toggleCompleted, setToggleCompleted] = useState(false);
->>>>>>> main
 
   // for users acquired badges; can choose which one to display
 
@@ -121,11 +115,7 @@ function Profile(props) {
   }
 
   const toggleNav = (selectedTab) => {
-<<<<<<< HEAD
-    const tabs = ["badges", "favorites", "reviews"];
-=======
-    const tabs = ["badges", "favorites", "completed"];
->>>>>>> main
+    const tabs = ["badges", "favorites", "reviews", "completed"];
     let setFalse = [];
     tabs.forEach((tab) => {
       let setState;
@@ -137,13 +127,11 @@ function Profile(props) {
         case "favorites":
           setState = setToggleFavorites;
           break;
-<<<<<<< HEAD
         case "reviews":
           setState = setToggleReviews;
-=======
+          break;
         case 'completed':
-          setState = setToggleCompleted
->>>>>>> main
+          setState = setToggleCompleted;
           break;
         default:
           throw Error('Unknown field')
@@ -218,16 +206,12 @@ function Profile(props) {
             >
               Favorites
             </h1>
-<<<<<<< HEAD
             <h1
               onClick={() => toggleNav("reviews")}
               className={toggleReviews ? "active" : ""}
             >
               Reviews
             </h1>
-            <h1>Completed Recipes</h1>
-=======
-            <h1>Reviews</h1>
             <h1
               onClick={() => {
                 toggleNav("completed")
@@ -236,13 +220,12 @@ function Profile(props) {
               className={toggleCompleted ? "active": ""}
               >Completed Recipes
             </h1>
->>>>>>> main
           </div>
           {toggleBadges && <BadgesIndex numCompleted={numCompleted} uniqueCountries={uniqueCountries} numReviews={numReviews
           } numHealthyRecipes={numHealthyRecipes} /> }
           {toggleFavorites && (
             <>
-            <h1 className="tab-title">{favorites.length} FAVORITES</h1>
+            <h1 className="tab-title">{favorites.length} {favorites.length === 1 ? "FAVORITE" : "FAVORITES"}</h1>
             <div id="favorites-container">
               {favorites.map((favorite) => {
                   return (
@@ -257,7 +240,7 @@ function Profile(props) {
           )}
           {toggleReviews && (
             <>
-            <h1 className="tab-title">{userReviews.length} REVIEWS</h1>
+            <h1 className="tab-title">{userReviews.length} {userReviews.length === 1 ? "REVIEW" : "REVIEWS"}</h1>
             <div id="profile-reviews-container">
               {userReviews.map((review, i) => (
                 <ReviewsTiles
@@ -270,9 +253,12 @@ function Profile(props) {
             </>
           )}
           {toggleCompleted && (
+            <>
+            <h1 className="tab-title">{completedRecipes.length} {completedRecipes.length === 1 ? "COMPLETED RECIPE" : "COMPLETED RECIPES"}</h1>
             <div id="completed-container">
-            <CompletedRecipes recipes={completedRecipes} />
-          </div>
+              <CompletedRecipes recipes={completedRecipes} />
+            </div>
+            </>
           )}
         </div>
       </div>
