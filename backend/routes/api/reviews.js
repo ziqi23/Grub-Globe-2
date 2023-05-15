@@ -31,7 +31,11 @@ router.get("/user/:userId", async (req, res, next) => {
   try {
     const reviews = await Review.find({ user: user._id })
       .sort({ createdAt: -1 })
-      .populate("user", "_id firstName lastName username profilePhoto");
+      .populate("user", "_id firstName lastName username profilePhoto")
+      .populate({
+        path: 'recipe',
+        select: 'recipeName country photoUrl'
+      });
     return res.json(reviews);
   } catch (err) {
     return res.json([]);

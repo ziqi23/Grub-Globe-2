@@ -5,6 +5,8 @@ const BadgesProgressBar = ({badge}) => {
 
     const levels = ["Rookie", "Adept", "Expert", "Wizardly", "Legendary"]
 
+    // get all your recipes and count it --> total count / 25 * 100
+
     return (
         <div className="badge-info-container">
             <img src={badge.icon} alt="icon" />

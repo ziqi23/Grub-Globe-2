@@ -11,7 +11,7 @@
 .badge-info-container {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 90%;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -25,7 +25,7 @@
 
 .RSPBprogressBar {
     margin-top: 30px;
-    width: 60%;
+    width: 70%;
     /* display:flex; */
     box-sizing: border-box;
 }

@@ -11,6 +11,7 @@ import { fetchRecipe } from "../../store/recipes";
 import FavoritesTile from "./FavoritesTile";
 import BadgesIndex from "./BadgesIndex";
 import { fetchUserReviews } from "../../store/reviews";
+import ReviewsTiles from "./ReviewsTile";
 
 // Favorites integration and ability to unfavorite from page
 
@@ -23,6 +24,7 @@ function Profile(props) {
 
   useEffect(() => {
     dispatch(fetchUserReviews(sessionUser._id));
+    console.log(userReviews)
   }, [dispatch, sessionUser]);
 
   //you can pull number of users's reviews using userReviews.length, or look at reviews themselves using userReviews
@@ -36,6 +38,7 @@ function Profile(props) {
   // for toggling profile nav
   const [toggleBadges, setToggleBadges] = useState(true);
   const [toggleFavorites, setToggleFavorites] = useState(false);
+  const [toggleReviews, setToggleReviews] = useState(false);
 
   // for users acquired badges; can choose which one to display
 
@@ -70,7 +73,7 @@ function Profile(props) {
   }
 
   const toggleNav = (selectedTab) => {
-    const tabs = ["badges", "favorites"];
+    const tabs = ["badges", "favorites", "reviews"];
     let setFalse = [];
     tabs.forEach((tab) => {
       let setState;
@@ -81,6 +84,9 @@ function Profile(props) {
           break;
         case "favorites":
           setState = setToggleFavorites;
+          break;
+        case "reviews":
+          setState = setToggleReviews;
           break;
         default:
           throw Error("Unknown field");
@@ -155,7 +161,12 @@ function Profile(props) {
             >
               Favorites
             </h1>
-            <h1>Reviews</h1>
+            <h1
+              onClick={() => toggleNav("reviews")}
+              className={toggleReviews ? "active" : ""}
+            >
+              Reviews
+            </h1>
             <h1>Completed Recipes</h1>
           </div>
           {toggleBadges && <BadgesIndex />}
@@ -170,6 +181,16 @@ function Profile(props) {
                     ></FavoritesTile>
                   );
                 })}
+            </div>
+          )}
+          {toggleReviews && (
+            <div id="profile-reviews-container">
+              {userReviews.map((review, i) => (
+                <ReviewsTiles
+                  key={i}
+                  review={review}
+                />
+              ))}
             </div>
           )}
         </div>
