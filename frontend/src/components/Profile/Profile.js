@@ -9,27 +9,38 @@ import { useDispatch } from "react-redux";
 import { getCurrentUser } from "../../store/session";
 import { fetchRecipe } from "../../store/recipes";
 import FavoritesTile from "./FavoritesTile";
-import BadgesIndex from "./BadgesIndex"
+import BadgesIndex from "./BadgesIndex";
+import { fetchUserReviews } from "../../store/reviews";
 
 // Favorites integration and ability to unfavorite from page
 
 function Profile(props) {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    // for uploading profile photo
-    const Buffer = require('buffer/').Buffer
-    const [uploadPanelOpen, setUploadPanelOpen] = useState(false)
-    const [photoFile, setPhotoFile] = useState(null);
-    const [updatePhoto, setUpdatePhoto] = useState(false);
+  // for user's reviews
+  const userReviews = useSelector((state) => Object.values(state.reviews.user));
+  const sessionUser = useSelector((state) => state.session.user);
 
-    // for toggling profile nav
-    const [toggleBadges, setToggleBadges] = useState(true);
-    const [toggleFavorites, setToggleFavorites] = useState(false);
+  useEffect(() => {
+    dispatch(fetchUserReviews(sessionUser._id));
+  }, [dispatch, sessionUser]);
 
-    // for users acquired badges; can choose which one to display
+  //you can pull number of users's reviews using userReviews.length, or look at reviews themselves using userReviews
 
-    const user = useSelector(state => state.session.user)
-    const favorites = useSelector(state => state.favorites)
+  // for uploading profile photo
+  const Buffer = require("buffer/").Buffer;
+  const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
+  const [photoFile, setPhotoFile] = useState(null);
+  const [updatePhoto, setUpdatePhoto] = useState(false);
+
+  // for toggling profile nav
+  const [toggleBadges, setToggleBadges] = useState(true);
+  const [toggleFavorites, setToggleFavorites] = useState(false);
+
+  // for users acquired badges; can choose which one to display
+
+  const user = useSelector((state) => state.session.user);
+  const favorites = useSelector((state) => state.favorites);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -64,24 +75,24 @@ function Profile(props) {
     tabs.forEach((tab) => {
       let setState;
       switch (tab) {
-        case 'badges':
+        case "badges":
           setState = setToggleBadges;
-          console.log("hello")
+          console.log("hello");
           break;
-        case 'favorites':
-          setState = setToggleFavorites
+        case "favorites":
+          setState = setToggleFavorites;
           break;
-        default: 
-          throw Error('Unknown field')
+        default:
+          throw Error("Unknown field");
       }
       if (tab !== selectedTab && setState) {
-        setFalse.push(setState)
+        setFalse.push(setState);
       } else {
-        setState(true)
+        setState(true);
       }
-    })
-    return setFalse.forEach(setState => setState(false))
-  }
+    });
+    return setFalse.forEach((setState) => setState(false));
+  };
 
   return (
     <div className="profile-page-root">
@@ -128,35 +139,38 @@ function Profile(props) {
                 Chef {user.firstName} {user.lastName}
               </h1>
             </div>
-
           </div>
         </div>
         <div className="profile-page-right">
           <div className="profile-nav-bar">
-            <h1 
-              className={toggleBadges ? "active" : ""} 
-              onClick={() =>toggleNav("badges")}
-              >Badges & Achievements
+            <h1
+              className={toggleBadges ? "active" : ""}
+              onClick={() => toggleNav("badges")}
+            >
+              Badges & Achievements
             </h1>
-            <h1 
+            <h1
               onClick={() => toggleNav("favorites")}
               className={toggleFavorites ? "active" : ""}
-              >Favorites
+            >
+              Favorites
             </h1>
             <h1>Reviews</h1>
             <h1>Completed Recipes</h1>
-
           </div>
-          {toggleBadges && <BadgesIndex /> }
+          {toggleBadges && <BadgesIndex />}
           {toggleFavorites && (
             <div id="favorites-container">
-            {favorites &&
-              Object.values(favorites).map((favorite) => {
-                return (
-                  <FavoritesTile key={favorite.recipe._id} recipe={favorite.recipe}></FavoritesTile>
-                );
-              })}
-          </div>
+              {favorites &&
+                Object.values(favorites).map((favorite) => {
+                  return (
+                    <FavoritesTile
+                      key={favorite.recipe._id}
+                      recipe={favorite.recipe}
+                    ></FavoritesTile>
+                  );
+                })}
+            </div>
           )}
         </div>
       </div>
