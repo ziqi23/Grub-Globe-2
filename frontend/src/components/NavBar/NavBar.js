@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Modal } from "../../context/Modal";
 import SignupForm from "../SessionForms/SignUpForm";
 import { MdExitToApp } from "react-icons/md";
+import {login} from "../../store/session";
 
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
@@ -22,15 +23,22 @@ function NavBar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
 
+  const continueAsDemoUser = async (e) => {
+    e.preventDefault();
+
+    const demoUser = { email: "demo-user@appacademy.io", password: "starwars" };
+    const res = await dispatch(login(demoUser));
+  };
+
   if (loggedIn) {
     return (
       <div className="nav-bar">
         <Link to="#">
           <div>link 1</div>
         </Link>
-        <Link to="#">
+        {/* <Link to="#">
           <div>link 2</div>
-        </Link>
+        </Link> */}
         <Link to="/profile">
           <div>Profile</div>
         </Link>
@@ -50,6 +58,7 @@ function NavBar() {
         <div className="nav-bar">
           <div onClick={() => setShowSignupModal(true)}>Signup</div>
           <div onClick={() => setShowLoginModal(true)}>Login</div>
+          <div onClick={continueAsDemoUser}>Continue as Demo User</div>
         </div>
         {showLoginModal && (
           <Modal onClose={() => setShowLoginModal(false)}>
