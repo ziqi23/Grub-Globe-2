@@ -6,8 +6,8 @@ const Recipe = mongoose.model('Recipe');
 router.get('/', async (req, res) => {
     
   const query = req.query.q;
-  console.log(query)
   const queryArray = query.split(" , ");
+
   if (queryArray.length === 1) {
       try {
         const recipes = await Recipe.find({
@@ -20,6 +20,21 @@ router.get('/', async (req, res) => {
           ]
     
         }).sort({ createdAt: -1 });
+        console.log(recipes.length);
+        return res.json(recipes);
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal server error" });
+      }
+  } else if (queryArray.length > 1 && queryArray.every(term => ['vegan', 'vegetarian', 'gluten-free', 'dairy-free', 'sustainable'].includes(term))) {
+    try {
+        console.log('in tag search');
+        const recipes = await Recipe.find({
+          tags: {
+            $all: queryArray.map(tag => new RegExp(tag.replace(/[-\s]/g, ""), "i"))
+          }
+        }).sort({ createdAt: -1 });
+        
         console.log(recipes);
         return res.json(recipes);
       } catch (err) {
@@ -38,8 +53,7 @@ router.get('/', async (req, res) => {
             ]
           }))
         }).sort({ createdAt: -1 });
-        
-        console.log(recipes);
+        console.log(recipes.length)
         return res.json(recipes);
       } catch (err) {
         console.error(err);

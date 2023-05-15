@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import RecipeCard from "../RecipeIndexPage/RecipeCard";
 import CreatableSelect from "react-select/creatable";
 import React from "react";
 import "./Search.css";
 import { useDispatch, useSelector } from "react-redux";
-import {fetchSearchRecipes} from "../../store/recipes.js"
+import {fetchSearchRecipes} from "../../store/recipes.js";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function RecipeSearch() {
   const [query, setQuery] = useState("");
@@ -54,7 +55,9 @@ function RecipeSearch() {
         ],
     },
     ];
-
+  
+  const history = useHistory();
+  const location = useLocation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -68,7 +71,9 @@ function RecipeSearch() {
             setError("No results found.");
         } else {
             setError("");
-
+            if (location !== 'recipes' ) {
+              history.push("/recipes");
+            }
         }
     } catch (error) {
       console.error(error);

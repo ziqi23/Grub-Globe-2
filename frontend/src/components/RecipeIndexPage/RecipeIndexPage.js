@@ -13,12 +13,14 @@ const RecipeIndexPage = (props) => {
     const recipes = useSelector(state => Object.values(state.recipes))
 
     let search = location.search.substring(1);
-    search = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
+    // search = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
     // this search variable is decoded to create an object: {country: "United States"}
     
     useEffect(() => {
-        dispatch(fetchRecipes(search));
-        console.log(search)
+        if (search) {
+            dispatch(fetchRecipes(search));
+            console.log(search)
+        }
     }, [dispatch])
 
     return (

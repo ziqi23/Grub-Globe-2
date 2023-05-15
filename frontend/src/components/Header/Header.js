@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 const Header = ({openLoginModal, openSignupModal}) => {
     const location = useLocation();
     const show = location.pathname !== '/explore' && location.pathname !== '/';
-    console.log(show)
 
     return(
         <div className="header-container">
