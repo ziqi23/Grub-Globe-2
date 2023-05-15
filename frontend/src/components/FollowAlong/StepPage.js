@@ -7,6 +7,7 @@ import upArrow from "../../assets/icons/general-icons/icons8-slide-up-64.png";
 import downArrow from "../../assets/icons/general-icons/icons8-down-button-64.png";
 import "./FollowAlong.css";
 import Ingredients from "../RecipeShow/Ingredients";
+import CompleteFollowAlongButton from "./CompleteFollowAlongButton";
 
 const StepPage = ({
   step,
@@ -15,8 +16,11 @@ const StepPage = ({
   ingredients,
   setCurrentRecipeStep,
   currentRecipeStep,
-  normalStep
+  normalStep,
+  lastStep,
+  recipeId
 }) => {
+
   const [toggleIngredients, setToggleIngredients] = useState(false);
   // const [stepType, setStepType] = useState("normal");
 
@@ -27,6 +31,7 @@ const StepPage = ({
       setToggleIngredients(true);
     }
   };
+
   const handleExit = () => {
     closeFollowAlong();
     setCurrentRecipeStep("");
@@ -69,6 +74,14 @@ const StepPage = ({
             <NormalStep step={step}/>
             {/* {normalStep ? <NormalStep step={step}/> : <TimerStep step={step} />} */}
           </div>
+          {lastStep && (
+            <CompleteFollowAlongButton
+              closeFollowAlong={closeFollowAlong}
+              setCurrentRecipeStep={setCurrentRecipeStep}
+              recipeId={recipeId}
+              />
+            // <div onClick={handleFinishedFollowAlong} className="last-step-exit-button">Finished!</div>
+          )}
         </div>
       </div>
     </>

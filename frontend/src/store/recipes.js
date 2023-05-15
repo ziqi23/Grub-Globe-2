@@ -41,7 +41,7 @@ export const fetchRecipe = recipeId => async dispatch => {
     try {
         const res = await jwtFetch(`/api/recipes/${recipeId}`);
         const recipe = await res.json();
-        dispatch(receiveRecipe(recipe));
+        return dispatch(receiveRecipe(recipe));
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
@@ -68,7 +68,7 @@ const RecipesReducer = (state = {}, action) => {
             return { ...action.recipes };
         case RECEIVE_RECIPE:
             return { [action.recipe._id]: action.recipe }
-        default: 
+        default:
             return state;
     };
 };
