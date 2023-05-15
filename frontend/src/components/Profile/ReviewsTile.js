@@ -5,10 +5,16 @@ import {FcCheckmark } from "react-icons/fc";
 import {VscClose} from "react-icons/vsc"
 import {AiFillStar, AiOutlineEdit} from "react-icons/ai"
 import {RiDeleteBin6Line} from "react-icons/ri"
+import { useDispatch, useSelector } from "react-redux";
+import { deleteReview } from "../../store/reviews";
+import { fetchUserReviews } from "../../store/reviews";
 
 
 const ReviewsTiles = ({review}) => {
     const history = useHistory();
+    const dispatch = useDispatch();
+
+    const sessionUser = useSelector((state) => state.session.user);
 
     const formattedDate = (createdAt) => {
         const dateOptions = {
@@ -28,6 +34,25 @@ const ReviewsTiles = ({review}) => {
             </div>
             
         )
+    }
+
+    // need to work on handle edit button 
+
+    const handleReviewDelete = () => {
+        console.log(review.recipe, "recipe", review, "review");
+        dispatch(deleteReview(review._id)).then(() => {
+            dispatch(fetchUserReviews(sessionUser._id));
+        });
+      };
+
+    const editButtons = () => {
+        if (sessionUser && sessionUser._id === review.user._id){
+        return (
+            <div  className="reviews-icons-section">
+                <AiOutlineEdit className="edit-icons"/>
+                <RiDeleteBin6Line onClick={handleReviewDelete} className="edit-icons"/>
+            </div>
+        )}
     }
 
     useEffect(() => {
@@ -56,10 +81,8 @@ const ReviewsTiles = ({review}) => {
                     <p>Would Make Again</p>{review.wouldMakeAgain ? <FcCheckmark className="review-icon"/> : <VscClose className="review-x-icon"/>}
                     <p>Would Recommend </p>{review.wouldRecommend ? <FcCheckmark className="review-icon"/> : <VscClose className="review-x-icon"/>}
                 </div>
-                <div  className="reviews-icons-section">
-                    <AiOutlineEdit className="edit-icons"/>
-                    <RiDeleteBin6Line className="edit-icons"/>
-                </div>
+                {editButtons()}
+               
             </div>
 
 

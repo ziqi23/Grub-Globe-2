@@ -150,6 +150,11 @@
   color: rgb(236, 177, 66);
 }
 
+.profile-page-right .tab-title {
+  font-size: 3em;
+  text-align: center;
+  letter-spacing: -3px;
+}
 @media (max-width: 920px) {
   .profile-page-top {
     flex-direction: column;

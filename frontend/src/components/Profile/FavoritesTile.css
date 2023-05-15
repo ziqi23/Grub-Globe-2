@@ -9,10 +9,6 @@
   width: calc(100% - 20px);
 }
 
-#favorites-container * {
-  /* border: 1px solid red; */
-}
-
 #favorites-tile-container {
   flex-shrink: 0;
   width: 95%;

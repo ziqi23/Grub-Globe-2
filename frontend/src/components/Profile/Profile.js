@@ -22,6 +22,7 @@ function Profile(props) {
   const userReviews = useSelector((state) => Object.values(state.reviews.user));
   const sessionUser = useSelector((state) => state.session.user);
 
+
   useEffect(() => {
     dispatch(fetchUserReviews(sessionUser._id));
     console.log(userReviews)
@@ -43,7 +44,7 @@ function Profile(props) {
   // for users acquired badges; can choose which one to display
 
   const user = useSelector((state) => state.session.user);
-  const favorites = useSelector((state) => state.favorites);
+  const favorites = useSelector((state) => Object.values(state.favorites));
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -171,9 +172,10 @@ function Profile(props) {
           </div>
           {toggleBadges && <BadgesIndex />}
           {toggleFavorites && (
+            <>
+            <h1 className="tab-title">{favorites.length} FAVORITES</h1>
             <div id="favorites-container">
-              {favorites &&
-                Object.values(favorites).map((favorite) => {
+              {favorites.map((favorite) => {
                   return (
                     <FavoritesTile
                       key={favorite.recipe._id}
@@ -182,8 +184,11 @@ function Profile(props) {
                   );
                 })}
             </div>
+            </>
           )}
           {toggleReviews && (
+            <>
+            <h1 className="tab-title">{userReviews.length} REVIEWS</h1>
             <div id="profile-reviews-container">
               {userReviews.map((review, i) => (
                 <ReviewsTiles
@@ -192,6 +197,8 @@ function Profile(props) {
                 />
               ))}
             </div>
+            
+            </>
           )}
         </div>
       </div>
