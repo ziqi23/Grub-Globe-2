@@ -18,7 +18,9 @@ router.get("/", requireUser, async (req, res, next) => {
     return next(error);
   }
   try {
-    const favorites = await Favorite.find({ user: user }).sort({
+    const favorites = await Favorite.find({ user: user })
+    .populate('recipe', '_id country recipeName recipeAuthor ingredients nutrition prepTime servings recipeInstructions tags youtubeLinks photoUrl')
+    .sort({
       createdAt: -1,
     });
     return res.json(favorites);

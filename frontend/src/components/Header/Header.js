@@ -1,19 +1,26 @@
-import './Header.css'
-import NavBar from '../NavBar/NavBar';
-import RecipeSearch from '../SearchBar/Search';
-import { useLocation } from 'react-router-dom';
+import "./Header.css";
+import NavBar from "../NavBar/NavBar";
+import RecipeSearch from "../SearchBar/Search";
+import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const Header = ({openLoginModal, openSignupModal}) => {
-    const location = useLocation();
-    const show = location.pathname !== '/explore' && location.pathname !== '/';
+const Header = ({ openLoginModal, openSignupModal }) => {
+  const location = useLocation();
+  const history = useHistory();
+  const show = location.pathname !== "/explore" && location.pathname !== "/";
 
-    return(
-        <div className="header-container">
-            <div className="logo"><h1>grubGlobe</h1></div>
-            {show && <RecipeSearch />}
-            <NavBar openLoginModal={openLoginModal} openSignupModal={openSignupModal}/>
-        </div>
-    )
+  return (
+    <div className="header-container">
+      <div onClick={() => history.push("/")} className="logo">
+        <h1>grubGlobe</h1>
+      </div>
+      {show && <RecipeSearch />}
+      <NavBar
+        openLoginModal={openLoginModal}
+        openSignupModal={openSignupModal}
+      />
+    </div>
+  );
 };
 
 export default Header;

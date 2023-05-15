@@ -9,6 +9,7 @@
 #explore-page-main {
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 }
 #explore-page-globe {
     /* width: 1000px; */

@@ -16,7 +16,7 @@ const FavHeart = ({ favorites, recipe }) => {
   let fav;
   if (favorites) {
     favorites.forEach((favorite) => {
-      if (favorite.recipe === recipe?._id) {
+      if (favorite.recipe._id === recipe?._id) {
         fav = favorite;
       }
     });
@@ -32,7 +32,7 @@ const FavHeart = ({ favorites, recipe }) => {
 
   if (!sessionUser)
     return (
-      <div>
+      <div id="heart-div">
         <FaHeart id="recipe-heart" className="recipe-heart-unauth" />
       </div>
     );

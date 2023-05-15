@@ -30,6 +30,7 @@
   color: #f1f1f1;
   text-shadow: 7px 7px 14px #e0e0e0, -7px -7px 14px #ffffff;
   cursor: default;
+  font-size: 13vh;
 }
 
 .recipe-index-title {
@@ -55,6 +56,10 @@
 
 .recipes-index .swiper-slide:nth-child(odd) .recipe-card {
   background-color: #dde5b6;
+}
+
+.recipes-index .swiper-slide:nth-child(even) .recipe-card p {
+  color: rgb(233, 232, 231);
 }
 
 .recipe-card {
@@ -170,6 +175,20 @@
   color: #353535 !important;
 }
 
+.country-container {
+  display: flex;
+  color: rgb(46, 46, 46);
+  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.country-container .map-pin {
+  width: 30px;
+  height: 30px;
+  box-shadow: none;
+}
+
 @media (max-width: 1978px) {
   .recipe-card {
     width: 90%;
@@ -187,6 +206,8 @@
     font-size: 30px;
   }
 }
+
+
 
 #view-recipe-and-heart-container #heart-div {
   position: absolute;
