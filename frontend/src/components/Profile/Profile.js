@@ -11,6 +11,7 @@ import { fetchRecipe } from "../../store/recipes";
 import FavoritesTile from "./FavoritesTile";
 import BadgesIndex from "./BadgesIndex";
 import { fetchUserReviews } from "../../store/reviews";
+import CompletedRecipes from "./CompletedRecipes";
 
 // Favorites integration and ability to unfavorite from page
 
@@ -27,6 +28,9 @@ function Profile(props) {
 
   //you can pull number of users's reviews using userReviews.length, or look at reviews themselves using userReviews
 
+    // for storing completed recipes
+    const [completedRecipes, setCompletedRecipes] = useState([]);
+
   // for uploading profile photo
   const Buffer = require("buffer/").Buffer;
   const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
@@ -36,16 +40,53 @@ function Profile(props) {
   // for toggling profile nav
   const [toggleBadges, setToggleBadges] = useState(true);
   const [toggleFavorites, setToggleFavorites] = useState(false);
+  const [toggleCompleted, setToggleCompleted] = useState(false);
 
   // for users acquired badges; can choose which one to display
 
   const user = useSelector((state) => state.session.user);
   const favorites = useSelector((state) => state.favorites);
 
+  // for badges
+  const [numReviews, setNumReviews] = useState(0);
+  const [numHealthyRecipes, setNumHealthyRecipes] = useState(0);
+  const [numCompleted, setNumCompleted] = useState(0);
+  const [uniqueCountries, setUniqueCountries] = useState(0);
+
   useEffect(() => {
     dispatch(getCurrentUser());
     dispatch(fetchFavorites());
   }, []);
+
+  useEffect(() => {
+    if (user && user.completedRecipe) {
+
+      const fetchPromises = user.completedRecipe.map(({ recipeId }) =>
+        dispatch(fetchRecipe(recipeId)));
+
+      Promise.all(fetchPromises)
+        .then(fetchedRecipes => {
+          setCompletedRecipes(fetchedRecipes);
+          console.log("fetchedRecipes", fetchedRecipes);
+          const numComplete = fetchedRecipes.length;
+          const uniqueCountry = new Set(fetchedRecipes.map(recipe => {
+            return recipe.recipe.country;
+        }));
+
+        const numHealthy = fetchedRecipes.filter(recipe => recipe.recipe.tags.includes('vegetarian') || recipe.recipe.tags.includes('vegan') || recipe.recipe.tags.includes('glutenFree')).length;
+        const reviewsCount = userReviews.length;
+        console.log("numHealthy", numHealthy);
+
+        setNumCompleted(numComplete);
+        setUniqueCountries(uniqueCountry.size);
+        setNumReviews(reviewsCount);
+        setNumHealthyRecipes(numHealthy);
+        })
+        .catch(error => {
+        console.error("Error fetching recipes: ", error);
+        });
+    }
+  }, [user, dispatch]);
 
   let bufferArr;
   let image;
@@ -70,7 +111,7 @@ function Profile(props) {
   }
 
   const toggleNav = (selectedTab) => {
-    const tabs = ["badges", "favorites"];
+    const tabs = ["badges", "favorites", "completed"];
     let setFalse = [];
     tabs.forEach((tab) => {
       let setState;
@@ -82,8 +123,11 @@ function Profile(props) {
         case "favorites":
           setState = setToggleFavorites;
           break;
+        case 'completed':
+          setState = setToggleCompleted
+          break;
         default:
-          throw Error("Unknown field");
+          throw Error('Unknown field')
       }
       if (tab !== selectedTab && setState) {
         setFalse.push(setState);
@@ -156,9 +200,17 @@ function Profile(props) {
               Favorites
             </h1>
             <h1>Reviews</h1>
-            <h1>Completed Recipes</h1>
+            <h1
+              onClick={() => {
+                toggleNav("completed")
+                console.log(toggleCompleted);
+              }}
+              className={toggleCompleted ? "active": ""}
+              >Completed Recipes
+            </h1>
           </div>
-          {toggleBadges && <BadgesIndex />}
+          {toggleBadges && <BadgesIndex numCompleted={numCompleted} uniqueCountries={uniqueCountries} numReviews={numReviews
+          } numHealthyRecipes={numHealthyRecipes} /> }
           {toggleFavorites && (
             <div id="favorites-container">
               {favorites &&
@@ -171,6 +223,11 @@ function Profile(props) {
                   );
                 })}
             </div>
+          )}
+          {toggleCompleted && (
+            <div id="completed-container">
+            <CompletedRecipes recipes={completedRecipes} />
+          </div>
           )}
         </div>
       </div>

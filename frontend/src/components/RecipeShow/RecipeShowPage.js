@@ -43,7 +43,7 @@ const RecipeShowPage = () => {
       <h2>{tag}</h2>
     </div>
   ));
-  
+
   const [toggleFollowAlong, setToggleFollowAlong] = useState(false);
   const [currentRecipeStep, setCurrentRecipeStep] = useState("");
 
@@ -68,7 +68,7 @@ const RecipeShowPage = () => {
   // const mapTags = (tags) => {
   //   return tags.map((tag, i, tags) => {i === (tags.length - 1) ? `${tag.name}` :`${tag.name}, `})
   // }
-  
+
   const handleMouseLeave = (e) => {
     e.preventDefault()
     setTooltipOpen(-1)
@@ -115,15 +115,6 @@ const RecipeShowPage = () => {
                 <h2>Servings </h2>
                 <p>{recipe?.servings}</p>
               </div>
-
-              {/* iterate through tags here and create div */}
-              {/* {recipe?.tags.map((tag, i) => (
-                  <div>
-                    <img className="icon" src={icons.tag} alt={`${tag} icon`} />
-                    <h2>{tag}</h2>
-                  </div>
-                ))} */}
-              {/* d */}
               {displayTags?.map((tag) => tag)}
             </div>
 
@@ -144,7 +135,7 @@ const RecipeShowPage = () => {
               </div>
             </div>
             {/* <div className="youtube-links-container">
-                {recipe?.youtubeLinks.map((link, i) => 
+                {recipe?.youtubeLinks.map((link, i) =>
                   <iframe src={link}></iframe>
                 )}
             </div> */}
@@ -167,6 +158,7 @@ const RecipeShowPage = () => {
           recipeIngredients={recipe?.ingredients}
           setCurrentRecipeStep={setCurrentRecipeStep}
           currentRecipeStep={currentRecipeStep}
+          recipeId={recipeId}
         />
       )}
 
