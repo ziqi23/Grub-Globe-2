@@ -6,11 +6,12 @@ const CompletedRecipes = ({recipes}) => {
   const history = useHistory();
   return(
     <>
-      {recipes.map((recipe) => (
+      {recipes && recipes.map((recipe) => {
+        return (
         <div
-          onClick={() => history.push(`/recipes/${recipe.recipeId}`)}
+          onClick={() => history.push(`/recipes/${recipe.recipe._id}`)}
           id="completed-recipe-tile-container"
-          key={recipe.recipeId}
+          key={recipe._id}
         >
           <div className="image-placeholder">
             <img
@@ -25,7 +26,8 @@ const CompletedRecipes = ({recipes}) => {
           </div>
           <h1>{recipe.recipe.recipeName}</h1>
         </div>
-      ))}
+      )
+    })}
     </>
   )
 }

@@ -10,7 +10,7 @@ import { getCurrentUser } from "../../store/session";
 import { fetchRecipe } from "../../store/recipes";
 import FavoritesTile from "./FavoritesTile";
 import BadgesIndex from "./BadgesIndex"
-import CompletedRecipes from "./CompletedReciped";
+import CompletedRecipes from "./CompletedRecipes";
 
 // Favorites integration and ability to unfavorite from page
 
@@ -36,6 +36,12 @@ function Profile(props) {
     const user = useSelector(state => state.session.user)
     const favorites = useSelector(state => state.favorites)
 
+    // for badges
+    const [numReviews, setNumReviews] = useState(0);
+    const [numHealthyRecipes, setNumHealthyRecipes] = useState(0);
+    const [numCompleted, setNumCompleted] = useState(0);
+    const [uniqueCountries, setUniqueCountries] = useState(0);
+
   useEffect(() => {
     dispatch(getCurrentUser());
     dispatch(fetchFavorites());
@@ -50,13 +56,20 @@ function Profile(props) {
       Promise.all(fetchPromises)
         .then(fetchedRecipes => {
           setCompletedRecipes(fetchedRecipes);
-          const numCompleted = fetchedRecipes.length;
-          const uniqueCountries = new Set(fetchedRecipes.map(recipe => {
+          console.log("fetchedRecipes", fetchedRecipes);
+          const numComplete = fetchedRecipes.length;
+          const uniqueCountry = new Set(fetchedRecipes.map(recipe => {
             return recipe.recipe.country;
         }));
 
-          const badges = getBadge(numCompleted, uniqueCountries.size);
-          console.log("Badges: ", badges);
+        const numHealthy = fetchedRecipes.filter(recipe => recipe.recipe.tags.includes('vegetarian') || recipe.recipe.tags.includes('vegan') || recipe.recipe.tags.includes('glutenFree')).length;
+        const reviewsCount = userReviews.length;
+        console.log("numHealthy", numHealthy);
+
+        setNumCompleted(numComplete);
+        setUniqueCountries(uniqueCountry.size);
+        setNumReviews(reviewsCount);
+        setNumHealthyRecipes(numHealthy);
         })
         .catch(error => {
         console.error("Error fetching recipes: ", error);
@@ -184,7 +197,8 @@ function Profile(props) {
               >Completed Recipes
             </h1>
           </div>
-          {toggleBadges && <BadgesIndex /> }
+          {toggleBadges && <BadgesIndex numCompleted={numCompleted} uniqueCountries={uniqueCountries} numReviews={numReviews
+          } numHealthyRecipes={numHealthyRecipes} /> }
           {toggleFavorites && (
             <div id="favorites-container">
             {favorites &&
@@ -196,7 +210,9 @@ function Profile(props) {
           </div>
           )}
           {toggleCompleted && (
+            <div id="completed-container">
             <CompletedRecipes recipes={completedRecipes} />
+          </div>
           )}
         </div>
       </div>

@@ -114,9 +114,6 @@ router.patch('/complete-recipe', validateCompleteRecipeInput, async function(req
       user = await User.findByIdAndUpdate(userId,
         { $push: { "completedRecipe": {recipeId: recipeId } }}, { new: true }
       );
-
-      // user = await User.findById(userId).populate('completedRecipe')
-      // return res.json(user);
     }
 
   } catch (err) {
