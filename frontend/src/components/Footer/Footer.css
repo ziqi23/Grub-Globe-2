@@ -2,7 +2,7 @@
     /* border: 1px solid red; */
     width: 50%;
     position: absolute;
-    bottom: 0;
+    bottom: 15px;
     right: 0;
     height: 100px;
     display: flex;

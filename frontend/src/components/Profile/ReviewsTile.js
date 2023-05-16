@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./ReviewsTile.css"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import {FcCheckmark } from "react-icons/fc";
@@ -8,6 +8,8 @@ import {RiDeleteBin6Line} from "react-icons/ri"
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReview } from "../../store/reviews";
 import { fetchUserReviews } from "../../store/reviews";
+import { updateReview } from "../../store/reviews";
+import StarRatingInput from "../Reviews/stars";
 
 
 const ReviewsTiles = ({review}) => {
@@ -15,6 +17,76 @@ const ReviewsTiles = ({review}) => {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session.user);
+
+    // edit review mode
+    const [editMode, setEditMode] = useState(false);
+    const [title, setTitle] = useState("");
+    const [text, setText] = useState("");
+    const [wouldMakeAgain, setWouldMakeAgain] = useState(true);
+    const [wouldRecommend, setWouldRecommend] = useState(true);
+    const [starRating, setStarRating] = useState(5);
+
+    const reviewHTML = () => {
+        if (editMode) {
+            return (
+                <>
+                {starRatings()}
+                <input 
+                    type="text" 
+                    value={title} 
+                    onChange={(e) => setTitle(e.target.value)} 
+                    class="reviews-tile-title-input"
+                />
+                <textarea 
+                    type="textarea" 
+                    value={text} 
+                    onChange={(e) => setText(e.target.value)} 
+                    class="reviews-tile-text-input"
+                />
+                <div className="reviews-icons-section">
+                    <p>Would Make Again</p>
+                    <FcCheckmark 
+                        onClick={() => setWouldMakeAgain(true)}
+                        className={wouldMakeAgain ? "selected-icon" : "review-icon" }/> 
+                    <VscClose 
+                        onClick={() => setWouldMakeAgain(false)}
+                        className={wouldMakeAgain ? "review-x-icon" : "review-selected-x-icon" }/>
+                    <p>Would Recommend</p>
+                    <FcCheckmark 
+                        onClick={() => setWouldRecommend(true)}
+                        className={wouldRecommend ? "selected-icon" : "review-icon" }/> 
+                    <VscClose 
+                        onClick={() => setWouldRecommend(false)}
+                        className={wouldRecommend ? "review-x-icon" : "review-selected-x-icon" }/>
+                </div>
+                {editButtons()}
+                </>
+            )
+        } else if (!editMode) {
+            return (
+                <>
+                    {starRatings()}
+                    <h2>{review.title}</h2>
+                    <p>{review.text}</p>
+                    <div className="reviews-icons-section">
+                        <p>Would Make Again</p>{review.wouldMakeAgain ? <FcCheckmark className="review-icon"/> : <VscClose className="review-x-icon"/>}
+                        <p>Would Recommend </p>{review.wouldRecommend ? <FcCheckmark className="review-icon"/> : <VscClose className="review-x-icon"/>}
+                    </div>
+                    {editButtons()}
+                </>
+            )
+        }
+    };
+
+
+
+    useEffect(() => {
+        setTitle(review.title);
+        setText(review.text);
+        setWouldMakeAgain(review.wouldMakeAgain);
+        setWouldRecommend(review.wouldRecommend);
+        setStarRating(review.starRating)
+    }, [editMode])
 
     const formattedDate = (createdAt) => {
         const dateOptions = {
@@ -26,14 +98,24 @@ const ReviewsTiles = ({review}) => {
     };
 
     const starRatings = () => {
-        return (
-            <div className="prof-star-ratings">
-                {[1, 2, 3, 4, 5].map((rating, i) => (
-                    <AiFillStar className={rating <= review.starRating ? "filled" : "empty"}/>
-                ))}
-            </div>
-            
-        )
+        if (editMode) {
+            return (
+                <div className="prof-star-ratings">
+                    {[1, 2, 3, 4, 5].map((rating, i) => (
+                        <AiFillStar key={i} onClick={() => setStarRating(rating)} className={rating <= review.starRating ? "filled" : "empty"}/>
+                    ))}
+                </div>
+            )
+        } else if (!editMode) {
+            return (
+                <div className="prof-star-ratings">
+                    {[1, 2, 3, 4, 5].map((rating, i) => (
+                        <AiFillStar className={rating <= review.starRating ? "filled" : "empty"}/>
+                    ))}
+                </div>
+                
+            )
+        }
     }
 
     // need to work on handle edit button 
@@ -45,19 +127,39 @@ const ReviewsTiles = ({review}) => {
         });
       };
 
+    const handleUpdate = (e) => {
+        console.log("handling update")
+        e.preventDefault();
+        const reviewContents = {
+            title,
+            text,
+            wouldMakeAgain,
+            wouldRecommend,
+            starRating,
+            recipe: review.recipe._id,
+          };
+        if (editMode) {
+            dispatch(updateReview(reviewContents, review._id)).then(() => {
+                dispatch(fetchUserReviews(sessionUser._id));
+            });
+        }
+        setEditMode(false);
+    }
+
     const editButtons = () => {
         if (sessionUser && sessionUser._id === review.user._id){
         return (
-            <div  className="reviews-icons-section">
-                <AiOutlineEdit className="edit-icons"/>
-                <RiDeleteBin6Line onClick={handleReviewDelete} className="edit-icons"/>
-            </div>
+            <>
+                <div  className="reviews-icons-section">
+                    <AiOutlineEdit onClick={() => setEditMode(true)}className="edit-icons"/>
+                    <RiDeleteBin6Line onClick={handleReviewDelete} className="edit-icons"/>
+                </div>
+                {editMode && (
+                    <button onClick={handleUpdate}>Update!</button>
+                )}
+            </>
         )}
     }
-
-    useEffect(() => {
-        console.log(formattedDate(review.createdAt))
-    }, [])
 
     return (
         <div className="reviews-tile-container">
@@ -73,15 +175,9 @@ const ReviewsTiles = ({review}) => {
             </div>
             <div className="reviews-tile-middle">
                 <p>{formattedDate(review.createdAt)}</p>
-                {starRatings()}
-                <h2>{review.title}</h2>
-                {/* <p>{review.text}</p> */}
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
-                <div className="reviews-icons-section">
-                    <p>Would Make Again</p>{review.wouldMakeAgain ? <FcCheckmark className="review-icon"/> : <VscClose className="review-x-icon"/>}
-                    <p>Would Recommend </p>{review.wouldRecommend ? <FcCheckmark className="review-icon"/> : <VscClose className="review-x-icon"/>}
-                </div>
-                {editButtons()}
+ 
+                {reviewHTML()}
+                
                
             </div>
 

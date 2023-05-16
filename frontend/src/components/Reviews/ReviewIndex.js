@@ -38,13 +38,13 @@ const ReviewIndex = ({ recipeId }) => {
 
   return (
     <>
-      <div className="review-index-container">
         {composeReviewSection()}
         <h1 className="review-index-container-title">
           {recipeReviews.length > 0
             ? "Reviews"
             : "No reviews yet - get cookin'!"}
         </h1>
+      <div className="review-index-container">
         {recipeReviews.map((review, i) => (
           <ReviewBox key={i} review={review} />
         ))}
