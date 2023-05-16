@@ -4,6 +4,7 @@ import { Modal } from "../../context/Modal";
 import LoginForm from "../SessionForms/LoginForm";
 import SignupForm from "../SessionForms/SignUpForm";
 import { addCompletedRecipe } from "../../store/session";
+import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const CompleteFollowAlongButton = ({
     closeFollowAlong,
@@ -11,6 +12,7 @@ const CompleteFollowAlongButton = ({
     recipeId
 }) => {
     const dispatch = useDispatch();
+    const location = useLocation();
 
 
     const sessionUser = useSelector((state) => state.session.user);
@@ -29,6 +31,7 @@ const CompleteFollowAlongButton = ({
         }
 
         dispatch(addCompletedRecipe(completedRecipeObj));
+        window.location.reload();
 
     }
 

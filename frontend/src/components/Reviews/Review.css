@@ -1,12 +1,11 @@
 .review-index-container {
   margin: auto;
   width: 80%;
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: 10px 0px;
+  gap: 20px;
 }
 
 .review-box-container {
@@ -195,6 +194,7 @@
 }
 
 .review-box-container {
+  margin: 0 auto;
   background-color: #ebebeb;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -250,6 +250,8 @@
 #write-review-title {
   font-size: 2em;
   padding-bottom: 20px;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .errors {
