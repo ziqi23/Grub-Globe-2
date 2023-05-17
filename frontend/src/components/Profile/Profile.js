@@ -77,8 +77,7 @@ function Profile(props) {
         }));
 
         const numHealthy = fetchedRecipes.filter(recipe => recipe.recipe.tags.includes('vegetarian') || recipe.recipe.tags.includes('vegan') || recipe.recipe.tags.includes('glutenFree')).length;
-        const reviewsCount = userReviews.length;
-        console.log("numHealthy", userReviews);
+        const reviewsCount = userReviews?.length;
 
         setNumCompleted(numComplete);
         setUniqueCountries(uniqueCountry.size);
