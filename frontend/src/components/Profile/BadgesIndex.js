@@ -13,19 +13,8 @@ const BadgesIndex = ({numCompleted, numReviews, uniqueCountries, numHealthyRecip
 
     const calculateBadgeProgress = (progress) => {
             return (progress / 20) * 100
-        // if (progress >= 25) {
-        //     return 100;
-        // } else if (progress >= 20) {
-        //     return 75;
-        // } else if (progress >= 15) {
-        //     return 50;
-        // } else if (progress >=10) {
-        //     return 25;
-        // } else if (progress >=5) {
-        //     return 0;
-        // }
-        // return 0;
     }
+    
     const badges = {
         explorer: {
             title: "Global Gastronaut",

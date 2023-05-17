@@ -31,8 +31,8 @@ function Profile(props) {
 
   //you can pull number of users's reviews using userReviews.length, or look at reviews themselves using userReviews
 
-    // for storing completed recipes
-    const [completedRecipes, setCompletedRecipes] = useState([]);
+  // for storing completed recipes
+  const [completedRecipes, setCompletedRecipes] = useState([]);
 
   // for uploading profile photo
   const Buffer = require("buffer/").Buffer;
@@ -264,7 +264,6 @@ function Profile(props) {
                     ></FavoritesTile>
                   );
                 })}
-              {/* <CompletedRecipes recipes={completedRecipes} /> */}
             </div>
             </>
           )}

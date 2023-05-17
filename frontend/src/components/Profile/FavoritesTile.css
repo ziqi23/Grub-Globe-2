@@ -5,7 +5,6 @@
   display: grid;
   grid-template-columns: 24% 24% 24% 24%;
   gap: 10px;
-  /* overflow-x: scroll; */
   width: calc(100% - 20px);
 }
 

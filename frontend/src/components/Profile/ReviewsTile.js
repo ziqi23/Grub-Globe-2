@@ -78,8 +78,6 @@ const ReviewsTiles = ({review}) => {
         }
     };
 
-
-
     useEffect(() => {
         setTitle(review.title);
         setText(review.text);
@@ -121,22 +119,17 @@ const ReviewsTiles = ({review}) => {
                         <AiFillStar className={rating <= review.starRating ? "filled" : "empty"}/>
                     ))}
                 </div>
-                
             )
         }
     }
 
-    // need to work on handle edit button 
-
     const handleReviewDelete = () => {
-        console.log(review.recipe, "recipe", review, "review");
         dispatch(deleteReview(review._id)).then(() => {
             dispatch(fetchUserReviews(sessionUser._id));
         });
       };
 
     const handleUpdate = (e) => {
-        console.log("handling update")
         e.preventDefault();
         const reviewContents = {
             title,
@@ -191,13 +184,8 @@ const ReviewsTiles = ({review}) => {
             </div>
             <div className="reviews-tile-middle">
                 <p>{formattedDate(review.createdAt)}</p>
- 
                 {reviewHTML()}
-                
-               
             </div>
-
-
         </div>
     );
 };

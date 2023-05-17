@@ -4,10 +4,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect } from "react";
 
 const FavoritesTile = ({ recipe }) => {
-  useEffect(() => {
-    console.log(recipe)
-  }, [])
   const history = useHistory();
+  
   return (
     <>
       <div
