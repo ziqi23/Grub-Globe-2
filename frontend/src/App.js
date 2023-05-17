@@ -61,13 +61,11 @@ function App() {
     loaded && (
       <>
         <Switch>
-          {/* <Route exact path="/" component={MainPage} /> */}
           <AuthRoute exact path="/login" component={Globe} />
           <AuthRoute exact path="/signup" component={Globe} />
 
           <Route path="/recipes/:recipeId" component={RecipeShowPage} />
           <Route exact path="/" component={Globe} />
-          {/* <Route path="/recipes/:id" component={RecipeShowPage} /> */}
           <Route path="/recipes" component={RecipeIndexPage} />
           <Route exact path="/explore" component={Globe} />
           <ProtectedRoute path="/profile" component={Profile} />

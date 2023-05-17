@@ -1,5 +1,4 @@
 #footer-container {
-    /* border: 1px solid red; */
     width: 50%;
     position: absolute;
     bottom: 15px;
@@ -7,7 +6,6 @@
     height: 100px;
     display: flex;
     text-align: center;
-    /* flex-direction: column; */
 }
 
 #footer-container h1 {
@@ -17,13 +15,10 @@
 
 #individual-contributor-footer-container  {
     height: 100%;
-    /* border: 1px solid green; */
     width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /* align-items: ; */
-
 }
 
 .social-links {
