@@ -52,7 +52,7 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
     setIsLoading(true);
 
     try {
-      const response = await jwtFetch("/api/generate", {
+      const response = await jwtFetch("/api/generateDavinci", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,7 +1,9 @@
 import { useState } from "react";
-import "../RecipeAssistant/RecipeAssistant.css";
+// import "../RecipeAssistant/RecipeAssistant.css";
+import "./WhatToCookAssistant.css";
 import jwtFetch from "../../store/jwt";
 import { useEffect, useRef } from "react";
+import { HiLightBulb } from "react-icons/hi";
 
 export default function SplashAiChat() {
   const [questionInput, setQuestionInput] = useState("");
@@ -83,6 +85,11 @@ export default function SplashAiChat() {
     } catch (error) {
       console.error(error);
       alert(error.message);
+      setPastQuestions((prevState) => [questionInput, ...prevState]);
+      setPastAnswers((prevState) => [
+        "Sorry, OpenAI's got-3.5-turbo model is currently overloaded with other requests. Please try again later, or explore the globe to find your next food adventure.",
+        ...prevState,
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -90,21 +97,23 @@ export default function SplashAiChat() {
 
   return (
     <>
-      <div id="open-chatbox-button" onClick={toggleChatbox}>
-        <div id="hover-container">
-          <div id="ai-chatbubble"></div>
-          <h1 id="open-chatbox-questionmark">?</h1>
+      <div id="splash-open-chatbox-button" onClick={toggleChatbox}>
+        <div id="splash-hover-container">
+          <div id="splash-ai-chatbubble"></div>
+          <div id="splash-open-chatbox-lightbulb">{<HiLightBulb />}</div>
         </div>
       </div>
       <div id="splash-ai-chatbox" className="hidden">
         <main id="ai-chatbox-content-container">
-          <h3 id="recipe-assistant-header">Need help deciding what to cook?</h3>
-          <div id="chat-thread-container" ref={chatThreadContainerRef}>
+          <h3 id="splash-recipe-assistant-header">
+            Need help deciding what to cook?
+          </h3>
+          <div id="splash-chat-thread-container" ref={chatThreadContainerRef}>
             <div id="otherQ-list-container">{pastQA()}</div>
             {isLoading && (
               <div id="lastQ-container">
-                <div id="spinner-container">
-                  <div id="spinner"></div>
+                <div id="splash-spinner-container">
+                  <div id="splash-spinner"></div>
                 </div>
               </div>
             )}

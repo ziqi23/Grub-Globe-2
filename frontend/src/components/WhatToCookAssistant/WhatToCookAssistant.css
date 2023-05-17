@@ -1,10 +1,10 @@
 #splash-ai-chatbox {
   position: fixed;
-  bottom: 50px;
+  bottom: 135px;
   right: 50px;
   width: 300px;
-  height: 340px;
-  background-color: #e8a87c;
+  height: 440px;
+  background-color: #e8cd7c;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   z-index: 500;
@@ -14,10 +14,10 @@
   /* transform: translateX(100%); */
 }
 
-#recipe-assistant-header {
+#splash-recipe-assistant-header {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 19px;
 }
 
 #recipe-assistant-form {
@@ -43,13 +43,13 @@
   display: none;
 }
 
-#chat-thread-container {
+#splash-chat-thread-container {
   background-color: white;
   border-radius: 5px;
   /* border: 2px solid gray; */
   padding: 5px;
   margin-bottom: 10px;
-  height: 250px;
+  height: 350px;
   overflow-y: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
@@ -71,7 +71,7 @@
 
 #lastA-text,
 #otherA-text {
-  background-color: coral;
+  background-color: goldenrod;
   border-radius: 5px;
   padding: 5px;
   width: 230px;
@@ -81,10 +81,10 @@
   line-height: 18px;
 }
 
-#ai-chatbubble {
+#splash-ai-chatbubble {
   /* position: absolute; */
   position: fixed;
-  bottom: 25px;
+  bottom: 105px;
   right: 25px;
   z-index: 1001;
   height: 40px;
@@ -110,14 +110,14 @@
   }
   25% {
     transform: rotate(0);
-    border-top: 10px solid rgb(240, 140, 104);
+    border-top: 10px solid #f9c012;
   }
   50% {
     border-top: 10px solid white;
   }
   75% {
     transform: rotate(0);
-    border-top: 10px solid rgb(37, 146, 37);
+    border-top: 10px solid rgb(125, 202, 231);
   }
   100% {
     transform: rotate(360deg);
@@ -125,7 +125,7 @@
   }
 }
 
-#open-chatbox-questionmark {
+#splash-open-chatbox-lightbulb {
   font-size: 50px;
   display: flex;
   justify-content: center;
@@ -134,10 +134,10 @@
   bottom: 10px;
   right: 22px; */
   position: fixed;
-  bottom: 30px;
-  right: 42px;
+  bottom: 110px;
+  right: 30px;
   z-index: 1002;
-  color: rgb(24, 23, 23);
+  color: #f9c012;
 }
 
 /* #open-chatbox-button {
@@ -148,7 +148,7 @@
   bottom: 5px;
   right: 5px;
 } */
-#open-splash-chatbox-button:hover #open-chatbox-questionmark {
+#open-splash-chatbox-button:hover #splash-open-chatbox-lightbulb:hover {
   cursor: pointer;
 }
 
@@ -156,7 +156,7 @@
   display: none;
 }
 
-#hover-container {
+#splash-hover-container {
   background-color: gray;
   height: 70px;
   width: 70px;
@@ -164,21 +164,21 @@
   bottom: 20px;
   right: 20px; */
   position: fixed;
-  bottom: 20px;
+  bottom: 100px;
   right: 20px;
   border-radius: 50%;
   transition: 0.3s;
   z-index: 501;
 }
 
-#hover-container:hover {
+#splash-hover-container:hover {
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 40px rgba(248, 227, 181, 0.4);
   transition: 0.3s;
 }
 
-#spinner-container {
-  background-color: coral;
+#splash-spinner-container {
+  background-color: #f9c012;
   border-radius: 5px;
   padding: 5px;
   width: 230px;
@@ -188,13 +188,13 @@
   height: 50px;
 }
 
-#spinner {
+#splash-spinner {
   /* position: absolute;
   top: Calc(50% - 50px);
   left: Calc(50% - 50px); */
   height: 30px;
   width: 30px;
-  border: 10px solid rgb(241, 105, 56);
+  border: 10px solid #fcd665;
   border-radius: 50%;
   /* border-top: 10px solid coral; */
   animation: spiny 1s infinite linear;
