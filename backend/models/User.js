@@ -30,7 +30,7 @@ const userSchema = new Schema({
           ref: 'Recipe'
         }
       }
-    ],
+    ]
 }, {
     timestamps: true
 })
