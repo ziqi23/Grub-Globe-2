@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import "./Profile.css";
 import defaultPicture from "./default-profile.png";
 import { useState, useEffect } from "react";
+import { AiOutlineDownload } from "react-icons/ai";
 import jwtFetch from "../../store/jwt";
 import Header from "../Header/Header";
 import { fetchFavorites } from "../../store/favorites";
@@ -96,7 +97,7 @@ function Profile(props) {
       const bufferArr = new Uint8Array(user.photo.data);
       setImage(image => Buffer.from(bufferArr).toString("base64"))
     }
-  }, [user.photo])
+  }, [user.photo, photoFile])
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -108,6 +109,30 @@ function Profile(props) {
   function handlePanelClick(e) {
     e.preventDefault();
     setUploadPanelOpen(!uploadPanelOpen);
+  }
+
+  function handleDrag(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    const box = document.getElementsByClassName('profile-picture-upload-panel')[0]
+    switch (e.type) {
+      case "dragover":
+        box.classList.add('drag-highlight')
+        break;
+      case "dragenter":
+        box.classList.add('drag-highlight')
+        break;
+      case "drop":
+        box.classList.remove('drag-highlight')
+        setPhotoFile(e.dataTransfer.files[0])
+        const formData = new FormData();
+        formData.append("image", e.dataTransfer.files[0]);
+        dispatch(uploadImage(formData))
+        break;
+      case "dragleave":
+        box.classList.remove('drag-highlight')
+        break;
+    }
   }
 
   const toggleNav = (selectedTab) => {
@@ -167,7 +192,13 @@ function Profile(props) {
             )}
 
             {uploadPanelOpen && (
-              <div className="profile-picture-upload-panel">
+              <div className="profile-picture-upload-panel"
+              onDragEnter={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrag}
+              onDragLeave={handleDrag}>
+                <AiOutlineDownload className="profile-picture-dropbox-icon"/>
+                <h1>Upload a new profile photo, or simply drag and drop.</h1>
                 <form id="profile-picture-upload-form" onSubmit={handleSubmit}>
                   <input
                     accept="image/*"

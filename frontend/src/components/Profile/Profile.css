@@ -119,12 +119,38 @@
 }
 
 .profile-picture-upload-panel {
-  position: absolute;
-  bottom: -20px;
-  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
   z-index: 10;
-  width: 320px;
+  width: 500px;
+  height: 260px;
+  color: rgb(28, 28, 28);
+  background-color: rgb(249, 249, 249);
+  position: absolute;
+  top: 0px;
+  left: 250px;
+  border-radius: 4px;
+  transition-duration: 500ms;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+}
 
+#profile-picture-upload-form {
+  margin-top: 30px;
+  border-radius: 5px;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px;
+}
+
+.profile-picture-dropbox-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.drag-highlight {
+  background-color: rgb(66, 67, 66);
+  color:rgb(239, 236, 236);
 }
 
 .profile-nav-bar {
