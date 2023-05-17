@@ -8,6 +8,7 @@ export default function SplashAiChat() {
   const [pastQuestions, setPastQuestions] = useState([]);
   const [pastAnswers, setPastAnswers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [prompt, setPrompt] = useState([]);
 
   const chatThreadContainerRef = useRef(null);
 
@@ -37,18 +38,31 @@ export default function SplashAiChat() {
     return qAndA;
   };
 
+  const updatePrompt = () => {
+    if (prompt.length > 3) {
+      setPrompt(prompt.slice(1));
+    }
+    // setPrompt(prompt.concat([{ role: "user", content: questionInput }]));
+    setPrompt([...prompt, { role: "user", content: questionInput }]);
+  };
+
   async function onSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
 
     try {
+      const updatedPrompt =
+        prompt.length > 3
+          ? prompt.slice(1).push({ role: "user", content: questionInput })
+          : prompt.push({ role: "user", content: questionInput });
+      await updatePrompt();
       const response = await jwtFetch("/api/generateTurbo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          question: questionInput,
+          prompt,
         }),
       });
 
@@ -64,6 +78,8 @@ export default function SplashAiChat() {
       setPastQuestions((prevState) => [questionInput, ...prevState]);
       setPastAnswers((prevState) => [data.result, ...prevState]);
       setQuestionInput("");
+      setPrompt([...prompt, { role: "assistant", content: data.result }]);
+      console.log("prompt after get answer in front end", prompt);
     } catch (error) {
       console.error(error);
       alert(error.message);

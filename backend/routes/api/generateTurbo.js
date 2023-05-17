@@ -9,6 +9,8 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+const CountryAndRecipeList = "";
+
 router.post("/", async (req, res) => {
   if (!configuration.apiKey) {
     res.status(500).json({
@@ -20,10 +22,10 @@ router.post("/", async (req, res) => {
     return;
   }
 
-  const question = req.body.question || "";
-  console.log(generatePrompt(question), "prompt");
+  const prompt = req.body.prompt || "";
+  //   console.log(generatePrompt(prompt), "prompt");
 
-  if (question.trim().length === 0) {
+  if (prompt === []) {
     res.status(400).json({
       error: {
         message: "Please enter a valid question",
@@ -33,11 +35,11 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    console.log(question, "question");
+    console.log(prompt, "prompt in backend");
     const completion = await openai.createChatCompletion(
       {
         model: "gpt-3.5-turbo",
-        messages: generatePrompt(question),
+        messages: generatePrompt(prompt),
       }
       //   (model = "gpt-3.5-turbo"),
       //   (messages = generatePrompt(question))
@@ -61,22 +63,21 @@ router.post("/", async (req, res) => {
   }
 });
 
-function generatePrompt(question) {
+function generatePrompt(prompt) {
   return [
     {
       role: "system",
       content:
         "You are a helpful assistant who helps users pick the right recipe to cook, from the following exact list of recipe options. You make a recipe suggestion, briefly explain why that's a good choice, and note which country the recipe is from. The recipe list is: United States: Hamburger, Fried chicken, Apple pie, Clam chowder, Caesar salad, Mexico: Tacos, Guacamole, Tamales, Enchiladas, Margarita", //, Italy: Osso buco, Lasagna, Tiramisu, Caprese salad, Risotto, Spain: Paella, Gazpacho, Churros, Croquetas, Sangria, France: Baguette, Beef bourguignon, Coq a vin, Creme brulee, French onion soup, United Kingdom: Bangers and mash, Shepherd’s pie, Full English breakfast, Trifle, Yorkshire pudding, Germany: Bratwurst, Sauerkraut, Black forest cake, Pretzel, Beer, Japan: Sushi, Ramen, Tempura, Miso soup, Matcha, China: Fried rice, Hot and sour soup, Dim sum, Kung pao chicken, Chow mein, India: Butter chicken, Biryani, Samosas, Tandoori chicken, Rogan josh, Thailand: Papaya salad, Green curry, Mango sticky rice, Pad see ew, Massaman curry, Vietnam: Pho, Banh mi, Spring rolls, Com tam, Ca kho to, Brazil: Feijoada, Brigadeiro, Pastel, Tapioca, Peru: Ceviche, Lomo saltado, Aji de gallina, Anticuchos, Pisco sour, Greece: Moussaka, Souvlaki, Tzatziki, Baklava, Greek salad, Turkey: Doner kebab, Dolma, Baklava, Manti, Turkish tea, Morocco: Couscous, Harira soup, Pastilla, Mint tea, Lebanon: Shawarma, Tabouleh, Hummus, Falafel, South Korea: Kimchi, Bulgogi, Bibimbap, Japchae, Sikhae, Ethiopia: Injera, Doro wat, Kitfo, Tibs, Shiro, South Africa: Bobotie, Biltong, Bunny chow, Melktert, Potjiekos, Australia: Vegemite on toast, Pavlova, Meat pie, Lamingtons, Anzac biscuits, Russia: Borscht, Pelmeni, Beef stroganoff, Blini, Pirozhki, Sweden: Meatballs (Köttbullar), Gravlax, Knäckebröd (Crispbread), Princess cake (Prinsesstårta), Ärtsoppa (Pea soup), Indonesia: Nasi goreng (Fried rice), Satay, Rendang, Gado-gado (Salad with peanut sauce), Bakso (Meatball soup), Iran: Chelow kabab (Rice with kabab), Ghormeh sabzi (Herb stew), Fesenjan (Pomegranate walnut stew), Ash-e reshteh (Noodle soup), Tahdig (Crispy rice), Poland: Pierogi (Dumplings), Bigos (Sauerkraut and fresh cabbage stew), Placki ziemniaczane (Potato pancakes), Barszcz (Beet soup), Żurek (Sour rye soup), Canada: Poutine, Butter tarts, Nanaimo bars, Tourtière (Meat pie), Caesar (Cocktail)",
-
-      // "You are a helpful assistant who helps users pick the right recipe to cook, from the following exact list of recipe options. You make a recipe suggestion, briefly explain why that's a good choice, and note which country the recipe is from. The recipe list is: United States: Hamburger, Fried chicken, Apple pie, Clam chowder, Caesar salad, Mexico: Tacos, Guacamole, Tamales, Enchiladas, Margarita, Italy: Osso buco, Lasagna, Tiramisu, Caprese salad, Risotto, Spain: Paella, Gazpacho, Churros, Croquetas, Sangria, France: Baguette, Beef bourguignon, Coq a vin, Creme brulee, French onion soup, United Kingdom: Bangers and mash, Shepherd’s pie, Full English breakfast, Trifle, Yorkshire pudding, Germany: Bratwurst, Sauerkraut, Black forest cake, Pretzel, Beer, Japan: Sushi, Ramen, Tempura, Miso soup, Matcha, China: Fried rice, Hot and sour soup, Dim sum, Kung pao chicken, Chow mein, India: Butter chicken, Biryani, Samosas, Tandoori chicken, Rogan josh, Thailand: Papaya salad, Green curry, Mango sticky rice, Pad see ew, Massaman curry, Vietnam: Pho, Banh mi, Spring rolls, Com tam, Ca kho to, Brazil: Feijoada, Brigadeiro, Pastel, Tapioca, Peru: Ceviche, Lomo saltado, Aji de gallina, Anticuchos, Pisco sour, Greece: Moussaka, Souvlaki, Tzatziki, Baklava, Greek salad, Turkey: Doner kebab, Dolma, Baklava, Manti, Turkish tea, Morocco: Couscous, Harira soup, Pastilla, Mint tea, Lebanon: Shawarma, Tabouleh, Hummus, Falafel, South Korea: Kimchi, Bulgogi, Bibimbap, Japchae, Sikhae, Ethiopia: Injera, Doro wat, Kitfo, Tibs, Shiro, South Africa: Bobotie, Biltong, Bunny chow, Melktert, Potjiekos, Australia: Vegemite on toast, Pavlova, Meat pie, Lamingtons, Anzac biscuits, Russia: Borscht, Pelmeni, Beef stroganoff, Blini, Pirozhki, Sweden: Meatballs (Köttbullar), Gravlax, Knäckebröd (Crispbread), Princess cake (Prinsesstårta), Ärtsoppa (Pea soup), Indonesia: Nasi goreng (Fried rice), Satay, Rendang, Gado-gado (Salad with peanut sauce), Bakso (Meatball soup), Iran: Chelow kabab (Rice with kabab), Ghormeh sabzi (Herb stew), Fesenjan (Pomegranate walnut stew), Ash-e reshteh (Noodle soup), Tahdig (Crispy rice), Poland: Pierogi (Dumplings), Bigos (Sauerkraut and fresh cabbage stew), Placki ziemniaczane (Potato pancakes), Barszcz (Beet soup), Żurek (Sour rye soup), Canada: Poutine, Butter tarts, Nanaimo bars, Tourtière (Meat pie), Caesar (Cocktail)",
     },
-    { role: "user", content: question },
-    // {
-    //   role: "assistant",
-    //   content: "The Los Angeles Dodgers won the World Series in 2020.",
-    // },
-    // { role: "user", content: "Where was it played?" },
-  ];
+  ].concat(prompt);
+  //     { role: "user", content: question },
+  //     // {
+  //     //   role: "assistant",
+  //     //   content: "The Los Angeles Dodgers won the World Series in 2020.",
+  //     // },
+  //     // { role: "user", content: "Where was it played?" },
+  //   ];
 }
 
 module.exports = router;
