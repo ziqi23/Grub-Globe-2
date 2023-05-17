@@ -256,7 +256,15 @@ function Profile(props) {
             <>
             <h1 className="tab-title">{completedRecipes.length} {completedRecipes.length === 1 ? "COMPLETED RECIPE" : "COMPLETED RECIPES"}</h1>
             <div id="completed-container">
-              <CompletedRecipes recipes={completedRecipes} />
+              {completedRecipes.map((recipe) => {
+                  return (
+                    <FavoritesTile
+                      key={recipe._id}
+                      recipe={recipe.recipe}
+                    ></FavoritesTile>
+                  );
+                })}
+              {/* <CompletedRecipes recipes={completedRecipes} /> */}
             </div>
             </>
           )}

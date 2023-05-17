@@ -35,6 +35,8 @@
   width: 58%;
   /* z-index: 50; */
   padding: 20px;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .recipe-show-page-container .macros-container {
@@ -204,6 +206,10 @@
   height: 60px;
 }
 
+.tag {
+  text-transform: capitalize;
+}
+
 @media (max-width: 1600px) {
   .details-container h2,
   .main-recipe-content-container h2,
@@ -215,6 +221,8 @@
     font-size: 190%;
   }
 }
+
+
 
 @media (max-width: 1300px) {
   .recipe-show-page-container {

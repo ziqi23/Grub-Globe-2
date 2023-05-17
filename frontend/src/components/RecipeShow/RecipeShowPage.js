@@ -41,7 +41,7 @@ const RecipeShowPage = () => {
   const displayTags = recipe?.tags.map((tag, i) => (
     <div key={i}>
       <img className="icon" src={icons[tag]} alt={`${tag} icon`} />
-      <h2>{tag}</h2>
+      <h2 className="tag">{tag}</h2>
     </div>
   ));
 
@@ -101,7 +101,7 @@ const RecipeShowPage = () => {
                 />
               </div>
               <h3>Recipe by: {recipe?.recipeAuthor}</h3>
-              <p className="tags-p">Tags: </p>
+
             </div>
             <div className="smaller-content-info">
               <div>
