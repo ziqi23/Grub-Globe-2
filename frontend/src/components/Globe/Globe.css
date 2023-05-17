@@ -109,3 +109,20 @@
     color: rgb(243, 161, 54);
     cursor: pointer;
 }
+
+@media (max-width: 390px) {
+    #explore-page-main {
+        flex-direction: column;
+    }
+
+    #explore-page-globe { 
+        height: 35vh;
+        width: 100%;
+    }
+
+    #explore-page-country-popup {
+        height: 40vh;
+        width: 100%;
+    }
+
+}

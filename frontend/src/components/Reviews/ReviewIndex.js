@@ -21,8 +21,8 @@ const ReviewIndex = ({ recipeId }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    sessionUser.completedRecipe.forEach((recipe) => {
-      if (recipe.recipeId === recipeId) setHasCompletedRecipe(true)
+    sessionUser?.completedRecipe.forEach((recipe) => {
+      if (recipe?.recipeId === recipeId) setHasCompletedRecipe(true)
     }) 
   }, [dispatch, hasCompletedRecipe, sessionUser])
 

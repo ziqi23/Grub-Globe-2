@@ -88,7 +88,7 @@ const RecipeShowPage = () => {
             {/* <h1>{recipe.name}</h1> */}
             <div className="main-recipe-info-header">
               <FavHeart recipe={recipe} favorites={favorites} />
-              <h1>{recipe?.recipeName}</h1>
+              <h1 className="recipe-index-recipe-name">{recipe?.recipeName}</h1>
               <div>
                 <img src={mapPin} alt="map pin" className="map-pin" />
                 <h3>{recipe?.country}</h3>

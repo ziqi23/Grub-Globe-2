@@ -202,13 +202,6 @@
   }
 }
 
-@media (max-width: 1500px) {
-  .recipe-quick-info-container h1 {
-    /* font-size: 30px; */
-  }
-}
-
-
 
 #view-recipe-and-heart-container #heart-div {
   position: absolute;

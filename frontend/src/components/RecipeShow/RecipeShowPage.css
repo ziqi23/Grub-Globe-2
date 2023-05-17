@@ -35,8 +35,12 @@
   width: 58%;
   /* z-index: 50; */
   padding: 20px;
-  text-align: center;
+
   line-height: 1.2;
+}
+
+.recipe-index-recipe-name {
+  text-align: center;
 }
 
 .recipe-show-page-container .macros-container {
