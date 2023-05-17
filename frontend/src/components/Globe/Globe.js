@@ -1,13 +1,9 @@
 import * as THREE from "three";
 import { useState, useEffect, useRef } from "react";
 import texture from "./high-res-world-map-partially-colored-30-filled.png";
-import countryTexture from "./high-res-world-map-partially-colored-30-filled-blue.png";
 import Header from "../Header/Header";
 import "./Globe.css";
-import {
-  Redirect,
-  useHistory,
-} from "react-router-dom/cjs/react-router-dom.min";
+import {Redirect, useHistory} from "react-router-dom/cjs/react-router-dom.min";
 import Footer from "../Footer/Footer";
 
 function Globe(props) {
@@ -90,7 +86,7 @@ function Globe(props) {
       "Indian cuisine is known for its use of spices, such as cumin, coriander, and turmeric. Popular Indian dishes include curries, biryanis, samosas, and naan bread. Indian cuisine also features a variety of vegetarian options.",
     France:
       "French cuisine is known for its use of butter, cream, and wine. Popular French dishes include coq au vin, ratatouille, quiche, and croissants. French cuisine is also famous for its cheeses and wines.",
-    "South Korea":
+    Korea:
       "Korean cuisine is known for its use of fermented foods, such as kimchi, and spicy flavors. Popular Korean dishes include bibimbap, bulgogi, and Korean barbecue. Korean cuisine often features rice, vegetables, and meats.",
     Japan:
       "Japanese cuisine is known for its use of fresh ingredients and minimalist presentation. Popular Japanese dishes include sushi, tempura, ramen, and udon. Japanese cuisine also features a variety of seafood and rice dishes.",
@@ -136,11 +132,6 @@ function Globe(props) {
       "Canadian cuisine is influenced by the country's diverse cultural background, including indigenous, French, and British influences. Popular dishes include poutine (french fries with cheese curds and gravy), butter tarts, and tourtière (a meat pie).",
   };
 
-  const ref = useRef();
-  const history = useHistory();
-  const [uv, setUv] = useState();
-  const [countryHovered, setCountryHovered] = useState(false);
-  const countryHoveredRef = useRef(countryHovered);
   const [dotMapping, setDotMapping] = useState({
     "United States": [],
     Italy: [],
@@ -174,6 +165,13 @@ function Globe(props) {
     "Not Implemented": [],
   });
 
+  const ref = useRef();
+  const history = useHistory();
+  const [uv, setUv] = useState();
+  const [countryHovered, setCountryHovered] = useState(false);
+  const countryHoveredRef = useRef(countryHovered);
+
+
   let autoRotate = true;
   let group = new THREE.Group();
   useEffect(() => {
@@ -195,7 +193,6 @@ function Globe(props) {
     globe.position.x = 0;
     globe.position.z = 0;
     globe.position.y = 0;
-    // scene.add(globe);
 
     group.add(globe);
     scene.add(group);
@@ -266,7 +263,7 @@ function Globe(props) {
     function animate() {
       requestAnimationFrame(animate);
       if (autoRotate) {
-        group.rotation.y += 0.01;
+        group.rotation.y -= 0.01;
       }
       renderer.render(scene, camera);
     }
@@ -347,10 +344,12 @@ function Globe(props) {
           dot.position.y = vector.y;
           dot.position.z = vector.z;
           group.add(dot);
-          setDotMapping({
-            ...dotMapping,
-            [colorMapping[color]]: dotMapping[colorMapping[color]].push(dot),
-          });
+          if (colorMapping[color] !== "Not Implemented") {
+            setDotMapping({
+              ...dotMapping,
+              [colorMapping[color]]: dotMapping[colorMapping[color]].push(dot),
+            });
+          }
         }
       }
     }
