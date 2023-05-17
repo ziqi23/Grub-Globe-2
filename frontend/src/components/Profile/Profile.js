@@ -12,7 +12,6 @@ import FavoritesTile from "./FavoritesTile";
 import BadgesIndex from "./BadgesIndex";
 import { fetchUserReviews } from "../../store/reviews";
 import ReviewsTiles from "./ReviewsTile";
-import CompletedRecipes from "./CompletedRecipes";
 
 // Favorites integration and ability to unfavorite from page
 
@@ -31,8 +30,8 @@ function Profile(props) {
 
   //you can pull number of users's reviews using userReviews.length, or look at reviews themselves using userReviews
 
-    // for storing completed recipes
-    const [completedRecipes, setCompletedRecipes] = useState([]);
+  // for storing completed recipes
+  const [completedRecipes, setCompletedRecipes] = useState([]);
 
   // for uploading profile photo
   const Buffer = require("buffer/").Buffer;
@@ -78,8 +77,7 @@ function Profile(props) {
         }));
 
         const numHealthy = fetchedRecipes.filter(recipe => recipe.recipe.tags.includes('vegetarian') || recipe.recipe.tags.includes('vegan') || recipe.recipe.tags.includes('glutenFree')).length;
-        const reviewsCount = userReviews.length;
-        console.log("numHealthy", numHealthy);
+        const reviewsCount = userReviews?.length;
 
         setNumCompleted(numComplete);
         setUniqueCountries(uniqueCountry.size);
@@ -256,7 +254,14 @@ function Profile(props) {
             <>
             <h1 className="tab-title">{completedRecipes.length} {completedRecipes.length === 1 ? "COMPLETED RECIPE" : "COMPLETED RECIPES"}</h1>
             <div id="completed-container">
-              <CompletedRecipes recipes={completedRecipes} />
+              {completedRecipes.map((recipe) => {
+                  return (
+                    <FavoritesTile
+                      key={recipe._id}
+                      recipe={recipe.recipe}
+                    ></FavoritesTile>
+                  );
+                })}
             </div>
             </>
           )}

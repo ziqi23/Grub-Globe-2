@@ -2,9 +2,10 @@ import ReviewBox from "./ReviewBox";
 import "./Review.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchRecipeReviews } from "../../store/reviews";
 import NewReviewForm from "./NewReviewForm";
+import { getCurrentUser } from "../../store/session";
 
 const ReviewIndex = ({ recipeId }) => {
   const recipeReviews = useSelector((state) =>
@@ -12,10 +13,18 @@ const ReviewIndex = ({ recipeId }) => {
   );
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const [hasCompletedRecipe, setHasCompletedRecipe] = useState(false)
 
   useEffect(() => {
     dispatch(fetchRecipeReviews(recipeId));
+    dispatch(getCurrentUser())
   }, [dispatch]);
+
+  useEffect(() => {
+    sessionUser?.completedRecipe.forEach((recipe) => {
+      if (recipe?.recipeId === recipeId) setHasCompletedRecipe(true)
+    }) 
+  }, [dispatch, hasCompletedRecipe, sessionUser])
 
   const composeReviewSection = () => {
     let hasWrittenReview = false;
@@ -26,7 +35,8 @@ const ReviewIndex = ({ recipeId }) => {
         }
       }
     }
-    if (sessionUser && !hasWrittenReview) {
+
+    if (sessionUser && !hasWrittenReview && hasCompletedRecipe) {
       return (
         <NewReviewForm
           recipeId={recipeId}
@@ -38,13 +48,13 @@ const ReviewIndex = ({ recipeId }) => {
 
   return (
     <>
-      <div className="review-index-container">
         {composeReviewSection()}
         <h1 className="review-index-container-title">
           {recipeReviews.length > 0
             ? "Reviews"
             : "No reviews yet - get cookin'!"}
         </h1>
+      <div className="review-index-container">
         {recipeReviews.map((review, i) => (
           <ReviewBox key={i} review={review} />
         ))}

@@ -5,17 +5,16 @@ const BadgesProgressBar = ({badge}) => {
 
     const levels = ["Rookie", "Adept", "Expert", "Wizardly", "Legendary"]
 
-    // get all your recipes and count it --> total count / 25 * 100
-
     return (
         <div className="badge-info-container">
             <img src={badge.icon} alt="icon" />
             <h1>{badge.title}</h1>
             <p>{badge.description}</p>
+            <br></br>
+            <p>Completed: {badge.numCompleted}</p>
             <ProgressBar
                 percent={badge.progress}
                 filledBackground="#f0bb31"
-                // filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
             >
                 {levels.map((level, i) => (
                     <Step transition="scale" >

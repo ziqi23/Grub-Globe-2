@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaGrinStars } from "react-icons/fa";
 import "./Review.css";
 
-const StarRatingInput = ({ rating, disabled, onChange }) => {
+const StarRatingInput = ({ rating, disabled, onChange, icon }) => {
   const [activeRating, setActiveRating] = useState(rating);
   const [clicked, setClicked] = useState(false);
 
@@ -29,7 +29,7 @@ const StarRatingInput = ({ rating, disabled, onChange }) => {
         }`}
         {...props}
       >
-        <FaGrinStars />
+        {icon}
       </div>
     );
   };

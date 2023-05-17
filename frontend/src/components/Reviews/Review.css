@@ -1,26 +1,24 @@
 .review-index-container {
   margin: auto;
   width: 80%;
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px 0px;
+  gap: 20px;
 }
 
 .review-box-container {
-  width: 94%;
+  width: 80%;
   padding: 10px 0px;
   display: flex;
+  flex-direction: column;
   gap: 5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-.review-user-info {
-  width: 14%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .review-user-info .circle {
   width: 90px;
@@ -37,10 +35,6 @@
   border-radius: 50%;
 }
 
-.review-details-container {
-  width: 85%;
-}
-
 .review-details-container p {
   font-weight: 300;
 }
@@ -52,6 +46,7 @@
 .review-index-container-title {
   font-size: 2em;
   padding: 20px;
+  text-align: center;
 }
 
 .thumb-clicked {
@@ -68,7 +63,8 @@
 
 .star-rating-input {
   display: flex;
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  gap: 10px;
   font-size: 40px;
   cursor: pointer;
 }
@@ -84,47 +80,43 @@
 }
 
 #star-inputs-container {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 10px;
-  width: 45%;
 }
 
 .star-and-title-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+  justify-content: center;
 }
 
 #new-review-form,
 #past-review-container {
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .review-box-container {
+  padding: 15px;
   margin-bottom: 15px;
+  box-sizing: border-box;
 }
 
 #past-review-title {
-  font-size: 1.4em;
-  margin-bottom: 10px;
-  width: 470px;
+  font-size: 1.5em;
   word-wrap: break-word;
 }
 
 #past-review-text {
   font-size: 1.2em;
-  margin-bottom: 10px;
-  width: 470px;
+  font-weight: 300;
+  line-height: 1.2;
   word-wrap: break-word;
 }
 
 #edit-delete-review-container {
   right: 0;
   position: relative;
-  margin-left: 60px;
 }
 
 #cancel-delete-review-container {
@@ -142,8 +134,7 @@
 }
 
 #past-review-username {
-  font-style: italic;
-  margin-bottom: 10px;
+  margin: 10px 0px;
 }
 
 #review-edit-icon:hover,
@@ -160,18 +151,9 @@
 }
 
 .update-buttons {
-  display: flex;
-  margin-right: 0;
-  padding-right: 0;
   margin-bottom: 5px;
-  margin-left: 80px;
 }
 
-#new-review-ratings-inputs {
-  display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-}
 
 .review-unclickable {
   pointer-events: none;
@@ -179,12 +161,9 @@
 
 .thumbs-container {
   display: flex;
-  width: 200px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  border-top: 1px solid orange;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  gap: 10px;
 }
 
 .thumbs-buttons-container {
@@ -198,8 +177,8 @@
 }
 
 .review-box-container {
-  background-color: aliceblue;
-  width: 830px;
+  margin: 0 auto;
+  background-color: #ebebeb;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
@@ -207,8 +186,10 @@
 #new-review-text-inputs {
   display: flex;
   flex-direction: column;
-  width: 360px;
+  width: 100%;
+  gap: 12px;
   margin-right: 10px;
+  align-items: center;
 }
 
 #new-review-title {
@@ -217,6 +198,7 @@
   font-size: 1.4em;
   font-family: "Kanit", sans-serif;
   margin-bottom: 5px;
+  width: 90%;
 }
 
 #new-review-text {
@@ -225,7 +207,7 @@
   font-family: "Kanit", sans-serif;
   height: 150px;
   font-size: 1.2em;
-
+  width: 90%;
   margin-bottom: 5px;
 }
 
@@ -250,6 +232,8 @@
 #write-review-title {
   font-size: 2em;
   padding-bottom: 20px;
+  text-align: center;
+  margin-top: 30px;
 }
 
 .errors {

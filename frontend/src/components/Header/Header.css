@@ -33,3 +33,10 @@
         background-position: 10%;
             /* border: 1px solid green; */
   }
+
+
+  @media (max-width: 390px) {
+    .header-container {
+        flex-direction: column;
+    }
+  }
