@@ -26,7 +26,6 @@
 .RSPBprogressBar {
     margin-top: 30px;
     width: 70%;
-    /* display:flex; */
     box-sizing: border-box;
 }
 
@@ -47,10 +46,8 @@
 }
 
 .milestone-dot {
-    /* position: absolute; */
     width: 20px;
     height: 20px;
-    /* border: 1px solid green; */
     border-radius: 50%;
     box-sizing: border-box;
     background-color: rgb(194, 194, 194);
