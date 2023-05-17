@@ -166,3 +166,17 @@
         justify-content: center;
     }
 }
+
+@media (max-width: 390px) {
+    .reviews-title-top {
+        font-size: 0.7em;
+    }
+
+    #profile-reviews-container {
+        gap: 10px;
+    }
+
+    .reviews-tile-container {
+        border-bottom: 1px solid gray;
+    }
+}

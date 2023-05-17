@@ -54,3 +54,9 @@
     grid-template-columns: 49% 49%;
   }
 }
+
+@media (max-width: 390px) {
+  #favorites-container, #completed-container { 
+    grid-template-columns: 95%;
+  }
+}
