@@ -225,7 +225,7 @@
   .recipe-quick-info-container h1 {
     font-size: 1.5em;
   }
-  .swiper-slide {
+  .recipes-index .swiper-slide {
     background: transparent;
   }
 
