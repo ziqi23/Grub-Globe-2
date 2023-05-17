@@ -11,6 +11,7 @@ const users = [];
 
 users.push(
   new User ({
+    _id: "164000000000000000000000",
     username: 'demo-user',
     firstName: 'Iam',
     lastName: 'Demo',
@@ -221,9 +222,11 @@ users.push(
     username: 'jamieoliver',
     firstName: 'Jamie',
     lastName: 'Oliver',
-    completedRecipe: {
+    completedRecipe: [{
       recipeId: "260000000000000000000000"
-    },
+    }, {
+      recipeId: "163000000000000000000000"
+    }],
     email: 'jamieoliver@gmail.com',
     hashedPassword: bcrypt.hashSync('foodlover', 10)
     }),
