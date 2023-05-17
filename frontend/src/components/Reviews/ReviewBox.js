@@ -4,6 +4,7 @@ import StarRatingInput from "./stars";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { AiTwotoneEdit } from "react-icons/ai";
+import { FaGrinStars } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { deleteReview } from "../../store/reviews";
@@ -73,15 +74,25 @@ const ReviewBox = ({ review }) => {
                 }
               />
             </div>
+            <h1 id="past-review-username">
+                {review.user.username}
+              </h1>
           </div>
 
           <div id="past-review-container">
             <div id="new-review-ratings-inputs">
               <div className="star-and-title-container">
                 <div id="form-input-accuracy" className="review-unclickable">
-                  <StarRatingInput disabled={true} rating={review.starRating} />
+                  <StarRatingInput disabled={true} rating={review.starRating} icon={<FaGrinStars />}/>
                 </div>
               </div>
+             
+            </div>
+            <div id="new-review-text-inputs">
+
+              <h1 id="past-review-title">{review.title}</h1>
+              <p id="past-review-text">{review.text}</p>
+
               <div className="thumbs-container">
                 <h2>Would you make this again?</h2>
                 <div className="thumbs-buttons-container">
@@ -120,15 +131,6 @@ const ReviewBox = ({ review }) => {
                   />
                 </div>
               </div>
-            </div>
-            <div id="new-review-text-inputs">
-              <h1 id="past-review-username">
-                {review.user.firstName
-                  ? review.user.firstName
-                  : review.user.username}
-              </h1>
-              <h1 id="past-review-title">{review.title}</h1>
-              <p id="past-review-text">{review.text}</p>
             </div>
           </div>
           <div id="edit-delete-review-container">{editButtons()}</div>

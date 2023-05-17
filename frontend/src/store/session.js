@@ -23,8 +23,12 @@ export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS
 });
 
-export const signup = user => startSession(user, 'api/users/register');
-export const login = user => startSession(user, 'api/users/login');
+let API_BASE_URL;
+process.env.NODE_ENV === "production" ? API_BASE_URL = "https://grubglobe.herokuapp.com" : API_BASE_URL = "http://localhost:3000"
+
+
+export const signup = user => startSession(user, `${API_BASE_URL}/api/users/register`);
+export const login = user => startSession(user, `${API_BASE_URL}/api/users/login`);
 
 const startSession = (userInfo, route) => async dispatch => {
   try {

@@ -44,8 +44,6 @@ function NavBar() {
         </Link>
         <Link to="/">
           <div onClick={logoutUser}>
-            {/* <img src={logoutIcon} alt="logout icon" />
-            {MdExitToApp}Logout */}
             <MdExitToApp id="logout-icon" />
             Logout
           </div>

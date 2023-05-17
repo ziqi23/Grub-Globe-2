@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { HiThumbUp, HiThumbDown } from "react-icons/hi";
 import { useState } from "react";
 import { composeReview, clearReviewErrors } from "../../store/reviews";
+import { FaGrinStars } from "react-icons/fa";
 import StarRatingInput from "./stars";
 import defaultPicture from "../Profile/default-profile.png";
 import { useEffect } from "react";
@@ -141,6 +142,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
                   disabled={false}
                   onChange={onStarClick}
                   rating={starRating}
+                  icon={<FaGrinStars />}
                 />
               </div>
             </div>

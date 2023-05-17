@@ -1,11 +1,10 @@
-#favorites-container {
+#favorites-container, #completed-container {
   box-sizing: border-box;
   margin: 5px 10px;
   text-align: center;
   display: grid;
   grid-template-columns: 24% 24% 24% 24%;
   gap: 10px;
-  /* overflow-x: scroll; */
   width: calc(100% - 20px);
 }
 
@@ -44,13 +43,19 @@
 }
 
 @media (max-width: 1475px) {
-  #favorites-container { 
+  #favorites-container, #completed-container { 
     grid-template-columns: 33% 33% 33%;
   }
 }
 
 @media (max-width: 1175px) {
-  #favorites-container { 
+  #favorites-container, #completed-container { 
     grid-template-columns: 49% 49%;
+  }
+}
+
+@media (max-width: 390px) {
+  #favorites-container, #completed-container { 
+    grid-template-columns: 95%;
   }
 }

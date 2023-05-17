@@ -19,6 +19,7 @@ import veganIcon from "../../assets/icons/general-icons/icons8-vegan-100.png";
 import vegetarianIcon from "../../assets/icons/general-icons/icons8-vegetarian-100.png";
 import timerIcon from "../../assets/icons/general-icons/icons8-timer-100.png";
 import plateIcon from "../../assets/icons/general-icons/icons8-plate-100.png";
+import { getCurrentUser } from "../../store/session";
 
 const RecipeShowPage = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const RecipeShowPage = () => {
   const displayTags = recipe?.tags.map((tag, i) => (
     <div key={i}>
       <img className="icon" src={icons[tag]} alt={`${tag} icon`} />
-      <h2>{tag}</h2>
+      <h2 className="tag">{tag}</h2>
     </div>
   ));
 
@@ -60,14 +61,12 @@ const RecipeShowPage = () => {
     dispatch(fetchFavorites());
   }, [dispatch, sessionUser]);
 
+
+
   const handleFollowAlong = () => {
     setToggleFollowAlong(true);
     setCurrentRecipeStep(recipe?.recipeInstructions[0].step);
   };
-
-  // const mapTags = (tags) => {
-  //   return tags.map((tag, i, tags) => {i === (tags.length - 1) ? `${tag.name}` :`${tag.name}, `})
-  // }
 
   const handleMouseLeave = (e) => {
     e.preventDefault()
@@ -89,7 +88,7 @@ const RecipeShowPage = () => {
             {/* <h1>{recipe.name}</h1> */}
             <div className="main-recipe-info-header">
               <FavHeart recipe={recipe} favorites={favorites} />
-              <h1>{recipe?.recipeName}</h1>
+              <h1 className="recipe-index-recipe-name">{recipe?.recipeName}</h1>
               <div>
                 <img src={mapPin} alt="map pin" className="map-pin" />
                 <h3>{recipe?.country}</h3>
@@ -102,7 +101,7 @@ const RecipeShowPage = () => {
                 />
               </div>
               <h3>Recipe by: {recipe?.recipeAuthor}</h3>
-              <p className="tags-p">Tags: </p>
+
             </div>
             <div className="smaller-content-info">
               <div>

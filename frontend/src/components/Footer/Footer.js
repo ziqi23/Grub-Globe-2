@@ -32,7 +32,6 @@ const Footer = () => {
     }
 
     const contributors = Object.values(contributorsInfo)
-
     return (
         <div id="footer-container">
 

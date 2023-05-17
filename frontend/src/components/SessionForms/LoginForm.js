@@ -28,6 +28,7 @@ function LoginForm ({openSignupModal, closeLoginModal}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     dispatch(login({ email, password })); 
   }
 
