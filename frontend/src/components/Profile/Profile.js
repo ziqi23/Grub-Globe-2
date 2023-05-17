@@ -13,6 +13,7 @@ import BadgesIndex from "./BadgesIndex";
 import { fetchUserReviews } from "../../store/reviews";
 import ReviewsTiles from "./ReviewsTile";
 import CompletedRecipes from "./CompletedRecipes";
+import { uploadImage } from "../../store/session";
 
 // Favorites integration and ability to unfavorite from page
 
@@ -26,7 +27,6 @@ function Profile(props) {
 
   useEffect(() => {
     dispatch(fetchUserReviews(sessionUser._id));
-    console.log(userReviews)
   }, [dispatch, sessionUser]);
 
   //you can pull number of users's reviews using userReviews.length, or look at reviews themselves using userReviews
@@ -36,6 +36,7 @@ function Profile(props) {
 
   // for uploading profile photo
   const Buffer = require("buffer/").Buffer;
+  const [image, setImage] = useState()
   const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
   const [photoFile, setPhotoFile] = useState(null);
   const [updatePhoto, setUpdatePhoto] = useState(false);
@@ -48,7 +49,7 @@ function Profile(props) {
 
   // for users acquired badges; can choose which one to display
 
-  const user = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.session.user)
   const favorites = useSelector((state) => Object.values(state.favorites));
 
   // for badges
@@ -71,7 +72,6 @@ function Profile(props) {
       Promise.all(fetchPromises)
         .then(fetchedRecipes => {
           setCompletedRecipes(fetchedRecipes);
-          console.log("fetchedRecipes", fetchedRecipes);
           const numComplete = fetchedRecipes.length;
           const uniqueCountry = new Set(fetchedRecipes.map(recipe => {
             return recipe.recipe.country;
@@ -79,7 +79,6 @@ function Profile(props) {
 
         const numHealthy = fetchedRecipes.filter(recipe => recipe.recipe.tags.includes('vegetarian') || recipe.recipe.tags.includes('vegan') || recipe.recipe.tags.includes('glutenFree')).length;
         const reviewsCount = userReviews.length;
-        console.log("numHealthy", numHealthy);
 
         setNumCompleted(numComplete);
         setUniqueCountries(uniqueCountry.size);
@@ -92,21 +91,18 @@ function Profile(props) {
     }
   }, [user, dispatch]);
 
-  let bufferArr;
-  let image;
-  if (user.photo) {
-    bufferArr = new Uint8Array(user.photo.data);
-    image = Buffer.from(bufferArr).toString("base64");
-  }
+  useEffect(() => {
+    if (user.photo) {
+      const bufferArr = new Uint8Array(user.photo.data);
+      setImage(image => Buffer.from(bufferArr).toString("base64"))
+    }
+  }, [user.photo])
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", photoFile);
-    jwtFetch("/api/users/upload", {
-      method: "POST",
-      body: formData,
-    });
+    dispatch(uploadImage(formData))
   }
 
   function handlePanelClick(e) {
@@ -122,7 +118,6 @@ function Profile(props) {
       switch (tab) {
         case "badges":
           setState = setToggleBadges;
-          console.log("hello");
           break;
         case "favorites":
           setState = setToggleFavorites;
@@ -144,6 +139,7 @@ function Profile(props) {
     });
     return setFalse.forEach((setState) => setState(false));
   };
+
 
   return (
     <div className="profile-page-root">
@@ -215,7 +211,6 @@ function Profile(props) {
             <h1
               onClick={() => {
                 toggleNav("completed")
-                console.log(toggleCompleted);
               }}
               className={toggleCompleted ? "active": ""}
               >Completed Recipes

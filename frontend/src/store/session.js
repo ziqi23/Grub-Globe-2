@@ -58,6 +58,15 @@ export const getCurrentUser = () => async dispatch => {
   return dispatch(receiveCurrentUser(user));
 };
 
+export const uploadImage = image => async dispatch => {
+  const res = await jwtFetch('/api/users/upload', {
+    method: "POST",
+    body: image
+  });
+  const user = await res.json();
+  return dispatch(receiveCurrentUser(user))
+}
+
 export const addCompletedRecipe = (recipe) => async dispatch => {
   const res = await jwtFetch('/api/users/complete-recipe', {
     method: "PATCH",
