@@ -19,6 +19,7 @@ const csrfRouter = require("./routes/api/csrf");
 const favoritesRouter = require("./routes/api/favorites");
 const reviewsRouter = require("./routes/api/reviews");
 const aiRouter = require("./routes/api/generate");
+const aiRouterTurbo = require("./routes/api/generateTurbo");
 const recipesRouter = require("./routes/api/recipes");
 const searchRouter = require("./routes/api/search");
 
@@ -47,6 +48,7 @@ app.use(
 app.use("/api/users", usersRouter);
 app.use("/api/csrf", csrfRouter);
 app.use("/api/generate", aiRouter);
+app.use("/api/generateTurbo", aiRouterTurbo);
 app.use("/api/favorites", favoritesRouter);
 app.use("/api/reviews", reviewsRouter);
 app.use("/api/recipes", recipesRouter);

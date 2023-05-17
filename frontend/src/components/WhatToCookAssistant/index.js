@@ -42,7 +42,7 @@ export default function SplashAiChat() {
     setIsLoading(true);
 
     try {
-      const response = await jwtFetch("/api/generate", {
+      const response = await jwtFetch("/api/generateTurbo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export default function SplashAiChat() {
           <h1 id="open-chatbox-questionmark">?</h1>
         </div>
       </div>
-      <div id="ai-chatbox" className="hidden">
+      <div id="splash-ai-chatbox" className="hidden">
         <main id="ai-chatbox-content-container">
           <h3 id="recipe-assistant-header">Need help deciding what to cook?</h3>
           <div id="chat-thread-container" ref={chatThreadContainerRef}>
