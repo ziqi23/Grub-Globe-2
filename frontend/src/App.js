@@ -39,7 +39,6 @@
 
 import { Switch } from "react-router-dom";
 import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
-import MainPage from "./components/MainPage/MainPage";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./store/session";

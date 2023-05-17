@@ -12,7 +12,6 @@ import FavoritesTile from "./FavoritesTile";
 import BadgesIndex from "./BadgesIndex";
 import { fetchUserReviews } from "../../store/reviews";
 import ReviewsTiles from "./ReviewsTile";
-import CompletedRecipes from "./CompletedRecipes";
 
 // Favorites integration and ability to unfavorite from page
 
