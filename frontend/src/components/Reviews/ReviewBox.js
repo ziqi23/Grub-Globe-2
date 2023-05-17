@@ -4,6 +4,7 @@ import StarRatingInput from "./stars";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { AiTwotoneEdit } from "react-icons/ai";
+import { FaGrinStars } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { deleteReview } from "../../store/reviews";
@@ -82,7 +83,7 @@ const ReviewBox = ({ review }) => {
             <div id="new-review-ratings-inputs">
               <div className="star-and-title-container">
                 <div id="form-input-accuracy" className="review-unclickable">
-                  <StarRatingInput disabled={true} rating={review.starRating} />
+                  <StarRatingInput disabled={true} rating={review.starRating} icon={<FaGrinStars />}/>
                 </div>
               </div>
              

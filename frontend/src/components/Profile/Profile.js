@@ -79,7 +79,7 @@ function Profile(props) {
 
         const numHealthy = fetchedRecipes.filter(recipe => recipe.recipe.tags.includes('vegetarian') || recipe.recipe.tags.includes('vegan') || recipe.recipe.tags.includes('glutenFree')).length;
         const reviewsCount = userReviews.length;
-        console.log("numHealthy", numHealthy);
+        console.log("numHealthy", userReviews);
 
         setNumCompleted(numComplete);
         setUniqueCountries(uniqueCountry.size);

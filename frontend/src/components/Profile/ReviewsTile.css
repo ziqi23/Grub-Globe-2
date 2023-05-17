@@ -116,6 +116,7 @@
     width: 15px;
     height: 15px;
     transition: 0.3 ease all;
+    cursor: pointer;
 }
 
 .review-x-icon {
@@ -123,18 +124,21 @@
     height: 20px;
     color: red;
     transition: 0.3 ease all;
+    cursor: pointer;
 }
 
 .prof-star-ratings .filled {
     color: rgba(245, 194, 28, 0.897);
     width: 20px;
     height: 20px;
+    font-size:20px;
 }
 
 .prof-star-ratings .empty {
     color: gray;
     width: 20px;
     height: 20px;
+    font-size:20px;
 }
 
 .edit-icons {
@@ -151,12 +155,14 @@
 .selected-icon {
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 
 .review-selected-x-icon {
     width: 30px;
     height: 30px;
     color: red;
+    cursor: pointer;
 }
 
 @media (max-width: 914px) {

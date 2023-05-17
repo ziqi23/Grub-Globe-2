@@ -3,7 +3,7 @@ import "./ReviewsTile.css"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import {FcCheckmark } from "react-icons/fc";
 import {VscClose} from "react-icons/vsc"
-import {AiFillStar, AiOutlineEdit} from "react-icons/ai"
+import {AiFillStar, AiOutlineEdit, AiOutlineCloseCircle} from "react-icons/ai"
 import {RiDeleteBin6Line} from "react-icons/ri"
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReview } from "../../store/reviews";
@@ -97,13 +97,21 @@ const ReviewsTiles = ({review}) => {
         return new Date(createdAt).toLocaleString('en-US', dateOptions).toUpperCase();
     };
 
+    const onStarClick = (num) => {
+        setStarRating(parseInt(num));
+    };
+
+
     const starRatings = () => {
         if (editMode) {
             return (
                 <div className="prof-star-ratings">
-                    {[1, 2, 3, 4, 5].map((rating, i) => (
-                        <AiFillStar key={i} onClick={() => setStarRating(rating)} className={rating <= review.starRating ? "filled" : "empty"}/>
-                    ))}
+                    <StarRatingInput
+                        disabled={false}
+                        onChange={onStarClick}
+                        rating={starRating}
+                        icon={<AiFillStar />}
+                    />
                 </div>
             )
         } else if (!editMode) {
@@ -151,7 +159,15 @@ const ReviewsTiles = ({review}) => {
         return (
             <>
                 <div  className="reviews-icons-section">
-                    <AiOutlineEdit onClick={() => setEditMode(true)}className="edit-icons"/>
+                    {editMode 
+                        ? <AiOutlineCloseCircle 
+                            onClick={() => setEditMode(false)}
+                            className="edit-icons" 
+                        /> 
+                        : <AiOutlineEdit 
+                            onClick={() => setEditMode(true)}
+                            className="edit-icons"
+                        />}
                     <RiDeleteBin6Line onClick={handleReviewDelete} className="edit-icons"/>
                 </div>
                 {editMode && (
