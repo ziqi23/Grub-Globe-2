@@ -39,8 +39,8 @@ export default function SplashAiChat() {
   };
 
   const updatePrompt = () => {
-    if (prompt.length > 3) {
-      setPrompt(prompt.slice(1));
+    if (prompt.length > 6) {
+      setPrompt(prompt.slice(2));
     }
     // setPrompt(prompt.concat([{ role: "user", content: questionInput }]));
     setPrompt([...prompt, { role: "user", content: questionInput }]);
@@ -52,8 +52,8 @@ export default function SplashAiChat() {
 
     try {
       const updatedPrompt =
-        prompt.length > 3
-          ? prompt.slice(1).push({ role: "user", content: questionInput })
+        prompt.length > 6
+          ? prompt.slice(2).push({ role: "user", content: questionInput })
           : prompt.push({ role: "user", content: questionInput });
       await updatePrompt();
       const response = await jwtFetch("/api/generateTurbo", {
