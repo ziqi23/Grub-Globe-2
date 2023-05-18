@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import "../RecipeAssistant/RecipeAssistant.css";
 import "./WhatToCookAssistant.css";
 import jwtFetch from "../../store/jwt";
 import { useEffect, useRef } from "react";
@@ -40,24 +39,29 @@ export default function SplashAiChat() {
     return qAndA;
   };
 
-  const updatePrompt = () => {
+  useEffect(() => {
+    if (questionInput.length === 0) return;
     if (prompt.length > 6) {
       setPrompt(prompt.slice(2));
     }
-    // setPrompt(prompt.concat([{ role: "user", content: questionInput }]));
-    setPrompt([...prompt, { role: "user", content: questionInput }]);
-  };
+    const updatedPrompt = [...prompt];
+    const lastElement = updatedPrompt[updatedPrompt.length - 1];
+    if (lastElement && lastElement.role === "user") {
+      updatedPrompt[updatedPrompt.length - 1] = {
+        role: "user",
+        content: questionInput,
+      };
+      setPrompt(updatedPrompt);
+    } else {
+      setPrompt([...prompt, { role: "user", content: questionInput }]);
+    }
+  }, [questionInput]);
 
   async function onSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
 
     try {
-      const updatedPrompt =
-        prompt.length > 6
-          ? prompt.slice(2).push({ role: "user", content: questionInput })
-          : prompt.push({ role: "user", content: questionInput });
-      await updatePrompt();
       const response = await jwtFetch("/api/generateTurbo", {
         method: "POST",
         headers: {
@@ -70,10 +74,12 @@ export default function SplashAiChat() {
 
       const data = await response.json();
       if (response.status !== 200) {
-        throw (
-          data.error ||
-          new Error(`Request failed with status ${response.status}`)
-        );
+        setPastQuestions((prevState) => [questionInput, ...prevState]);
+        setPastAnswers((prevState) => [
+          "Sorry, OpenAI's got-3.5-turbo model is currently overloaded with other requests. Please try again later, or explore the globe to find your next food adventure.",
+          ...prevState,
+        ]);
+        setPrompt([...prompt, { role: "assistant", content: "" }]);
       }
 
       console.log("data.result", data.result);
@@ -81,15 +87,16 @@ export default function SplashAiChat() {
       setPastAnswers((prevState) => [data.result, ...prevState]);
       setQuestionInput("");
       setPrompt([...prompt, { role: "assistant", content: data.result }]);
-      console.log("prompt after get answer in front end", prompt);
     } catch (error) {
       console.error(error);
       alert(error.message);
+      console.log("in catch at 100");
       setPastQuestions((prevState) => [questionInput, ...prevState]);
       setPastAnswers((prevState) => [
         "Sorry, OpenAI's got-3.5-turbo model is currently overloaded with other requests. Please try again later, or explore the globe to find your next food adventure.",
         ...prevState,
       ]);
+      setPrompt([...prompt, { role: "assistant", content: "" }]);
     } finally {
       setIsLoading(false);
     }

@@ -10,8 +10,6 @@
   z-index: 500;
   transition: all 0.3s ease;
   padding: 20px;
-  /* display: none; */
-  /* transform: translateX(100%); */
 }
 
 #splash-recipe-assistant-header {
@@ -33,10 +31,6 @@
   padding-right: 5px;
   border-radius: 5px;
 }
-/* #recipe-assistant-input::placeholder:before {
-  content: "⏎ ";
-  color: #999;
-} */
 
 #recipe-assistant-button {
   font-family: "Kanit", sans-serif;
@@ -46,16 +40,13 @@
 #splash-chat-thread-container {
   background-color: white;
   border-radius: 5px;
-  /* border: 2px solid gray; */
   padding: 5px;
   margin-bottom: 10px;
   height: 350px;
   overflow-y: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-/* #lastQ-container {
-  position: relative;
-} */
+
 #lastQ-text,
 #otherQ-text {
   background-color: rgb(215, 215, 215);
@@ -63,26 +54,22 @@
   padding: 5px;
   margin-left: 45px;
   width: 230px;
-  /* position: absolute; */
-  /* right: 0px; */
   margin-bottom: 10px;
   line-height: 18px;
 }
 
 #lastA-text,
 #otherA-text {
-  background-color: goldenrod;
+  background-color: #f9c012;
   border-radius: 5px;
   padding: 5px;
   width: 230px;
-  /* position: absolute; */
   left: 0px;
   margin-bottom: 10px;
   line-height: 18px;
 }
 
 #splash-ai-chatbubble {
-  /* position: absolute; */
   position: fixed;
   bottom: 105px;
   right: 25px;
@@ -91,17 +78,10 @@
   width: 40px;
   border: 10px solid white;
   border-radius: 50%;
-  /* border-top: 10px solid rgba(255, 68, 0, 0.458); */
   animation: spin 2s infinite linear;
   background-color: white;
   transition: 0.3s;
 }
-
-/* #ai-chatbubble:hover {
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-} */
 
 @keyframes spin {
   0% {
@@ -130,9 +110,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: absolute;
-  bottom: 10px;
-  right: 22px; */
   position: fixed;
   bottom: 110px;
   right: 30px;
@@ -140,14 +117,6 @@
   color: #f9c012;
 }
 
-/* #open-chatbox-button {
-  background-color: red;
-  height: 40px;
-  width: 40px;
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-} */
 #open-splash-chatbox-button:hover #splash-open-chatbox-lightbulb:hover {
   cursor: pointer;
 }
@@ -160,9 +129,6 @@
   background-color: gray;
   height: 70px;
   width: 70px;
-  /* position: absolute;
-  bottom: 20px;
-  right: 20px; */
   position: fixed;
   bottom: 100px;
   right: 20px;
@@ -182,21 +148,16 @@
   border-radius: 5px;
   padding: 5px;
   width: 230px;
-  /* position: absolute; */
   left: 0px;
   margin-bottom: 10px;
   height: 50px;
 }
 
 #splash-spinner {
-  /* position: absolute;
-  top: Calc(50% - 50px);
-  left: Calc(50% - 50px); */
   height: 30px;
   width: 30px;
   border: 10px solid #fcd665;
   border-radius: 50%;
-  /* border-top: 10px solid coral; */
   animation: spiny 1s infinite linear;
 }
 
