@@ -62,6 +62,14 @@ export default function SplashAiChat() {
     setIsLoading(true);
 
     try {
+      //testing
+      //   const mockErrorResponse = {
+      //     status: 500,
+      //     json: async () => ({
+      //       error: "Custom error message",
+      //     }),
+      //   };
+      //testing
       const response = await jwtFetch("/api/generateTurbo", {
         method: "POST",
         headers: {
@@ -73,30 +81,45 @@ export default function SplashAiChat() {
       });
 
       const data = await response.json();
-      if (response.status !== 200) {
-        setPastQuestions((prevState) => [questionInput, ...prevState]);
-        setPastAnswers((prevState) => [
-          "Sorry, OpenAI's got-3.5-turbo model is currently overloaded with other requests. Please try again later, or explore the globe to find your next food adventure.",
-          ...prevState,
-        ]);
-        setPrompt([...prompt, { role: "assistant", content: "" }]);
-      }
+      //   const data = await mockErrorResponse.json();
 
-      console.log("data.result", data.result);
+      //   if (response.status !== 200) {
+      //   if (data.status !== 200) {
+      //     setPastQuestions((prevState) => [questionInput, ...prevState]);
+      //     setPastAnswers((prevState) => [
+      //       "Sorry, OpenAI's got-3.5-turbo model is currently overloaded with other requests. Please try again in a moment, or explore the globe to find your next food adventure.",
+      //       ...prevState,
+      //     ]);
+      //     setPrompt([...prompt, { role: "assistant", content: "" }]);
+      //   } else {
+      //   console.log("data.result", data.result);
       setPastQuestions((prevState) => [questionInput, ...prevState]);
       setPastAnswers((prevState) => [data.result, ...prevState]);
       setQuestionInput("");
       setPrompt([...prompt, { role: "assistant", content: data.result }]);
+      //   }
+
+      //   console.log("data.result", data.result);
+      //   setPastQuestions((prevState) => [questionInput, ...prevState]);
+      //   setPastAnswers((prevState) => [data.result, ...prevState]);
+      //   setQuestionInput("");
+      //   setPrompt([...prompt, { role: "assistant", content: data.result }]);
     } catch (error) {
       console.error(error);
       //   alert(error.message);
       //   console.log("in catch at 100");
       setPastQuestions((prevState) => [questionInput, ...prevState]);
       setPastAnswers((prevState) => [
-        "Sorry, OpenAI's got-3.5-turbo model is currently overloaded with other requests. Please try again later, or explore the globe to find your next food adventure.",
+        "Sorry, OpenAI's got-3.5-turbo model is currently overloaded with other requests. Please try again in a moment, or explore the globe to find your next food adventure.",
         ...prevState,
       ]);
-      setPrompt([...prompt, { role: "assistant", content: "" }]);
+      setPrompt([
+        ...prompt,
+        {
+          role: "assistant",
+          content: "OpenAI server was overloaded so I couldn't answer",
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
