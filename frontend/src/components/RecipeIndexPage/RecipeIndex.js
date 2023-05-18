@@ -9,6 +9,7 @@ import { Pagination, Navigation } from "swiper";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFavorites } from "../../store/favorites";
+import Spinner from "../SearchBar/Spinner";
 
 const RecipeIndex = ({ recipes }) => {
   const favorites = useSelector((state) => Object.values(state.favorites));
@@ -18,9 +19,11 @@ const RecipeIndex = ({ recipes }) => {
     dispatch(fetchFavorites());
   }, [dispatch, sessionUser]);
 
+  console.log(recipes, 'recipes')
   return (
+    recipes.length > 0 ? 
     <div class="recipes-index">
-      <Swiper
+        <Swiper
         slidesPerView={1}
         spaceBetween={10}
         breakpoints={{
@@ -49,9 +52,9 @@ const RecipeIndex = ({ recipes }) => {
             <RecipeCard key={recipe.id} recipe={recipe} favorites={favorites} />
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Swiper> 
       {/* <RecipeCard /> */}
-    </div>
+    </div> : <p className="error-message">No results found, try something else!</p>
   );
 };
 export default RecipeIndex;

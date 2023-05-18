@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {fetchSearchRecipes} from "../../store/recipes.js";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Spinner from "./Spinner";
+
 
 function RecipeSearch() {
   const [query, setQuery] = useState("");
-  // const [queryTags, setQueryTags] = useState([]);
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -42,7 +44,8 @@ function RecipeSearch() {
     { value: 'Sweden', label: 'Sweden', category: 'Countries'},
     { value: 'Indonesia', label: 'Indonesia', category: 'Countries'},
     { value: 'Iran', label: 'Iran', category: 'Countries'},
-    { value: 'Poland', label: 'Poland', cateogry: 'Countries'} ],
+    { value: 'Poland', label: 'Poland', cateogry: 'Countries'},
+    { value: 'South Korea', label: 'South Korea', cateogry: 'Countries'} ],
     },
     {
         label: 'Tags',
@@ -61,6 +64,7 @@ function RecipeSearch() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     try {
       console.log(query, 'query');
       const response = await fetch(`/api/search?q=${query}`);
@@ -69,8 +73,10 @@ function RecipeSearch() {
       dispatch(fetchSearchRecipes(data))
       if (data.length === 0) {
             setError("No results found.");
+            setIsLoading(false);
         } else {
             setError("");
+            setIsLoading(false);
             if (location !== 'recipes' ) {
               history.push("/recipes");
             }
@@ -102,7 +108,11 @@ function RecipeSearch() {
                   setQuery(selected.map((option) => option.value).join(" , ") );
                 }}
         />
+        <button type="submit">Search</button>
       </form>
+
+      {isLoading ? <Spinner /> : null}
+      
     </div>
   );
 }
