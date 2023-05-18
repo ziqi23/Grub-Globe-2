@@ -7,6 +7,7 @@ import {fetchSearchRecipes} from "../../store/recipes.js";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Spinner from "./Spinner";
+import { fetchRecipes } from "../../store/recipes.js";
 
 
 function RecipeSearch() {
@@ -62,11 +63,12 @@ function RecipeSearch() {
   const history = useHistory();
   const location = useLocation();
 
+
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      console.log(query, 'query');
       const response = await fetch(`/api/search?q=${query}`);
       const data = await response.json();
       setResults(data);
@@ -78,7 +80,10 @@ function RecipeSearch() {
             setError("");
             setIsLoading(false);
             if (location !== 'recipes' ) {
-              history.push("/recipes");
+              history.push({
+                pathname: '/recipes',
+                search: `query=${encodeURIComponent(query)}`,
+              });
             }
         }
     } catch (error) {
@@ -86,13 +91,24 @@ function RecipeSearch() {
     }
   };
 
+  const queryParams = new URLSearchParams(location.search);
+  const queryParam = queryParams.get("query");
   useEffect(() => {
-    if (query && results.length === 0) {
-      setError("No results found.");
-    } else {
-      setError("");
-    }
-  }, [query, results]);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/search?q=${queryParam}`);
+        const data = await response.json();
+        setResults(data);
+        dispatch(fetchSearchRecipes(data))
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData(); 
+    
+  }, [dispatch, location]);
+
 
   return (
     <div>
