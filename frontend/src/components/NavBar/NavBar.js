@@ -33,9 +33,9 @@ function NavBar() {
   if (loggedIn) {
     return (
       <div className="nav-bar">
-        <Link to="#">
+        {/* <Link to="#">
           <div>link 1</div>
-        </Link>
+        </Link> */}
         {/* <Link to="#">
           <div>link 2</div>
         </Link> */}
@@ -44,8 +44,6 @@ function NavBar() {
         </Link>
         <Link to="/">
           <div onClick={logoutUser}>
-            {/* <img src={logoutIcon} alt="logout icon" />
-            {MdExitToApp}Logout */}
             <MdExitToApp id="logout-icon" />
             Logout
           </div>

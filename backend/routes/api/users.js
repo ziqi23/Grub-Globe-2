@@ -11,6 +11,7 @@ const validateLoginInput = require('../../validations/login');
 const validateCompleteRecipeInput = require('../../validations/completeRecipe');
 const multer = require("multer");
 const upload = multer()
+const Recipe = mongoose.model('Recipe');
 
 // Upload profile picture route
 router.post('/upload', restoreUser, upload.single("image"), async (req, res) => {
@@ -18,6 +19,16 @@ router.post('/upload', restoreUser, upload.single("image"), async (req, res) => 
     return res.send("you must select a file.");
   }
   await User.findOneAndUpdate( {username: req.user.username}, {profilePhoto: req.file.buffer})
+  const updatedUser = await User.findOne( {username: req.user.username} )
+  res.json({
+    _id: updatedUser._id,
+    username: updatedUser.username,
+    email: updatedUser.email,
+    firstName: updatedUser.firstName,
+    lastName: updatedUser.lastName,
+    photo: updatedUser.profilePhoto,
+    completedRecipe: updatedUser.completedRecipe
+  });
 })
 
 /* GET users listing. */
@@ -39,7 +50,8 @@ router.get('/current', restoreUser, function(req, res, next) {
     email: req.user.email,
     firstName: req.user.firstName,
     lastName: req.user.lastName,
-    photo: req.user.profilePhoto
+    photo: req.user.profilePhoto,
+    completedRecipe: req.user.completedRecipe
   });
 });
 
@@ -79,7 +91,8 @@ router.post('/register', validateRegisterInput, async function(req, res, next) {
     username: req.body.username,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    email: req.body.email
+    email: req.body.email,
+    completedRecipe: []
   });
 
   bcrypt.genSalt(10, (err, salt) => {
@@ -99,22 +112,29 @@ router.post('/register', validateRegisterInput, async function(req, res, next) {
 })
 
 
-router.post('/complete-recipe', validateCompleteRecipeInput, async function(req, res, next) {
+router.patch('/complete-recipe', validateCompleteRecipeInput, async function(req, res, next) {
   try {
     const { userId, recipeId } = req.body;
 
-    // push the completed recipe object into completedRecipe array
-    await User.findByIdAndUpdate(userId, {
-      $push: { completedRecipe: { recipeId: recipeId }}
-    });
+    let user = await User.findById(userId);
+    // create recipeId's array of current user to check the incoming recipeId already exists or not
+    const completedRecipeIds = user.completedRecipe.map((recipe) => recipe.recipeId.toString());
+
+    if (!completedRecipeIds.includes(recipeId)) {
+      user = await User.findByIdAndUpdate(userId,
+        { $push: { "completedRecipe": {recipeId: recipeId } }}, { new: true }
+      );
+    }
 
   } catch (err) {
-    const error = new Error("completion unsuccessful");
-    error.statusCode = 400;
+    const error = new Error(`Completion unsuccessful: ${err.message}`);
+    error.statusCode = 500;
     error.errors = { message: "recipe completion unsuccessful"};
     return next(error);
   }
 })
+
+
 
 
 module.exports = router;

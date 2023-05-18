@@ -2,6 +2,7 @@
     width: 625px;
     margin: 0 auto;
     position: relative;
+    position: relative;
     margin-left: 200px;
     display: flex;
     align-items: center;
@@ -28,4 +29,12 @@
   .css-3w2yfm-ValueContainer {
     width: 400px;
   }
+
+
+
+@media (max-width: 390px) {
+    .search-form {
+        width: 300px;
+    }
+}
 

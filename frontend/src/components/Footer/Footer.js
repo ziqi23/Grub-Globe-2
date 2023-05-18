@@ -12,7 +12,7 @@ const Footer = () => {
         zz: {
             name: "Ziqi Zou",
             github: "https://github.com/ziqi23",
-            linkedIn: ""
+            linkedIn: "https://www.linkedin.com/in/ziqi-zou-2a877818a/"
         },
         ls: {
             name: "Leah Seyoum",
@@ -22,7 +22,7 @@ const Footer = () => {
         mc: {
             name: "Michelle Chung",
             github: "https://github.com/michellechung099",
-            linkedIn: ""
+            linkedIn: "https://www.linkedin.com/in/michelle-chung-3a915a134/"
         },
         kv: {
             name: "Kat Vu",
@@ -32,8 +32,6 @@ const Footer = () => {
     }
 
     const contributors = Object.values(contributorsInfo)
-    console.log(contributors)
-
     return (
         <div id="footer-container">
 

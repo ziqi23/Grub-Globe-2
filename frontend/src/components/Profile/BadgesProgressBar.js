@@ -10,10 +10,11 @@ const BadgesProgressBar = ({badge}) => {
             <img src={badge.icon} alt="icon" />
             <h1>{badge.title}</h1>
             <p>{badge.description}</p>
-            <ProgressBar 
-                percent={55}
-                filledBackground="#f0bb31"    
-                // filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"  
+            <br></br>
+            <p>Completed: {badge.numCompleted}</p>
+            <ProgressBar
+                percent={badge.progress}
+                filledBackground="#f0bb31"
             >
                 {levels.map((level, i) => (
                     <Step transition="scale" >

@@ -11,7 +11,7 @@
 .badge-info-container {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 90%;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -25,8 +25,7 @@
 
 .RSPBprogressBar {
     margin-top: 30px;
-    width: 60%;
-    /* display:flex; */
+    width: 70%;
     box-sizing: border-box;
 }
 
@@ -47,10 +46,8 @@
 }
 
 .milestone-dot {
-    /* position: absolute; */
     width: 20px;
     height: 20px;
-    /* border: 1px solid green; */
     border-radius: 50%;
     box-sizing: border-box;
     background-color: rgb(194, 194, 194);

@@ -8,8 +8,9 @@
 .profile-page-top {
   display: flex;
   flex-grow: 1;
-
+  gap: 30px;
   box-sizing: border-box;
+  padding: 0px 30px;
 }
 
 .profile-page-left {
@@ -17,7 +18,6 @@
   flex-direction: column;
   box-sizing: border-box;
   max-height: 461px;
-  margin-left: 20px;
 }
 
 .profile-page-picture {
@@ -94,14 +94,9 @@
 }
 
 .profile-page-right {
-  margin-left: 20px;
-  padding-left: 30px;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  /* overflow-y: scroll; */
-  margin-right: 50px;
-  /* height: 461px; */
   width: 60vw;
   box-sizing: border-box;
 }
@@ -111,9 +106,6 @@
   
 }
 
-.profile-page-right div img {
-  /* filter: grayscale(100%); */
-}
 
 .profile-page-right h2 {
   display: flex;
@@ -127,12 +119,38 @@
 }
 
 .profile-picture-upload-panel {
-  position: absolute;
-  bottom: -20px;
-  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
   z-index: 10;
-  width: 320px;
+  width: 500px;
+  height: 260px;
+  color: rgb(28, 28, 28);
+  background-color: rgb(249, 249, 249);
+  position: absolute;
+  top: 0px;
+  left: 250px;
+  border-radius: 4px;
+  transition-duration: 500ms;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+}
 
+#profile-picture-upload-form {
+  margin-top: 30px;
+  border-radius: 5px;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px;
+}
+
+.profile-picture-dropbox-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.drag-highlight {
+  background-color: rgb(66, 67, 66);
+  color:rgb(239, 236, 236);
 }
 
 .profile-nav-bar {
@@ -158,6 +176,11 @@
   color: rgb(236, 177, 66);
 }
 
+.profile-page-right .tab-title {
+  font-size: 3em;
+  text-align: center;
+  letter-spacing: -3px;
+}
 @media (max-width: 920px) {
   .profile-page-top {
     flex-direction: column;
@@ -170,5 +193,18 @@
 
   .profile-nav-bar {
     justify-content: center;
+  }
+}
+
+@media (max-width: 390px) {
+  .profile-page-top {
+    margin-top: 120px;
+    width: 100vw;
+
+  }
+
+  .profile-nav-bar {
+    flex-direction: column;
+    align-items: center;
   }
 }

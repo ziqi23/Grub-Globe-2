@@ -1,9 +1,11 @@
 import "./FavoritesTile.css";
 import mapPin from "../../assets/icons/general-icons/icons8-map-pin-48.png";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect } from "react";
 
 const FavoritesTile = ({ recipe }) => {
   const history = useHistory();
+  
   return (
     <>
       <div
