@@ -89,8 +89,8 @@ export default function SplashAiChat() {
       setPrompt([...prompt, { role: "assistant", content: data.result }]);
     } catch (error) {
       console.error(error);
-      alert(error.message);
-      console.log("in catch at 100");
+      //   alert(error.message);
+      //   console.log("in catch at 100");
       setPastQuestions((prevState) => [questionInput, ...prevState]);
       setPastAnswers((prevState) => [
         "Sorry, OpenAI's got-3.5-turbo model is currently overloaded with other requests. Please try again later, or explore the globe to find your next food adventure.",
