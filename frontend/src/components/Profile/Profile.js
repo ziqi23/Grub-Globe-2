@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import "./Profile.css";
 import defaultPicture from "./default-profile.png";
 import { useState, useEffect } from "react";
+import { AiOutlineDownload } from "react-icons/ai";
 import jwtFetch from "../../store/jwt";
 import Header from "../Header/Header";
 import { fetchFavorites } from "../../store/favorites";
@@ -12,6 +13,8 @@ import FavoritesTile from "./FavoritesTile";
 import BadgesIndex from "./BadgesIndex";
 import { fetchUserReviews } from "../../store/reviews";
 import ReviewsTiles from "./ReviewsTile";
+// import CompletedRecipes from "./CompletedRecipes";
+import { uploadImage } from "../../store/session";
 
 // Favorites integration and ability to unfavorite from page
 
@@ -25,7 +28,6 @@ function Profile(props) {
 
   useEffect(() => {
     dispatch(fetchUserReviews(sessionUser._id));
-    console.log(userReviews)
   }, [dispatch, sessionUser]);
 
   //you can pull number of users's reviews using userReviews.length, or look at reviews themselves using userReviews
@@ -35,6 +37,7 @@ function Profile(props) {
 
   // for uploading profile photo
   const Buffer = require("buffer/").Buffer;
+  const [image, setImage] = useState()
   const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
   const [photoFile, setPhotoFile] = useState(null);
   const [updatePhoto, setUpdatePhoto] = useState(false);
@@ -47,7 +50,7 @@ function Profile(props) {
 
   // for users acquired badges; can choose which one to display
 
-  const user = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.session.user)
   const favorites = useSelector((state) => Object.values(state.favorites));
 
   // for badges
@@ -70,7 +73,6 @@ function Profile(props) {
       Promise.all(fetchPromises)
         .then(fetchedRecipes => {
           setCompletedRecipes(fetchedRecipes);
-          console.log("fetchedRecipes", fetchedRecipes);
           const numComplete = fetchedRecipes.length;
           const uniqueCountry = new Set(fetchedRecipes.map(recipe => {
             return recipe.recipe.country;
@@ -90,26 +92,47 @@ function Profile(props) {
     }
   }, [user, dispatch]);
 
-  let bufferArr;
-  let image;
-  if (user.photo) {
-    bufferArr = new Uint8Array(user.photo.data);
-    image = Buffer.from(bufferArr).toString("base64");
-  }
+  useEffect(() => {
+    if (user.photo) {
+      const bufferArr = new Uint8Array(user.photo.data);
+      setImage(image => Buffer.from(bufferArr).toString("base64"))
+    }
+  }, [user.photo, photoFile])
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", photoFile);
-    jwtFetch("/api/users/upload", {
-      method: "POST",
-      body: formData,
-    });
+    dispatch(uploadImage(formData))
   }
 
   function handlePanelClick(e) {
     e.preventDefault();
     setUploadPanelOpen(!uploadPanelOpen);
+  }
+
+  function handleDrag(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    const box = document.getElementsByClassName('profile-picture-upload-panel')[0]
+    switch (e.type) {
+      case "dragover":
+        box.classList.add('drag-highlight')
+        break;
+      case "dragenter":
+        box.classList.add('drag-highlight')
+        break;
+      case "drop":
+        box.classList.remove('drag-highlight')
+        setPhotoFile(e.dataTransfer.files[0])
+        const formData = new FormData();
+        formData.append("image", e.dataTransfer.files[0]);
+        dispatch(uploadImage(formData))
+        break;
+      case "dragleave":
+        box.classList.remove('drag-highlight')
+        break;
+    }
   }
 
   const toggleNav = (selectedTab) => {
@@ -120,7 +143,6 @@ function Profile(props) {
       switch (tab) {
         case "badges":
           setState = setToggleBadges;
-          console.log("hello");
           break;
         case "favorites":
           setState = setToggleFavorites;
@@ -142,6 +164,7 @@ function Profile(props) {
     });
     return setFalse.forEach((setState) => setState(false));
   };
+
 
   return (
     <div className="profile-page-root">
@@ -169,7 +192,13 @@ function Profile(props) {
             )}
 
             {uploadPanelOpen && (
-              <div className="profile-picture-upload-panel">
+              <div className="profile-picture-upload-panel"
+              onDragEnter={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrag}
+              onDragLeave={handleDrag}>
+                <AiOutlineDownload className="profile-picture-dropbox-icon"/>
+                <h1>Upload a new profile photo, or simply drag and drop.</h1>
                 <form id="profile-picture-upload-form" onSubmit={handleSubmit}>
                   <input
                     accept="image/*"
@@ -213,7 +242,6 @@ function Profile(props) {
             <h1
               onClick={() => {
                 toggleNav("completed")
-                console.log(toggleCompleted);
               }}
               className={toggleCompleted ? "active": ""}
               >Completed Recipes

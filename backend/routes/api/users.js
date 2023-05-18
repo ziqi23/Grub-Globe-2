@@ -19,6 +19,16 @@ router.post('/upload', restoreUser, upload.single("image"), async (req, res) => 
     return res.send("you must select a file.");
   }
   await User.findOneAndUpdate( {username: req.user.username}, {profilePhoto: req.file.buffer})
+  const updatedUser = await User.findOne( {username: req.user.username} )
+  res.json({
+    _id: updatedUser._id,
+    username: updatedUser.username,
+    email: updatedUser.email,
+    firstName: updatedUser.firstName,
+    lastName: updatedUser.lastName,
+    photo: updatedUser.profilePhoto,
+    completedRecipe: updatedUser.completedRecipe
+  });
 })
 
 /* GET users listing. */
