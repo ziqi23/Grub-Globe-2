@@ -13,18 +13,18 @@ const ReviewIndex = ({ recipeId }) => {
   );
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [hasCompletedRecipe, setHasCompletedRecipe] = useState(false)
+  const [hasCompletedRecipe, setHasCompletedRecipe] = useState(false);
 
   useEffect(() => {
     dispatch(fetchRecipeReviews(recipeId));
-    dispatch(getCurrentUser())
+    dispatch(getCurrentUser());
   }, [dispatch]);
 
   useEffect(() => {
-    sessionUser?.completedRecipe.forEach((recipe) => {
-      if (recipe?.recipeId === recipeId) setHasCompletedRecipe(true)
-    }) 
-  }, [dispatch, hasCompletedRecipe, sessionUser])
+    sessionUser?.completedRecipe?.forEach((recipe) => {
+      if (recipe?.recipeId === recipeId) setHasCompletedRecipe(true);
+    });
+  }, [dispatch, hasCompletedRecipe, sessionUser]);
 
   const composeReviewSection = () => {
     let hasWrittenReview = false;
@@ -48,12 +48,10 @@ const ReviewIndex = ({ recipeId }) => {
 
   return (
     <>
-        {composeReviewSection()}
-        <h1 className="review-index-container-title">
-          {recipeReviews.length > 0
-            ? "Reviews"
-            : "No reviews yet - get cookin'!"}
-        </h1>
+      {composeReviewSection()}
+      <h1 className="review-index-container-title">
+        {recipeReviews.length > 0 ? "Reviews" : "No reviews yet - get cookin'!"}
+      </h1>
       <div className="review-index-container">
         {recipeReviews.map((review, i) => (
           <ReviewBox key={i} review={review} />
