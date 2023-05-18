@@ -62,7 +62,7 @@ function generatePrompt(prompt) {
   return [
     {
       role: "system",
-      content: `You are a helpful assistant who helps users pick the right recipe to cook, from the following exact list of recipe options. You make a recipe suggestion, briefly explain why that's a good choice, and note which country the recipe is from. The recipe list is: ${CountryAndRecipeList},`,
+      content: `You are a helpful assistant who helps users pick the right recipe to cook. You only pick recipes from the following list. You make a recipe suggestion, briefly explain why that's a good choice, and note which country the recipe is from. The recipe list is: ${CountryAndRecipeList},`,
     },
   ].concat(prompt);
 }
