@@ -216,6 +216,13 @@
   position: relative;
 }
 
+.error-message {
+  position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+}
 
 @media (max-height: 900px) {
   .recipes-index {
