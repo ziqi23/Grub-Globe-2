@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
   }
   console.log(generatePrompt(prompt), "full prompt in backend");
   try {
-    // testing;
+    // Uncomment to test OpenAI server overload;
     // const simulatedErrorResponse = {
     //   response: {
     //     status: 503,
@@ -48,8 +48,7 @@ router.post("/", async (req, res) => {
     //   },
     // };
     // throw simulatedErrorResponse;
-    // test;
-    // console.log(generatePrompt(prompt), "full prompt in backend");
+
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: generatePrompt(prompt),
