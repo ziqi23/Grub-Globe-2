@@ -133,7 +133,6 @@ router.patch(
       const { userId, recipeId } = req.body;
 
       let user = await User.findById(userId);
-      // create recipeId's array of current user to check the incoming recipeId already exists or not
       const completedRecipeIds = user.completedRecipe.map((recipe) =>
         recipe.recipeId.toString()
       );

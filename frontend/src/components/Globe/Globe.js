@@ -3,7 +3,10 @@ import { useState, useEffect, useRef } from "react";
 import texture from "./high-res-world-map-partially-colored-30-filled.png";
 import Header from "../Header/Header";
 import "./Globe.css";
-import {Redirect, useHistory} from "react-router-dom/cjs/react-router-dom.min";
+import {
+  Redirect,
+  useHistory,
+} from "react-router-dom/cjs/react-router-dom.min";
 import Footer from "../Footer/Footer";
 import SplashAiChat from "../WhatToCookAssistant";
 
@@ -169,9 +172,9 @@ function Globe(props) {
   const ref = useRef();
   const history = useHistory();
   const [uv, setUv] = useState();
-  const [loaded, setLoaded] = useState(false)
-  const [image, setImage] = useState(false)
-  const [imageColor, setImageColor] = useState(false)
+  const [loaded, setLoaded] = useState(false);
+  const [image, setImage] = useState(false);
+  const [imageColor, setImageColor] = useState(false);
   const [countryHovered, setCountryHovered] = useState(false);
   const [group, setGroup] = useState(false);
   const countryHoveredRef = useRef(countryHovered);
@@ -181,12 +184,12 @@ function Globe(props) {
     img.crossOrigin = "Anonymous";
     img.willReadFrequently = true;
     img.onload = () => {
-      console.log('loaded')
-      setImage(img)
-      setLoaded(true)
-    }
+      console.log("loaded");
+      setImage(img);
+      setLoaded(true);
+    };
     img.src = texture;
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (image) {
@@ -199,13 +202,13 @@ function Globe(props) {
       context.drawImage(image, 0, 0);
       setImageColor(context.getImageData(0, 0, image.width, image.height));
     }
-  }, [image])
+  }, [image]);
 
   let autoRotate = true;
   useEffect(() => {
     // Initialize scene
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, 1, 1, 1000); //changed
+    const camera = new THREE.PerspectiveCamera(45, 1, 1, 1000);
     const light = new THREE.DirectionalLight();
     light.position.x = 0;
     light.position.z = 300;
@@ -214,16 +217,14 @@ function Globe(props) {
 
     // Initialize globe
     const globeGeometry = new THREE.SphereGeometry(30, 64, 64);
-    // const globeTexture = new THREE.TextureLoader().load(countryTexture);
-    // const globeMaterial = new THREE.MeshStandardMaterial({map: globeTexture});
-    const globeMaterial = new THREE.MeshStandardMaterial({ color: 0x9dd0ff }); //673fe1 })
+    const globeMaterial = new THREE.MeshStandardMaterial({ color: 0x9dd0ff });
     const globe = new THREE.Mesh(globeGeometry, globeMaterial);
     globe.position.x = 0;
     globe.position.z = 0;
     globe.position.y = 0;
 
     let group = new THREE.Group();
-    setGroup(group)
+    setGroup(group);
     group.add(globe);
     scene.add(group);
 
@@ -280,13 +281,11 @@ function Globe(props) {
       } else {
         autoRotate = true;
       }
-      // if (lastCall) cancelAnimationFrame(lastCall)
-      // lastCall = requestAnimationFrame(animate)
     }
 
     // Render above scene
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
-    renderer.setSize(0.6 * window.innerWidth, window.innerWidth * 0.6); // changed
+    renderer.setSize(0.6 * window.innerWidth, window.innerWidth * 0.6);
     renderer.render(scene, camera);
     ref.current.appendChild(renderer.domElement);
 
@@ -296,7 +295,7 @@ function Globe(props) {
         group.rotation.y -= 0.01;
       }
       renderer.render(scene, camera);
-      console.log(scene)
+      console.log(scene);
     }
     animate();
     return () => {
@@ -319,7 +318,7 @@ function Globe(props) {
   // Load placeholder 2D world map image to create dots
 
   useEffect(() => {
-    console.log(loaded)
+    console.log(loaded);
     if (loaded) {
       for (let i = 0; i < 20000; i++) {
         const phi = Math.acos(-1 + (2 * i) / 20000);
@@ -340,7 +339,7 @@ function Globe(props) {
             16
           );
           let dotMaterial = new THREE.MeshBasicMaterial({
-            color: orangeVariant
+            color: orangeVariant,
           });
           const dot = new THREE.Mesh(dotGeometry, dotMaterial);
           dot.position.x = vector.x;
@@ -390,17 +389,6 @@ function Globe(props) {
           dot.position.y *= 1.05;
           dot.position.z *= 1.05;
         }
-        // while (Math.sqrt(x ** 2 + y ** 2 + z ** 2) > 35) {
-        //     let sizeFactor = 1 - Math.random() * 0.01
-        //     x *= sizeFactor
-        //     y *= sizeFactor
-        //     z *= sizeFactor
-        //     dot.position.x *= sizeFactor
-        //     dot.position.y *= sizeFactor
-        //     dot.position.z *= sizeFactor
-        //     break;
-        // }
-        // dot.material = new THREE.MeshStandardMaterial( { color: 0x44C08A } )
       });
       if (
         countryHoveredRef.past &&
@@ -463,25 +451,3 @@ function Globe(props) {
 }
 
 export default Globe;
-
-// color theme
-// auto spin
-// raytracing
-// - defining areas of the globe to handle click logic, ideas:
-// 1) dividing the 3d model into clickable sub-components
-// 2) layering invisible image (sprite) on top of globe to handle clicks,
-//    projecting globe onto 2D screen space
-// 3) get longitude and latitude coordinates of location and convert to 2d
-// can add markers for countries, or have the country outlined/highlighted on hover
-// markers require 1 coord, highlight requires 10000
-// image coloring method from stripe
-
-// US: 70744C
-// Italy: 847233
-// China: 9E8D56
-// Mexico: 5C9E5D
-// India: 555931
-// France: 6a5912
-// Korea: 6d8c39
-// Japan: 94923f
-// C4C0C0: Undefined

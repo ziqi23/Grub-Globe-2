@@ -19,7 +19,6 @@
   text-align: center;
 }
 
-
 .review-user-info .circle {
   width: 90px;
   height: 90px;
@@ -63,7 +62,6 @@
 
 .star-rating-input {
   display: flex;
-  /* margin-right: 10px; */
   gap: 10px;
   font-size: 40px;
   cursor: pointer;
@@ -153,7 +151,6 @@
 .update-buttons {
   margin-bottom: 5px;
 }
-
 
 .review-unclickable {
   pointer-events: none;

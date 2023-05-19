@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { FaGrinStars } from "react-icons/fa";
 import "./Review.css";
 
 const StarRatingInput = ({ rating, disabled, onChange, icon }) => {
