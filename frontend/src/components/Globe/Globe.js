@@ -184,7 +184,6 @@ function Globe(props) {
     img.crossOrigin = "Anonymous";
     img.willReadFrequently = true;
     img.onload = () => {
-      console.log("loaded");
       setImage(img);
       setLoaded(true);
     };
@@ -295,7 +294,6 @@ function Globe(props) {
         group.rotation.y -= 0.01;
       }
       renderer.render(scene, camera);
-      console.log(scene);
     }
     animate();
     return () => {
@@ -318,7 +316,6 @@ function Globe(props) {
   // Load placeholder 2D world map image to create dots
 
   useEffect(() => {
-    console.log(loaded);
     if (loaded) {
       for (let i = 0; i < 20000; i++) {
         const phi = Math.acos(-1 + (2 * i) / 20000);

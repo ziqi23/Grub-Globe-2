@@ -33,7 +33,6 @@ router.post("/", async (req, res) => {
     });
     return;
   }
-  console.log(generatePrompt(prompt), "full prompt in backend");
   try {
     // Uncomment to test OpenAI server overload;
     // const simulatedErrorResponse = {

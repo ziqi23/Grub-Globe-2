@@ -18,7 +18,6 @@ const RecipeIndexPage = (props) => {
     if (search) {
       dispatch(fetchRecipes(search));
     }
-    console.log(search);
   }, [dispatch]);
 
   return (

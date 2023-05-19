@@ -53,7 +53,6 @@ const RecipeShowPage = () => {
 
   useEffect(() => {
     dispatch(fetchRecipe(recipeId));
-    console.log(recipe?.tags);
   }, [recipeId, dispatch]);
 
   useEffect(() => {

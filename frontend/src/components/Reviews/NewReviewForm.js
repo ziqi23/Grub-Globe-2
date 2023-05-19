@@ -86,7 +86,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
   };
 
   const handleReviewDelete = () => {
-    console.log(review.recipe, "recipe", review, "review");
     dispatch(deleteReview(review._id)).then(() => {
       dispatch(fetchRecipeReviews(review.recipe));
     });
