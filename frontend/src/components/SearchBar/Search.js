@@ -6,12 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import {fetchSearchRecipes} from "../../store/recipes.js";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Spinner from "./Spinner";
+import { fetchRecipes } from "../../store/recipes.js";
+
 
 function RecipeSearch() {
   const [query, setQuery] = useState("");
-  // const [queryTags, setQueryTags] = useState([]);
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -42,7 +45,8 @@ function RecipeSearch() {
     { value: 'Sweden', label: 'Sweden', category: 'Countries'},
     { value: 'Indonesia', label: 'Indonesia', category: 'Countries'},
     { value: 'Iran', label: 'Iran', category: 'Countries'},
-    { value: 'Poland', label: 'Poland', cateogry: 'Countries'} ],
+    { value: 'Poland', label: 'Poland', cateogry: 'Countries'},
+    { value: 'South Korea', label: 'South Korea', cateogry: 'Countries'} ],
     },
     {
         label: 'Tags',
@@ -59,20 +63,33 @@ function RecipeSearch() {
   const history = useHistory();
   const location = useLocation();
 
+
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     try {
-      console.log(query, 'query');
       const response = await fetch(`/api/search?q=${query}`);
       const data = await response.json();
       setResults(data);
       dispatch(fetchSearchRecipes(data))
       if (data.length === 0) {
             setError("No results found.");
+            setIsLoading(false);
+            if (location !== 'recipes' ) {
+              history.push({
+                pathname: '/recipes',
+                search: `query=${encodeURIComponent(query)}`,
+              });
+            }
         } else {
             setError("");
+            setIsLoading(false);
             if (location !== 'recipes' ) {
-              history.push("/recipes");
+              history.push({
+                pathname: '/recipes',
+                search: `query=${encodeURIComponent(query)}`,
+              });
             }
         }
     } catch (error) {
@@ -80,13 +97,24 @@ function RecipeSearch() {
     }
   };
 
+  const queryParams = new URLSearchParams(location.search);
+  const queryParam = queryParams.get("query");
   useEffect(() => {
-    if (query && results.length === 0) {
-      setError("No results found.");
-    } else {
-      setError("");
-    }
-  }, [query, results]);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/search?q=${queryParam}`);
+        const data = await response.json();
+        setResults(data);
+        dispatch(fetchSearchRecipes(data))
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData(); 
+    
+  }, [dispatch, location]);
+
 
   return (
     <div>
@@ -102,7 +130,9 @@ function RecipeSearch() {
                   setQuery(selected.map((option) => option.value).join(" , ") );
                 }}
         />
+        <button type="submit">Search</button>
       </form>
+      
     </div>
   );
 }

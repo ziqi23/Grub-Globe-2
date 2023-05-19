@@ -1,8 +1,36 @@
 .search-form {
-    width: 525px;
+    width: 625px;
     margin: 0 auto;
     position: relative;
+    position: relative;
+    margin-left: 200px;
+    display: flex;
+    align-items: center;
 }
+
+.search-form button {
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: "Kanit", sans-serif;
+  }
+
+.search-form button:hover {
+    color: rgb(243, 161, 54);
+    cursor: pointer;
+}
+
+  .css-1fdsijx-ValueContainer {
+    width: 400px;
+  }
+
+  .css-3w2yfm-ValueContainer {
+    width: 400px;
+  }
+
+
 
 @media (max-width: 390px) {
     .search-form {
