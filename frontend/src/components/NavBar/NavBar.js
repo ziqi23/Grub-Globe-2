@@ -9,7 +9,7 @@ import { useState } from "react";
 import { Modal } from "../../context/Modal";
 import SignupForm from "../SessionForms/SignUpForm";
 import { MdExitToApp } from "react-icons/md";
-import {login} from "../../store/session";
+import { login } from "../../store/session";
 
 function NavBar() {
   const loggedIn = useSelector((state) => !!state.session.user);
@@ -33,12 +33,6 @@ function NavBar() {
   if (loggedIn) {
     return (
       <div className="nav-bar">
-        {/* <Link to="#">
-          <div>link 1</div>
-        </Link> */}
-        {/* <Link to="#">
-          <div>link 2</div>
-        </Link> */}
         <Link to="/profile">
           <div>Profile</div>
         </Link>

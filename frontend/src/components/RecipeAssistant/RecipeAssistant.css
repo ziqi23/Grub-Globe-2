@@ -60,7 +60,7 @@
 
 #lastA-text,
 #otherA-text {
-  background-color: coral;
+  background-color: #f9c012;
   border-radius: 5px;
   padding: 5px;
   width: 230px;
@@ -90,14 +90,14 @@
   }
   25% {
     transform: rotate(0);
-    border-top: 10px solid rgb(240, 140, 104);
+    border-top: 10px solid #f9c012;
   }
   50% {
     border-top: 10px solid white;
   }
   75% {
     transform: rotate(0);
-    border-top: 10px solid rgb(37, 146, 37);
+    border-top: 10px solid rgb(125, 202, 231);
   }
   100% {
     transform: rotate(360deg);
@@ -144,7 +144,7 @@
 }
 
 #spinner-container {
-  background-color: coral;
+  background-color: #f9c012;
   border-radius: 5px;
   padding: 5px;
   width: 230px;
@@ -156,7 +156,7 @@
 #spinner {
   height: 30px;
   width: 30px;
-  border: 10px solid rgb(241, 105, 56);
+  border: 10px solid #fcd665;
   border-radius: 50%;
   animation: spiny 1s infinite linear;
 }
