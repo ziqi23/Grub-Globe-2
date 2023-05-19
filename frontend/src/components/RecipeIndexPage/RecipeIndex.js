@@ -10,18 +10,33 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFavorites } from "../../store/favorites";
 import Spinner from "../SearchBar/Spinner";
+import { useState } from "react";
 
 const RecipeIndex = ({ recipes }) => {
   const favorites = useSelector((state) => Object.values(state.favorites));
   const sessionUser = useSelector((state) => state.session.user);
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(fetchFavorites());
+    dispatch(fetchFavorites())
   }, [dispatch, sessionUser]);
 
-  console.log(recipes, 'recipes')
+  useEffect(() => {
+    if (recipes) {
+      setIsLoading(false);
+    }
+  }, [dispatch, recipes])
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (recipes.length === 0) {
+    return <p className="error-message">No results found, try something else!</p>;
+  }
+
   return (
-    recipes.length > 0 ? 
     <div class="recipes-index">
         <Swiper
         slidesPerView={1}
@@ -53,8 +68,8 @@ const RecipeIndex = ({ recipes }) => {
           </SwiperSlide>
         ))}
       </Swiper> 
-      {/* <RecipeCard /> */}
-    </div> : <p className="error-message">No results found, try something else!</p>
+    </div> 
+    
   );
 };
 export default RecipeIndex;
