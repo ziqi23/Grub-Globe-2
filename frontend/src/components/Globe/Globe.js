@@ -169,12 +169,39 @@ function Globe(props) {
   const ref = useRef();
   const history = useHistory();
   const [uv, setUv] = useState();
+  const [loaded, setLoaded] = useState(false)
+  const [image, setImage] = useState(false)
+  const [imageColor, setImageColor] = useState(false)
   const [countryHovered, setCountryHovered] = useState(false);
+  const [group, setGroup] = useState(false);
   const countryHoveredRef = useRef(countryHovered);
 
+  useEffect(() => {
+    const img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.willReadFrequently = true;
+    img.onload = () => {
+      console.log('loaded')
+      setImage(img)
+      setLoaded(true)
+    }
+    img.src = texture;
+  }, [])
+
+  useEffect(() => {
+    if (image) {
+      const canvas = document.getElementById("placeholder-canvas");
+      canvas.style.visibility = "hidden";
+      canvas.style.display = "none";
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const context = canvas.getContext("2d", { willReadFrequently: true });
+      context.drawImage(image, 0, 0);
+      setImageColor(context.getImageData(0, 0, image.width, image.height));
+    }
+  }, [image])
 
   let autoRotate = true;
-  let group = new THREE.Group();
   useEffect(() => {
     // Initialize scene
     const scene = new THREE.Scene();
@@ -195,6 +222,8 @@ function Globe(props) {
     globe.position.z = 0;
     globe.position.y = 0;
 
+    let group = new THREE.Group();
+    setGroup(group)
     group.add(globe);
     scene.add(group);
 
@@ -267,6 +296,7 @@ function Globe(props) {
         group.rotation.y -= 0.01;
       }
       renderer.render(scene, camera);
+      console.log(scene)
     }
     animate();
     return () => {
@@ -278,59 +308,31 @@ function Globe(props) {
 
   // Use UV coordinates to determine if user is hovering over a in-scope country
   useEffect(() => {
-    if (uv) {
-      const canvas = document.getElementById("placeholder-canvas");
-      canvas.style.visibility = "hidden";
-      canvas.style.display = "none";
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const context = canvas.getContext("2d", { willReadFrequently: true });
-      context.drawImage(img, 0, 0);
-      imgColor = context.getImageData(0, 0, img.width, img.height);
+    if (uv && imageColor) {
       let color = getColorFromUV(uv.x, uv.y).toUpperCase();
       if (colorMapping[color] && colorMapping[color] !== "Not Implemented") {
         countryHoveredRef.current = colorMapping[color];
       }
     }
-  }, [uv]);
+  }, [uv, imageColor]);
 
   // Load placeholder 2D world map image to create dots
-  const img = new Image();
-  img.src = texture;
-  img.crossOrigin = "Anonymous";
-  img.willReadFrequently = true;
 
-  let imgColor;
   useEffect(() => {
-    if (img.complete) {
-      createDots();
-    } else {
-      img.onload = () => createDots();
-    }
-
-    function createDots() {
-      const canvas = document.getElementById("placeholder-canvas");
-      canvas.style.visibility = "hidden";
-      canvas.style.display = "none";
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const context = canvas.getContext("2d", { willReadFrequently: true });
-      context.drawImage(img, 0, 0);
-      imgColor = context.getImageData(0, 0, img.width, img.height);
+    console.log(loaded)
+    if (loaded) {
       for (let i = 0; i < 20000; i++) {
         const phi = Math.acos(-1 + (2 * i) / 20000);
         const theta = Math.sqrt(20000 * Math.PI) * phi;
         const vector = new THREE.Vector3();
         vector.setFromSphericalCoords(30, phi, theta);
-
         let x = vector.x / 30;
         let y = vector.y / 30;
         let z = vector.z / -30;
-
         let u = 0.5 + Math.atan2(z, x) / (2 * Math.PI);
         let v = 0.5 + Math.asin(y) / Math.PI;
-
         let color = getColorFromUV(u, v).toUpperCase();
+
         if (colorMapping[color]) {
           const dotGeometry = new THREE.SphereGeometry(0.1, 1);
           let orangeVariant = parseInt(
@@ -338,7 +340,7 @@ function Globe(props) {
             16
           );
           let dotMaterial = new THREE.MeshBasicMaterial({
-            color: orangeVariant,
+            color: orangeVariant
           });
           const dot = new THREE.Mesh(dotGeometry, dotMaterial);
           dot.position.x = vector.x;
@@ -354,16 +356,16 @@ function Globe(props) {
         }
       }
     }
-  }, []);
+  }, [loaded]);
 
   function getColorFromUV(u, v) {
-    const width = Math.floor(u * img.width);
-    const height = Math.floor((1 - v) * img.height);
-    const index = (width + (height - 1) * img.width) * 4;
+    const width = Math.floor(u * image.width);
+    const height = Math.floor((1 - v) * image.height);
+    const index = (width + (height - 1) * image.width) * 4;
     const hexColor =
-      imgColor.data[index].toString(16) +
-      imgColor.data[index + 1].toString(16) +
-      imgColor.data[index + 2].toString(16);
+      imageColor.data[index].toString(16) +
+      imageColor.data[index + 1].toString(16) +
+      imageColor.data[index + 2].toString(16);
     return hexColor;
   }
 
