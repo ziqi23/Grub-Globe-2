@@ -163,7 +163,9 @@ Interesting considerations and challenges...
 
 Take a look at the source files for implementation of other notable features:
 
+- Recipe and user image hosting, including ability to change profile picture
 - User auth
+- Reviews, cooked recipes, and favorites CRUD
 - Sign up and log in modals
 - Frontend and backend input validation + messaging throughout
 
@@ -173,7 +175,7 @@ Take a look at the source files for implementation of other notable features:
 
 Upcoming improvements include:
 
-- x
+- Live API functionality to enable search on more recipes
 - x
 - x
 
@@ -181,6 +183,5 @@ Upcoming improvements include:
 
 ### Asset Attribution
 
-- Seed content by <a href="https://chat.openai.com/chat">ChatGPT</a>
-- Images:
-  -
+- Seed content by <a href="https://chat.openai.com/chat">ChatGPT</a> and <a href="https://spoonacular.com/food-api">Spoonacular</a>
+- ## Images:

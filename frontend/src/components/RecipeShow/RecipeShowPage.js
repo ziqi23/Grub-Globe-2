@@ -19,12 +19,11 @@ import veganIcon from "../../assets/icons/general-icons/icons8-vegan-100.png";
 import vegetarianIcon from "../../assets/icons/general-icons/icons8-vegetarian-100.png";
 import timerIcon from "../../assets/icons/general-icons/icons8-timer-100.png";
 import plateIcon from "../../assets/icons/general-icons/icons8-plate-100.png";
-import { getCurrentUser } from "../../store/session";
 
 const RecipeShowPage = () => {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
-  const [tooltipOpen, setTooltipOpen] = useState(-1)
+  const [tooltipOpen, setTooltipOpen] = useState(-1);
 
   const icons = {
     glutenFree: glutenFreeIcon,
@@ -54,14 +53,11 @@ const RecipeShowPage = () => {
 
   useEffect(() => {
     dispatch(fetchRecipe(recipeId));
-    console.log(recipe?.tags);
   }, [recipeId, dispatch]);
 
   useEffect(() => {
     dispatch(fetchFavorites());
   }, [dispatch, sessionUser]);
-
-
 
   const handleFollowAlong = () => {
     setToggleFollowAlong(true);
@@ -69,10 +65,13 @@ const RecipeShowPage = () => {
   };
 
   const handleMouseLeave = (e) => {
-    e.preventDefault()
-    setTooltipOpen(-1)
-  }
-
+    e.preventDefault();
+    setTooltipOpen(-1);
+  };
+  // if (!recipe) {
+  //   console.log(recipe, "recipe");
+  //   return <>loading!</>;
+  // } else {
   return (
     <>
       <Header />
@@ -85,7 +84,6 @@ const RecipeShowPage = () => {
             </div>
           </div>
           <div className="main-recipe-content-container">
-            {/* <h1>{recipe.name}</h1> */}
             <div className="main-recipe-info-header">
               <FavHeart recipe={recipe} favorites={favorites} />
               <h1 className="recipe-index-recipe-name">{recipe?.recipeName}</h1>
@@ -101,7 +99,6 @@ const RecipeShowPage = () => {
                 />
               </div>
               <h3>Recipe by: {recipe?.recipeAuthor}</h3>
-
             </div>
             <div className="smaller-content-info">
               <div>
@@ -133,17 +130,16 @@ const RecipeShowPage = () => {
                 Let's get cookin!
               </div>
             </div>
-            {/* <div className="youtube-links-container">
-                {recipe?.youtubeLinks.map((link, i) =>
-                  <iframe src={link}></iframe>
-                )}
-            </div> */}
           </div>
 
           <div className="macros-container">
             <div onMouseLeave={handleMouseLeave}>
               <h2>Nutrition</h2>
-              <Macronutrients macronutrients={recipe?.nutrition.nutrients} tooltipOpen={tooltipOpen} setTooltipOpen={setTooltipOpen}/>
+              <Macronutrients
+                macronutrients={recipe?.nutrition.nutrients}
+                tooltipOpen={tooltipOpen}
+                setTooltipOpen={setTooltipOpen}
+              />
             </div>
           </div>
         </div>
