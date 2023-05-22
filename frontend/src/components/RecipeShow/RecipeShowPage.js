@@ -36,6 +36,7 @@ const RecipeShowPage = () => {
   const recipe = useSelector((state) =>
     state.recipes ? state.recipes[recipeId] : null
   );
+  // const recipe = useSelector((state) => state.recipes[recipeId]);
 
   const displayTags = recipe?.tags.map((tag, i) => (
     <div key={i}>
@@ -68,13 +69,17 @@ const RecipeShowPage = () => {
     e.preventDefault();
     setTooltipOpen(-1);
   };
-  // if (!recipe) {
-  //   console.log(recipe, "recipe");
-  //   return <>loading!</>;
-  // } else {
+
+  if (!recipe) {
+    console.log(recipe, "no recipe");
+    return <>loading!</>;
+  } else {
+    console.log(recipe, "have recipe");
+  }
+  // else {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className="below-header-container">
         <div className="recipe-show-page-container">
           <div className="details-container">
