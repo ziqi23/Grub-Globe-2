@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Header = ({ openLoginModal, openSignupModal }) => {
   const location = useLocation();
   const history = useHistory();
-  const show = location.pathname !== "/explore" && location.pathname !== "/";
+  const show = location.pathname !== "/explore" && location.pathname !== "/" && location.pathname !== "/signup" && location.pathname !== "/login";
 
   return (
     <div className="header-container">
