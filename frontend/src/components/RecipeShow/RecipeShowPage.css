@@ -5,6 +5,7 @@
   display: flex;
   position: relative;
   justify-content: center;
+
 }
 
 .recipe-show-page-container > div {
@@ -90,13 +91,14 @@
 }
 
 .map-pin {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 }
 
 .main-recipe-info-header div {
   display: flex;
   margin-bottom: 20px;
+  align-items: center;
 }
 
 .main-recipe-content-container div {
@@ -224,6 +226,12 @@
   }
   .main-recipe-content-container h1 {
     font-size: 200%;
+  }
+}
+
+@media (max-width: 930px) {
+  .recipe-show-page-container {
+    margin-top: 120px;
   }
 }
 

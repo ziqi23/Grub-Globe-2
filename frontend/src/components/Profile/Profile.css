@@ -163,6 +163,7 @@
 .profile-nav-bar h1 {
   cursor: pointer;
   transition: 0.2s ease all;
+  text-align: center;
 }
 
 .profile-nav-bar h1:hover {
@@ -205,5 +206,7 @@
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    text-align: center;
   }
+
 }

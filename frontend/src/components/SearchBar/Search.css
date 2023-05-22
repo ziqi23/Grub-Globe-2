@@ -27,19 +27,27 @@
   .css-1fdsijx-ValueContainer {
     width: 700px;
   }
-/* 
+
   .css-3w2yfm-ValueContainer {
-    width: 400px;
-  } */
+    width: 700px;
+  }
 
 @media (max-width: 1430px) {
   .css-1fdsijx-ValueContainer {
+    width: 500px;
+  }
+
+  .css-3w2yfm-ValueContainer {
     width: 500px;
   }
 }
 
 @media (max-width: 1150px) {
   .css-1fdsijx-ValueContainer {
+    width: 350px;
+  }
+
+  .css-3w2yfm-ValueContainer {
     width: 350px;
   }
 }
@@ -50,6 +58,10 @@
     }
 
     .css-1fdsijx-ValueContainer {
+      width: 300px;
+    }
+
+    .css-3w2yfm-ValueContainer {
       width: 300px;
     }
 }
