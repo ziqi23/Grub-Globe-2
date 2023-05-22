@@ -1,5 +1,6 @@
 const { check } = require("express-validator");
 const handleValidationErrors = require("./handleValidationErrors");
+const User = require("../models/User");
 
 const validateReviewInput = [
   check("title")
@@ -17,6 +18,16 @@ const validateReviewInput = [
   check("starRating")
     .isInt({ min: 1, max: 5 })
     .withMessage("Star rating must be an integer between 1 and 5"),
+  check("recipe").custom(async (value, { req }) => {
+    const user = await User.findById(req.user._id);
+    const completedRecipes = user.completedRecipe.map((completed) =>
+      completed.recipeId.toString()
+    );
+    if (!completedRecipes.includes(value)) {
+      throw new Error("You must complete the recipe before reviewing it!");
+    }
+    return true;
+  }),
   handleValidationErrors,
 ];
 

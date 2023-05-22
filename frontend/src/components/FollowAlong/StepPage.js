@@ -18,11 +18,9 @@ const StepPage = ({
   currentRecipeStep,
   normalStep,
   lastStep,
-  recipeId
+  recipeId,
 }) => {
-
   const [toggleIngredients, setToggleIngredients] = useState(false);
-  // const [stepType, setStepType] = useState("normal");
 
   const handleToggleIngredients = () => {
     if (toggleIngredients) {
@@ -36,7 +34,6 @@ const StepPage = ({
     closeFollowAlong();
     setCurrentRecipeStep("");
   };
-
 
   return (
     <>
@@ -52,13 +49,12 @@ const StepPage = ({
           alt="fruit and vegetables"
         />
         <div className="exit-container">
-          {/* <div onClick={closeFollowAlong}>Exit</div> */}
           <div onClick={handleExit}>Exit</div>
         </div>
 
         <div className="step-container">
           <div className="ingredients-toggle" onClick={handleToggleIngredients}>
-            <img src={toggleIngredients ? upArrow : downArrow} alt="arrow"/>
+            <img src={toggleIngredients ? upArrow : downArrow} alt="arrow" />
             <p>Ingredients</p>
             {toggleIngredients && (
               <div className="step-page-ingredients-container">
@@ -70,17 +66,14 @@ const StepPage = ({
             <h1>Step {stepNum}</h1>
           </div>
           <div className="step-instruction">
-            {/* <TimerStep /> */}
-            <NormalStep step={step}/>
-            {/* {normalStep ? <NormalStep step={step}/> : <TimerStep step={step} />} */}
+            <NormalStep step={step} />
           </div>
           {lastStep && (
             <CompleteFollowAlongButton
               closeFollowAlong={closeFollowAlong}
               setCurrentRecipeStep={setCurrentRecipeStep}
               recipeId={recipeId}
-              />
-            // <div onClick={handleFinishedFollowAlong} className="last-step-exit-button">Finished!</div>
+            />
           )}
         </div>
       </div>
