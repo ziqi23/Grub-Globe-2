@@ -3,7 +3,7 @@ import jwtFetch from "./jwt";
 const RECEIVE_RECIPES = "recipes/RECEIVE_RECIPES";
 const RECEIVE_RECIPE_ERRORS = "recipes/RECEIVE_RECIPE_ERRORS";
 const RECEIVE_RECIPE = "recipes/RECEIVE_RECIPE";
-const RECEIVE_SEARCH_RECIPES = "recipes/RECEIVE_SEARCH_RECIPES";
+// const RECEIVE_SEARCH_RECIPES = "recipes/RECEIVE_SEARCH_RECIPES";
 
 const receiveRecipes = (recipes) => ({
   type: RECEIVE_RECIPES,

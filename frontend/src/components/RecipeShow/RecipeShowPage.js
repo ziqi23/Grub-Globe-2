@@ -97,19 +97,19 @@ const RecipeShowPage = () => {
                 <img
                   className="actual-image"
                   src={recipe?.photoUrl}
-                  alt="recipe image"
+                  alt="recipe"
                 />
               </div>
               <h3>Recipe by: {recipe?.recipeAuthor}</h3>
             </div>
             <div className="smaller-content-info">
               <div>
-                <img className="icon" src={timerIcon} />
+                <img className="icon" src={timerIcon} alt="icon" />
                 <h2>Duration</h2>
                 <p>{recipe?.prepTime} minutes</p>
               </div>
               <div>
-                <img className="icon" src={plateIcon} />
+                <img className="icon" src={plateIcon} alt="icon"/>
                 <h2>Servings </h2>
                 <p>{recipe?.servings}</p>
               </div>

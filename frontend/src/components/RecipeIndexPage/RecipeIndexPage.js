@@ -5,8 +5,7 @@ import "./RecipeIndex.css";
 import { useEffect, useState } from "react";
 import { fetchRecipes } from "../../store/recipes.js";
 import {
-  useLocation,
-  useParams,
+  useLocation
 } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchSearchRecipes } from "../../store/recipes.js";
 
@@ -33,7 +32,7 @@ const RecipeIndexPage = (props) => {
     };
 
     fetchData();
-  }, [dispatch, search]);
+  }, [dispatch, search, searchSplit]);
 
   const queryParams = new URLSearchParams(location.search);
   const queryParam = queryParams.get("query");
@@ -54,7 +53,7 @@ const RecipeIndexPage = (props) => {
     if (searchSplit[0] === "query") {
       fetchData();
     }
-  }, [dispatch, location]);
+  }, [dispatch, location, queryParam, searchSplit]);
 
   return (
     <>
