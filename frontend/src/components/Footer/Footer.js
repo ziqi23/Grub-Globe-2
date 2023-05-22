@@ -17,7 +17,7 @@ const Footer = () => {
     ls: {
       name: "Leah Seyoum",
       github: "https://github.com/leahseyoum",
-      linkedIn: "",
+      linkedIn: "https://www.linkedin.com/in/leah-seyoum-958288277/",
     },
     mc: {
       name: "Michelle Chung",
