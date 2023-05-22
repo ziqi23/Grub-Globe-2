@@ -42,7 +42,7 @@ function Profile(props) {
 
   // for users acquired badges; can choose which one to display
 
-  const user = useSelector((state) => state.session.user);
+  // const user = useSelector((state) => state.session.user);
   const favorites = useSelector((state) => Object.values(state.favorites));
 
   // for badges
@@ -57,8 +57,8 @@ function Profile(props) {
   }, []);
 
   useEffect(() => {
-    if (user && user.completedRecipe) {
-      const fetchPromises = user.completedRecipe.map(({ recipeId }) =>
+    if (sessionUser && sessionUser.completedRecipe) {
+      const fetchPromises = sessionUser.completedRecipe.map(({ recipeId }) =>
         dispatch(fetchRecipe(recipeId))
       );
 
@@ -89,14 +89,14 @@ function Profile(props) {
           console.error("Error fetching recipes: ", error);
         });
     }
-  }, [user, dispatch]);
+  }, [sessionUser, dispatch]);
 
   useEffect(() => {
-    if (user.photo) {
-      const bufferArr = new Uint8Array(user.photo.data);
+    if (sessionUser.photo) {
+      const bufferArr = new Uint8Array(sessionUser.photo.data);
       setImage((image) => Buffer.from(bufferArr).toString("base64"));
     }
-  }, [user.photo, photoFile]);
+  }, [sessionUser.photo, photoFile]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -216,7 +216,7 @@ function Profile(props) {
           <div className="profile-page-user-details">
             <div>
               <h1>
-                Chef {user.firstName} {user.lastName}
+                Chef {sessionUser.firstName} {sessionUser.lastName}
               </h1>
             </div>
           </div>
