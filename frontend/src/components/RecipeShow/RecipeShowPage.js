@@ -71,7 +71,6 @@ const RecipeShowPage = () => {
   };
 
   if (!recipe) {
-    //need to fix recipes state for this to work
     return <LoaderDots />;
   }
 
