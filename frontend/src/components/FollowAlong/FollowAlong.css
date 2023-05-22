@@ -1,232 +1,214 @@
-
-
-
-
 /* carousel */
 .follow-along-carousel .swiper {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 105;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 105;
 }
 
 .step-page-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 .step-page-container .utensils-image {
-    width: 300px;
-    height: 250px;
-    position: absolute;
-    top: 0;
-    right: 50px;
+  width: 300px;
+  height: 250px;
+  position: absolute;
+  top: 0;
+  right: 50px;
 }
 
 .step-page-container .fruits-image {
-    width: 400px;
-    height: 350px;
-    position: absolute;
-    bottom: -10px;
-    left: 10px;
-
+  width: 400px;
+  height: 350px;
+  position: absolute;
+  bottom: -10px;
+  left: 10px;
 }
 
 .step-page-container > div {
-    width: 80%;
-    box-sizing: border-box;
+  width: 80%;
+  box-sizing: border-box;
 }
 
 .step-page-container .step-container {
-    height: 70%;
-    /* border: 1px solid green; */
-    box-sizing: border-box;
-    margin: 10px;
+  height: 70%;
+  box-sizing: border-box;
+  margin: 10px;
 }
 
 .exit-container {
-    text-align: left;
+  text-align: left;
 }
 .exit-container div {
-    padding: 10px 20px;
-    border: 2px solid rgb(36, 35, 35);
-    width: 70px;
-    display: flex;
-    justify-content: center;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: 0.3s all ease;
+  padding: 10px 20px;
+  border: 2px solid rgb(36, 35, 35);
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.3s all ease;
 }
 
 .exit-container div:hover {
-    background-color: #F0EAD2;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #f0ead2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .exit-container div:active {
-    box-shadow: inset 0px 0px 5px rgba(12, 1, 1, 0.55);
-    transform: translateY(4px);
+  box-shadow: inset 0px 0px 5px rgba(12, 1, 1, 0.55);
+  transform: translateY(4px);
 }
 
 .step-container .step-number {
-    width: 100%;
-    /* border: 1px solid green; */
-    height: 30%;
-    font-size: 60px;
-    display: flex;
-    justify-content: center;
-    align-items:end;
-    box-sizing: border-box;
+  width: 100%;
+  height: 30%;
+  font-size: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  box-sizing: border-box;
 }
 
 .step-container .step-instruction {
-    margin: auto;
-    width: 80%;
-    /* border: 1px solid orange; */
-    height: 40%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin: auto;
+  width: 80%;
+  height: 40%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .step-container .step-instruction h1 {
-    font-size: 33.5px;
-    
-
+  font-size: 33.5px;
 }
 
 .timer-step-container {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .timer-step-container * {
-    margin: 15px;
+  margin: 15px;
 }
 
 .timer {
-    font-size: 100px;
+  font-size: 100px;
 }
 
 .start-timer-button {
-    width: 200px;
-    display: flex;
-    border: 2px solid rgb(36, 35, 35);
-    padding: 10px 0px;
-    justify-content: center;
-    border-radius: 999px;
-    margin: auto;
-    cursor: pointer;
-    background-color: #E8A87C;
-    transition: 0.3s all ease;
+  width: 200px;
+  display: flex;
+  border: 2px solid rgb(36, 35, 35);
+  padding: 10px 0px;
+  justify-content: center;
+  border-radius: 999px;
+  margin: auto;
+  cursor: pointer;
+  background-color: #e8a87c;
+  transition: 0.3s all ease;
 }
 
 .start-timer-button:hover {
-    background-color: #F0EAD2;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #f0ead2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .start-timer-button:active {
-    box-shadow: inset 0px 0px 5px rgba(12, 1, 1, 0.55);
-    transform: translateY(4px);
+  box-shadow: inset 0px 0px 5px rgba(12, 1, 1, 0.55);
+  transform: translateY(4px);
 }
 
 .ingredients-toggle {
-    border: 2px solid rgba(17, 17, 17, 0.87);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    padding: 10px 0px;
-    position: absolute;
-    border-radius: 999px;
-    box-sizing: border-box;
-    transition: 0.3s all ease;
-    cursor: pointer;
-    background-color: #DDE5B6;
+  border: 2px solid rgba(17, 17, 17, 0.87);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  padding: 10px 0px;
+  position: absolute;
+  border-radius: 999px;
+  box-sizing: border-box;
+  transition: 0.3s all ease;
+  cursor: pointer;
+  background-color: #dde5b6;
 }
 
 .ingredients-toggle:hover {
-    background-color: #F0EAD2;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #f0ead2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.ingredients-toggle img{
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    margin-right: 10px;
+.ingredients-toggle img {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 10px;
 }
 .ingredients-toggle p {
-    display: inline-block;
-    color: #202020;
-    font-weight: 500;
+  display: inline-block;
+  color: #202020;
+  font-weight: 500;
 }
 
 .step-page-ingredients-container {
-    position: absolute;
-    top: 45px;
-    text-align: left;
-    border: 2px solid rgb(8, 8, 8);
-    padding: 10px;
-    box-sizing: border-box;
-    width: 270px;
-    border-radius: 10px;
-    background-color: #DDE5B6;
-
-}
-
-.normal-step-container {
-    /* height: 200px; */
+  position: absolute;
+  top: 45px;
+  text-align: left;
+  border: 2px solid rgb(8, 8, 8);
+  padding: 10px;
+  box-sizing: border-box;
+  width: 270px;
+  border-radius: 10px;
+  background-color: #dde5b6;
 }
 
 .last-step-exit-button {
-    width: 300px;
-    padding: 15px 0px;
-    border: 2px solid rgb(8, 8, 8);
-    background-color: rgb(178, 195, 171);
-    border-radius: 999px;
-    margin: auto;
-    transition: 0.3s ease all;
-    text-transform: uppercase;
+  width: 300px;
+  padding: 15px 0px;
+  border: 2px solid rgb(8, 8, 8);
+  background-color: rgb(178, 195, 171);
+  border-radius: 999px;
+  margin: auto;
+  transition: 0.3s ease all;
+  text-transform: uppercase;
 }
 
 .last-step-exit-button:hover {
-    cursor: pointer;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .last-step-exit-button:active {
-    box-shadow: inset 0px 0px 5px rgba(12, 1, 1, 0.55);
-    transform: translateY(4px);
+  box-shadow: inset 0px 0px 5px rgba(12, 1, 1, 0.55);
+  transform: translateY(4px);
 }
 
 @media (max-width: 1488px) {
-    .step-container .step-instruction h1 {
-        font-size: 30px;
-    }
+  .step-container .step-instruction h1 {
+    font-size: 30px;
+  }
 }
 
-
 @media (max-width: 1150px) {
-    .step-container .step-instruction h1 {
-        font-size: 25px;
-    }
+  .step-container .step-instruction h1 {
+    font-size: 25px;
+  }
 }
 
 @media (max-height: 895px) {
-    .step-container .step-instruction h1 {
-        font-size: 25px;
-    
-    }
+  .step-container .step-instruction h1 {
+    font-size: 25px;
+  }
 }
-
