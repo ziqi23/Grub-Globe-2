@@ -115,21 +115,21 @@ const Timer = ({second}) => {
     <>
       <div id="timer-container">
         <div className="timer-unit-container">
-          <BiUpArrow onClick={(e, key="hour", direction="up") => handleTimeChange(e, key, direction)}/>
+          <div onClick={(e, key="hour", direction="up") => handleTimeChange(e, key, direction)}><BiUpArrow /></div>
           <h2 className="timer">{format(hours)}</h2>
-          <BiDownArrow onClick={(e, key="hour", direction="down") => handleTimeChange(e, key, direction)}/>
+          <div onClick={(e, key="hour", direction="down") => handleTimeChange(e, key, direction)}><BiDownArrow /></div>
         </div>
         <h2 className="timer">:</h2>
         <div className="timer-unit-container">
-          <BiUpArrow onClick={(e, key="minute", direction="up") => handleTimeChange(e, key, direction)}/>
+          <div onClick={(e, key="minute", direction="up") => handleTimeChange(e, key, direction)}><BiUpArrow /></div>
           <h2 className="timer">{format(minutes)}</h2>
-          <BiDownArrow onClick={(e, key="minute", direction="down") => handleTimeChange(e, key, direction)}/>
+          <div onClick={(e, key="minute", direction="down") => handleTimeChange(e, key, direction)}><BiDownArrow /></div>
         </div>
         <h2 className="timer">:</h2>
         <div className="timer-unit-container">
-          <BiUpArrow onClick={(e, key="second", direction="up") => handleTimeChange(e, key, direction)}/>
+          <div onClick={(e, key="second", direction="up") => handleTimeChange(e, key, direction)}><BiUpArrow /></div>
           <h2 className="timer">{format(seconds)}</h2>
-          <BiDownArrow onClick={(e, key="second", direction="down") => handleTimeChange(e, key, direction)}/>
+          <div onClick={(e, key="second", direction="down") => handleTimeChange(e, key, direction)}><BiDownArrow /></div>
         </div>
       </div>
       <br></br>
