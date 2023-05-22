@@ -36,7 +36,6 @@ const RecipeShowPage = () => {
   const recipe = useSelector((state) =>
     state.recipes ? state.recipes[recipeId] : null
   );
-  // const recipe = useSelector((state) => state.recipes[recipeId]);
 
   const displayTags = recipe?.tags.map((tag, i) => (
     <div key={i}>
@@ -71,15 +70,12 @@ const RecipeShowPage = () => {
   };
 
   if (!recipe) {
-    console.log(recipe, "no recipe");
-    return <>loading!</>;
-  } else {
-    console.log(recipe, "have recipe");
+    return <>loading!</>; //need to fix recipes state for this to work
   }
-  // else {
+
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="below-header-container">
         <div className="recipe-show-page-container">
           <div className="details-container">

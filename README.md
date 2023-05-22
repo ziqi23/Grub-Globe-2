@@ -1,10 +1,10 @@
-# Grub-Globe
+# grubGlobe
 
 _Social, interactive, and AI-augmented MERN fullstack app for exploring diverse recipes from around the world_
 
 ### Background
 
-grubGlobe is a fullstack ....
+grubGlobe is a fullstack app to answer the question "what should I cook?" We designed grubGlobe for the culinary adventurer-at-heart who wants to explore the best recipes from around the world. And not only that, we wanted to make it as easy as possible to get cookin' and track one's culinary journey.
 
 Explore it here! <a href="https://grubglobe.herokuapp.com/">https://grubglobe.herokuapp.com/</a>
 
@@ -22,13 +22,16 @@ Creators:
 
 In grubGlobe, users are able to:
 
-- Find recipes by:
-  - Exploring the globe
-  - Using the searchbar....
-  - Getting a random recommendation...
-- Get advice from 2 AI chatbots...
-- Earn badges for their achievements...
-- Sign up/log in to an account or explore as demo user
+- Discover recipes by:
+  - Exploring the interactive world globe to select cuisines
+  - Using the searchbar to pinpoint recipes matching their preferences, including dietary needs and ingredients
+  - Spinning the wheel to get a delicious random recommendation
+  - Checking out a recommended recipe list, derived from their prior grubGlobe activity
+  - Asking the AI bot for a recommendation based on what they're craving or what ingredients they have
+- Get cookin' by:
+  - Entering a kitchen-optimized step-by-step recipe flow
+  - Asking a second AI bot for advice for the specific recipe and recipe step ("How do I 'fold in the cheese'???")
+- Track their culinary journey by earning badges for completing recipes and writing reviews
 
 ---
 
@@ -36,14 +39,14 @@ In grubGlobe, users are able to:
 
 This project is implemented with the following technologies:
 
-- `React` and `JavaScript` frontend with `CSS` styling and `Redux state`
+- `React` and `JavaScript` frontend with `CSS3` styling and `Redux state`
 - `MongoDB`, `Mongoose`, `Node.js`, `Express` backend
-- `OpenAI`...
+- `OpenAI`'s text-davinci-003 and gpt-3.5-turbo models to create 2 AI assistants
 - `AWS` for hosting recipe images and `Active Storage` for using images in app
-- mongo buffer...
 - `Heroku` for app hosting
 - `Webpack` to bundle and transpile the source code
 - `npm` to manage project dependencies
+- `Spoonacular` API for recipes
 
 ---
 
