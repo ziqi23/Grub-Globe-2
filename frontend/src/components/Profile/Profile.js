@@ -14,6 +14,7 @@ import BadgesIndex from "./BadgesIndex";
 import { fetchUserReviews } from "../../store/reviews";
 import ReviewsTiles from "./ReviewsTile";
 import { uploadImage } from "../../store/session";
+import LoaderDots from "../LoaderDots";
 
 function Profile(props) {
   const dispatch = useDispatch();
@@ -165,6 +166,10 @@ function Profile(props) {
     });
     return setFalse.forEach((setState) => setState(false));
   };
+
+  if (!user) {
+    return <LoaderDots />;
+  }
 
   return (
     <div className="profile-page-root">

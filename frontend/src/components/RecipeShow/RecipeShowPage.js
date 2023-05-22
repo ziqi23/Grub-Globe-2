@@ -19,6 +19,7 @@ import veganIcon from "../../assets/icons/general-icons/icons8-vegan-100.png";
 import vegetarianIcon from "../../assets/icons/general-icons/icons8-vegetarian-100.png";
 import timerIcon from "../../assets/icons/general-icons/icons8-timer-100.png";
 import plateIcon from "../../assets/icons/general-icons/icons8-plate-100.png";
+import LoaderDots from "../LoaderDots";
 
 const RecipeShowPage = () => {
   const dispatch = useDispatch();
@@ -69,9 +70,10 @@ const RecipeShowPage = () => {
     setTooltipOpen(-1);
   };
 
-  // if (!recipe) {
-  //   return <>loading!</>; //need to fix recipes state for this to work
-  // }
+  if (!recipe) {
+    //need to fix recipes state for this to work
+    return <LoaderDots />;
+  }
 
   return (
     <>
