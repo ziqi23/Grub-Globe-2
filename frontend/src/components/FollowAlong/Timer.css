@@ -7,6 +7,17 @@
 
 .timer-unit-container {
     margin: 0;
+    z-index: 10;
+}
+
+.timer-unit-container svg {
+    margin: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.timer-unit-container svg:hover {
+    fill: red;
 }
 
 .increase-decrease-button {
