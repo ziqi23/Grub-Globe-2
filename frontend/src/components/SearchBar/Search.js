@@ -6,9 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {fetchSearchRecipes} from "../../store/recipes.js";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import Spinner from "./Spinner";
-import { fetchRecipes } from "../../store/recipes.js";
-
+import { useRef } from "react";
 
 function RecipeSearch() {
   const [query, setQuery] = useState("");
@@ -81,6 +79,7 @@ function RecipeSearch() {
                 pathname: '/recipes',
                 search: `query=${encodeURIComponent(query)}`,
               });
+              // history.push('/recipes')
             }
         } else {
             setError("");
@@ -90,31 +89,13 @@ function RecipeSearch() {
                 pathname: '/recipes',
                 search: `query=${encodeURIComponent(query)}`,
               });
+              // history.push('/recipes')
             }
         }
     } catch (error) {
       console.error(error);
     }
   };
-
-  const queryParams = new URLSearchParams(location.search);
-  const queryParam = queryParams.get("query");
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`/api/search?q=${queryParam}`);
-        const data = await response.json();
-        setResults(data);
-        dispatch(fetchSearchRecipes(data))
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData(); 
-    
-  }, [dispatch, location]);
-
 
   return (
     <div>

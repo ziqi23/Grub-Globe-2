@@ -6,6 +6,7 @@ import jwtFetch from './jwt';
 const RECEIVE_RECIPES = "recipes/RECEIVE_RECIPES";
 const RECEIVE_RECIPE_ERRORS = "recipes/RECEIVE_RECIPE_ERRORS";
 const RECEIVE_RECIPE = "recipes/RECEIVE_RECIPE";
+const RECEIVE_SEARCH_RECIPES = "recipes/RECEIVE_SEARCH_RECIPES";
 
 // ACTION CREATORS
 const receiveRecipes = recipes => ({
@@ -22,6 +23,12 @@ const receiveErrors = errors => ({
     type: RECEIVE_RECIPE_ERRORS,
     errors
 })
+
+const receiveSearchRecipes = recipes => ({
+    type: RECEIVE_SEARCH_RECIPES,
+    recipes
+})
+
 // THUNK ACTION CREATORS
 export const fetchRecipes = (filters) => async dispatch => {
     const filterParams = new URLSearchParams(filters)
@@ -73,4 +80,7 @@ const RecipesReducer = (state = {}, action) => {
     };
 };
 
+
 export default RecipesReducer;
+
+
