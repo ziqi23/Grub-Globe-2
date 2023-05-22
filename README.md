@@ -31,7 +31,7 @@ In grubGlobe, users are able to:
 - Get cookin' by:
   - Entering a kitchen-optimized step-by-step recipe flow
   - Asking a second AI bot for advice for the specific recipe and recipe step ("How do I 'fold in the cheese'???")
-- Track their culinary journey by earning badges for completing recipes and writing reviews
+- Track their culinary journey by earning badges for cooking recipes and writing reviews
 
 ---
 
@@ -54,11 +54,15 @@ This project is implemented with the following technologies:
 
 ### Globe
 
+[TK note: briefly describe the user experience and why this experience was important for our app. Include a brief gif of experience; you can record a screen clipping and upload to giphy, then use the format below to embed]
+
 A user can ...
 
 Example ...:
 
 ![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWM0MWI5YzUwYWVhMTNkMzBjMjc3OTFkMGUyMjA1ZWZiMmVhMzY0NCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/XBFvDu4kJs7EZEEK3L/giphy.gif)
+
+[TK note: then, explain how we built that user experience - general technical approach plus code snippets]
 
 The blah does blah
 
@@ -76,17 +80,21 @@ Notably, more blah
 codecodecode
 ```
 
-Interesting considerations and challenges...
+Interesting considerations and challenges and how we overcame...
 
 ---
 
 ### AI assistants
+
+[TK note: briefly describe the user experience and why this experience was important for our app. Include a brief gif of experience; you can record a screen clipping and upload to giphy, then use the format below to embed]
 
 A user can ...
 
 Example ...:
 
 ![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWM0MWI5YzUwYWVhMTNkMzBjMjc3OTFkMGUyMjA1ZWZiMmVhMzY0NCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/XBFvDu4kJs7EZEEK3L/giphy.gif)
+
+[TK note: then, explain how we built that user experience - general technical approach plus code snippets]
 
 The blah does blah
 
@@ -110,11 +118,15 @@ Interesting considerations and challenges...
 
 ### Search
 
+[TK note: briefly describe the user experience and why this experience was important for our app. Include a brief gif of experience; you can record a screen clipping and upload to giphy, then use the format below to embed]
+
 A user can ...
 
 Example ...:
 
 ![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWM0MWI5YzUwYWVhMTNkMzBjMjc3OTFkMGUyMjA1ZWZiMmVhMzY0NCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/XBFvDu4kJs7EZEEK3L/giphy.gif)
+
+[TK note: then, explain how we built that user experience - general technical approach plus code snippets]
 
 The blah does blah
 
@@ -138,11 +150,15 @@ Interesting considerations and challenges...
 
 ### User experience stickiness
 
+[TK note: briefly describe the user experience and why this experience was important for our app. Include a brief gif of experience; you can record a screen clipping and upload to giphy, then use the format below to embed]
+
 A user can ...
 
 Example ...:
 
 ![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWM0MWI5YzUwYWVhMTNkMzBjMjc3OTFkMGUyMjA1ZWZiMmVhMzY0NCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/XBFvDu4kJs7EZEEK3L/giphy.gif)
+
+[TK note: then, explain how we built that user experience - general technical approach plus code snippets]
 
 The blah does blah
 
@@ -168,10 +184,9 @@ Interesting considerations and challenges...
 
 Take a look at the source files for implementation of other notable features:
 
-- Recipe and user image hosting, including ability to change profile picture
-- User auth
+- Recipe and user image hosting via `AWS` and `MongoDB buffer`, including ability to change profile picture
+- Full user auth, with modals for login and signup
 - Reviews, cooked recipes, and favorites CRUD
-- Sign up and log in modals
 - Frontend and backend input validation + messaging throughout
 
 ---
@@ -180,13 +195,14 @@ Take a look at the source files for implementation of other notable features:
 
 Upcoming improvements include:
 
-- Live API functionality to enable search on more recipes
-- x
-- x
+- Live API call integration to enable search on more recipes
+- Ability to add ingredient substitutions and refresh the nutrition panel
+- Feature to adjust font to be easier to read for some users
 
 ---
 
 ### Asset Attribution
 
 - Seed content by <a href="https://chat.openai.com/chat">ChatGPT</a> and <a href="https://spoonacular.com/food-api">Spoonacular</a>
-- ## Images:
+- Images by Spoonacular and Google image search
+- CSS reset by <a href="http://meyerweb.com/eric/tools/css/reset/">Meyerweb</a>
