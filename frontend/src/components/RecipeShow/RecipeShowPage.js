@@ -69,9 +69,9 @@ const RecipeShowPage = () => {
     setTooltipOpen(-1);
   };
 
-  if (!recipe) {
-    return <>loading!</>; //need to fix recipes state for this to work
-  }
+  // if (!recipe) {
+  //   return <>loading!</>; //need to fix recipes state for this to work
+  // }
 
   return (
     <>
