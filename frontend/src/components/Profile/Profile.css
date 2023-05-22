@@ -103,9 +103,7 @@
 
 .profile-page-right h1 {
   font-size: 20px;
-  
 }
-
 
 .profile-page-right h2 {
   display: flex;
@@ -134,13 +132,15 @@
   left: 250px;
   border-radius: 4px;
   transition-duration: 500ms;
-  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
 }
 
 #profile-picture-upload-form {
   margin-top: 30px;
   border-radius: 5px;
-  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.1) 0px 3px 6px;
 }
 
 .profile-picture-dropbox-icon {
@@ -150,7 +150,7 @@
 
 .drag-highlight {
   background-color: rgb(66, 67, 66);
-  color:rgb(239, 236, 236);
+  color: rgb(239, 236, 236);
 }
 
 .profile-nav-bar {
@@ -163,7 +163,6 @@
 .profile-nav-bar h1 {
   cursor: pointer;
   transition: 0.2s ease all;
-  /* white-space: nowrap; */
 }
 
 .profile-nav-bar h1:hover {
@@ -200,7 +199,6 @@
   .profile-page-top {
     margin-top: 120px;
     width: 100vw;
-
   }
 
   .profile-nav-bar {

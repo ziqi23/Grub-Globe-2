@@ -72,7 +72,6 @@ export default function AiChat({ recipeNameFromParent, recipeStepFromParent }) {
         );
       }
 
-      console.log("data.result", data.result);
       setPastQuestions((prevState) => [questionInput, ...prevState]);
       setPastAnswers((prevState) => [data.result, ...prevState]);
       setQuestionInput("");

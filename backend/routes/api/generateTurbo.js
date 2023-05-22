@@ -33,9 +33,21 @@ router.post("/", async (req, res) => {
     });
     return;
   }
-
   try {
-    console.log(generatePrompt(prompt), "full prompt in backend");
+    // Uncomment to test OpenAI server overload;
+    // const simulatedErrorResponse = {
+    //   response: {
+    //     status: 503,
+    //     data: {
+    //       error: {
+    //         message:
+    //           "OpenAI's got-3.5-turbo model is currently overloaded with other requests. Please try again later, or explore the globe to find your next food adventure.",
+    //       },
+    //     },
+    //   },
+    // };
+    // throw simulatedErrorResponse;
+
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: generatePrompt(prompt),

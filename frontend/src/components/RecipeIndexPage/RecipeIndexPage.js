@@ -4,10 +4,7 @@ import RecipeIndex from "./RecipeIndex";
 import "./RecipeIndex.css";
 import { useEffect } from "react";
 import { fetchRecipes } from "../../store/recipes.js";
-import {
-  useLocation,
-  useParams,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const RecipeIndexPage = (props) => {
   const location = useLocation();
@@ -15,19 +12,13 @@ const RecipeIndexPage = (props) => {
 
   const recipes = useSelector((state) => Object.values(state.recipes));
 
-    let search = location.search.substring(1);
-   
-    // search = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
-    // this search variable is decoded to create an object: {country: "United States"}
-    
-    useEffect(() => {
-            if (search) {
-                dispatch(fetchRecipes(search));
-            }
-            console.log(search);
-    }, [dispatch])
+  let search = location.search.substring(1);
 
-    
+  useEffect(() => {
+    if (search) {
+      dispatch(fetchRecipes(search));
+    }
+  }, [dispatch]);
 
   return (
     <>
