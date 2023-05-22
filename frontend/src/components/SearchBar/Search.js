@@ -81,25 +81,22 @@ function RecipeSearch() {
       setResults(data);
       dispatch(fetchSearchRecipes(data));
       if (data.length === 0) {
-            setError("No results found.");
-            setIsLoading(false);
-            if (location !== 'recipes' ) {
-              history.push({
-                pathname: '/recipes',
-                search: `query=${encodeURIComponent(query)}`,
-              });
-              // history.push('/recipes')
-            }
-        } else {
-            setError("");
-            setIsLoading(false);
-            if (location !== 'recipes' ) {
-              history.push({
-                pathname: '/recipes',
-                search: `query=${encodeURIComponent(query)}`,
-              });
-              // history.push('/recipes')
-            }
+        setError("No results found.");
+        setIsLoading(false);
+        if (location !== "recipes") {
+          history.push({
+            pathname: "/recipes",
+            search: `query=${encodeURIComponent(query)}`,
+          });
+        }
+      } else {
+        setError("");
+        setIsLoading(false);
+        if (location !== "recipes") {
+          history.push({
+            pathname: "/recipes",
+            search: `query=${encodeURIComponent(query)}`,
+          });
         }
       }
     } catch (error) {
