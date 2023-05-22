@@ -164,7 +164,12 @@ const ReviewsTiles = ({review}) => {
                     <RiDeleteBin6Line onClick={handleReviewDelete} className="edit-icons"/>
                 </div>
                 {editMode && (
-                    <button onClick={handleUpdate}>Update!</button>
+                    <button 
+                        className="update-button" 
+                        onClick={handleUpdate}
+                    >
+                        UPDATE!
+                    </button>
                 )}
             </>
         )}

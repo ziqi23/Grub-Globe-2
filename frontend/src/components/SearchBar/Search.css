@@ -1,9 +1,8 @@
 .search-form {
-    width: 625px;
+    /* width: 625px; */
     margin: 0 auto;
     position: relative;
     position: relative;
-    margin-left: 200px;
     display: flex;
     align-items: center;
 }
@@ -11,10 +10,13 @@
 .search-form button {
     margin-left: 10px;
     background-color: transparent;
+    color: rgb(104, 101, 101);
     border: none;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     font-family: "Kanit", sans-serif;
+    transition: 0.3s all ease;
+    text-transform: uppercase;
   }
 
 .search-form button:hover {
