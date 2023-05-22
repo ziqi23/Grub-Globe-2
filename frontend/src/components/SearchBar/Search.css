@@ -25,18 +25,31 @@
 }
 
   .css-1fdsijx-ValueContainer {
-    width: 400px;
+    width: 700px;
   }
-
+/* 
   .css-3w2yfm-ValueContainer {
     width: 400px;
+  } */
+
+@media (max-width: 1430px) {
+  .css-1fdsijx-ValueContainer {
+    width: 500px;
   }
-
-
-
-@media (max-width: 390px) {
-    .search-form {
-        width: 300px;
-    }
 }
 
+@media (max-width: 1150px) {
+  .css-1fdsijx-ValueContainer {
+    width: 350px;
+  }
+}
+
+@media (max-width: 528px) {
+    .search-form {
+        flex-direction: column;
+    }
+
+    .css-1fdsijx-ValueContainer {
+      width: 300px;
+    }
+}
