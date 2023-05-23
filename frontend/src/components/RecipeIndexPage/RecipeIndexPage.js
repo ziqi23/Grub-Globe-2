@@ -60,7 +60,7 @@ const RecipeIndexPage = (props) => {
   return (
     <>
       <Header />
-      <div className="below-header-container">
+      <div id="recipe-index-main-container" className="below-header-container">
         <div className="side-region-text">
           <h1>{recipes[0]?.country}</h1>
         </div>
