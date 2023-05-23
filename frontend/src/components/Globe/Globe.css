@@ -60,6 +60,10 @@
   color: rgb(225, 222, 222);
 }
 
+#explore-page-root .mobile-burger-menu {
+  color: rgb(225, 222, 222);
+}
+
 #explore-page-root .header-container h1:hover {
   color: transparent;
   background-image: url("https://img.freepik.com/free-vector/earth-globe-icon-white-background_1308-122819.jpg");

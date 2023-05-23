@@ -82,3 +82,9 @@
       width: 90%;
     } 
 }
+@media (max-width: 920px) {
+  .search-form {
+      margin-left: 0px;
+  }
+}
+

@@ -49,6 +49,12 @@
   }
 }
 
+@media (max-width: 920px) {
+  .header-container .nav-bar {
+    width: 100%;
+  }
+}
+
 #logout-icon {
   font-size: 25px;
   margin-right: 10px;
