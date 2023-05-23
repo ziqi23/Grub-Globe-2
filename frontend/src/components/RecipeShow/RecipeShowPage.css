@@ -42,13 +42,13 @@
 
 .recipe-show-page-container .macros-container {
   width: 20%;
-  padding: 12px;
+  /* padding: 12px; */
   box-sizing: border-box;
   font-weight: 300;
   overflow-y: scroll;
   height: fit-content;
   max-height: 800px;
-  min-width: 400px;
+  /* min-width: 400px; */
 }
 
 .recipe-show-page-container .macros-container > div {

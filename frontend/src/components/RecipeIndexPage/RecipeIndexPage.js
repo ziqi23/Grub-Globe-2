@@ -5,7 +5,8 @@ import "./RecipeIndex.css";
 import { useEffect, useState } from "react";
 import { fetchRecipes } from "../../store/recipes.js";
 import {
-  useLocation
+  useLocation,
+  useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchSearchRecipes } from "../../store/recipes.js";
 
@@ -26,13 +27,14 @@ const RecipeIndexPage = (props) => {
     const fetchData = async () => {
       if (searchSplit[0] === "country") {
         setLoading(true); // Set loading to true before fetching recipes
-        await dispatch(fetchRecipes(search));
-        setLoading(false); // Set loading to false after recipes have been fetched
+        await dispatch(fetchRecipes(search))
+          .then(() => setLoading(false))
+         // Set loading to false after recipes have been fetched
       }
     };
 
     fetchData();
-  }, [dispatch, search, searchSplit]);
+  }, [dispatch, search]);
 
   const queryParams = new URLSearchParams(location.search);
   const queryParam = queryParams.get("query");
@@ -53,7 +55,7 @@ const RecipeIndexPage = (props) => {
     if (searchSplit[0] === "query") {
       fetchData();
     }
-  }, [dispatch, location, queryParam, searchSplit]);
+  }, [dispatch, location]);
 
   return (
     <>

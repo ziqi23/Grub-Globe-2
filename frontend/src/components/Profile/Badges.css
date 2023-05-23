@@ -77,3 +77,9 @@
     width: 90%;
   }
 }
+
+@media (max-width: 526px) {
+  .milestone-container h1 {
+    font-size: 14px;
+  }
+}
