@@ -28,6 +28,7 @@
 
 .css-b62m3t-container {
   width: 100%;
+
 }
 
   .css-1fdsijx-ValueContainer {
@@ -73,6 +74,7 @@
     .search-form {
       /* flex-direction: column; */
       width: 80vw;
+      margin: 0 auto;
     }
 
     .css-1fdsijx-ValueContainer {
@@ -83,9 +85,5 @@
       width: 90%;
     } 
 }
-@media (max-width: 920px) {
-  .search-form {
-      margin-left: 0px;
-  }
-}
+
 

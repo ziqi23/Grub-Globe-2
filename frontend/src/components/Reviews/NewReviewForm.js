@@ -192,7 +192,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
               <div className="errors">{errors?.title}</div>
             )}
             <textarea
-              placeholder="Write a review..."
+              placeholder="What did you think?"
               id="new-review-text"
               value={text}
               onChange={(e) => setText(e.target.value)}
