@@ -16,6 +16,7 @@
 .recipe-show-page-container .details-container {
   width: 20%;
   padding: 12px;
+  min-width: 400px;
 }
 
 .recipe-show-page-container .details-container div {
@@ -29,9 +30,11 @@
 }
 
 .recipe-show-page-container .main-recipe-content-container {
-  width: 58%;
-  padding: 20px;
-
+  display: flex;
+  flex-grow: 1;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 10px;
   line-height: 1.2;
 }
 
@@ -154,7 +157,7 @@
   font-weight: 300;
 }
 
-.ingredients-container p {
+.ingredients-container span {
   display: inline;
   font-weight: 500;
   color: rgb(36, 35, 35);

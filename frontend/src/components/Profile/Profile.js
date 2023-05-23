@@ -21,6 +21,26 @@ function Profile(props) {
 
   const userReviews = useSelector((state) => Object.values(state.reviews.user));
   const sessionUser = useSelector((state) => state.session.user);
+  const [viewport, setViewport] = useState("");
+  const [windowWidth, setWindowWidth] = useState();
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    function handleResize(e) {
+      setWindowWidth(window.innerWidth);
+    }
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
+  
+  useEffect(() => {
+    if (windowWidth <= 920) {
+      setViewport("Mobile");
+    }
+    else {
+      setViewport("Desktop");
+    }
+  }, [windowWidth])
 
   useEffect(() => {
     dispatch(fetchUserReviews(sessionUser._id));
@@ -173,7 +193,7 @@ function Profile(props) {
 
   return (
     <div className="profile-page-root">
-      <Header />
+      <Header viewport={viewport}/>
       <div className="profile-page-top">
         <div className="profile-page-left">
           <div

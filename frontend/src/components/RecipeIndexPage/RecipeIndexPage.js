@@ -15,6 +15,26 @@ const RecipeIndexPage = (props) => {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => Object.values(state.recipes));
   const [loading, setLoading] = useState(true);
+  const [viewport, setViewport] = useState("");
+  const [windowWidth, setWindowWidth] = useState();
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    function handleResize(e) {
+      setWindowWidth(window.innerWidth);
+    }
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
+  
+  useEffect(() => {
+    if (windowWidth <= 920) {
+      setViewport("Mobile");
+    }
+    else {
+      setViewport("Desktop");
+    }
+  }, [windowWidth])
 
   let search = location.search.substring(1);
 
@@ -58,7 +78,7 @@ const RecipeIndexPage = (props) => {
 
   return (
     <>
-      <Header />
+      <Header viewport={viewport}/>
       <div className="below-header-container">
         <div className="side-region-text">
           <h1>{recipes[0]?.country}</h1>

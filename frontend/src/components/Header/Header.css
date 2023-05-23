@@ -36,3 +36,10 @@
     flex-direction: column;
   }
 }
+
+.mobile-burger-menu {
+  font-size: 32px;
+  position: relative;
+  z-index: 100;
+  cursor: pointer;
+}

@@ -25,6 +25,26 @@ const RecipeShowPage = () => {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
   const [tooltipOpen, setTooltipOpen] = useState(-1);
+  const [viewport, setViewport] = useState("");
+  const [windowWidth, setWindowWidth] = useState();
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    function handleResize(e) {
+      setWindowWidth(window.innerWidth);
+    }
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
+  
+  useEffect(() => {
+    if (windowWidth <= 920) {
+      setViewport("Mobile");
+    }
+    else {
+      setViewport("Desktop");
+    }
+  }, [windowWidth])
 
   const icons = {
     glutenFree: glutenFreeIcon,
@@ -76,15 +96,17 @@ const RecipeShowPage = () => {
 
   return (
     <>
-      <Header />
+      <Header viewport={viewport} windowWidth={windowWidth}/>
       <div className="below-header-container">
         <div className="recipe-show-page-container">
+          {viewport === "Desktop" && (
           <div className="details-container">
             <div className="ingredients-container">
               <h2>Ingredients</h2>
               <Ingredients ingredients={recipe?.ingredients} />
             </div>
           </div>
+          )}
           <div className="main-recipe-content-container">
             <div className="main-recipe-info-header">
               <FavHeart recipe={recipe} favorites={favorites} />
@@ -115,7 +137,6 @@ const RecipeShowPage = () => {
               </div>
               {displayTags?.map((tag) => tag)}
             </div>
-
             <div>
               <h2>Directions</h2>
               <ul>
@@ -133,17 +154,18 @@ const RecipeShowPage = () => {
               </div>
             </div>
           </div>
-
-          <div className="macros-container">
-            <div onMouseLeave={handleMouseLeave}>
-              <h2>Nutrition</h2>
-              <Macronutrients
-                macronutrients={recipe?.nutrition.nutrients}
-                tooltipOpen={tooltipOpen}
-                setTooltipOpen={setTooltipOpen}
-              />
+          {viewport === "Desktop" && (
+            <div className="macros-container">
+              <div onMouseLeave={handleMouseLeave}>
+                <h2>Nutrition</h2>
+                <Macronutrients
+                  macronutrients={recipe?.nutrition.nutrients}
+                  tooltipOpen={tooltipOpen}
+                  setTooltipOpen={setTooltipOpen}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <ReviewIndex recipeId={recipeId} />
       </div>
