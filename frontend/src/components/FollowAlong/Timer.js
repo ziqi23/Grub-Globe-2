@@ -31,7 +31,7 @@ const Timer = ({second}) => {
   }, [startCountdown, seconds])
 
   useEffect(() => {
-    if (hours === 0 && minutes === 0 && seconds === 0) {
+    if (startCountdown && hours === 0 && minutes === 0 && seconds === 0) {
       clearInterval(interval)
       setStartCountdown(false)
       const audio = new Audio(timer);
