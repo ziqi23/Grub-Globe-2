@@ -47,8 +47,9 @@ const RecipeIndexPage = (props) => {
     const fetchData = async () => {
       if (searchSplit[0] === "country") {
         setLoading(true); // Set loading to true before fetching recipes
-        await dispatch(fetchRecipes(search));
-        setLoading(false); // Set loading to false after recipes have been fetched
+        await dispatch(fetchRecipes(search))
+          .then(() => setLoading(false))
+         // Set loading to false after recipes have been fetched
       }
     };
 

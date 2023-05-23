@@ -17,7 +17,7 @@ const BadgesProgressBar = ({badge}) => {
                 filledBackground="#f0bb31"
             >
                 {levels.map((level, i) => (
-                    <Step transition="scale" >
+                    <Step key={i} transition="scale" >
                     {({accomplished}) => (
                             <div className="milestone-container">
                                 <div className={ accomplished ? "accomplished-milestone-dot" : "milestone-dot"} />

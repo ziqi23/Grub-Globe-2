@@ -117,7 +117,8 @@
   }
 
   #explore-page-country-popup {
-    height: 40vh;
+    height: 50vh;
     width: 100%;
+    padding: 0px 10px;
   }
 }

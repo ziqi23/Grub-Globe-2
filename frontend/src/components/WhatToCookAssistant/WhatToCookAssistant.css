@@ -172,3 +172,28 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 768px) {
+  #splash-ai-chatbubble {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  #splash-hover-container {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  #splash-open-chatbox-lightbulb {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  #splash-ai-chatbox {
+    bottom: 85px;
+    right: 5px;
+
+  }
+
+}
+

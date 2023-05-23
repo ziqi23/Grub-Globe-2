@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CreatableSelect from "react-select/creatable";
 import React from "react";
 import "./Search.css";
@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { fetchSearchRecipes } from "../../store/recipes.js";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { useRef } from "react";
+
 
 function RecipeSearch() {
   const [query, setQuery] = useState("");

@@ -279,6 +279,44 @@ codecodecode
 
 Interesting considerations and challenges and how we overcame...
 
+
+Another way a user can discover new recipes is through the random recipe generator button, which was inspired by the experience of a slot machine. Upon clicking the "GIVE ME A RANDOM RECIPE" button, this will initiate a setInterval that will randomly index through the an array of all recipes every 0.5s for a total of 5 seconds before a final recipe is presented to the user. 
+
+Example ...:
+
+![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVhYmIxMDkxMmFiMTNkMjM5NzkzOWE0MDU2ODlhZmRlM2E3ZWMxNyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/MC9IJ6ADrUvJMVE3K0/giphy.gif)
+
+[TK note: then, explain how we built that user experience - general technical approach plus code snippets]
+
+The helper method `resetIndex` is called before the setInterval and at the end of each interval to generate a new random index that will be used to index into the recipes array, ensuring each rotation of recipes is completely random. `generateRandomRecipe` will initiate the setInterval that would update the current indexed recipe image and name, retrieved through indexing to optimize time complexity.
+
+<h5 a><strong><code>RandomRecipeGenerator.js</code></strong></h5>
+
+```JavaScript
+    const resetIndex = () => {
+        index = (Math.floor(Math.random() * totalRecipes));
+    };
+
+    const generateRandomRecipe = () => {
+        recipeInterval = setInterval(() => {
+            setCurrentImage(recipes[index].photoUrl);
+            setCurrentRecipeName(recipes[index].recipeName);
+            setCurrentRecipeId(recipes[index]._id);
+            resetIndex();
+        }, 500);
+    };
+```
+
+Notably, more blah
+
+<h5 a><strong><code>index.js</code></strong></h5>
+
+```JavaScript
+codecodecode
+```
+
+Interesting considerations and challenges and how we overcame...
+
 ---
 
 #### Other Features
@@ -299,6 +337,7 @@ Upcoming improvements include:
 - Live API call integration to enable search on more recipes
 - Ability to add ingredient substitutions and refresh the nutrition panel
 - Feature to adjust font to be easier to read for some users
+- Ability to view other users' profiles
 
 ---
 
