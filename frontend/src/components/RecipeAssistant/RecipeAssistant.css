@@ -172,3 +172,11 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 412px) {
+  #ai-chatbox {
+    right: 10px;
+    bottom: 100px;
+  }
+
+}
