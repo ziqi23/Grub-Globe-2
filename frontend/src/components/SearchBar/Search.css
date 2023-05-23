@@ -5,6 +5,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    width: 40vw;
 }
 
 .search-form button {
@@ -24,12 +25,16 @@
     cursor: pointer;
 }
 
+.css-b62m3t-container {
+  width: 100%;
+}
+
   .css-1fdsijx-ValueContainer {
-    width: 700px;
+    width: 100%;
   }
 
   .css-3w2yfm-ValueContainer {
-    width: 700px;
+    width: 100%;
   }
 
 @media (max-width: 1430px) {
@@ -63,16 +68,17 @@
     width: 400px;
   }
 
-@media (max-width: 528px) {
+@media (max-width: 920px) {
     .search-form {
-        flex-direction: column;
+      flex-direction: column;
+      width: 80vw;
     }
 
     .css-1fdsijx-ValueContainer {
-      width: 300px;
+      width: 90%;
     }
 
     .css-3w2yfm-ValueContainer {
-      width: 300px;
-    }
+      width: 90%;
+    } 
 }

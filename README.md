@@ -288,7 +288,7 @@ Example ...:
 
 [TK note: then, explain how we built that user experience - general technical approach plus code snippets]
 
-The helper method `resetIndex` is called before the interval and at the end of each interval to generate a new random index that will be used to index into the recipes array, ensuring each rotation of recipes is completely random. `generateRandomRecipe` will initiate the setInterval that would display the current indexed recipe image and name, retrieved through indexing to optimize time complexity.
+The helper method `resetIndex` is called before the setInterval and at the end of each interval to generate a new random index that will be used to index into the recipes array, ensuring each rotation of recipes is completely random. `generateRandomRecipe` will initiate the setInterval that would update the current indexed recipe image and name, retrieved through indexing to optimize time complexity.
 
 <h5 a><strong><code>RandomRecipeGenerator.js</code></strong></h5>
 
