@@ -198,7 +198,7 @@
 
 @media (max-width: 920px) {
   .profile-page-top {
-    margin-top: 120px;
+    /* margin-top: 120px; */
     width: 100vw;
   }
 

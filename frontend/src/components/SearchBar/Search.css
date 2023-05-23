@@ -5,7 +5,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 40vw;
+
+    width: 37vw;
 }
 
 .search-form button {
@@ -70,7 +71,7 @@
 
 @media (max-width: 920px) {
     .search-form {
-      flex-direction: column;
+      /* flex-direction: column; */
       width: 80vw;
     }
 

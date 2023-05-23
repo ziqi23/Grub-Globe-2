@@ -178,17 +178,17 @@ const ReviewsTiles = ({review}) => {
     return (
         <div className="reviews-tile-container">
             <div className="reviews-title-top">
-                <div onClick={() => history.push(`/recipes/${review.recipe._id}`)}>
-                    <img src={review.recipe.photoUrl} alt="recipe" />
+                <div onClick={() => history.push(`/recipes/${review?.recipe?._id}`)}>
+                    <img src={review?.recipe?.photoUrl} alt="recipe" />
                     <div className="image-overlay"></div>
                     <div className="recipe-info-container">
-                        <h1 >{review.recipe.recipeName}</h1>
-                        <p>{review.recipe.country}</p>
+                        <h1 >{review?.recipe?.recipeName}</h1>
+                        <p>{review?.recipe?.country}</p>
                     </div>
                 </div>
             </div>
             <div className="reviews-tile-middle">
-                <p>{formattedDate(review.createdAt)}</p>
+                <p>{formattedDate(review?.createdAt)}</p>
                 {reviewHTML()}
             </div>
         </div>

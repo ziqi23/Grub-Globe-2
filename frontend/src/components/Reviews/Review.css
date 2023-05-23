@@ -240,7 +240,7 @@
   margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1035px) {
   .review-index-container {
     width: 100%;
   }

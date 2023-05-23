@@ -43,11 +43,11 @@
   color: rgb(243, 161, 54);
 }
 
-@media (max-width: 1050px) {
+/* @media (max-width: 1050px) {
   .header-container .nav-bar {
     width: 50%;
   }
-}
+} */
 
 @media (max-width: 920px) {
   .header-container .nav-bar {

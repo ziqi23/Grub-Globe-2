@@ -38,7 +38,8 @@ const RecipeShowPage = () => {
   }, [])
   
   useEffect(() => {
-    if (windowWidth <= 920) {
+    // if (windowWidth <= 920) {
+    if (windowWidth <= 1035) {
       setViewport("Mobile");
     }
     else {
@@ -150,7 +151,7 @@ const RecipeShowPage = () => {
             <div className="follow-along-button-container">
               <h2>Ready?</h2>
               <div className="follow-along-button" onClick={handleFollowAlong}>
-                Let's get cookin!
+                <h3>Let's get cookin!</h3>
               </div>
             </div>
           </div>

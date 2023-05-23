@@ -33,10 +33,10 @@
 }
 
 @media (max-width: 920px) {
-  .header-container {
+  /* .header-container {
     flex-direction: column;
     gap: 10px;
-  }
+  } */
 }
 
 .mobile-burger-menu {

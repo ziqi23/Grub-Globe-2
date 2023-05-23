@@ -33,7 +33,7 @@ function Profile(props) {
   }, [])
   
   useEffect(() => {
-    if (windowWidth <= 920) {
+    if (windowWidth <= 1035) {
       setViewport("Mobile");
     }
     else {
