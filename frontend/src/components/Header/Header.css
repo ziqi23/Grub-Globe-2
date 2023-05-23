@@ -20,6 +20,7 @@
   color: rgb(36, 35, 35);
   transition: 0.3s all ease;
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .header-container h1:hover {
@@ -31,10 +32,11 @@
   background-position: 10%;
 }
 
-@media (max-width: 390px) {
-  .header-container {
+@media (max-width: 920px) {
+  /* .header-container {
     flex-direction: column;
-  }
+    gap: 10px;
+  } */
 }
 
 .mobile-burger-menu {

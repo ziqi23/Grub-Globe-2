@@ -239,3 +239,15 @@
   font-weight: 300;
   margin-bottom: 10px;
 }
+
+@media (max-width: 1035px) {
+  .review-index-container {
+    width: 100%;
+  }
+
+  .review-box-container {
+    width: 95%;
+  }
+
+
+}

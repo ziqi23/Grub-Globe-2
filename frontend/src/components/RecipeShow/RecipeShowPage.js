@@ -38,7 +38,8 @@ const RecipeShowPage = () => {
   }, [])
   
   useEffect(() => {
-    if (windowWidth <= 920) {
+    // if (windowWidth <= 920) {
+    if (windowWidth <= 1035) {
       setViewport("Mobile");
     }
     else {
@@ -119,19 +120,19 @@ const RecipeShowPage = () => {
                 <img
                   className="actual-image"
                   src={recipe?.photoUrl}
-                  alt="recipe image"
+                  alt="recipe"
                 />
               </div>
               <h3>Recipe by: {recipe?.recipeAuthor}</h3>
             </div>
             <div className="smaller-content-info">
               <div>
-                <img className="icon" src={timerIcon} />
+                <img className="icon" src={timerIcon} alt="icon" />
                 <h2>Duration</h2>
                 <p>{recipe?.prepTime} minutes</p>
               </div>
               <div>
-                <img className="icon" src={plateIcon} />
+                <img className="icon" src={plateIcon} alt="icon"/>
                 <h2>Servings </h2>
                 <p>{recipe?.servings}</p>
               </div>
@@ -150,7 +151,7 @@ const RecipeShowPage = () => {
             <div className="follow-along-button-container">
               <h2>Ready?</h2>
               <div className="follow-along-button" onClick={handleFollowAlong}>
-                Let's get cookin!
+                <h3>Let's get cookin!</h3>
               </div>
             </div>
           </div>

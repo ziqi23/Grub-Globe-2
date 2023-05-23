@@ -111,6 +111,9 @@ body {
   background-color: #f1f1f1;
   font-family: "Kanit", sans-serif;
 }
+body * {
+  /* border: 1px solid red; */
+}
 
 a {
   text-decoration: none;
