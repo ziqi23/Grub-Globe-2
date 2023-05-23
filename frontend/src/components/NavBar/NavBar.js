@@ -42,6 +42,9 @@ function NavBar() {
             Logout
           </div>
         </Link>
+        <Link to="/discover">
+          <div>Discover</div>
+        </Link>
       </div>
     );
   } else {

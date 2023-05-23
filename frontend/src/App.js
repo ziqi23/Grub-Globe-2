@@ -6,6 +6,7 @@ import { getCurrentUser } from "./store/session";
 import RecipeIndexPage from "./components/RecipeIndexPage/RecipeIndexPage";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import RecipeShowPage from "./components/RecipeShow/RecipeShowPage";
+import Discover from "./components/DiscoverPage/Discover";
 import Globe from "./components/Globe/Globe";
 import Profile from "./components/Profile/Profile";
 
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/" component={Globe} />
           <Route path="/recipes" component={RecipeIndexPage} />
           <Route exact path="/explore" component={Globe} />
+          <ProtectedRoute exact path="/discover" component={Discover} />
           <ProtectedRoute path="/profile" component={Profile} />
         </Switch>
       </>

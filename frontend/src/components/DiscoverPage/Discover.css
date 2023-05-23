@@ -1,0 +1,53 @@
+.recommendations-grid-favorites,
+.recommendations-grid-reviews {
+  /* display: grid; */
+  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+  grid-gap: 20px; /* Set the gap between grid items */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+/* .recipe-container {
+  background-color: #ddd;
+  padding: 20px;
+} */
+
+.recommendations {
+    text-align: center;
+  }
+  
+  .recommendations-title,
+  .recommendations-header-favorites,
+  .recommendations-header-reviews {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .recommendations-title {
+    font-size: 2em;
+    margin-bottom: 40px;
+  }
+
+  .logo {
+    font-family: "Archivo Black", sans-serif;
+    letter-spacing: -5px;
+    font-size: 49px;
+    padding: 5px;
+    color: rgb(36, 35, 35);
+    transition: 0.3s all ease;
+    cursor: pointer;
+    width: 250px;
+  }
+  
+  .logo-grub-globe:hover {
+    color: transparent;
+    background-image: url("https://img.freepik.com/free-vector/earth-globe-icon-white-background_1308-122819.jpg");
+    background-size: fill;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-position: 10%;
+    transition: 0.3s all ease;
+  }
