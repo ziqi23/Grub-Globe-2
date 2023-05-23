@@ -6,11 +6,13 @@ const Recipe = mongoose.model("Recipe");
 const Review = mongoose.model("Review");
 const { requireUser } = require("../../config/passport");
 const validateReviewInput = require("../../validations/review");
+const { multipleFilesUpload, multipleMulterUpload } = require("../../awsS3");
 
 router.get("/", async (req, res) => {
   try {
     const reviews = await Review.find()
       .populate("user", "_id firstName lastName username profilePhoto ")
+      // .populate("imageUrls")
       .sort({ createdAt: -1 });
     return res.json(reviews);
   } catch (err) {
@@ -32,6 +34,7 @@ router.get("/user/:userId", async (req, res, next) => {
     const reviews = await Review.find({ user: user._id })
       .sort({ createdAt: -1 })
       .populate("user", "_id firstName lastName username profilePhoto")
+      // .populate("imageUrls")
       .populate({
         path: 'recipe',
         select: 'recipeName country photoUrl'
@@ -55,7 +58,8 @@ router.get("/recipe/:recipeId", async (req, res, next) => {
   try {
     const reviews = await Review.find({ recipe: recipe._id })
       .sort({ createdAt: -1 })
-      .populate("user", "_id firstName lastName username profilePhoto");
+      .populate("user", "_id firstName lastName username profilePhoto")
+      // .populate("imageUrls")
     return res.json(reviews);
   } catch (err) {
     return res.json([]);
@@ -67,7 +71,8 @@ router.get("/:id", async (req, res, next) => {
     const review = await Review.findById(req.params.id).populate(
       "user",
       "_id firstName lastName username profilePhoto"
-    );
+    )
+    // .populate("imageUrls");
     return res.json(review);
   } catch (err) {
     const error = new Error("Review not found");
@@ -77,7 +82,9 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", requireUser, validateReviewInput, async (req, res, next) => {
+router.post("/", requireUser, multipleMulterUpload("images"), validateReviewInput, async (req, res, next) => {
+  const imageUrls = await multipleFilesUpload({files: req.files});
+
   try {
     const newReview = new Review({
       user: req.user._id,
@@ -87,6 +94,7 @@ router.post("/", requireUser, validateReviewInput, async (req, res, next) => {
       wouldMakeAgain: req.body.wouldMakeAgain,
       wouldRecommend: req.body.wouldRecommend,
       starRating: req.body.starRating,
+      imageUrls
     });
 
     let review = await newReview.save();
