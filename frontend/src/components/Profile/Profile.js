@@ -3,7 +3,6 @@ import "./Profile.css";
 import defaultPicture from "./default-profile.png";
 import { useState, useEffect } from "react";
 import { AiOutlineDownload } from "react-icons/ai";
-import jwtFetch from "../../store/jwt";
 import Header from "../Header/Header";
 import { fetchFavorites } from "../../store/favorites";
 import { useDispatch } from "react-redux";
@@ -49,8 +48,6 @@ function Profile(props) {
   const [completedRecipes, setCompletedRecipes] = useState([]);
 
   // for uploading profile photo
-  const Buffer = require("buffer/").Buffer;
-  const [image, setImage] = useState();
   const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
   const [photoFile, setPhotoFile] = useState(null);
   const [updatePhoto, setUpdatePhoto] = useState(false);
@@ -62,7 +59,6 @@ function Profile(props) {
   const [toggleCompleted, setToggleCompleted] = useState(false);
 
   // for users acquired badges; can choose which one to display
-
   const user = useSelector((state) => state.session.user);
   const favorites = useSelector((state) => Object.values(state.favorites));
 
@@ -112,24 +108,32 @@ function Profile(props) {
     }
   }, [user, dispatch]);
 
-  useEffect(() => {
-    if (user.photo) {
-      const bufferArr = new Uint8Array(user.photo.data);
-      setImage((image) => Buffer.from(bufferArr).toString("base64"));
-    }
-  }, [user.photo, photoFile]);
-
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", photoFile);
+    setUploadPanelOpen(false);
     dispatch(uploadImage(formData));
   }
 
-  function handlePanelClick(e) {
+  async function handlePanelClick(e) {
     e.preventDefault();
     setUploadPanelOpen(!uploadPanelOpen);
   }
+
+  useEffect(() => {
+    if (uploadPanelOpen) {
+      document.addEventListener('click', handleClosePanel)
+    }
+    
+    function handleClosePanel(e) {
+      if (e.target.className !== 'profile-picture-upload-panel' && e.target.tagName !== 'INPUT') 
+      {
+        setUploadPanelOpen(false)
+        document.removeEventListener('click', handleClosePanel)
+      }
+    }
+  }, [uploadPanelOpen])
 
   function handleDrag(e) {
     e.preventDefault();
@@ -149,6 +153,7 @@ function Profile(props) {
         setPhotoFile(e.dataTransfer.files[0]);
         const formData = new FormData();
         formData.append("image", e.dataTransfer.files[0]);
+        setUploadPanelOpen(false);
         dispatch(uploadImage(formData));
         break;
       case "dragleave":
@@ -190,7 +195,6 @@ function Profile(props) {
   if (!user) {
     return <LoaderDots />;
   }
-
   return (
     <div className="profile-page-root">
       <Header viewport={viewport}/>
@@ -204,7 +208,7 @@ function Profile(props) {
             <img
               className="profile-page-picture-file"
               src={
-                image ? `data:image/image/png;base64,${image}` : defaultPicture
+                sessionUser ? sessionUser.photo ? sessionUser.photo : defaultPicture : defaultPicture
               }
             />
             {updatePhoto && (

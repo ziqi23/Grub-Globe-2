@@ -22,7 +22,12 @@ const userSchema = new Schema({
       type: String,
       required: true
     },
-    profilePhoto: { type: Buffer },
+    profilePhoto: { 
+      type: Buffer 
+    },
+    profileImageUrl: {
+      type: String
+    },
     completedRecipe: [
       {
         recipeId: {

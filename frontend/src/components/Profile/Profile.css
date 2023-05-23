@@ -32,16 +32,22 @@
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
+.profile-page-picture img:hover {
+  transition: 2s;
+  filter: blur(3px);
+}
+
 .profile-page-upload-panel-toggle {
   position: absolute;
-  bottom: 0px;
-  right: 6px;
+  top: 140px;
+  right: 95px;
   color: rgb(228, 223, 223);
   background-color: rgb(55, 53, 47, 0.8);
   font-size: 14px;
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
+  filter: none;
 }
 
 .profile-page-upload-panel-toggle:hover {
@@ -192,6 +198,11 @@
 
   .profile-nav-bar {
     justify-content: center;
+  }
+
+  .profile-picture-upload-panel {
+    top: 0px;
+    left: -100px;
   }
 }
 

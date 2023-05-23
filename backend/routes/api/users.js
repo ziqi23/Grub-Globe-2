@@ -13,6 +13,7 @@ const { isProduction } = require("../../config/keys");
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 const validateCompleteRecipeInput = require("../../validations/completeRecipe");
+const { singleFileUpload } = require('../../awsS3')
 const multer = require("multer");
 const upload = multer();
 const Recipe = mongoose.model("Recipe");
@@ -26,9 +27,10 @@ router.post(
     if (req.file === undefined) {
       return res.send("you must select a file.");
     }
+    const profileImageUrl = await singleFileUpload({ file: req.file, public: true });
     await User.findOneAndUpdate(
       { username: req.user.username },
-      { profilePhoto: req.file.buffer }
+      { profileImageUrl }
     );
     const updatedUser = await User.findOne({ username: req.user.username });
     res.json({
@@ -37,7 +39,7 @@ router.post(
       email: updatedUser.email,
       firstName: updatedUser.firstName,
       lastName: updatedUser.lastName,
-      photo: updatedUser.profilePhoto,
+      photo: updatedUser.profileImageUrl,
       completedRecipe: updatedUser.completedRecipe,
     });
   }
@@ -61,7 +63,7 @@ router.get("/current", restoreUser, function (req, res, next) {
     email: req.user.email,
     firstName: req.user.firstName,
     lastName: req.user.lastName,
-    photo: req.user.profilePhoto,
+    photo: req.user.profileImageUrl,
     completedRecipe: req.user.completedRecipe,
   });
 });
