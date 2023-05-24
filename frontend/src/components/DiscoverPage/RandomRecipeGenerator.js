@@ -13,6 +13,7 @@ const RandomRecipeGenerator = () => {
     const [pushed, setPushed] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [recipes, setRecipes] = useState([]);
+    const [disabled, setDisabled] = useState(false)
 
     const getRecipes = async () => {
         try {
@@ -46,14 +47,18 @@ const RandomRecipeGenerator = () => {
     }
 
     const handlePush = () => {
-        setPushed(true);
-        setIsLoading(true);
-        initializeRecipeRotation();
-        setTimeout(() => {
-            setIsLoading(false)
-            setPushed(false);
-            getRecipes();
-        }, 5000)
+        if (!disabled) {
+            setDisabled(true)
+            setPushed(true);
+            setIsLoading(true);
+            initializeRecipeRotation();
+            setTimeout(() => {
+                setIsLoading(false)
+                setPushed(false);
+                getRecipes();
+                setDisabled(false)
+            }, 5000)
+        }
     }
 
     const loading = () => {
