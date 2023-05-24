@@ -9,6 +9,7 @@ import RecipeShowPage from "./components/RecipeShow/RecipeShowPage";
 import Discover from "./components/DiscoverPage/Discover";
 import Globe from "./components/Globe/Globe";
 import Profile from "./components/Profile/Profile";
+import RandomRecipeGenerator from "./components/DiscoverPage/RandomRecipeGenerator";
 
 function App() {
   const [loaded, setLoaded] = useState(false);

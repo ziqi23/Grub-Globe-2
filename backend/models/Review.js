@@ -33,6 +33,10 @@ const reviewSchema = new Schema(
       type: Number,
       required: true,
     },
+    imageUrls: {
+      type: [String],
+      required: false
+    }
   },
   {
     timestamps: true,

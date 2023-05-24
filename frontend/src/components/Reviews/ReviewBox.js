@@ -11,6 +11,8 @@ import { deleteReview } from "../../store/reviews";
 import { fetchRecipeReviews } from "../../store/reviews";
 import defaultPicture from "../Profile/default-profile.png";
 import NewReviewForm from "./NewReviewForm";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ReviewBox = ({ review }) => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -120,6 +122,15 @@ const ReviewBox = ({ review }) => {
                   />
                 </div>
               </div>
+            </div>
+            <div className="review-images-container">
+              <Carousel showThumbs={false}>
+                {review.imageUrls?.map((url, index) => (
+                  <div key={index}>
+                    <img src={url} alt={`reviewImages${index}`} />
+                  </div>
+                ))}
+              </Carousel>
             </div>
           </div>
           <div id="edit-delete-review-container">{editButtons()}</div>

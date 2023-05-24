@@ -29,7 +29,7 @@ const RecipeIndex = ({ recipes, loading }) => {
   }
 
   return (
-    <div class="recipes-index">
+    <div className="recipes-index">
         <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -54,8 +54,8 @@ const RecipeIndex = ({ recipes, loading }) => {
         navigation={true}
         className="mySwiper"
       >
-        {recipes.map((recipe) => (
-          <SwiperSlide>
+        {recipes.map((recipe,i) => (
+          <SwiperSlide key={i}>
             <RecipeCard key={recipe.id} recipe={recipe} favorites={favorites} />
           </SwiperSlide>
         ))}

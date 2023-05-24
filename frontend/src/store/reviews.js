@@ -102,27 +102,62 @@ export const fetchReview = (id) => async (dispatch) => {
   }
 };
 
-export const composeReview = (data) => async (dispatch) => {
+export const composeReview = (data, images) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("title", data.title);
+  formData.append("text", data.text);
+  formData.append("recipe", data.recipe);
+  formData.append("wouldMakeAgain", data.wouldMakeAgain);
+  formData.append("wouldRecommend", data.wouldRecommend);
+  formData.append("starRating", data.starRating);
+
+  console.log('images ', images);
+  console.log('data = ', data);
+
+  Array.from(images).forEach((image) => {
+    formData.append("images", image);
+  });
+
   try {
     const res = await jwtFetch("/api/reviews/", {
       method: "POST",
-      body: JSON.stringify(data),
+      body: formData
     });
     const review = await res.json();
     dispatch(receiveNewReview(review));
   } catch (err) {
-    const resBody = await err.json();
-    if (resBody.statusCode === 400) {
-      return dispatch(receiveErrors(resBody.errors));
-    }
+      if (err && err.json) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+          return dispatch(receiveErrors(resBody.errors));
+        }
+      } else {
+        console.error(err);
+      }
   }
 };
 
-export const updateReview = (data, reviewId) => async (dispatch) => {
+export const updateReview = (data, images, reviewId) => async (dispatch) => {
+  console.log(images);
+
+  console.log('review id = ', JSON.stringify(reviewId));
+
+  const formData = new FormData();
+  formData.append("title", data.title);
+  formData.append("text", data.text);
+  formData.append("recipe", data.recipe);
+  formData.append("wouldMakeAgain", data.wouldMakeAgain);
+  formData.append("wouldRecommend", data.wouldRecommend);
+  formData.append("starRating", data.starRating);
+
+  Array.from(images).forEach((image) => {
+    formData.append("images", image);
+  });
+
   try {
     const res = await jwtFetch(`/api/reviews/${reviewId}`, {
       method: "PUT",
-      body: JSON.stringify(data),
+      body: formData,
     });
     const review = await res.json();
     dispatch(receiveUpdatedReview(review));
