@@ -91,6 +91,10 @@ const RecipeShowPage = () => {
     setTooltipOpen(-1);
   };
 
+  window.scrollTo({
+    top: 0,
+  });
+
   if (!recipe) {
     return <LoaderDots />;
   }
