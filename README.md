@@ -285,12 +285,28 @@ Another way a user can discover new recipes easily is through the random recipe 
 ![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVhYmIxMDkxMmFiMTNkMjM5NzkzOWE0MDU2ODlhZmRlM2E3ZWMxNyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/MC9IJ6ADrUvJMVE3K0/giphy.gif)
 
 
+Initially, we were fetching all the recipes from the backend to the frontend, but this was a very slow process. In response, we created a backend route that would generate an aggregate of 10 random recipes that would be sent to the client-side for rendering. 
+
+<h5 a><strong><code>backend/routes/api/recipes.js</code></strong></h5>
+
+```JavaScript
+// returns completely random set of 10 recipes 
+router.get('/randomRecipes', async (req, res) => {
+    try {
+        const randomRecipes = await Recipe.aggregate([{ $sample: {size: 10 }}])
+        return res.json(randomRecipes)
+    } catch (err) {
+        return res.json([]);
+    }
+})
+```
+
 The helper method `resetIndex` is called before the setInterval and at the end of each interval to generate a new random index that will be used to index into the recipes array, ensuring each rotation of recipes is completely random. `generateRandomRecipe` will initiate the setInterval that would update the local state with current indexed recipe image and name information, retrieved through indexing to optimize time complexity of this process.
 
 <h5 a><strong><code>RandomRecipeGenerator.js</code></strong></h5>
 
 ```JavaScript
-    // ensures complete randomization of recipes rotation
+    // ensures further randomization of recipes rotation
     const resetIndex = () => {
         index = (Math.floor(Math.random() * totalRecipes));
     };
@@ -306,13 +322,6 @@ The helper method `resetIndex` is called before the setInterval and at the end o
     };
 ```
 
-Notably, more blah
-
-<h5 a><strong><code>index.js</code></strong></h5>
-
-```JavaScript
-codecodecode
-```
 
 Interesting considerations and challenges and how we overcame...
 

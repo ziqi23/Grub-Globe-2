@@ -11,7 +11,7 @@
   gap: 30px;
   box-sizing: border-box;
   /* margin: 0 30px; */
-  padding: 0px 30px;
+  /* padding: 0px 30px; */
 }
 
 .profile-page-left {
@@ -19,6 +19,7 @@
   flex-direction: column;
   box-sizing: border-box;
   max-height: 461px;
+  padding-left: 20px;
 }
 
 .profile-page-picture {
@@ -106,6 +107,7 @@
   flex-direction: column;
   width: 60vw;
   box-sizing: border-box;
+  padding-right: 20px;
 }
 
 .profile-page-right h1 {

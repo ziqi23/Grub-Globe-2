@@ -22,15 +22,14 @@
 .header-container .nav-bar {
   text-transform: uppercase;
   font-family: "Kanit", sans-serif;
-  font-size: 20px;
+  font-size: 1.2em;
   font-weight: 500;
+  gap: 15px;
 }
 
 .nav-bar div {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  border-radius: 999px;
   transition: 0.3s all ease;
   white-space: nowrap;
 }

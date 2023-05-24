@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './RandomRecipeGenerator.css';
 import chefImage from '../../assets/images/bloom-chef-serving-a-pizza.png'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import jwtFetch from '../../store/jwt';
 
 const RandomRecipeGenerator = () => {
     const history = useHistory();
@@ -21,8 +22,9 @@ const RandomRecipeGenerator = () => {
    
     const getRecipes = async () => {
         try {
-            const res = await fetch('/api/recipes');
+            const res = await jwtFetch('/api/recipes/randomRecipes');
             const fetchedRecipes = await res.json();
+            console.log(fetchedRecipes)
             // recipes = await res.json();
             // totalRecipes = Object.keys(recipes).length;
             setRecipes(fetchedRecipes);
@@ -39,7 +41,7 @@ const RandomRecipeGenerator = () => {
 
     useEffect(() => {
         getRecipes();
-    }, [pushed])
+    }, [])
 
     let recipeInterval;
 

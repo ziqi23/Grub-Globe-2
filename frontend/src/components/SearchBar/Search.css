@@ -1,8 +1,8 @@
 .search-form {
     /* width: 625px; */
-    margin: 0 auto;
-    position: relative;
-    position: relative;
+    /* margin: 0 auto; */
+    /* position: relative; */
+    /* position: relative; */
     display: flex;
     align-items: center;
 
@@ -10,15 +10,17 @@
 }
 
 .search-form button {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     background-color: transparent;
     color: rgb(104, 101, 101);
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.3em;
     font-family: "Kanit", sans-serif;
     transition: 0.3s all ease;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
   }
 
 .search-form button:hover {
@@ -31,13 +33,13 @@
 
 }
 
-  .css-1fdsijx-ValueContainer {
-    width: 100%;
-  }
+.css-1fdsijx-ValueContainer {
+  width: 100%;
+}
 
-  .css-3w2yfm-ValueContainer {
-    width: 100%;
-  }
+.css-3w2yfm-ValueContainer {
+  width: 100%;
+}
 
 @media (max-width: 1430px) {
   .css-1fdsijx-ValueContainer {

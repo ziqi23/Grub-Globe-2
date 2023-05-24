@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import "./NavBar.css";
-import logoutIcon from "../../assets/icons/general-icons/icons8-log-out-24.png";
-import Header from "../Header/Header";
 import LoginForm from "../SessionForms/LoginForm";
 import { useState } from "react";
 import { Modal } from "../../context/Modal";
@@ -33,6 +31,9 @@ function NavBar() {
   if (loggedIn) {
     return (
       <div className="nav-bar">
+        <Link to="/discover">
+          <div>Discover</div>
+        </Link>
         <Link to="/profile">
           <div>Profile</div>
         </Link>
@@ -41,9 +42,6 @@ function NavBar() {
             <MdExitToApp id="logout-icon" />
             Logout
           </div>
-        </Link>
-        <Link to="/discover">
-          <div>Discover</div>
         </Link>
       </div>
     );
