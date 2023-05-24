@@ -11,7 +11,7 @@ const { multipleFilesUpload, multipleMulterUpload } = require("../../awsS3");
 router.get("/", async (req, res) => {
   try {
     const reviews = await Review.find()
-      .populate("user", "_id firstName lastName username profilePhoto ")
+      .populate("user", "_id firstName lastName username profileImageUrl ")
       .populate("imageUrls")
       .sort({ createdAt: -1 });
     return res.json(reviews);
@@ -33,7 +33,7 @@ router.get("/user/:userId", async (req, res, next) => {
   try {
     const reviews = await Review.find({ user: user._id })
       .sort({ createdAt: -1 })
-      .populate("user", "_id firstName lastName username profilePhoto")
+      .populate("user", "_id firstName lastName username profileImageUrl")
       .populate("imageUrls")
       .populate({
         path: 'recipe',
@@ -58,7 +58,7 @@ router.get("/recipe/:recipeId", async (req, res, next) => {
   try {
     const reviews = await Review.find({ recipe: recipe._id })
       .sort({ createdAt: -1 })
-      .populate("user", "_id firstName lastName username profilePhoto")
+      .populate("user", "_id firstName lastName username profileImageUrl")
       .populate("imageUrls", "url")
     return res.json(reviews);
   } catch (err) {
@@ -70,7 +70,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const review = await Review.findById(req.params.id).populate(
       "user",
-      "_id firstName lastName username profilePhoto"
+      "_id firstName lastName username profileImageUrl"
     )
     .populate("imageUrls");
     return res.json(review);
@@ -101,7 +101,7 @@ router.post("/", requireUser, multipleMulterUpload("images"), validateReviewInpu
     let review = await newReview.save();
     review = await review.populate(
       "user",
-      "_id firstName lastName username profilePhoto"
+      "_id firstName lastName username profileImageUrl"
     );
     return res.json(review);
   } catch (err) {
@@ -140,7 +140,7 @@ router.put(
 
       review = await review.populate(
         "user",
-        "_id firstName lastName username profilePhoto"
+        "_id firstName lastName username profileImageUrl"
       );
 
       return res.json(review);
