@@ -4,6 +4,7 @@
     align-items: center;
     width: 300px;
     overflow: hidden;
+    transition: 0.3s all ease;
   }
 
   .recipe-container:hover {

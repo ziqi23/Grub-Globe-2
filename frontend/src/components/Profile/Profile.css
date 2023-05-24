@@ -224,4 +224,8 @@
     text-align: center;
   }
 
+  .profile-page-right {
+    padding-right: 0px;
+  }
+
 }

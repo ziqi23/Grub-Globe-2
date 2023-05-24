@@ -19,18 +19,23 @@
     padding: 15px;
     background-color: rgb(251, 250, 249);
     box-shadow: rgba(55, 53, 47, 0.09) 0px 1px 0px;
-    border-radius: 15px 15px 0px 0px
+    border-radius: 15px 15px 0px 0px;
+    display: flex;
+    justify-content: center;
+    margin-right: 30px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .burger-menu-search .search-form {
     display: flex;
     margin-right: 0px;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .burger-menu-search .search-form button {
-    width: fit-content;
-    margin: 0px 10px;
+    /* width: fit-content; */
+    /* margin: 0px 10px; */
 }
 
 .burger-menu-search .search-form div{
@@ -38,7 +43,7 @@
 }
 
 .burger-menu-search .search-form > div > div {
-    width: 300px;
+    /* width: 300px; */
 }
 
 .burger-menu-ingredients {
@@ -114,7 +119,7 @@
         min-width: 350px;
     }
 
-    .burger-menu-search .search-form {
-        flex-direction: column;
+    .burger-menu-search {
+        margin-right: 0px;
     }
 }
