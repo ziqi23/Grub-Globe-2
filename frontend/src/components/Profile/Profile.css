@@ -10,6 +10,7 @@
   flex-grow: 1;
   gap: 30px;
   box-sizing: border-box;
+  /* margin: 0 30px; */
   padding: 0px 30px;
 }
 
@@ -199,7 +200,8 @@
 @media (max-width: 920px) {
   .profile-page-top {
     /* margin-top: 120px; */
-    width: 100vw;
+    /* width: 100vw; */
+    padding: 0px 0px;
   }
 
   .profile-nav-bar {
