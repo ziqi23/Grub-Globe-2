@@ -21,13 +21,6 @@ function NavBar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
 
-  const continueAsDemoUser = async (e) => {
-    e.preventDefault();
-
-    const demoUser = { email: "demo-user@appacademy.io", password: "starwars" };
-    const res = await dispatch(login(demoUser));
-  };
-
   if (loggedIn) {
     return (
       <div className="nav-bar">
@@ -51,7 +44,7 @@ function NavBar() {
         <div className="nav-bar">
           <div onClick={() => setShowSignupModal(true)}>Signup</div>
           <div onClick={() => setShowLoginModal(true)}>Login</div>
-          <div onClick={continueAsDemoUser}>Continue as Demo User</div>
+
         </div>
         {showLoginModal && (
           <Modal onClose={() => setShowLoginModal(false)}>

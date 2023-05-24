@@ -14,7 +14,7 @@ const RandomRecipeGenerator = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [recipes, setRecipes] = useState([]);
     const [index, setIndex] = useState(0);
-    const [totalRecipes, setTotalRecipes] = useState(0);
+    const [totalRecipes, setTotalRecipes] = useState(10);
 
     const resetIndex = () => {
         const index = (Math.floor(Math.random() * totalRecipes));
@@ -24,24 +24,16 @@ const RandomRecipeGenerator = () => {
         try {
             const res = await jwtFetch('/api/recipes/randomRecipes');
             const fetchedRecipes = await res.json();
-            console.log(fetchedRecipes)
-            // recipes = await res.json();
-            // totalRecipes = Object.keys(recipes).length;
             setRecipes(fetchedRecipes);
-            setTotalRecipes(Object.keys(fetchedRecipes).length);
             resetIndex();
-            // resetIndex();
         } catch (err) {
             console.error(err)
         }
     }
-
     
-
-
     useEffect(() => {
         getRecipes();
-    }, [])
+    }, [pushed])
 
     let recipeInterval;
 
