@@ -9,10 +9,10 @@ async function jwtFetch(url, options = {}) {
   if (options.method.toUpperCase() !== "GET") {
     options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
   }
-  
-  if (options.method.toUpperCase() !== "GET" && url !== '/api/users/upload') {
-    options.headers["Content-Type"] =
-      options.headers["Content-Type"] || "application/json";
+
+  if (options.method.toUpperCase() !== "GET" && url !== '/api/users/upload' && !(options.body instanceof FormData) &&
+  !options.headers["Content-Type"]) {
+    options.headers["Content-Type"] = "application/json";
   }
 
   const res = await fetch(url, options);
@@ -32,4 +32,3 @@ function getCookie(cookieName) {
   }
 
 export default jwtFetch;
-

@@ -31,31 +31,31 @@ const ReviewsTiles = ({review}) => {
             return (
                 <>
                 {starRatings()}
-                <input 
-                    type="text" 
-                    value={title} 
-                    onChange={(e) => setTitle(e.target.value)} 
+                <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     class="reviews-tile-title-input"
                 />
-                <textarea 
-                    type="textarea" 
-                    value={text} 
-                    onChange={(e) => setText(e.target.value)} 
+                <textarea
+                    type="textarea"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
                     class="reviews-tile-text-input"
                 />
                 <div className="reviews-icons-section">
                     <p>Would Make Again</p>
-                    <FcCheckmark 
+                    <FcCheckmark
                         onClick={() => setWouldMakeAgain(true)}
-                        className={wouldMakeAgain ? "selected-icon" : "review-icon" }/> 
-                    <VscClose 
+                        className={wouldMakeAgain ? "selected-icon" : "review-icon" }/>
+                    <VscClose
                         onClick={() => setWouldMakeAgain(false)}
                         className={wouldMakeAgain ? "review-x-icon" : "review-selected-x-icon" }/>
                     <p>Would Recommend</p>
-                    <FcCheckmark 
+                    <FcCheckmark
                         onClick={() => setWouldRecommend(true)}
-                        className={wouldRecommend ? "selected-icon" : "review-icon" }/> 
-                    <VscClose 
+                        className={wouldRecommend ? "selected-icon" : "review-icon" }/>
+                    <VscClose
                         onClick={() => setWouldRecommend(false)}
                         className={wouldRecommend ? "review-x-icon" : "review-selected-x-icon" }/>
                 </div>
@@ -140,7 +140,7 @@ const ReviewsTiles = ({review}) => {
             recipe: review.recipe._id,
           };
         if (editMode) {
-            dispatch(updateReview(reviewContents, review._id)).then(() => {
+            dispatch(updateReview(reviewContents, [], review._id)).then(() => {
                 dispatch(fetchUserReviews(sessionUser._id));
             });
         }
@@ -152,20 +152,20 @@ const ReviewsTiles = ({review}) => {
         return (
             <>
                 <div  className="reviews-icons-section">
-                    {editMode 
-                        ? <AiOutlineCloseCircle 
+                    {editMode
+                        ? <AiOutlineCloseCircle
                             onClick={() => setEditMode(false)}
-                            className="edit-icons" 
-                        /> 
-                        : <AiOutlineEdit 
+                            className="edit-icons"
+                        />
+                        : <AiOutlineEdit
                             onClick={() => setEditMode(true)}
                             className="edit-icons"
                         />}
                     <RiDeleteBin6Line onClick={handleReviewDelete} className="edit-icons"/>
                 </div>
                 {editMode && (
-                    <button 
-                        className="update-button" 
+                    <button
+                        className="update-button"
                         onClick={handleUpdate}
                     >
                         UPDATE!
