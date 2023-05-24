@@ -322,9 +322,6 @@ The helper method `resetIndex` is called before the setInterval and at the end o
     };
 ```
 
-
-Interesting considerations and challenges and how we overcame...
-
 ---
 
 #### Other Features
