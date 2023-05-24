@@ -54,6 +54,16 @@ const Discover = props => {
          dispatch(fetchReviews());
     }, [dispatch, user])
 
+    useEffect(() => {
+        return () => {
+          window.scroll({
+            top: 0,
+            left: 0,
+            // behavior: 'smooth',
+          });
+        };
+      }, []);
+
     const recipeCounts = {};
 
 
