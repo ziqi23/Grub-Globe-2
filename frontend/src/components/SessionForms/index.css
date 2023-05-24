@@ -109,7 +109,7 @@
 
 .demo-login-button:hover {
   background-color:#e9e3e3;
-  color: rgb(250, 43, 43);
+  color: orange;
 }
 
 .session-form input[type="submit"]:active {
