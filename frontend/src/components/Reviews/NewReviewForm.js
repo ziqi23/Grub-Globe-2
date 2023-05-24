@@ -33,13 +33,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
     return () => dispatch(clearReviewErrors());
   }, [dispatch]);
 
-  let bufferArr;
-  let image;
-  if (sessionUser?.photo) {
-    bufferArr = new Uint8Array(sessionUser.photo.data);
-    image = Buffer.from(bufferArr).toString("base64");
-  }
-
   useEffect(() => {
     if (review) {
       setTitle(review.title);
@@ -127,7 +120,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
             <img
               className="review-profile-picture-file"
               src={
-                image ? `data:image/image/png;base64,${image}` : defaultPicture
+                review ? review.user.profileImageUrl : defaultPicture
               }
             />
           </div>

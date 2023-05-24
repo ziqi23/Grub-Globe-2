@@ -10,7 +10,7 @@ const validateReviewInput = require("../../validations/review");
 router.get("/", async (req, res) => {
   try {
     const reviews = await Review.find()
-      .populate("user", "_id firstName lastName username profilePhoto ")
+      .populate("user", "_id firstName lastName username profileImageUrl ")
       .sort({ createdAt: -1 });
     return res.json(reviews);
   } catch (err) {
@@ -31,7 +31,7 @@ router.get("/user/:userId", async (req, res, next) => {
   try {
     const reviews = await Review.find({ user: user._id })
       .sort({ createdAt: -1 })
-      .populate("user", "_id firstName lastName username profilePhoto")
+      .populate("user", "_id firstName lastName username profileImageUrl")
       .populate({
         path: 'recipe',
         select: 'recipeName country photoUrl'
@@ -55,7 +55,7 @@ router.get("/recipe/:recipeId", async (req, res, next) => {
   try {
     const reviews = await Review.find({ recipe: recipe._id })
       .sort({ createdAt: -1 })
-      .populate("user", "_id firstName lastName username profilePhoto");
+      .populate("user", "_id firstName lastName username profileImageUrl");
     return res.json(reviews);
   } catch (err) {
     return res.json([]);
@@ -66,7 +66,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const review = await Review.findById(req.params.id).populate(
       "user",
-      "_id firstName lastName username profilePhoto"
+      "_id firstName lastName username profileImageUrl"
     );
     return res.json(review);
   } catch (err) {
@@ -92,7 +92,7 @@ router.post("/", requireUser, validateReviewInput, async (req, res, next) => {
     let review = await newReview.save();
     review = await review.populate(
       "user",
-      "_id firstName lastName username profilePhoto"
+      "_id firstName lastName username profileImageUrl"
     );
     return res.json(review);
   } catch (err) {
@@ -128,7 +128,7 @@ router.put(
 
       review = await review.populate(
         "user",
-        "_id firstName lastName username profilePhoto"
+        "_id firstName lastName username profileImageUrl"
       );
 
       return res.json(review);

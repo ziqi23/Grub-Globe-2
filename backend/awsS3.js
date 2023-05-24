@@ -1,7 +1,7 @@
 const AWS = require("aws-sdk");
 const multer = require("multer");
 const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
-const NAME_OF_BUCKET = "grub-globe-seeds";
+const NAME_OF_BUCKET = "grub-globe-prod";
 
 const singleFileUpload = async ({ file }) => {
   const { originalname, buffer } = file;
@@ -13,9 +13,7 @@ const singleFileUpload = async ({ file }) => {
     Key: Key,
     Body: buffer
   };
-  console.log(uploadParams)
   const result = await s3.upload(uploadParams).promise();
-  console.log(result)
   return result.Location;
 };
 

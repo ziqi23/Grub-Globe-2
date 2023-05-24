@@ -18,13 +18,6 @@ const ReviewBox = ({ review }) => {
   const Buffer = require("buffer/").Buffer;
   const [editClicked, setEditClicked] = useState(false);
 
-  let bufferArr;
-  let image;
-  if (review.user.profilePhoto) {
-    bufferArr = new Uint8Array(review.user.profilePhoto.data);
-    image = Buffer.from(bufferArr).toString("base64");
-  }
-
   const handleReviewDelete = () => {
     dispatch(deleteReview(review._id)).then(() => {
       dispatch(fetchRecipeReviews(review.recipe));
@@ -49,7 +42,6 @@ const ReviewBox = ({ review }) => {
       );
     }
   };
-
   if (editClicked) {
     return (
       <NewReviewForm
@@ -67,9 +59,7 @@ const ReviewBox = ({ review }) => {
               <img
                 className="review-profile-picture-file"
                 src={
-                  image
-                    ? `data:image/image/png;base64,${image}`
-                    : defaultPicture
+                  review.user.profileImageUrl ? review.user.profileImageUrl : defaultPicture
                 }
               />
             </div>
