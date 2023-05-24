@@ -9,6 +9,7 @@ import RecipeContainer from "./RecipeContainer";
 import Spinner from "../SearchBar/Spinner";
 import './Discover.css';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Header from "../Header/Header";
 
 const Discover = props => {
     const history = useHistory();
@@ -23,7 +24,7 @@ const Discover = props => {
     useEffect(() => {
          dispatch(fetchFavorites());
          dispatch(fetchReviews());
-    }, [dispatch])
+    }, [dispatch, user])
 
     const recipeCounts = {};
 
@@ -52,77 +53,90 @@ const Discover = props => {
             recipesWithMostReviews = sortedRecipes
                 .slice(0, 10) 
                 .map(([recipeId]) => recipeId);
+                setLoading(false);
             
         }
-    }, [dispatch, recipeReviews]);
+    }, [dispatch, recipeReviews, user]);
     
 
     useEffect(() => { 
         dispatch(fetchRecipeRecommendations(recipesWithMostReviews));
-    }, [dispatch, recipeReviews]);
+    }, [dispatch, recipeReviews, recipesWithMostReviews]);
 
     const recipesWithMostReviewsFinal = useSelector(state => state.recipes['recipe recommendations']);
 
     const [discoverFavorites, setDiscoverFavorites] = useState([]);
-    console.log(discoverFavorites, 'inital state')
     
     useEffect(() => {
-      if (favorites.length > 0 && discoverFavorites.length === 0) {
+      if (favorites.length > 0) {
         const favoritesCopy = [...favorites];
 
         for (let i = 0; i < favorites.length; i++) {
           
-        //   const randomFavoriteIndex = Math.floor(
-        //     Math.random() * favoritesCopy.length
-        //   );
-          const randomFavorite = favoritesCopy[i];
-            const country = randomFavorite.recipe.country;
-            const recipeName = randomFavorite.recipe.recipeName.split(' ').join('');
-            console.log(recipeName)
+            const currentFavorite = favoritesCopy[i];
+            const country = currentFavorite.recipe.country;
+            const recipeName = currentFavorite.recipe.recipeName.split(' ').join('');
             const query = `${country} , ${recipeName}`;
             
             fetch(`/api/search?q=${query}`)
                 .then((response) => response.json())
                 .then((data) => {
-                    discoverFavorites.push(data[1]);
-                    i ++;
-                    console.log(discoverFavorites, 'discoverFavorites')
+                    if (favorites.length === 1) {
+                        setDiscoverFavorites(data);
+                        
+                    } else {
+                        // const isAlreadyIncluded = discoverFavorites.some( (recipe) => recipe._id === data[1]._id);
+                        setDiscoverFavorites((prevFavorites) => {
+                            const isAlreadyIncluded = prevFavorites.some((recipe) => recipe._id === data[1]._id);
+                            if (!isAlreadyIncluded) {
+                              console.log(data[1]); // Log the favorite
+                              return [...prevFavorites, data[1]];
+                            }
+                            return prevFavorites;
+                          });
+                          console.log(discoverFavorites, 'discoverFavorites');
+    
+                        // if (!isAlreadyIncluded) {
+                        // console.log(data[1]); // Log the favorite
+                        // setDiscoverFavorites((prev) => [...prev, data[1]]);
+                        // console.log(discoverFavorites, 'discoverFavorites')
+                        // }
+                    }
                 })
                 .catch((error) => {
                     console.error(error);
                 });
-        //   randomFavorites.push(randomFavorite);
-        //   favoritesCopy.splice(randomFavoriteIndex, 1);
         }
         
-        setLoading(false);
       }
     
-    }, [dispatch, favorites, recipeReviews]);
+    }, [dispatch, favorites.length, user]);
+
+     console.log(discoverFavorites, 'discoverFavorites')
 
     if (loading) {
         return <Spinner />
     }
+
+   
     return (
         <>
             <div className="recommendations-container">
-            <div onClick={() => history.push("/")} className="logo">
-                <h1 className="logo-grub-globe">grubGlobe</h1>
-            </div>
+                <Header />
                 <div className="recipe-generator-container"><RandomRecipeGenerator /></div>
                 <div className="recommendations">
                     <h1 className="recommendations-title">Recommendations for you</h1>
-                    {/* <div className="recommendations-header-favorites">Based on your favorites and completed recipes...</div>
+                   { discoverFavorites.length > 0 ?  <div className="recommendations-header-favorites">Based on your favorites and completed recipes...</div> : null}
                         <div className="recommendations-grid-favorites">
                             {discoverFavorites?.map((recipe, index) => (
                             <RecipeContainer key={index} recipe={recipe} />
                                 ))}
-                        </div> */}
+                        </div>
                         
                     <div className="recommendations-header-reviews">Highly rated recipes...</div> 
                             <div className="recommendations-grid-reviews">
                                 {recipesWithMostReviewsFinal && recipesWithMostReviewsFinal.map((recipe) => (
-                                    <RecipeContainer key={recipe._id} recipe={recipe} />
+                                    <RecipeContainer key={recipe?._id} recipe={recipe} />
                                 ))}
 
                             </div>

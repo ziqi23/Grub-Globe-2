@@ -69,6 +69,10 @@ const RecipeShowPage = () => {
     setTooltipOpen(-1);
   };
 
+  window.scrollTo({
+    top: 0,
+  });
+
   return (
     <>
       <Header />
