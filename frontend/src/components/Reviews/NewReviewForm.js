@@ -14,6 +14,10 @@ import ReviewBox from "./ReviewBox";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 import { deleteReview } from "../../store/reviews";
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { FaTimesCircle } from 'react-icons/fa';
+import { useRef } from "react";
 
 const NewReviewForm = ({ recipeId, message, review }) => {
   const [title, setTitle] = useState("");
@@ -28,6 +32,9 @@ const NewReviewForm = ({ recipeId, message, review }) => {
   const errors = useSelector((state) => state.errors.reviews);
   const Buffer = require("buffer/").Buffer;
   const [updateReviewClicked, setUpdateReviewClicked] = useState(false);
+  const [images, setImages] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]);
+  const fileRef = useRef(null);
 
   useEffect(() => {
     return () => dispatch(clearReviewErrors());
@@ -47,6 +54,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
       setWouldMakeAgain(review.wouldMakeAgain);
       setWouldRecommend(review.wouldRecommend);
       setStarRating(review.starRating);
+      setImageUrls(review.imageUrls);
     }
   }, [review]);
 
@@ -91,6 +99,34 @@ const NewReviewForm = ({ recipeId, message, review }) => {
     });
   };
 
+  const updateFiles = async e => {
+    const files = e.target.files;
+    setImages(files);
+    if (files.length !== 0) {
+      let filesLoaded = 0;
+      const urls = [];
+      Array.from(files).forEach((file, index) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+          urls[index] = fileReader.result;
+          if (++filesLoaded === files.length)
+            setImageUrls(urls);
+        }
+      });
+    }
+    else setImageUrls([]);
+  }
+
+  const handleRemoveClick = (index) => {
+    const newImages = [...images];
+    const newImageUrls = [...imageUrls];
+    newImages.splice(index, 1);
+    newImageUrls.splice(index, 1);
+    setImages(newImages);
+    setImageUrls(newImageUrls);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const reviewContents = {
@@ -100,16 +136,25 @@ const NewReviewForm = ({ recipeId, message, review }) => {
       wouldRecommend,
       starRating,
       recipe: recipeId,
+      imageUrls,
     };
 
+
+
     if (review) {
-      dispatch(updateReview(reviewContents, review._id)).then(() => {
+      console.log(images);
+      dispatch(updateReview(reviewContents, images, review._id)).then(() => {
         dispatch(fetchRecipeReviews(recipeId));
+        setImages([]);
+        setImageUrls([]);
         setUpdateReviewClicked(true);
       });
     } else {
-      dispatch(composeReview(reviewContents)).then(() => {
+      dispatch(composeReview(reviewContents, images)).then(() => {
         dispatch(fetchRecipeReviews(recipeId));
+        setImages([]);
+        setImageUrls([]);
+        fileRef.current.value = null;
       });
     }
   };
@@ -150,15 +195,13 @@ const NewReviewForm = ({ recipeId, message, review }) => {
               <div className="thumbs-buttons-container">
                 <HiThumbUp
                   onClick={() => handleMakeAgainClick(true)}
-                  className={`${
-                    wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
-                  } ${clickedMakeAgain && wouldMakeAgain ? "btn-bigger" : ""}`}
+                  className={`${wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
+                    } ${clickedMakeAgain && wouldMakeAgain ? "btn-bigger" : ""}`}
                 />
                 <HiThumbDown
                   onClick={() => handleMakeAgainClick(false)}
-                  className={`${
-                    !wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
-                  } ${clickedMakeAgain && !wouldMakeAgain ? "btn-bigger" : ""}`}
+                  className={`${!wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
+                    } ${clickedMakeAgain && !wouldMakeAgain ? "btn-bigger" : ""}`}
                 />
               </div>
             </div>
@@ -167,15 +210,13 @@ const NewReviewForm = ({ recipeId, message, review }) => {
               <div className="thumbs-buttons-container">
                 <HiThumbUp
                   onClick={() => handleRecommendClick(true)}
-                  className={`${
-                    wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
-                  } ${clickedRecommend && wouldRecommend ? "btn-bigger" : ""}`}
+                  className={`${wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
+                    } ${clickedRecommend && wouldRecommend ? "btn-bigger" : ""}`}
                 />
                 <HiThumbDown
                   onClick={() => handleRecommendClick(false)}
-                  className={`${
-                    !wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
-                  } ${clickedRecommend && !wouldRecommend ? "btn-bigger" : ""}`}
+                  className={`${!wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
+                    } ${clickedRecommend && !wouldRecommend ? "btn-bigger" : ""}`}
                 />
               </div>
             </div>
@@ -204,6 +245,58 @@ const NewReviewForm = ({ recipeId, message, review }) => {
               <div className="errors">{errors?.recipe}</div>
             )}
           </div>
+          <div className="image-upload-container">
+                <label htmlFor="image-upload">
+                  <div className="image-upload-placeholder">
+                    <span>+</span>
+                  </div>
+                </label>
+                <input
+                  id="image-upload"
+                  ref={fileRef}
+                  type="file"
+                  accept=".jpg, .jpeg, .png"
+                  multiple
+                  onChange={updateFiles}
+                  style={{ display: 'none' }}
+                />
+              </div>
+          <div id="review-images">
+            <Carousel>
+
+              {imageUrls && imageUrls.map((image, index) => (
+                <div key={index} className="image-preview-container">
+                  <img src={image} alt={`Preview ${index}`} height="100" width="100" />
+                  <button
+                    className="image-remove-button"
+                    onClick={() => handleRemoveClick(index)}>
+                    <FaTimesCircle size={20} />
+                  </button>
+                </div>
+              ))}
+
+            </Carousel>
+          </div>
+          {/* <div>
+            <label>
+              Images to Upload
+                <input
+                  type="file"
+                  ref={fileRef}
+                  accept=".jpg, .jpeg, .png"
+                  multiple
+                  onChange={updateFiles}
+                />
+            </label>
+          </div>
+          <div className="post-review-images-container">
+              <h3>Image Preview</h3>
+                {imageUrls.map((url, index) => (
+                    <div key={index}>
+                      <img className="post-review-images" src={url} alt={`Preview ${index}`} width="100" height="100" />
+                    </div>
+                ))}
+          </div> */}
           <div id="review-edit-buttons-container">
             {editButtons()}
             <button id="new-review-submit" type="submit">
