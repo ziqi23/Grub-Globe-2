@@ -6,10 +6,10 @@ import { useDispatch } from "react-redux";
 import { fetchReviews } from "../../store/reviews";
 import { fetchRecipeRecommendations } from "../../store/recipes";
 import RecipeContainer from "./RecipeContainer";
-import Spinner from "../SearchBar/Spinner";
 import './Discover.css';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Header from "../Header/Header";
+import LoaderDots from "../LoaderDots";
 
 const Discover = props => {
     const history = useHistory();
@@ -115,7 +115,7 @@ const Discover = props => {
      console.log(discoverFavorites, 'discoverFavorites')
 
     if (loading) {
-        return <Spinner />
+        return <LoaderDots />
     }
 
    
