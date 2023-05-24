@@ -140,9 +140,11 @@ const NewReviewForm = ({ recipeId, message, review }) => {
       imageUrls,
     };
 
+
+
     if (review) {
       console.log(images);
-      dispatch(updateReview(reviewContents, review._id, images)).then(() => {
+      dispatch(updateReview(reviewContents, images, review._id)).then(() => {
         dispatch(fetchRecipeReviews(recipeId));
         setImages([]);
         setImageUrls([]);
@@ -194,15 +196,13 @@ const NewReviewForm = ({ recipeId, message, review }) => {
               <div className="thumbs-buttons-container">
                 <HiThumbUp
                   onClick={() => handleMakeAgainClick(true)}
-                  className={`${
-                    wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
-                  } ${clickedMakeAgain && wouldMakeAgain ? "btn-bigger" : ""}`}
+                  className={`${wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
+                    } ${clickedMakeAgain && wouldMakeAgain ? "btn-bigger" : ""}`}
                 />
                 <HiThumbDown
                   onClick={() => handleMakeAgainClick(false)}
-                  className={`${
-                    !wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
-                  } ${clickedMakeAgain && !wouldMakeAgain ? "btn-bigger" : ""}`}
+                  className={`${!wouldMakeAgain ? "thumb-clicked" : "thumb-unclicked"
+                    } ${clickedMakeAgain && !wouldMakeAgain ? "btn-bigger" : ""}`}
                 />
               </div>
             </div>
@@ -211,15 +211,13 @@ const NewReviewForm = ({ recipeId, message, review }) => {
               <div className="thumbs-buttons-container">
                 <HiThumbUp
                   onClick={() => handleRecommendClick(true)}
-                  className={`${
-                    wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
-                  } ${clickedRecommend && wouldRecommend ? "btn-bigger" : ""}`}
+                  className={`${wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
+                    } ${clickedRecommend && wouldRecommend ? "btn-bigger" : ""}`}
                 />
                 <HiThumbDown
                   onClick={() => handleRecommendClick(false)}
-                  className={`${
-                    !wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
-                  } ${clickedRecommend && !wouldRecommend ? "btn-bigger" : ""}`}
+                  className={`${!wouldRecommend ? "thumb-clicked" : "thumb-unclicked"
+                    } ${clickedRecommend && !wouldRecommend ? "btn-bigger" : ""}`}
                 />
               </div>
             </div>
@@ -241,19 +239,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
             ></textarea>
             {errors && <div className="errors">{errors?.text}</div>}
           </div>
-          <div id="review-images">
-            <Carousel>
-              {imageUrls && imageUrls.map((image, index) => (
-                <div key={index} className="image-preview-container">
-                  <img src={image} alt={`Preview ${index}`} height="100" width="100" />
-                  <button
-                    className="image-remove-button"
-                    onClick={() => handleRemoveClick(index)}>
-                      <FaTimesCircle size={20} />
-                  </button>
-                </div>
-              ))}
-              <div className="image-upload-container">
+          <div className="image-upload-container">
                 <label htmlFor="image-upload">
                   <div className="image-upload-placeholder">
                     <span>+</span>
@@ -269,6 +255,20 @@ const NewReviewForm = ({ recipeId, message, review }) => {
                   style={{ display: 'none' }}
                 />
               </div>
+          <div id="review-images">
+            <Carousel>
+
+              {imageUrls && imageUrls.map((image, index) => (
+                <div key={index} className="image-preview-container">
+                  <img src={image} alt={`Preview ${index}`} height="100" width="100" />
+                  <button
+                    className="image-remove-button"
+                    onClick={() => handleRemoveClick(index)}>
+                    <FaTimesCircle size={20} />
+                  </button>
+                </div>
+              ))}
+
             </Carousel>
           </div>
           {/* <div>

@@ -111,6 +111,9 @@ export const composeReview = (data, images) => async (dispatch) => {
   formData.append("wouldRecommend", data.wouldRecommend);
   formData.append("starRating", data.starRating);
 
+  console.log('images ', images);
+  console.log('data = ', data);
+
   Array.from(images).forEach((image) => {
     formData.append("images", image);
   });
@@ -136,6 +139,8 @@ export const composeReview = (data, images) => async (dispatch) => {
 
 export const updateReview = (data, images, reviewId) => async (dispatch) => {
   console.log(images);
+
+  console.log('review id = ', JSON.stringify(reviewId));
 
   const formData = new FormData();
   formData.append("title", data.title);

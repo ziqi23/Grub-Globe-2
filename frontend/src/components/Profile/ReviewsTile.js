@@ -140,7 +140,7 @@ const ReviewsTiles = ({review}) => {
             recipe: review.recipe._id,
           };
         if (editMode) {
-            dispatch(updateReview(reviewContents, review._id)).then(() => {
+            dispatch(updateReview(reviewContents, [], review._id)).then(() => {
                 dispatch(fetchUserReviews(sessionUser._id));
             });
         }

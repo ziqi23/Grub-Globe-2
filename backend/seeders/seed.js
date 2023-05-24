@@ -14,11 +14,11 @@ const users = [];
 users.push(
   new User ({
     _id: "164000000000000000000000",
-    username: 'demo-user',
-    firstName: 'Emma',
-    lastName: 'Watson',
-    email: 'demo-user@appacademy.io',
-    hashedPassword: bcrypt.hashSync('starwars', 10),
+    username: 'guy-fieri',
+    firstName: 'Guy',
+    lastName: 'Fieri',
+    email: 'guy.fieri@hotmail.com',
+    hashedPassword: bcrypt.hashSync('flavortown', 10),
     completedRecipe: [
       {
         recipeId: "026000000000000000000000"
@@ -59,7 +59,6 @@ users.push(
       {
         recipeId: "065000000000000000000000"
       }]
-
     }),
 
   new User({
@@ -100,11 +99,11 @@ users.push(
 
     new User({
     _id: "030000000000000000000000",
-    username: 'guy-fieri',
-    firstName: 'Guy',
-    lastName: 'Fieri',
-    email: 'guy.fieri@hotmail.com',
-    hashedPassword: bcrypt.hashSync('flavortown', 10),
+    username: 'Thomas_K',
+    firstName: 'Thomas',
+    lastName: 'Keller',
+    email: 'tk@frenchlaundry.com',
+    hashedPassword: bcrypt.hashSync('yountville', 10),
     completedRecipe: [{
       recipeId: "027000000000000000000000"
     }, {
