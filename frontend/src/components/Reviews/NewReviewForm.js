@@ -140,8 +140,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
       imageUrls,
     };
 
-
-
     if (review) {
       console.log(images);
       dispatch(updateReview(reviewContents, images, review._id)).then(() => {
@@ -262,7 +260,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
                   style={{ display: 'none' }}
                 />
             </div>
-            {/* <Carousel> */}
               {imageUrls && imageUrls.map((image, index) => (
                 <div key={index} className="image-preview-container">
                   <img src={image} alt={`Preview ${index}`} height="100" width="100" />
@@ -273,30 +270,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
                   </button>
                 </div>
               ))}
-
-            {/* </Carousel> */}
-         
-        </div>
-          {/* <div>
-            <label>
-              Images to Upload
-                <input
-                  type="file"
-                  ref={fileRef}
-                  accept=".jpg, .jpeg, .png"
-                  multiple
-                  onChange={updateFiles}
-                />
-            </label>
           </div>
-          <div className="post-review-images-container">
-              <h3>Image Preview</h3>
-                {imageUrls.map((url, index) => (
-                    <div key={index}>
-                      <img className="post-review-images" src={url} alt={`Preview ${index}`} width="100" height="100" />
-                    </div>
-                ))}
-          </div> */}
           <div id="review-edit-buttons-container">
             {editButtons()}
             <button id="new-review-submit" type="submit">

@@ -10,7 +10,11 @@ import { deleteReview } from "../../store/reviews";
 import { fetchUserReviews } from "../../store/reviews";
 import { updateReview } from "../../store/reviews";
 import StarRatingInput from "../Reviews/stars";
-
+import { FaTimesCircle } from 'react-icons/fa';
+import { useRef } from "react";
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { PhotosModal } from "../../context/PhotosModal";
 
 const ReviewsTiles = ({review}) => {
     const history = useHistory();
@@ -25,6 +29,38 @@ const ReviewsTiles = ({review}) => {
     const [wouldMakeAgain, setWouldMakeAgain] = useState(true);
     const [wouldRecommend, setWouldRecommend] = useState(true);
     const [starRating, setStarRating] = useState(5);
+    const [images, setImages] = useState([]);
+    const [imageUrls, setImageUrls] = useState([]);
+    const fileRef = useRef(null);
+    const [openPhotoModal, setOpenPhotoModal] = useState(false);
+
+    const handleRemoveClick = (e, index) => {
+        e.preventDefault();
+        const newImages = [...images];
+        const newImageUrls = [...imageUrls];
+        newImages.splice(index, 1);
+        newImageUrls.splice(index, 1);
+        setImages(newImages);
+        setImageUrls(newImageUrls);
+    }
+
+    const photoModal = () => {
+        return (
+            <>
+                {openPhotoModal &&
+                    <PhotosModal onClose={() => setOpenPhotoModal(false)}>
+                        <Carousel>
+                            {review.imageUrls.map((photoUrl, i) => (
+                                <div key={i}>
+                                    <img src={photoUrl} />
+                                </div>
+                            ))}
+                        </Carousel>
+                    </PhotosModal>
+                }
+            </>
+        )
+    }
 
     const reviewHTML = () => {
         if (editMode) {
@@ -59,6 +95,32 @@ const ReviewsTiles = ({review}) => {
                         onClick={() => setWouldRecommend(false)}
                         className={wouldRecommend ? "review-x-icon" : "review-selected-x-icon" }/>
                 </div>
+                <div id="review-images-edit">
+                    <div className="image-upload-edit-container">
+                        <label htmlFor="image-upload-edit" className="image-upload-placeholder-edit">
+                            +
+                        </label>
+                        <input
+                            id="image-upload-edit"
+                            ref={fileRef}
+                            type="file"
+                            accept=".jpg, .jpeg, .png"
+                            multiple
+                            onChange={updateFiles}
+                            style={{ display: 'none' }}
+                        />
+                    </div>
+                    {imageUrls && imageUrls.map((image, index) => (
+                        <div key={index} className="image-preview-container">
+                        <img src={image} alt={`Preview ${index}`} height="100" width="100" />
+                        <button
+                            className="image-remove-button"
+                            onClick={(e) => handleRemoveClick(e, index)}>
+                            <FaTimesCircle size={20} />
+                        </button>
+                        </div>
+                    ))}
+                </div>
                 {editButtons()}
                 </>
             )
@@ -79,13 +141,33 @@ const ReviewsTiles = ({review}) => {
         }
     };
 
+    const updateFiles = async (e) => {
+        const files = e.target.files;
+        setImages(files);
+        if (files.length !== 0) {
+            let filesLoaded = 0;
+            const urls = [];
+            Array.from(files).forEach((file, i) => {
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(file);
+                fileReader.onload = () => {
+                    urls[i] = fileReader.result;
+                    if (++filesLoaded === files.length)
+                    setImageUrls(urls);
+                }
+            });
+        }
+        else setImageUrls([]);
+    }
+
     useEffect(() => {
         setTitle(review.title);
         setText(review.text);
         setWouldMakeAgain(review.wouldMakeAgain);
         setWouldRecommend(review.wouldRecommend);
-        setStarRating(review.starRating)
-    }, [editMode, review.title, review.text, review.wouldMakeAgain, review.wouldRecommend, review.starRating])
+        setStarRating(review.starRating);
+        setImageUrls(review.imageUrls);
+    }, [editMode, review.title, review.text, review.wouldMakeAgain, review.wouldRecommend, review.starRating, review.imageUrls])
 
     const formattedDate = (createdAt) => {
         const dateOptions = {
@@ -139,10 +221,13 @@ const ReviewsTiles = ({review}) => {
             wouldRecommend,
             starRating,
             recipe: review.recipe._id,
+            imageUrls,
           };
         if (editMode) {
-            dispatch(updateReview(reviewContents, [], review._id)).then(() => {
+            dispatch(updateReview(reviewContents, images, review._id)).then(() => {
                 dispatch(fetchUserReviews(sessionUser._id));
+                setImages([]);
+                setImageUrls([]);
             });
         }
         setEditMode(false);
@@ -184,7 +269,7 @@ const ReviewsTiles = ({review}) => {
         return (
             <div id="profile-reviews-photos-container" >
                 {review.imageUrls.map((imageUrl, i) => (
-                    <div key={i} className="image-preview-container">
+                    <div key={i} className="image-preview-container" onClick={() => setOpenPhotoModal(true)} >
                         <img src={imageUrl} alt="review upload" />
                     </div>
                 ))}
@@ -193,6 +278,7 @@ const ReviewsTiles = ({review}) => {
     }
 
     return (
+        <>
         <div className="reviews-tile-container">
             <div className="reviews-title-top">
                 <div onClick={() => history.push(`/recipes/${review?.recipe?._id}`)}>
@@ -208,7 +294,11 @@ const ReviewsTiles = ({review}) => {
                 <p>{formattedDate(review?.createdAt)}</p>
                 {reviewHTML()}
             </div>
+            <div id="photo-modal-container">
+                {photoModal()}
+            </div>
         </div>
+        </>
     );
 };
 
