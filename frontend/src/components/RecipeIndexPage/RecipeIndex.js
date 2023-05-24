@@ -29,7 +29,7 @@ const RecipeIndex = ({ recipes, loading }) => {
   }
 
   return (
-    <div class="recipes-index">
+    <div className="recipes-index">
         <Swiper
         slidesPerView={1}
         spaceBetween={10}

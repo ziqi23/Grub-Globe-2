@@ -56,7 +56,6 @@ const RandomRecipeGenerator = () => {
       
     const handlePush = () => {
         setPushed(true);
-        console.log(pushed)
         setIsLoading(true);
         resetIndex();
         generateRandomRecipe();

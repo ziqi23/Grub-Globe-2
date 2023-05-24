@@ -31,8 +31,6 @@ function App() {
           <Route exact path="/explore" component={Globe} />
           <ProtectedRoute exact path="/discover" component={Discover} />
           <ProtectedRoute path="/profile" component={Profile} />
-
-          <Route exact path="/randomRecipe" component={RandomRecipeGenerator} />
         </Switch>
       </>
     )

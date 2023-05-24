@@ -48,7 +48,6 @@ const TimerStep = ({step}) => {
     let second = 0;
     switch (true) {
         case (!!match): // e.g. 45 minutes - 1 hour
-            console.log(match)
             let lowerEndQuantity = parseInt(match[1])
             let lowerEndUnit = match[2] ? match[2] : match[4]
             let higherEndQuantity = parseInt(match[3])
