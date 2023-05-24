@@ -11,23 +11,31 @@ const RandomRecipeGenerator = () => {
     const [currentRecipeId, setCurrentRecipeId] = useState(0);
     const [pushed, setPushed] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [recipes, setRecipes] = useState([]);
+    const [index, setIndex] = useState(0);
+    const [totalRecipes, setTotalRecipes] = useState(0);
 
     const resetIndex = () => {
-        index = (Math.floor(Math.random() * totalRecipes));
+        const index = (Math.floor(Math.random() * totalRecipes));
     }
-    let recipes;
-    let index;
-    let totalRecipes;
+   
     const getRecipes = async () => {
         try {
             const res = await fetch('/api/recipes');
-            recipes = await res.json();
-            totalRecipes = Object.keys(recipes).length;
+            const fetchedRecipes = await res.json();
+            // recipes = await res.json();
+            // totalRecipes = Object.keys(recipes).length;
+            setRecipes(fetchedRecipes);
+            setTotalRecipes(Object.keys(fetchedRecipes).length);
             resetIndex();
+            // resetIndex();
         } catch (err) {
             console.error(err)
         }
     }
+
+    
+
 
     useEffect(() => {
         getRecipes();
@@ -35,18 +43,26 @@ const RandomRecipeGenerator = () => {
 
     let recipeInterval;
 
-    
     const generateRandomRecipe = () => {
-        recipeInterval = setInterval(() => {
-            setCurrentImage(recipes[index].photoUrl);
-            setCurrentRecipeName(recipes[index].recipeName)
-            setCurrentRecipeId(recipes[index]._id)
-            resetIndex();
-        }, 500)
-    }
-
+        if (recipes.length > 0) {
+          const newIndex = Math.floor(Math.random() * recipes.length);
+          setIndex(newIndex);
+          setCurrentImage(recipes[newIndex].photoUrl);
+          setCurrentRecipeName(recipes[newIndex].recipeName);
+          setCurrentRecipeId(recipes[newIndex]._id);
+          recipeInterval = setInterval(() => {
+            const newIndex = Math.floor(Math.random() * recipes.length);
+            setIndex(newIndex);
+            setCurrentImage(recipes[newIndex].photoUrl);
+            setCurrentRecipeName(recipes[newIndex].recipeName);
+            setCurrentRecipeId(recipes[newIndex]._id);
+          }, 500);
+        }
+      };
+      
     const handlePush = () => {
         setPushed(true);
+        console.log(pushed)
         setIsLoading(true);
         resetIndex();
         generateRandomRecipe();

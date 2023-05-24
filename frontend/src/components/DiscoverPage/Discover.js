@@ -10,6 +10,7 @@ import './Discover.css';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Header from "../Header/Header";
 import LoaderDots from "../LoaderDots";
+import { resetFavorites } from "../../store/favorites";
 
 const Discover = props => {
     const history = useHistory();
@@ -20,6 +21,33 @@ const Discover = props => {
     const recipeReviewsArray = useSelector(state => Object.values(state.reviews));
     const recipeReviews = recipeReviewsArray[0];
     const [loading, setLoading] = useState(true);
+
+    const [viewport, setViewport] = useState("");
+    const [windowWidth, setWindowWidth] = useState();
+
+    // useEffect(() => {
+    //     dispatch(resetFavorites());
+    //   }, [user]);      
+
+    useEffect(() => {
+        if (windowWidth <= 920) {
+          setViewport("Mobile");
+        }
+        else {
+          setViewport("Desktop");
+        }
+      }, [windowWidth])
+
+
+        useEffect(() => {
+            window.addEventListener('resize', handleResize);
+            function handleResize(e) {
+            setWindowWidth(window.innerWidth);
+            }
+            handleResize();
+            return () => window.removeEventListener("resize", handleResize);
+        }, [])
+
     
     useEffect(() => {
          dispatch(fetchFavorites());
@@ -58,12 +86,26 @@ const Discover = props => {
         }
     }, [dispatch, recipeReviews, user]);
     
+    // const [recipesWithMostReviewsFinal, setRecipesWithMostReviewsFinal] = useState([]);
 
-    useEffect(() => { 
-        dispatch(fetchRecipeRecommendations(recipesWithMostReviews));
-    }, [dispatch, recipeReviews, recipesWithMostReviews]);
+    useEffect(() => {
+    const fetchRecipeRecommendationsAsync = async () => {
+        if (recipesWithMostReviews && recipesWithMostReviews.length > 0) {
+        const data = await dispatch(fetchRecipeRecommendations(recipesWithMostReviews));
+        // console.log(data, 'data')
+        // setRecipesWithMostReviewsFinal(data);
+        }
+    };
+
+    fetchRecipeRecommendationsAsync();
+    }, [dispatch, recipeReviews]);
+
+    // useEffect(() => { 
+    //     dispatch(fetchRecipeRecommendations(recipesWithMostReviews));
+    // }, [dispatch, recipeReviews, recipesWithMostReviews]);
 
     const recipesWithMostReviewsFinal = useSelector(state => state.recipes['recipe recommendations']);
+    console.log(recipesWithMostReviewsFinal, 'recipesWithMostReviewsFinal')
 
     const [discoverFavorites, setDiscoverFavorites] = useState([]);
     
@@ -87,14 +129,12 @@ const Discover = props => {
                     } else {
                         // const isAlreadyIncluded = discoverFavorites.some( (recipe) => recipe._id === data[1]._id);
                         setDiscoverFavorites((prevFavorites) => {
-                            const isAlreadyIncluded = prevFavorites.some((recipe) => recipe._id === data[1]._id);
+                            const isAlreadyIncluded = prevFavorites.some((recipe) => recipe._id === data[0]._id);
                             if (!isAlreadyIncluded) {
-                              console.log(data[1]); // Log the favorite
-                              return [...prevFavorites, data[1]];
+                              return [...prevFavorites, data[0]];
                             }
                             return prevFavorites;
                           });
-                          console.log(discoverFavorites, 'discoverFavorites');
     
                         // if (!isAlreadyIncluded) {
                         // console.log(data[1]); // Log the favorite
@@ -111,9 +151,9 @@ const Discover = props => {
       }
     
     }, [dispatch, favorites.length, user]);
-
-     console.log(discoverFavorites, 'discoverFavorites')
-
+   
+    
+    
     if (loading) {
         return <LoaderDots />
     }
@@ -122,7 +162,7 @@ const Discover = props => {
     return (
         <>
             <div className="recommendations-container">
-                <Header />
+            <Header viewport={viewport}/>
                 <div className="recipe-generator-container"><RandomRecipeGenerator /></div>
                 <div className="recommendations">
                     <h1 className="recommendations-title">Recommendations for you</h1>
@@ -135,7 +175,7 @@ const Discover = props => {
                         
                     <div className="recommendations-header-reviews">Highly rated recipes...</div> 
                             <div className="recommendations-grid-reviews">
-                                {recipesWithMostReviewsFinal && recipesWithMostReviewsFinal.map((recipe) => (
+                                {recipesWithMostReviewsFinal?.map((recipe) => (
                                     <RecipeContainer key={recipe?._id} recipe={recipe} />
                                 ))}
 
