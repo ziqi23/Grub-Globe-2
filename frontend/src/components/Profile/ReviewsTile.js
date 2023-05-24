@@ -84,7 +84,7 @@ const ReviewsTiles = ({review}) => {
         setWouldMakeAgain(review.wouldMakeAgain);
         setWouldRecommend(review.wouldRecommend);
         setStarRating(review.starRating)
-    }, [editMode])
+    }, [editMode, review.title, review.text, review.wouldMakeAgain, review.wouldRecommend, review.starRating])
 
     const formattedDate = (createdAt) => {
         const dateOptions = {
@@ -116,7 +116,7 @@ const ReviewsTiles = ({review}) => {
             return (
                 <div className="prof-star-ratings">
                     {[1, 2, 3, 4, 5].map((rating, i) => (
-                        <AiFillStar className={rating <= review.starRating ? "filled" : "empty"}/>
+                        <AiFillStar key={i} className={rating <= review.starRating ? "filled" : "empty"}/>
                     ))}
                 </div>
             )
@@ -164,7 +164,12 @@ const ReviewsTiles = ({review}) => {
                     <RiDeleteBin6Line onClick={handleReviewDelete} className="edit-icons"/>
                 </div>
                 {editMode && (
-                    <button onClick={handleUpdate}>Update!</button>
+                    <button 
+                        className="update-button" 
+                        onClick={handleUpdate}
+                    >
+                        UPDATE!
+                    </button>
                 )}
             </>
         )}
@@ -173,17 +178,17 @@ const ReviewsTiles = ({review}) => {
     return (
         <div className="reviews-tile-container">
             <div className="reviews-title-top">
-                <div onClick={() => history.push(`/recipes/${review.recipe._id}`)}>
-                    <img src={review.recipe.photoUrl} alt="recipe picture" />
+                <div onClick={() => history.push(`/recipes/${review?.recipe?._id}`)}>
+                    <img src={review?.recipe?.photoUrl} alt="recipe" />
                     <div className="image-overlay"></div>
                     <div className="recipe-info-container">
-                        <h1 >{review.recipe.recipeName}</h1>
-                        <p>{review.recipe.country}</p>
+                        <h1 >{review?.recipe?.recipeName}</h1>
+                        <p>{review?.recipe?.country}</p>
                     </div>
                 </div>
             </div>
             <div className="reviews-tile-middle">
-                <p>{formattedDate(review.createdAt)}</p>
+                <p>{formattedDate(review?.createdAt)}</p>
                 {reviewHTML()}
             </div>
         </div>

@@ -54,7 +54,8 @@
 }
 
 .macro-tooltip {
-    color:rgb(245, 245, 245);   font-size: 14px;
+    color:rgb(245, 245, 245);   
+    font-size: 14px;
     font-weight: 500;
     font-style: italic;
 }

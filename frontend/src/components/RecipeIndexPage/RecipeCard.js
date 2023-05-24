@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import "./RecipeIndex.css";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import FavHeart from "../FavHeart";
 import mapPin from "../../assets/icons/general-icons/icons8-map-pin-48.png";
 
 const RecipeCard = ({ recipe, favorites }) => {
+  const history = useHistory();
   return (
     <>
       <div className="recipe-card">
@@ -26,8 +27,8 @@ const RecipeCard = ({ recipe, favorites }) => {
             <p>Total Duration: {recipe.prepTime} minutes</p>
           </div>
           <div id="view-recipe-and-heart-container">
-            <div className="view-recipe-button">
-              <Link to={`/recipes/${recipe._id}`}>VIEW RECIPE</Link>
+            <div className="view-recipe-button" onClick={() => history.push(`/recipes/${recipe._id}`)}>
+              VIEW RECIPE
             </div>
             <FavHeart
               recipe={recipe}

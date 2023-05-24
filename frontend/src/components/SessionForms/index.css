@@ -127,3 +127,26 @@
   cursor: pointer;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  .login-modal-container {
+    flex-direction: column;
+    padding: 30px 0px;
+    overflow: auto;
+  }
+
+  .side-image-and-logo {
+    width: 100%;
+    height: 50%;
+  }
+
+  .side-image-and-logo img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .session-form {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+}

@@ -97,6 +97,7 @@
 
 .timer-step-container {
   margin-top: 50px;
+  margin-bottom: 30px;
 }
 
 .timer-step-container * {
@@ -210,5 +211,22 @@
 @media (max-height: 895px) {
   .step-container .step-instruction h1 {
     font-size: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .step-page-container .utensils-image {
+    top: 10px;
+    width: 200px;
+    height: 150px;
+  }
+
+  .step-page-container .fruits-image {
+    width: 200px;
+    height: 150px;
+  }
+
+  .timer {
+    font-size: 40px;
   }
 }

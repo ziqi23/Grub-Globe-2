@@ -160,6 +160,22 @@
   cursor: pointer;
 }
 
+.update-button {
+  width: 200px;
+  border-radius: 999px;
+  border: 1px solid black;
+  padding: 5px 0px;
+  font-family: "Kanit", sans-serif;
+  font-size: 18px;
+  transition: 0.3s all ease;
+  cursor: pointer;
+}
+
+.update-button:hover {
+  color:rgb(225, 222, 222);
+  background-color:  rgb(43, 42, 42);
+}
+
 @media (max-width: 914px) {
   #profile-reviews-container {
     grid-template-columns: 90%;

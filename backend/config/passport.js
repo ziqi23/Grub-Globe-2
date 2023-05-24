@@ -43,7 +43,9 @@ passport.use(
       passwordField: "password",
     },
     async function (email, password, done) {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({
+        email: { $regex: new RegExp(email, "i") }, // case insensitive
+      });
       if (user) {
         bcrypt.compare(password, user.hashedPassword, (err, isMatch) => {
           if (err || !isMatch) done(null, false);

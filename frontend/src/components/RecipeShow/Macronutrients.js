@@ -91,7 +91,9 @@ const Macronutrients = ({ macronutrients, tooltipOpen, setTooltipOpen }) => {
 
   function handleMouseOver(e) {
     e.preventDefault();
-    setTooltipOpen(parseInt(e.currentTarget.getAttribute("data-idx")));
+    if (setTooltipOpen) {
+      setTooltipOpen(parseInt(e.currentTarget.getAttribute("data-idx")));
+    }
   }
 
   function handleExpandClick(e) {

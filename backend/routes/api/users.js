@@ -13,6 +13,7 @@ const { isProduction } = require("../../config/keys");
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 const validateCompleteRecipeInput = require("../../validations/completeRecipe");
+const { singleFileUpload } = require('../../awsS3')
 const multer = require("multer");
 const upload = multer();
 const Recipe = mongoose.model("Recipe");
@@ -26,9 +27,10 @@ router.post(
     if (req.file === undefined) {
       return res.send("you must select a file.");
     }
+    const profileImageUrl = await singleFileUpload({ file: req.file, public: true });
     await User.findOneAndUpdate(
       { username: req.user.username },
-      { profilePhoto: req.file.buffer }
+      { profileImageUrl }
     );
     const updatedUser = await User.findOne({ username: req.user.username });
     res.json({
@@ -37,7 +39,7 @@ router.post(
       email: updatedUser.email,
       firstName: updatedUser.firstName,
       lastName: updatedUser.lastName,
-      photo: updatedUser.profilePhoto,
+      photo: updatedUser.profileImageUrl,
       completedRecipe: updatedUser.completedRecipe,
     });
   }
@@ -61,7 +63,7 @@ router.get("/current", restoreUser, function (req, res, next) {
     email: req.user.email,
     firstName: req.user.firstName,
     lastName: req.user.lastName,
-    photo: req.user.profilePhoto,
+    photo: req.user.profileImageUrl,
     completedRecipe: req.user.completedRecipe,
   });
 });
@@ -83,18 +85,23 @@ router.post(
   "/register",
   validateRegisterInput,
   async function (req, res, next) {
+    const email = req.body.email.toLowerCase();
+    const username = req.body.username.toLowerCase();
     const user = await User.findOne({
-      $or: [{ email: req.body.email }, { username: req.body.username }],
+      $or: [
+        { email: { $regex: new RegExp(`^${email}$`, "i") } },
+        { username: { $regex: new RegExp(`^${username}$`, "i") } },
+      ],
     });
 
     if (user) {
       const err = new Error("Validation Error");
       err.statusCode = 400;
       const errors = {};
-      if (user.email === req.body.email) {
+      if (user.email.toLowerCase() === email) {
         errors.email = "A user has already registered with this email";
       }
-      if (user.username === req.body.username) {
+      if (user.username.toLowerCase() === username) {
         errors.username = "A user has already registered with this username";
       }
       err.errors = errors;
@@ -102,10 +109,10 @@ router.post(
     }
 
     const newUser = new User({
-      username: req.body.username,
+      username,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      email: req.body.email,
+      email,
       completedRecipe: [],
     });
 

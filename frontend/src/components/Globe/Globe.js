@@ -178,6 +178,26 @@ function Globe(props) {
   const [countryHovered, setCountryHovered] = useState(false);
   const [group, setGroup] = useState(false);
   const countryHoveredRef = useRef(countryHovered);
+  const [viewport, setViewport] = useState("");
+  const [windowWidth, setWindowWidth] = useState();
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    function handleResize(e) {
+      setWindowWidth(window.innerWidth);
+    }
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
+  
+  useEffect(() => {
+    if (windowWidth <= 920) {
+      setViewport("Mobile");
+    }
+    else {
+      setViewport("Desktop");
+    }
+  }, [windowWidth])
 
   useEffect(() => {
     const img = new Image();
@@ -411,7 +431,7 @@ function Globe(props) {
 
   return (
     <div id="explore-page-root">
-      <Header />
+      <Header viewport={viewport}/>
       <div id="explore-page-main">
         <div ref={ref} id="explore-page-globe"></div>
         {countryHoveredRef.current && (

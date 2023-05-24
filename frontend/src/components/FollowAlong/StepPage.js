@@ -65,9 +65,16 @@ const StepPage = ({
           <div className="step-number">
             <h1>Step {stepNum}</h1>
           </div>
-          <div className="step-instruction">
-            <NormalStep step={step} />
-          </div>
+          {normalStep && (
+            <div className="step-instruction">
+              <NormalStep step={step} />
+            </div>
+          )}
+          {!normalStep && (
+            <div>
+              <TimerStep step={step} />  
+            </div>
+          )}
           {lastStep && (
             <CompleteFollowAlongButton
               closeFollowAlong={closeFollowAlong}

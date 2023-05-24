@@ -129,6 +129,7 @@
   color: rgb(46, 46, 46);
   font-size: 1.7em;
   margin-bottom: 5px;
+  text-transform: capitalize;
 }
 
 .recipe-quick-info-container p {
@@ -241,8 +242,8 @@
   }
 }
 
-@media (max-width: 390px) {
-  .below-header-container {
+@media (max-width: 920px) {
+  #recipe-index-main-container.below-header-container {
     margin-top: 120px;
   }
   .recipe-card {
@@ -261,4 +262,5 @@
     font-weight: 700;
     text-transform: uppercase;
   }
+  
 }
