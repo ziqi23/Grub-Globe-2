@@ -1,8 +1,8 @@
 .recommendations-grid-favorites,
 .recommendations-grid-reviews {
-  /* display: grid; */
-  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
-  grid-gap: 20px; /* Set the gap between grid items */
+  grid-template-columns: repeat(4, 1fr); 
+  grid-gap: 20px; 
+  display: grid;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
