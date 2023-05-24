@@ -3,7 +3,6 @@ import "./Profile.css";
 import defaultPicture from "./default-profile.png";
 import { useState, useEffect } from "react";
 import { AiOutlineDownload } from "react-icons/ai";
-import jwtFetch from "../../store/jwt";
 import Header from "../Header/Header";
 import { fetchFavorites } from "../../store/favorites";
 import { useDispatch } from "react-redux";
@@ -13,31 +12,42 @@ import FavoritesTile from "./FavoritesTile";
 import BadgesIndex from "./BadgesIndex";
 import { fetchUserReviews } from "../../store/reviews";
 import ReviewsTiles from "./ReviewsTile";
-// import CompletedRecipes from "./CompletedRecipes";
 import { uploadImage } from "../../store/session";
-
-// Favorites integration and ability to unfavorite from page
+import LoaderDots from "../LoaderDots";
 
 function Profile(props) {
   const dispatch = useDispatch();
 
-  // for user's reviews
   const userReviews = useSelector((state) => Object.values(state.reviews.user));
   const sessionUser = useSelector((state) => state.session.user);
+  const [viewport, setViewport] = useState("");
+  const [windowWidth, setWindowWidth] = useState();
 
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    function handleResize(e) {
+      setWindowWidth(window.innerWidth);
+    }
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
+  
+  useEffect(() => {
+    if (windowWidth <= 1035) {
+      setViewport("Mobile");
+    }
+    else {
+      setViewport("Desktop");
+    }
+  }, [windowWidth])
 
   useEffect(() => {
     dispatch(fetchUserReviews(sessionUser._id));
   }, [dispatch, sessionUser]);
 
-  //you can pull number of users's reviews using userReviews.length, or look at reviews themselves using userReviews
-
-  // for storing completed recipes
   const [completedRecipes, setCompletedRecipes] = useState([]);
 
   // for uploading profile photo
-  const Buffer = require("buffer/").Buffer;
-  const [image, setImage] = useState()
   const [uploadPanelOpen, setUploadPanelOpen] = useState(false);
   const [photoFile, setPhotoFile] = useState(null);
   const [updatePhoto, setUpdatePhoto] = useState(false);
@@ -49,8 +59,7 @@ function Profile(props) {
   const [toggleCompleted, setToggleCompleted] = useState(false);
 
   // for users acquired badges; can choose which one to display
-
-  const user = useSelector((state) => state.session.user)
+  const user = useSelector((state) => state.session.user);
   const favorites = useSelector((state) => Object.values(state.favorites));
 
   // for badges
@@ -62,75 +71,95 @@ function Profile(props) {
   useEffect(() => {
     dispatch(getCurrentUser());
     dispatch(fetchFavorites());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
-    if (user && user.completedRecipe) {
-
-      const fetchPromises = user.completedRecipe.map(({ recipeId }) =>
-        dispatch(fetchRecipe(recipeId)));
+    if (sessionUser && sessionUser.completedRecipe) {
+      const fetchPromises = sessionUser.completedRecipe.map(({ recipeId }) =>
+        dispatch(fetchRecipe(recipeId))
+      );
 
       Promise.all(fetchPromises)
-        .then(fetchedRecipes => {
+        .then((fetchedRecipes) => {
           setCompletedRecipes(fetchedRecipes);
           const numComplete = fetchedRecipes.length;
-          const uniqueCountry = new Set(fetchedRecipes.map(recipe => {
-            return recipe.recipe.country;
-        }));
+          const uniqueCountry = new Set(
+            fetchedRecipes.map((recipe) => {
+              return recipe.recipe.country;
+            })
+          );
 
-        const numHealthy = fetchedRecipes.filter(recipe => recipe.recipe.tags.includes('vegetarian') || recipe.recipe.tags.includes('vegan') || recipe.recipe.tags.includes('glutenFree')).length;
-        const reviewsCount = userReviews?.length;
+          const numHealthy = fetchedRecipes.filter(
+            (recipe) =>
+              recipe.recipe.tags.includes("vegetarian") ||
+              recipe.recipe.tags.includes("vegan") ||
+              recipe.recipe.tags.includes("glutenFree")
+          ).length;
+          const reviewsCount = userReviews?.length;
 
-        setNumCompleted(numComplete);
-        setUniqueCountries(uniqueCountry.size);
-        setNumReviews(reviewsCount);
-        setNumHealthyRecipes(numHealthy);
+          setNumCompleted(numComplete);
+          setUniqueCountries(uniqueCountry.size);
+          setNumReviews(reviewsCount);
+          setNumHealthyRecipes(numHealthy);
         })
-        .catch(error => {
-        console.error("Error fetching recipes: ", error);
+        .catch((error) => {
+          console.error("Error fetching recipes: ", error);
         });
     }
-  }, [user, dispatch]);
-
-  useEffect(() => {
-    if (user.photo) {
-      const bufferArr = new Uint8Array(user.photo.data);
-      setImage(image => Buffer.from(bufferArr).toString("base64"))
-    }
-  }, [user.photo, photoFile])
+  }, [sessionUser, dispatch, userReviews?.length]);
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", photoFile);
-    dispatch(uploadImage(formData))
+    setUploadPanelOpen(false);
+    dispatch(uploadImage(formData));
   }
 
-  function handlePanelClick(e) {
+  async function handlePanelClick(e) {
     e.preventDefault();
     setUploadPanelOpen(!uploadPanelOpen);
   }
 
+  useEffect(() => {
+    if (uploadPanelOpen) {
+      document.addEventListener('click', handleClosePanel)
+    }
+    
+    function handleClosePanel(e) {
+      if (e.target.className !== 'profile-picture-upload-panel' && e.target.tagName !== 'INPUT') 
+      {
+        setUploadPanelOpen(false)
+        document.removeEventListener('click', handleClosePanel)
+      }
+    }
+  }, [uploadPanelOpen])
+
   function handleDrag(e) {
-    e.preventDefault()
-    e.stopPropagation()
-    const box = document.getElementsByClassName('profile-picture-upload-panel')[0]
+    e.preventDefault();
+    e.stopPropagation();
+    const box = document.getElementsByClassName(
+      "profile-picture-upload-panel"
+    )[0];
     switch (e.type) {
       case "dragover":
-        box.classList.add('drag-highlight')
+        box.classList.add("drag-highlight");
         break;
       case "dragenter":
-        box.classList.add('drag-highlight')
+        box.classList.add("drag-highlight");
         break;
       case "drop":
-        box.classList.remove('drag-highlight')
-        setPhotoFile(e.dataTransfer.files[0])
+        box.classList.remove("drag-highlight");
+        setPhotoFile(e.dataTransfer.files[0]);
         const formData = new FormData();
         formData.append("image", e.dataTransfer.files[0]);
-        dispatch(uploadImage(formData))
+        setUploadPanelOpen(false);
+        dispatch(uploadImage(formData));
         break;
       case "dragleave":
-        box.classList.remove('drag-highlight')
+        box.classList.remove("drag-highlight");
+        break;
+      default:
         break;
     }
   }
@@ -150,11 +179,11 @@ function Profile(props) {
         case "reviews":
           setState = setToggleReviews;
           break;
-        case 'completed':
+        case "completed":
           setState = setToggleCompleted;
           break;
         default:
-          throw Error('Unknown field')
+          throw Error("Unknown field");
       }
       if (tab !== selectedTab && setState) {
         setFalse.push(setState);
@@ -165,10 +194,12 @@ function Profile(props) {
     return setFalse.forEach((setState) => setState(false));
   };
 
-
+  if (!sessionUser) {
+    return <LoaderDots />;
+  }
   return (
     <div className="profile-page-root">
-      <Header />
+      <Header viewport={viewport}/>
       <div className="profile-page-top">
         <div className="profile-page-left">
           <div
@@ -179,8 +210,9 @@ function Profile(props) {
             <img
               className="profile-page-picture-file"
               src={
-                image ? `data:image/image/png;base64,${image}` : defaultPicture
+                sessionUser ? sessionUser.photo ? sessionUser.photo : defaultPicture : defaultPicture
               }
+              alt="profile-avatar"
             />
             {updatePhoto && (
               <div
@@ -192,12 +224,14 @@ function Profile(props) {
             )}
 
             {uploadPanelOpen && (
-              <div className="profile-picture-upload-panel"
-              onDragEnter={handleDrag}
-              onDragOver={handleDrag}
-              onDrop={handleDrag}
-              onDragLeave={handleDrag}>
-                <AiOutlineDownload className="profile-picture-dropbox-icon"/>
+              <div
+                className="profile-picture-upload-panel"
+                onDragEnter={handleDrag}
+                onDragOver={handleDrag}
+                onDrop={handleDrag}
+                onDragLeave={handleDrag}
+              >
+                <AiOutlineDownload className="profile-picture-dropbox-icon" />
                 <h1>Upload a new profile photo, or simply drag and drop.</h1>
                 <form id="profile-picture-upload-form" onSubmit={handleSubmit}>
                   <input
@@ -214,7 +248,7 @@ function Profile(props) {
           <div className="profile-page-user-details">
             <div>
               <h1>
-                Chef {user.firstName} {user.lastName}
+                Chef {sessionUser.firstName} {sessionUser.lastName}
               </h1>
             </div>
           </div>
@@ -241,19 +275,29 @@ function Profile(props) {
             </h1>
             <h1
               onClick={() => {
-                toggleNav("completed")
+                toggleNav("completed");
               }}
-              className={toggleCompleted ? "active": ""}
-              >Completed Recipes
+              className={toggleCompleted ? "active" : ""}
+            >
+              Completed Recipes
             </h1>
           </div>
-          {toggleBadges && <BadgesIndex numCompleted={numCompleted} uniqueCountries={uniqueCountries} numReviews={numReviews
-          } numHealthyRecipes={numHealthyRecipes} /> }
+          {toggleBadges && (
+            <BadgesIndex
+              numCompleted={numCompleted}
+              uniqueCountries={uniqueCountries}
+              numReviews={numReviews}
+              numHealthyRecipes={numHealthyRecipes}
+            />
+          )}
           {toggleFavorites && (
             <>
-            <h1 className="tab-title">{favorites.length} {favorites.length === 1 ? "FAVORITE" : "FAVORITES"}</h1>
-            <div id="favorites-container">
-              {favorites.map((favorite) => {
+              <h1 className="tab-title">
+                {favorites.length}{" "}
+                {favorites.length === 1 ? "FAVORITE" : "FAVORITES"}
+              </h1>
+              <div id="favorites-container">
+                {favorites.map((favorite) => {
                   return (
                     <FavoritesTile
                       key={favorite.recipe._id}
@@ -261,28 +305,32 @@ function Profile(props) {
                     ></FavoritesTile>
                   );
                 })}
-            </div>
+              </div>
             </>
           )}
           {toggleReviews && (
             <>
-            <h1 className="tab-title">{userReviews.length} {userReviews.length === 1 ? "REVIEW" : "REVIEWS"}</h1>
-            <div id="profile-reviews-container">
-              {userReviews.map((review, i) => (
-                <ReviewsTiles
-                  key={i}
-                  review={review}
-                />
-              ))}
-            </div>
-            
+              <h1 className="tab-title">
+                {userReviews.length}{" "}
+                {userReviews.length === 1 ? "REVIEW" : "REVIEWS"}
+              </h1>
+              <div id="profile-reviews-container">
+                {userReviews.map((review, i) => (
+                  <ReviewsTiles key={i} review={review} />
+                ))}
+              </div>
             </>
           )}
           {toggleCompleted && (
             <>
-            <h1 className="tab-title">{completedRecipes.length} {completedRecipes.length === 1 ? "COMPLETED RECIPE" : "COMPLETED RECIPES"}</h1>
-            <div id="completed-container">
-              {completedRecipes.map((recipe) => {
+              <h1 className="tab-title">
+                {completedRecipes.length}{" "}
+                {completedRecipes.length === 1
+                  ? "COMPLETED RECIPE"
+                  : "COMPLETED RECIPES"}
+              </h1>
+              <div id="completed-container">
+                {completedRecipes.map((recipe) => {
                   return (
                     <FavoritesTile
                       key={recipe._id}
@@ -290,7 +338,7 @@ function Profile(props) {
                     ></FavoritesTile>
                   );
                 })}
-            </div>
+              </div>
             </>
           )}
         </div>

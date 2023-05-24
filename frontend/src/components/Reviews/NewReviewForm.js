@@ -94,7 +94,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
   };
 
   const handleReviewDelete = () => {
-    console.log(review.recipe, "recipe", review, "review");
     dispatch(deleteReview(review._id)).then(() => {
       dispatch(fetchRecipeReviews(review.recipe));
     });
@@ -230,14 +229,21 @@ const NewReviewForm = ({ recipeId, message, review }) => {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Title your review..."
             />
-            {errors && <div className="errors">{errors?.title}</div>}
+            {errors && errors.title && (
+              <div className="errors">{errors?.title}</div>
+            )}
             <textarea
-              placeholder="Write a review..."
+              placeholder="What did you think?"
               id="new-review-text"
               value={text}
               onChange={(e) => setText(e.target.value)}
             ></textarea>
-            {errors && <div className="errors">{errors?.text}</div>}
+            {errors && errors.text && (
+              <div className="errors">{errors?.text}</div>
+            )}
+            {errors && errors.recipe && (
+              <div className="errors">{errors?.recipe}</div>
+            )}
           </div>
           <div className="image-upload-container">
                 <label htmlFor="image-upload">

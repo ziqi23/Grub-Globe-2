@@ -19,12 +19,33 @@ import veganIcon from "../../assets/icons/general-icons/icons8-vegan-100.png";
 import vegetarianIcon from "../../assets/icons/general-icons/icons8-vegetarian-100.png";
 import timerIcon from "../../assets/icons/general-icons/icons8-timer-100.png";
 import plateIcon from "../../assets/icons/general-icons/icons8-plate-100.png";
-import { getCurrentUser } from "../../store/session";
+import LoaderDots from "../LoaderDots";
 
 const RecipeShowPage = () => {
   const dispatch = useDispatch();
   const { recipeId } = useParams();
-  const [tooltipOpen, setTooltipOpen] = useState(-1)
+  const [tooltipOpen, setTooltipOpen] = useState(-1);
+  const [viewport, setViewport] = useState("");
+  const [windowWidth, setWindowWidth] = useState();
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    function handleResize(e) {
+      setWindowWidth(window.innerWidth);
+    }
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
+  
+  useEffect(() => {
+    // if (windowWidth <= 920) {
+    if (windowWidth <= 1035) {
+      setViewport("Mobile");
+    }
+    else {
+      setViewport("Desktop");
+    }
+  }, [windowWidth])
 
   const icons = {
     glutenFree: glutenFreeIcon,
@@ -54,14 +75,11 @@ const RecipeShowPage = () => {
 
   useEffect(() => {
     dispatch(fetchRecipe(recipeId));
-    console.log(recipe?.tags);
   }, [recipeId, dispatch]);
 
   useEffect(() => {
     dispatch(fetchFavorites());
   }, [dispatch, sessionUser]);
-
-
 
   const handleFollowAlong = () => {
     setToggleFollowAlong(true);
@@ -69,23 +87,32 @@ const RecipeShowPage = () => {
   };
 
   const handleMouseLeave = (e) => {
-    e.preventDefault()
-    setTooltipOpen(-1)
+    e.preventDefault();
+    setTooltipOpen(-1);
+  };
+
+  window.scrollTo({
+    top: 0,
+  });
+
+  if (!recipe) {
+    return <LoaderDots />;
   }
 
   return (
     <>
-      <Header />
+      <Header viewport={viewport} windowWidth={windowWidth}/>
       <div className="below-header-container">
         <div className="recipe-show-page-container">
+          {viewport === "Desktop" && (
           <div className="details-container">
             <div className="ingredients-container">
               <h2>Ingredients</h2>
               <Ingredients ingredients={recipe?.ingredients} />
             </div>
           </div>
+          )}
           <div className="main-recipe-content-container">
-            {/* <h1>{recipe.name}</h1> */}
             <div className="main-recipe-info-header">
               <FavHeart recipe={recipe} favorites={favorites} />
               <h1 className="recipe-index-recipe-name">{recipe?.recipeName}</h1>
@@ -97,26 +124,24 @@ const RecipeShowPage = () => {
                 <img
                   className="actual-image"
                   src={recipe?.photoUrl}
-                  alt="recipe image"
+                  alt="recipe"
                 />
               </div>
               <h3>Recipe by: {recipe?.recipeAuthor}</h3>
-
             </div>
             <div className="smaller-content-info">
               <div>
-                <img className="icon" src={timerIcon} />
+                <img className="icon" src={timerIcon} alt="icon" />
                 <h2>Duration</h2>
                 <p>{recipe?.prepTime} minutes</p>
               </div>
               <div>
-                <img className="icon" src={plateIcon} />
+                <img className="icon" src={plateIcon} alt="icon"/>
                 <h2>Servings </h2>
                 <p>{recipe?.servings}</p>
               </div>
               {displayTags?.map((tag) => tag)}
             </div>
-
             <div>
               <h2>Directions</h2>
               <ul>
@@ -130,22 +155,22 @@ const RecipeShowPage = () => {
             <div className="follow-along-button-container">
               <h2>Ready?</h2>
               <div className="follow-along-button" onClick={handleFollowAlong}>
-                Let's get cookin!
+                <h3>Let's get cookin!</h3>
               </div>
             </div>
-            {/* <div className="youtube-links-container">
-                {recipe?.youtubeLinks.map((link, i) =>
-                  <iframe src={link}></iframe>
-                )}
-            </div> */}
           </div>
-
-          <div className="macros-container">
-            <div onMouseLeave={handleMouseLeave}>
-              <h2>Nutrition</h2>
-              <Macronutrients macronutrients={recipe?.nutrition.nutrients} tooltipOpen={tooltipOpen} setTooltipOpen={setTooltipOpen}/>
+          {viewport === "Desktop" && (
+            <div className="macros-container">
+              <div onMouseLeave={handleMouseLeave}>
+                <h2>Nutrition</h2>
+                <Macronutrients
+                  macronutrients={recipe?.nutrition.nutrients}
+                  tooltipOpen={tooltipOpen}
+                  setTooltipOpen={setTooltipOpen}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <ReviewIndex recipeId={recipeId} />
       </div>

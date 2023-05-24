@@ -1,12 +1,89 @@
 .search-form {
-    width: 525px;
+    /* width: 625px; */
     margin: 0 auto;
     position: relative;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    width: 37vw;
 }
 
-@media (max-width: 390px) {
-    .search-form {
-        width: 300px;
-    }
+.search-form button {
+    margin-left: 10px;
+    background-color: transparent;
+    color: rgb(104, 101, 101);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: "Kanit", sans-serif;
+    transition: 0.3s all ease;
+    text-transform: uppercase;
+  }
+
+.search-form button:hover {
+    color: rgb(243, 161, 54);
+    cursor: pointer;
 }
+
+.css-b62m3t-container {
+  width: 100%;
+
+}
+
+  .css-1fdsijx-ValueContainer {
+    width: 100%;
+  }
+
+  .css-3w2yfm-ValueContainer {
+    width: 100%;
+  }
+
+@media (max-width: 1430px) {
+  .css-1fdsijx-ValueContainer {
+    width: 500px;
+  }
+
+  .css-3w2yfm-ValueContainer {
+    width: 500px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .css-1fdsijx-ValueContainer {
+    width: 350px;
+  }
+
+  .css-3w2yfm-ValueContainer {
+    width: 350px;
+  }
+}
+  .css-hlgwow {
+    width: 400px;
+  }
+
+  .css-1dyz3mf {
+    width: 400px;
+  }
+
+  .css-1dyz3mf {
+    width: 400px;
+  }
+
+@media (max-width: 920px) {
+    .search-form {
+      /* flex-direction: column; */
+      width: 80vw;
+      margin: 0 auto;
+    }
+
+    .css-1fdsijx-ValueContainer {
+      width: 90%;
+    }
+
+    .css-3w2yfm-ValueContainer {
+      width: 90%;
+    } 
+}
+
 

@@ -1,128 +1,124 @@
 #explore-page-root {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(17, 16, 16);
-
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(17, 16, 16);
 }
 
 #explore-page-main {
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
 }
 #explore-page-globe {
-    /* width: 1000px; */
-    height: 89vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 89vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #explore-page-country-popup {
-    background-color: rgb(17, 16, 16);
-    color: rgb(219, 216, 216);
-    margin-right: 50px;
-    height: 89vh;
-
-    /* border: 1px solid rgb(219, 216, 216); */
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
+  background-color: rgb(17, 16, 16);
+  color: rgb(219, 216, 216);
+  margin-right: 50px;
+  height: 89vh;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-#explore-page-country-popup div:first-child{
-    font-size: 36px;
-    font-weight: 700;
+#explore-page-country-popup div:first-child {
+  font-size: 36px;
+  font-weight: 700;
 }
 
-#explore-page-country-popup div:last-child{
-    background-color: rgb(17, 16, 16);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    width: 80%;
-    padding: 10px 0px;
-    height: 50px;
-    color: rgb(225, 222, 222);
-    border: 1px solid rgb(225, 222, 222);
-    transition: 0.3s all ease;
-    text-transform: uppercase;
-    
+#explore-page-country-popup div:last-child {
+  background-color: rgb(17, 16, 16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  width: 80%;
+  padding: 10px 0px;
+  height: 50px;
+  color: rgb(225, 222, 222);
+  border: 1px solid rgb(225, 222, 222);
+  transition: 0.3s all ease;
+  text-transform: uppercase;
 }
 
-#explore-page-country-popup div:last-child:hover{
-    cursor: pointer;
-    transition-duration: 200ms;
-    color: rgb(17, 16, 16);
-    background-color: rgb(225, 222, 222);
+#explore-page-country-popup div:last-child:hover {
+  cursor: pointer;
+  transition-duration: 200ms;
+  color: rgb(17, 16, 16);
+  background-color: rgb(225, 222, 222);
 }
 
 #explore-page-root .header-container h1 {
-    color: rgb(225, 222, 222);
+  color: rgb(225, 222, 222);
+}
+
+#explore-page-root .mobile-burger-menu {
+  color: rgb(225, 222, 222);
 }
 
 #explore-page-root .header-container h1:hover {
-      color: transparent;
-      background-image: url('https://img.freepik.com/free-vector/earth-globe-icon-white-background_1308-122819.jpg');
-      background-size: fill;
-      background-clip: text;
-      -webkit-background-clip: text;
-      background-position: 10%;
-      /* border: 1px solid green; */
-  }
+  color: transparent;
+  background-image: url("https://img.freepik.com/free-vector/earth-globe-icon-white-background_1308-122819.jpg");
+  background-size: fill;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-position: 10%;
+}
 
 #explore-page-root .header-container .nav-bar a {
-    color: rgb(225, 222, 222);
+  color: rgb(225, 222, 222);
 }
 
 #explore-page-country-popup p {
-    font-size: 20px;
-    text-align: center;
-    line-height: 1.2;
-    font-weight: 300;
-    margin-bottom: 30px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 1.2;
+  font-weight: 300;
+  margin-bottom: 30px;
 }
 
 #explore-page-country-popup h1 {
-    font-size: 40px;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    text-align: center;
+  font-size: 40px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-
-
 #country-description {
-    text-align:center;
+  text-align: center;
 }
 
 #explore-page-root .header-container .nav-bar div {
-    transition: 0.3s all ease;
-    color: rgb(225, 222, 222);
+  transition: 0.3s all ease;
+  color: rgb(225, 222, 222);
 }
 
 #explore-page-root .header-container .nav-bar div:hover {
-    color: rgb(243, 161, 54);
-    cursor: pointer;
+  color: rgb(243, 161, 54);
+  cursor: pointer;
 }
 
 @media (max-width: 390px) {
-    #explore-page-main {
-        flex-direction: column;
-    }
+  #explore-page-main {
+    flex-direction: column;
+  }
 
-    #explore-page-globe { 
-        height: 35vh;
-        width: 100%;
-    }
+  #explore-page-globe {
+    height: 35vh;
+    width: 100%;
+  }
 
-    #explore-page-country-popup {
-        height: 40vh;
-        width: 100%;
-    }
-
+  #explore-page-country-popup {
+    height: 50vh;
+    width: 100%;
+    padding: 0px 10px;
+  }
 }

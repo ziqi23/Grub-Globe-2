@@ -22,7 +22,7 @@ const FollowAlongCarousel = ({
 
   // analyzeStep function determines if the step is a normalStep or timerStep
   const analyzeStep = (step) => {
-    const timerKeywords = ["seconds", "second", "minute", "minutes", "hour", "hours"]
+    const timerKeywords = ["minute", "minutes", "hour", "hours"]
     for (let i = 0; i < timerKeywords.length; i++) {
       if (step.includes(timerKeywords[i])) {
         return false //timer step

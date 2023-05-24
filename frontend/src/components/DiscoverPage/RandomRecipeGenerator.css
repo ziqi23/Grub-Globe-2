@@ -1,0 +1,181 @@
+#random-recipe-generator-container {
+    width: 100%;
+    height: 400px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+}
+
+#random-recipe-generator-container #text-box{
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#random-recipe-generator-container #text-box h1 {
+    font-size: 2em;
+    font-weight: 500;
+    letter-spacing: -2px;
+}
+
+#random-recipe-generator-button-container {
+    width: 400px;
+    height: 300px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 50%;
+}
+
+#random-recipe-button:active {
+    box-shadow: inset 0px 0px 5px rgba(12, 1, 1, 0.55);
+    transform: translateY(4px);
+}
+
+#random-recipe-generator-button-container img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    /* border: 1px solid red; */
+}
+
+#random-recipe-generator-button-container .overlay {
+    background-color: rgba(0, 0, 0, 0.281);
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: absolute
+}
+
+#random-recipe-button {
+    width: 300px;
+    padding: 20px 0px;
+    border: 1px solid black;
+    border-radius: 999px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: 0.3s all ease;
+}
+
+#random-recipe-button:hover {
+    background-color: rgb(48, 47, 47);
+    color: #EBE8E8;
+}
+
+#recipe-name-link {
+    position: absolute;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: -1.7px;;
+    color: #EBE8E8;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-shadow: rgb(32, 32, 31) 1px 0 10px;
+}
+
+.loading-container {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-wrapper {
+    width: 200px;
+    height: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #fff;
+    left: 15%;
+    transform-origin: 50%;
+    animation: circle7124 .5s alternate infinite ease;
+}
+
+@keyframes circle7124 {
+    0% {
+        top: 60px;
+        height: 5px;
+        border-radius: 50px 50px 25px 25px;
+        transform: scaleX(1.7);
+    }
+
+    40% {
+        height: 20px;
+        border-radius: 50%;
+        transform: scaleX(1);
+    }
+
+    100% {
+        top: 0%;
+    }
+}
+
+.circle:nth-child(2) {
+    left: 45%;
+    animation-delay: .2s;
+}
+
+.circle:nth-child(3) {
+    left: auto;
+    right: 15%;
+    animation-delay: .3s;
+}
+
+.shadow {
+    width: 20px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 62px;
+    transform-origin: 50%;
+    z-index: -1;
+    left: 15%;
+    filter: blur(1px);
+    animation: shadow046 .5s alternate infinite ease;
+}
+
+@keyframes shadow046 {
+    0% {
+        transform: scaleX(1.5);
+    }
+
+    40% {
+        transform: scaleX(1);
+        opacity: .7;
+    }
+
+    100% {
+        transform: scaleX(.2);
+        opacity: .4;
+    }
+}
+
+.shadow:nth-child(4) {
+    left: 45%;
+    animation-delay: .2s
+}
+
+.shadow:nth-child(5) {
+    left: auto;
+    right: 15%;
+    animation-delay: .3s;
+}

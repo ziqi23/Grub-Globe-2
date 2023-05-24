@@ -28,7 +28,6 @@ const ReviewBox = ({ review }) => {
   }
 
   const handleReviewDelete = () => {
-    console.log(review.recipe, "recipe", review, "review");
     dispatch(deleteReview(review._id)).then(() => {
       dispatch(fetchRecipeReviews(review.recipe));
     });
@@ -76,22 +75,22 @@ const ReviewBox = ({ review }) => {
                 }
               />
             </div>
-            <h1 id="past-review-username">
-                {review.user.username}
-              </h1>
+            <h1 id="past-review-username">{review.user.username}</h1>
           </div>
 
           <div id="past-review-container">
             <div id="new-review-ratings-inputs">
               <div className="star-and-title-container">
                 <div id="form-input-accuracy" className="review-unclickable">
-                  <StarRatingInput disabled={true} rating={review.starRating} icon={<FaGrinStars />}/>
+                  <StarRatingInput
+                    disabled={true}
+                    rating={review.starRating}
+                    icon={<FaGrinStars />}
+                  />
                 </div>
               </div>
-
             </div>
             <div id="new-review-text-inputs">
-
               <h1 id="past-review-title">{review.title}</h1>
               <p id="past-review-text">{review.text}</p>
 
