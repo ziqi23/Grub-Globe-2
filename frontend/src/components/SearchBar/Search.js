@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { fetchSearchRecipes } from "../../store/recipes.js";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import {AiOutlineSearch } from "react-icons/ai"
 
 
 function RecipeSearch() {
@@ -122,7 +123,7 @@ function RecipeSearch() {
             setQuery(selected.map((option) => option.value).join(" , "));
           }}
         />
-        <button type="submit">Search</button>
+        <button type="submit"><AiOutlineSearch /></button>
       </form>
     </div>
   );

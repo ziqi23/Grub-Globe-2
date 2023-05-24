@@ -98,7 +98,7 @@
     z-index: 1;
 }
 
-.circle {
+.loading-wrapper .circle {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -178,4 +178,16 @@
     left: auto;
     right: 15%;
     animation-delay: .3s;
+}
+
+@media (max-width: 920px) {
+    #random-recipe-generator-container {
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    #random-recipe-button {
+        margin-top: 15px;
+    }
 }

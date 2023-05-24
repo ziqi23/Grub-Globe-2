@@ -4,15 +4,15 @@ const mongoose = require('mongoose');
 const Recipe = mongoose.model('Recipe');
 
 
-// get all recipes depending on filters
-router.get('/', async (req, res) => {
+// get random collection of recipes
+router.get('/randomRecipes', async (req, res) => {
     try {
-        const recipes = await Recipe.find(req.query);
-        return res.json(recipes);
+        const randomRecipes = await Recipe.aggregate([{ $sample: {size: 10 }}])
+        return res.json(randomRecipes)
     } catch (err) {
         return res.json([]);
-    };
-});
+    }
+})
 
 // get recipe based on recipe id
 router.get('/:id', async (req, res, next) => {
@@ -27,4 +27,14 @@ router.get('/:id', async (req, res, next) => {
     };
 });
 
+
+// get all recipes depending on filters
+router.get('/', async (req, res) => {
+    try {
+        const recipes = await Recipe.find(req.query);
+        return res.json(recipes);
+    } catch (err) {
+        return res.json([]);
+    };
+});
 module.exports = router;

@@ -10,7 +10,8 @@
   flex-grow: 1;
   gap: 30px;
   box-sizing: border-box;
-  padding: 0px 30px;
+  /* margin: 0 30px; */
+  /* padding: 0px 30px; */
 }
 
 .profile-page-left {
@@ -18,6 +19,7 @@
   flex-direction: column;
   box-sizing: border-box;
   max-height: 461px;
+  padding-left: 20px;
 }
 
 .profile-page-picture {
@@ -105,6 +107,7 @@
   flex-direction: column;
   width: 60vw;
   box-sizing: border-box;
+  padding-right: 20px;
 }
 
 .profile-page-right h1 {
@@ -210,7 +213,8 @@
 @media (max-width: 920px) {
   .profile-page-top {
     /* margin-top: 120px; */
-    width: 100vw;
+    /* width: 100vw; */
+    padding: 0px 0px;
   }
 
   .profile-nav-bar {

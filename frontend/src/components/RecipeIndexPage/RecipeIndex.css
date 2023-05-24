@@ -16,13 +16,15 @@
   box-sizing: border-box;
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 15px;
 }
 .below-header-container .side-region-text h1 {
   margin: 0;
   padding: 0;
   color: #f1f1f1;
-  text-shadow: 7px 7px 14px #e0e0e0, -7px -7px 14px #ffffff;
+  text-shadow: 7px 7px 9px #d6d4d4, -7px -7px 14px #ececec;
+  text-transform: uppercase;
+  font-weight: 700;
   cursor: default;
   font-size: 13vh;
 }
@@ -257,7 +259,7 @@
   }
 
   .below-header-container .side-region-text h1 {
-    font-size: 1.5em;
+    font-size: 9vh;
     text-shadow: 7px 7px 9px #d6d4d4, -7px -7px 14px #ececec;
     font-weight: 700;
     text-transform: uppercase;
