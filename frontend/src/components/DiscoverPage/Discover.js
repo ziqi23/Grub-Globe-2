@@ -83,6 +83,7 @@ const Discover = props => {
                 .map(([recipeId]) => recipeId);
                 // setLoading(false);
             
+                setLoading(false);
         }
     }, [dispatch, recipeReviews, user]);
     
@@ -105,7 +106,7 @@ const Discover = props => {
     // }, [dispatch, recipeReviews, recipesWithMostReviews]);
 
     const recipesWithMostReviewsFinal = useSelector(state => state.recipes['recipe recommendations']);
-    console.log(recipesWithMostReviewsFinal, 'recipesWithMostReviewsFinal')
+    
 
     const [discoverFavorites, setDiscoverFavorites] = useState([]);
     
@@ -148,8 +149,8 @@ const Discover = props => {
                 });
         }
         
-        setLoading(false);
-      }
+    }
+    
     
     }, [dispatch, favorites.length, user]);
    
