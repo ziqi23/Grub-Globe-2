@@ -106,7 +106,7 @@ function RecipeSearch() {
   };
 
   return (
-    <div>
+    <div className="search-bar-container">
       <form className="search-form" onSubmit={handleSubmit}>
         <CreatableSelect
           isMulti

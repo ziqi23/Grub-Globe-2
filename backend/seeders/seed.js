@@ -58,7 +58,8 @@ users.push(
       },
       {
         recipeId: "065000000000000000000000"
-      }]
+      }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/03.jpg"
     }),
 
   new User({
@@ -78,7 +79,8 @@ users.push(
       {
         recipeId: "119000000000000000000000"
       }
-    ]
+    ],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/01.jpg"
   }),
 
   new User({
@@ -94,7 +96,8 @@ users.push(
       recipeId: "157000000000000000000000"
     },{
       recipeId: "113000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/02.jpg"
     }),
 
     new User({
@@ -110,7 +113,8 @@ users.push(
       recipeId: "157000000000000000000000"
     },{
       recipeId: "114000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/tkeller.jpg"
     }),
 
     new User({
@@ -126,7 +130,8 @@ users.push(
       recipeId: "036000000000000000000000"
     },{
       recipeId: "120000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/04.jpg"
     }),
 
     new User({
@@ -142,7 +147,8 @@ users.push(
       recipeId: "156000000000000000000000"
     }, {
       recipeId: "122000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/05.jpg"
     }),
 
     new User ({
@@ -158,7 +164,8 @@ users.push(
       recipeId: "037000000000000000000000"
     }, {
       recipeId: "120000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/06.jpg"
     }),
 
     new User ({
@@ -174,7 +181,8 @@ users.push(
       recipeId: "155000000000000000000000"
     }, {
       recipeId: "121000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/07.jpg"
     }),
 
     new User ({
@@ -190,7 +198,8 @@ users.push(
       recipeId: "037000000000000000000000"
     }, {
       recipeId: "121000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/08.jpg"
     }),
 
     new User({
@@ -206,7 +215,8 @@ users.push(
       recipeId: "038000000000000000000000"
     }, {
       recipeId: "122000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/09.jpg"
     }),
 
     new User({
@@ -222,7 +232,8 @@ users.push(
       recipeId: "155000000000000000000000"
     }, {
       recipeId: "135000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/10.jpg"
     }),
 
     new User ({
@@ -238,7 +249,8 @@ users.push(
       recipeId: "153000000000000000000000"
     }, {
       recipeId: "074000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/11.jpg"
     }),
 
     new User ({
@@ -256,7 +268,8 @@ users.push(
       recipeId: "057000000000000000000000"
     }, {
       recipeId: "103000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/12.jpg"
     }),
 
     new User ({
@@ -272,7 +285,8 @@ users.push(
       recipeId: "118000000000000000000000"
     }, {
       recipeId: "058000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/13.jpg"
     }),
 
     new User ({
@@ -288,7 +302,8 @@ users.push(
       recipeId: "153000000000000000000000"
     }, {
       recipeId: "058000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/14.jpg"
     }),
 
     new User ({
@@ -304,7 +319,8 @@ users.push(
       recipeId: "039000000000000000000000"
     }, {
       recipeId: "059000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/15.jpg"
     }),
 
     new User ({
@@ -320,7 +336,8 @@ users.push(
       recipeId: "039000000000000000000000"
     }, {
       recipeId: "059000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/16.jpg"
     }),
 
     new User ({
@@ -336,7 +353,8 @@ users.push(
       recipeId: "112000000000000000000000"
     }, {
       recipeId: "060000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/17.jpg"
     }),
 
     new User({
@@ -352,7 +370,8 @@ users.push(
       recipeId: "112000000000000000000000"
     }, {
       recipeId: "091000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/18.jpg"
     }),
 
     new User({
@@ -368,7 +387,8 @@ users.push(
       recipeId: "111000000000000000000000"
     }, {
       recipeId: "089000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/19.jpg"
     }),
 
     new User({
@@ -384,7 +404,8 @@ users.push(
       recipeId: "111000000000000000000000"
     }, {
       recipeId: "060000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/20.jpg"
     }),
 
     new User ({
@@ -402,7 +423,8 @@ users.push(
       recipeId: "056000000000000000000000"
     }, {
       recipeId: "124000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/21.jpg"
     }),
 
     new User ({
@@ -420,7 +442,8 @@ users.push(
       recipeId: "100000000000000000000000"
     }, {
       recipeId: "107000000000000000000000"
-    }]
+    }],
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/22.jpg"
     }),
 
     new User({
@@ -436,7 +459,8 @@ users.push(
       recipeId: "086000000000000000000000"
     }],
     email: 'jamieoliver@gmail.com',
-    hashedPassword: bcrypt.hashSync('foodlover', 10)
+    hashedPassword: bcrypt.hashSync('foodlover', 10),
+    profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/23.jpg"
     }),
 
     new User({
@@ -452,7 +476,8 @@ users.push(
         recipeId: "040000000000000000000000"
       }, {
         recipeId: "056000000000000000000000"
-      }]
+      }],
+      profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/24.jpg"
     }),
 
     new User({
@@ -468,7 +493,8 @@ users.push(
         recipeId: "117000000000000000000000"
       }, {
         recipeId: "123000000000000000000000"
-      }]
+      }],
+      profileImageUrl: "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/25.jpg"
     })
 )
 

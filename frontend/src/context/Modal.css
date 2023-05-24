@@ -38,9 +38,16 @@
 
 @media (max-height: 833px) {
   #modal-content {
+    height: 90vh;
+  }
+}
+
+@media (max-height: 671px) {
+  #modal-content {
     height: 100vh;
   }
 }
+
 
 @media (max-width: 768px) {
   #modal-content {

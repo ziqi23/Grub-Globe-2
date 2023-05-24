@@ -13,19 +13,12 @@ const RandomRecipeGenerator = () => {
     const [pushed, setPushed] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [recipes, setRecipes] = useState([]);
-    const [index, setIndex] = useState(0);
-    const [totalRecipes, setTotalRecipes] = useState(10);
 
-    const resetIndex = () => {
-        const index = (Math.floor(Math.random() * totalRecipes));
-    }
-   
     const getRecipes = async () => {
         try {
             const res = await jwtFetch('/api/recipes/randomRecipes');
             const fetchedRecipes = await res.json();
             setRecipes(fetchedRecipes);
-            resetIndex();
         } catch (err) {
             console.error(err)
         }
@@ -33,36 +26,33 @@ const RandomRecipeGenerator = () => {
     
     useEffect(() => {
         getRecipes();
-    }, [pushed])
+    }, [])
 
-    let recipeInterval;
+    const initializeRecipeRotation = () => {
+        // display first recipe
+        let currentIndex = 0
+        setCurrentImage(recipes[currentIndex].photoUrl);
+        setCurrentRecipeName(recipes[currentIndex].recipeName);
+        setCurrentRecipeId(recipes[currentIndex]._id);
 
-    const generateRandomRecipe = () => {
-        if (recipes.length > 0) {
-          const newIndex = Math.floor(Math.random() * recipes.length);
-          setIndex(newIndex);
-          setCurrentImage(recipes[newIndex].photoUrl);
-          setCurrentRecipeName(recipes[newIndex].recipeName);
-          setCurrentRecipeId(recipes[newIndex]._id);
-          recipeInterval = setInterval(() => {
-            const newIndex = Math.floor(Math.random() * recipes.length);
-            setIndex(newIndex);
-            setCurrentImage(recipes[newIndex].photoUrl);
-            setCurrentRecipeName(recipes[newIndex].recipeName);
-            setCurrentRecipeId(recipes[newIndex]._id);
-          }, 500);
+        // setup next recipes in rotation
+        for (let i = 1; i < 10; i++) {
+            setTimeout(() => {
+                setCurrentImage(recipes[i].photoUrl);
+                setCurrentRecipeName(recipes[i].recipeName);
+                setCurrentRecipeId(recipes[i]._id);
+            }, (500*i))
         }
-      };
-      
+    }
+
     const handlePush = () => {
         setPushed(true);
         setIsLoading(true);
-        resetIndex();
-        generateRandomRecipe();
+        initializeRecipeRotation();
         setTimeout(() => {
-            clearInterval(recipeInterval);
             setIsLoading(false)
             setPushed(false);
+            getRecipes();
         }, 5000)
     }
 

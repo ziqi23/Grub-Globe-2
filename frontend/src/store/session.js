@@ -1,5 +1,5 @@
 import jwtFetch from './jwt';
-import { resetFavorites } from './favorites';
+// import { resetFavorites } from './favorites';
 
 const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
@@ -51,7 +51,7 @@ const startSession = (userInfo, route) => async dispatch => {
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken');
     dispatch(logoutUser());
-    dispatch(resetFavorites());
+    // dispatch(resetFavorites());
   };
 
   const initialState = {

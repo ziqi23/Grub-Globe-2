@@ -28,7 +28,7 @@ const RecipeIndexPage = (props) => {
   }, [])
   
   useEffect(() => {
-    if (windowWidth <= 920) {
+    if (windowWidth <= 1111) {
       setViewport("Mobile");
     }
     else {

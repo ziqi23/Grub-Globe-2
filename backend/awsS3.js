@@ -14,12 +14,10 @@ const singleFileUpload = async ({ file }) => {
     Body: buffer
   };
   const result = await s3.upload(uploadParams).promise();
-
   return result.Location;
 };
 
 const multipleFilesUpload = async ({ files }) => {
-  console.log(files);
   return await Promise.all(
     files.map((file) => {
       return singleFileUpload({ file });

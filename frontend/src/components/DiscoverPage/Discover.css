@@ -1,12 +1,13 @@
 .recommendations-grid-favorites,
 .recommendations-grid-reviews {
-  /* display: grid; */
-  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
-  grid-gap: 20px; /* Set the gap between grid items */
+  grid-template-columns: repeat(4, 1fr); 
+  grid-gap: 20px; 
+  display: grid;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 50px;
+  padding: 0px 20px;
 }
 
 /* .recipe-container {
@@ -16,6 +17,8 @@
 
 .recommendations {
     text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2em;
   }
   
   .recommendations-title,
@@ -24,9 +27,30 @@
     text-align: center;
     font-size: 1.5em;
     margin-bottom: 20px;
+    text-transform: uppercase;
   }
 
   .recommendations-title {
-    font-size: 2em;
+    font-size: 2.5em;
     margin-bottom: 40px;
+    font-weight: 700;
   }
+
+  .discover-recipe-country {
+    text-transform: capitalize;
+    font-size: 0.9em;
+    color: rgb(109, 109, 109);
+    font-weight: 300;
+  }
+
+
+@media (max-width: 920px) {
+  .recommendations-title {
+    font-size: 1.7em;
+  }
+
+  .recommendations-header-favorites {
+    font-size: 1.3em;
+  }
+  
+}

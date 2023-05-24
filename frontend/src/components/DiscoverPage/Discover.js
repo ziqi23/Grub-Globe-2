@@ -25,12 +25,12 @@ const Discover = props => {
     const [viewport, setViewport] = useState("");
     const [windowWidth, setWindowWidth] = useState();
 
-    // useEffect(() => {
-    //     dispatch(resetFavorites());
-    //   }, [user]);      
+    useEffect(() => {
+        dispatch(resetFavorites());
+      }, [user]);      
 
     useEffect(() => {
-        if (windowWidth <= 920) {
+        if (windowWidth <= 1111) {
           setViewport("Mobile");
         }
         else {
@@ -53,6 +53,16 @@ const Discover = props => {
          dispatch(fetchFavorites());
          dispatch(fetchReviews());
     }, [dispatch, user])
+
+    useEffect(() => {
+        return () => {
+          window.scroll({
+            top: 0,
+            left: 0,
+            // behavior: 'smooth',
+          });
+        };
+      }, []);
 
     const recipeCounts = {};
 
@@ -81,8 +91,9 @@ const Discover = props => {
             recipesWithMostReviews = sortedRecipes
                 .slice(0, 10) 
                 .map(([recipeId]) => recipeId);
-                setLoading(false);
+                // setLoading(false);
             
+                setLoading(false);
         }
     }, [dispatch, recipeReviews, user]);
     
@@ -105,7 +116,7 @@ const Discover = props => {
     // }, [dispatch, recipeReviews, recipesWithMostReviews]);
 
     const recipesWithMostReviewsFinal = useSelector(state => state.recipes['recipe recommendations']);
-    console.log(recipesWithMostReviewsFinal, 'recipesWithMostReviewsFinal')
+    
 
     const [discoverFavorites, setDiscoverFavorites] = useState([]);
     
@@ -148,7 +159,8 @@ const Discover = props => {
                 });
         }
         
-      }
+    }
+    
     
     }, [dispatch, favorites.length, user]);
    
@@ -158,11 +170,12 @@ const Discover = props => {
         return <LoaderDots />
     }
 
+    
    
     return (
         <>
             <div className="recommendations-container">
-            <Header viewport={viewport}/>
+                <Header viewport={viewport}/>
                 <div className="recipe-generator-container"><RandomRecipeGenerator /></div>
                 <div className="recommendations">
                     <h1 className="recommendations-title">Recommendations for you</h1>
@@ -172,7 +185,7 @@ const Discover = props => {
                             <RecipeContainer key={index} recipe={recipe} />
                                 ))}
                         </div>
-                        
+
                     <div className="recommendations-header-reviews">Highly rated recipes...</div> 
                             <div className="recommendations-grid-reviews">
                                 {recipesWithMostReviewsFinal?.map((recipe) => (

@@ -24,7 +24,7 @@
   font-family: "Kanit", sans-serif;
   font-size: 1.2em;
   font-weight: 500;
-  gap: 4rem;
+  gap: 3rem;
 }
 
 .nav-bar div {
@@ -48,9 +48,10 @@
   }
 } */
 
-@media (max-width: 920px) {
+@media (max-width: 1111px) {
   .header-container .nav-bar {
     width: 100%;
+    gap: 0;
   }
 }
 

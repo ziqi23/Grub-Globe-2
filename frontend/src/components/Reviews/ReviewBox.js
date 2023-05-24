@@ -19,16 +19,6 @@ const ReviewBox = ({ review }) => {
   const dispatch = useDispatch();
   const Buffer = require("buffer/").Buffer;
   const [editClicked, setEditClicked] = useState(false);
-  
-  useEffect(() => {
-    console.log(review)
-  }, [])
-  let bufferArr;
-  let image;
-  if (review.user.profilePhoto) {
-    bufferArr = new Uint8Array(review.user.profilePhoto.data);
-    image = Buffer.from(bufferArr).toString("base64");
-  }
 
   const handleReviewDelete = () => {
     dispatch(deleteReview(review._id)).then(() => {
@@ -54,7 +44,6 @@ const ReviewBox = ({ review }) => {
       );
     }
   };
-
   if (editClicked) {
     return (
       <NewReviewForm
@@ -72,9 +61,7 @@ const ReviewBox = ({ review }) => {
               <img
                 className="review-profile-picture-file"
                 src={
-                  image
-                    ? `data:image/image/png;base64,${image}`
-                    : defaultPicture
+                  review.user.profileImageUrl ? review.user.profileImageUrl : defaultPicture
                 }
               />
             </div>
@@ -146,10 +133,10 @@ const ReviewBox = ({ review }) => {
                   ))}
                 </Carousel>
               </div>
-            
+
             }
-            
-            
+
+
           </div>
           <div id="edit-delete-review-container">{editButtons()}</div>
         </div>
