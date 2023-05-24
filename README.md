@@ -301,25 +301,27 @@ router.get('/randomRecipes', async (req, res) => {
 })
 ```
 
-The helper method `resetIndex` is called before the setInterval and at the end of each interval to generate a new random index that will be used to index into the recipes array, ensuring each rotation of recipes is completely random. `generateRandomRecipe` will initiate the setInterval that would update the local state with current indexed recipe image and name information, retrieved through indexing to optimize time complexity of this process.
+At first, the recipe rotation was built using a setInterval, but it was noticably lagging in between recipes. The function was improved by setting up setTimeouts, which were dependent on a recipe's index. The first recipe is displayed immediately upon calling the function, and the subsequent recipes are placed in a queue. The local state to display current recipe is changed every 0.5 seconds.
 
 <h5 a><strong><code>RandomRecipeGenerator.js</code></strong></h5>
 
 ```JavaScript
-    // ensures further randomization of recipes rotation
-    const resetIndex = () => {
-        index = (Math.floor(Math.random() * totalRecipes));
-    };
+    const initializeRecipeRotation = () => {
+        // display first recipe
+        let currentIndex = 0
+        setCurrentImage(recipes[currentIndex].photoUrl);
+        setCurrentRecipeName(recipes[currentIndex].recipeName);
+        setCurrentRecipeId(recipes[currentIndex]._id);
 
-    // utilize indexing to optimize time complexity, use setInterval to give slot machine effect
-    const generateRandomRecipe = () => {
-        recipeInterval = setInterval(() => {
-            setCurrentImage(recipes[index].photoUrl);
-            setCurrentRecipeName(recipes[index].recipeName);
-            setCurrentRecipeId(recipes[index]._id);
-            resetIndex();
-        }, 500);
-    };
+        // setup next recipes in rotation
+        for (let i = 1; i < 10; i++) {
+            setTimeout(() => {
+                setCurrentImage(recipes[i].photoUrl);
+                setCurrentRecipeName(recipes[i].recipeName);
+                setCurrentRecipeId(recipes[i]._id);
+            }, (500*i))
+        }
+    }
 ```
 
 ---
