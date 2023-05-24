@@ -118,7 +118,8 @@ const NewReviewForm = ({ recipeId, message, review }) => {
     else setImageUrls([]);
   }
 
-  const handleRemoveClick = (index) => {
+  const handleRemoveClick = (e, index) => {
+    e.preventDefault();
     const newImages = [...images];
     const newImageUrls = [...imageUrls];
     newImages.splice(index, 1);
@@ -245,11 +246,11 @@ const NewReviewForm = ({ recipeId, message, review }) => {
               <div className="errors">{errors?.recipe}</div>
             )}
           </div>
-          <div className="image-upload-container">
-                <label htmlFor="image-upload">
-                  <div className="image-upload-placeholder">
-                    <span>+</span>
-                  </div>
+
+          <div id="review-images">
+            <div className="image-upload-container">
+                <label htmlFor="image-upload" className="image-upload-placeholder">
+                  +
                 </label>
                 <input
                   id="image-upload"
@@ -260,23 +261,22 @@ const NewReviewForm = ({ recipeId, message, review }) => {
                   onChange={updateFiles}
                   style={{ display: 'none' }}
                 />
-              </div>
-          <div id="review-images">
-            <Carousel>
-
+            </div>
+            {/* <Carousel> */}
               {imageUrls && imageUrls.map((image, index) => (
                 <div key={index} className="image-preview-container">
                   <img src={image} alt={`Preview ${index}`} height="100" width="100" />
                   <button
                     className="image-remove-button"
-                    onClick={() => handleRemoveClick(index)}>
+                    onClick={(e) => handleRemoveClick(e, index)}>
                     <FaTimesCircle size={20} />
                   </button>
                 </div>
               ))}
 
-            </Carousel>
-          </div>
+            {/* </Carousel> */}
+         
+        </div>
           {/* <div>
             <label>
               Images to Upload

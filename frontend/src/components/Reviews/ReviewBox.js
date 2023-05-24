@@ -1,7 +1,7 @@
 import "./Review.css";
 import { HiThumbUp, HiThumbDown } from "react-icons/hi";
 import StarRatingInput from "./stars";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { FaGrinStars } from "react-icons/fa";
@@ -19,7 +19,10 @@ const ReviewBox = ({ review }) => {
   const dispatch = useDispatch();
   const Buffer = require("buffer/").Buffer;
   const [editClicked, setEditClicked] = useState(false);
-
+  
+  useEffect(() => {
+    console.log(review)
+  }, [])
   let bufferArr;
   let image;
   if (review.user.profilePhoto) {
@@ -133,15 +136,20 @@ const ReviewBox = ({ review }) => {
                 </div>
               </div>
             </div>
-            <div className="review-images-container">
-              <Carousel showThumbs={false}>
-                {review.imageUrls?.map((url, index) => (
-                  <div key={index}>
-                    <img src={url} alt={`reviewImages${index}`} />
-                  </div>
-                ))}
-              </Carousel>
-            </div>
+            {review.imageUrls.length > 0 &&
+              <div className="review-images-container">
+                <Carousel showThumbs={false}>
+                  {review.imageUrls?.map((url, index) => (
+                    <div key={index}>
+                      <img src={url} alt={`reviewImages${index}`} />
+                    </div>
+                  ))}
+                </Carousel>
+              </div>
+            
+            }
+            
+            
           </div>
           <div id="edit-delete-review-container">{editButtons()}</div>
         </div>

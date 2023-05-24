@@ -72,6 +72,7 @@ const ReviewsTiles = ({review}) => {
                         <p>Would Make Again</p>{review.wouldMakeAgain ? <FcCheckmark className="review-icon"/> : <VscClose className="review-x-icon"/>}
                         <p>Would Recommend </p>{review.wouldRecommend ? <FcCheckmark className="review-icon"/> : <VscClose className="review-x-icon"/>}
                     </div>
+                    {photosGallery()}
                     {editButtons()}
                 </>
             )
@@ -173,6 +174,22 @@ const ReviewsTiles = ({review}) => {
                 )}
             </>
         )}
+    }
+
+    // useEffect(() => {
+    //     console.log(review)
+    // }, [])
+
+    const photosGallery = () => {
+        return (
+            <div id="profile-reviews-photos-container" >
+                {review.imageUrls.map((imageUrl, i) => (
+                    <div key={i} className="image-preview-container">
+                        <img src={imageUrl} alt="review upload" />
+                    </div>
+                ))}
+            </div>
+        )
     }
 
     return (
