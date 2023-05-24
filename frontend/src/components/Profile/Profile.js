@@ -24,22 +24,21 @@ function Profile(props) {
   const [windowWidth, setWindowWidth] = useState();
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     function handleResize(e) {
       setWindowWidth(window.innerWidth);
     }
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
-  }, [])
-  
+  }, []);
+
   useEffect(() => {
     if (windowWidth <= 1035) {
       setViewport("Mobile");
-    }
-    else {
+    } else {
       setViewport("Desktop");
     }
-  }, [windowWidth])
+  }, [windowWidth]);
 
   useEffect(() => {
     dispatch(fetchUserReviews(sessionUser._id));
@@ -123,17 +122,19 @@ function Profile(props) {
 
   useEffect(() => {
     if (uploadPanelOpen) {
-      document.addEventListener('click', handleClosePanel)
+      document.addEventListener("click", handleClosePanel);
     }
-    
+
     function handleClosePanel(e) {
-      if (e.target.className !== 'profile-picture-upload-panel' && e.target.tagName !== 'INPUT') 
-      {
-        setUploadPanelOpen(false)
-        document.removeEventListener('click', handleClosePanel)
+      if (
+        e.target.className !== "profile-picture-upload-panel" &&
+        e.target.tagName !== "INPUT"
+      ) {
+        setUploadPanelOpen(false);
+        document.removeEventListener("click", handleClosePanel);
       }
     }
-  }, [uploadPanelOpen])
+  }, [uploadPanelOpen]);
 
   function handleDrag(e) {
     e.preventDefault();
@@ -199,7 +200,7 @@ function Profile(props) {
   }
   return (
     <div className="profile-page-root">
-      <Header viewport={viewport}/>
+      <Header viewport={viewport} />
       <div className="profile-page-top">
         <div className="profile-page-left">
           <div
@@ -210,7 +211,11 @@ function Profile(props) {
             <img
               className="profile-page-picture-file"
               src={
-                sessionUser ? sessionUser.photo ? sessionUser.photo : defaultPicture : defaultPicture
+                sessionUser
+                  ? sessionUser.photo
+                    ? sessionUser.photo
+                    : defaultPicture
+                  : defaultPicture
               }
               alt="profile-avatar"
             />
