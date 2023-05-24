@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   try {
     const reviews = await Review.find()
       .populate("user", "_id firstName lastName username profilePhoto ")
-      // .populate("imageUrls")
+      .populate("imageUrls")
       .sort({ createdAt: -1 });
     return res.json(reviews);
   } catch (err) {
@@ -34,7 +34,7 @@ router.get("/user/:userId", async (req, res, next) => {
     const reviews = await Review.find({ user: user._id })
       .sort({ createdAt: -1 })
       .populate("user", "_id firstName lastName username profilePhoto")
-      // .populate("imageUrls")
+      .populate("imageUrls")
       .populate({
         path: 'recipe',
         select: 'recipeName country photoUrl'
@@ -59,7 +59,7 @@ router.get("/recipe/:recipeId", async (req, res, next) => {
     const reviews = await Review.find({ recipe: recipe._id })
       .sort({ createdAt: -1 })
       .populate("user", "_id firstName lastName username profilePhoto")
-      // .populate("imageUrls")
+      .populate("imageUrls", "url")
     return res.json(reviews);
   } catch (err) {
     return res.json([]);
@@ -72,7 +72,7 @@ router.get("/:id", async (req, res, next) => {
       "user",
       "_id firstName lastName username profilePhoto"
     )
-    // .populate("imageUrls");
+    .populate("imageUrls");
     return res.json(review);
   } catch (err) {
     const error = new Error("Review not found");
@@ -85,6 +85,7 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", requireUser, multipleMulterUpload("images"), validateReviewInput, async (req, res, next) => {
   const imageUrls = await multipleFilesUpload({files: req.files});
 
+  console.log(req.body);
   try {
     const newReview = new Review({
       user: req.user._id,
@@ -94,7 +95,7 @@ router.post("/", requireUser, multipleMulterUpload("images"), validateReviewInpu
       wouldMakeAgain: req.body.wouldMakeAgain,
       wouldRecommend: req.body.wouldRecommend,
       starRating: req.body.starRating,
-      imageUrls
+      imageUrls,
     });
 
     let review = await newReview.save();
@@ -110,9 +111,11 @@ router.post("/", requireUser, multipleMulterUpload("images"), validateReviewInpu
 
 router.put(
   "/:reviewId",
-  requireUser,
+  requireUser, multipleMulterUpload("images"),
   validateReviewInput,
   async (req, res, next) => {
+    const imageUrls = await multipleFilesUpload({files: req.files});
+    console.log(imageUrls);
     try {
       const updatedReview = {
         title: req.body.title,
@@ -120,6 +123,7 @@ router.put(
         wouldMakeAgain: req.body.wouldMakeAgain,
         wouldRecommend: req.body.wouldRecommend,
         starRating: req.body.starRating,
+        imageUrls,
       };
 
       let review = await Review.findOneAndUpdate(

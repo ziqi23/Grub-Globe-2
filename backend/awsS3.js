@@ -21,6 +21,7 @@ const singleFileUpload = async ({ file }) => {
 };
 
 const multipleFilesUpload = async ({ files }) => {
+  console.log(files);
   return await Promise.all(
     files.map((file) => {
       return singleFileUpload({ file });

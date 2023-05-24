@@ -15,8 +15,8 @@ users.push(
   new User ({
     _id: "164000000000000000000000",
     username: 'demo-user',
-    firstName: 'Iam',
-    lastName: 'Demo',
+    firstName: 'Emma',
+    lastName: 'Watson',
     email: 'demo-user@appacademy.io',
     hashedPassword: bcrypt.hashSync('starwars', 10),
     completedRecipe: [
@@ -58,7 +58,8 @@ users.push(
       },
       {
         recipeId: "065000000000000000000000"
-      }]
+      }],
+
     }),
 
   new User({
