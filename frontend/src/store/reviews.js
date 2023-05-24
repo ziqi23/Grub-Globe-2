@@ -135,6 +135,8 @@ export const composeReview = (data, images) => async (dispatch) => {
 };
 
 export const updateReview = (data, images, reviewId) => async (dispatch) => {
+  console.log(images);
+
   const formData = new FormData();
   formData.append("title", data.title);
   formData.append("text", data.text);
