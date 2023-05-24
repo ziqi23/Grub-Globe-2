@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
 }
 
 .review-user-info .circle {
@@ -238,6 +239,256 @@
   font-size: 0.9em;
   font-weight: 300;
   margin-bottom: 10px;
+}
+
+/* #review-image {
+  display: block;
+  margin-top: 5px;
+}
+
+#review-image img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
+.image-preview-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-preview-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.image-remove-button {
+  position: center;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: darkgray;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.image-upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed lightgray;
+  border-radius: 4px;
+  height: 100px;
+  width: 100px;
+}
+
+.image-upload-placeholder {
+  text-align: center;
+  color: lightgray;
+  font-size: 24px;
+  cursor: pointer;
+} */
+
+.review-images-container {
+  display: flex;
+  width: 150px;
+  height: 150px;
+  margin-top: 10px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.review-image {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel .slide {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#review-images {
+  display: block;
+  margin-top: 5px;
+}
+
+#review-images .image-preview-container img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
+.image-preview-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-preview-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.image-remove-button {
+  position: center;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  color: darkgray;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.image-upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed lightgray;
+  border-radius: 4px;
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+}
+
+.image-upload-placeholder {
+  text-align: center;
+  color: lightgray;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* #review-image {
+  display: block;
+  margin-top: 5px;
+}
+
+#review-image img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
+.image-preview-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-preview-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.image-remove-button {
+  position: center;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: darkgray;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.image-upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed lightgray;
+  border-radius: 4px;
+  height: 100px;
+  width: 100px;
+}
+
+.image-upload-placeholder {
+  text-align: center;
+  color: lightgray;
+  font-size: 24px;
+  cursor: pointer;
+} */
+
+.review-images-container {
+  display: flex;
+  width: 150px;
+  height: 150px;
+  margin-top: 10px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.review-image {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel .slide {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#review-images {
+  display: block;
+  margin-top: 5px;
+}
+
+#review-images .image-preview-container img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
+.image-preview-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-preview-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.image-remove-button {
+  position: center;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  color: darkgray;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.image-upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed lightgray;
+  border-radius: 4px;
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+}
+
+.image-upload-placeholder {
+  text-align: center;
+  color: lightgray;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 @media (max-width: 1035px) {

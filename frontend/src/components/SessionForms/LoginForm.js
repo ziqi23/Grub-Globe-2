@@ -37,7 +37,7 @@ function LoginForm({ openSignupModal, closeLoginModal }) {
   const continueAsDemoUser = async (e) => {
     e.preventDefault();
 
-    const demoUser = { email: "demo-user@appacademy.io", password: "starwars" };
+    const demoUser = { email: "guy.fieri@hotmail.com", password: "flavortown" };
     const res = await dispatch(login(demoUser));
   };
 
@@ -82,8 +82,8 @@ function LoginForm({ openSignupModal, closeLoginModal }) {
 
           <input type="submit" value="Login" disabled={!email || !password} />
           <p>or</p>
-          <div 
-            onClick={continueAsDemoUser} 
+          <div
+            onClick={continueAsDemoUser}
             className="demo-login-button"
           >
             Continue as Demo User
