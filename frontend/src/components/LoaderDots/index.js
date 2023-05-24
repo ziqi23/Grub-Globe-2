@@ -3,13 +3,13 @@ import "./LoaderDots.css";
 const LoaderDots = () => {
   return (
     <div className="dots-loading-container">
-      <div class="dots-loading-wrapper">
-        <div class="dots-circle"></div>
-        <div class="dots-circle"></div>
-        <div class="dots-circle"></div>
-        <div class="dots-shadow"></div>
-        <div class="dots-shadow"></div>
-        <div class="dots-shadow"></div>
+      <div className="dots-loading-wrapper">
+        <div className="dots-circle"></div>
+        <div className="dots-circle"></div>
+        <div className="dots-circle"></div>
+        <div className="dots-shadow"></div>
+        <div className="dots-shadow"></div>
+        <div className="dots-shadow"></div>
       </div>
     </div>
   );
