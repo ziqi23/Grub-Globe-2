@@ -30,7 +30,7 @@ const Discover = props => {
       }, [user]);      
 
     useEffect(() => {
-        if (windowWidth <= 920) {
+        if (windowWidth <= 1111) {
           setViewport("Mobile");
         }
         else {
@@ -185,7 +185,7 @@ const Discover = props => {
                             <RecipeContainer key={index} recipe={recipe} />
                                 ))}
                         </div>
-                        
+
                     <div className="recommendations-header-reviews">Highly rated recipes...</div> 
                             <div className="recommendations-grid-reviews">
                                 {recipesWithMostReviewsFinal?.map((recipe) => (

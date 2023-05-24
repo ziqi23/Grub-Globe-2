@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Recipe = mongoose.model('Recipe');
 
 
+
 // get random collection of recipes
 router.get('/randomRecipes', async (req, res) => {
     try {

@@ -17,7 +17,7 @@ const RandomRecipeGenerator = () => {
     const [totalRecipes, setTotalRecipes] = useState(10);
 
     const resetIndex = () => {
-        const index = (Math.floor(Math.random() * totalRecipes));
+        setIndex(Math.floor(Math.random() * totalRecipes));
     }
    
     const getRecipes = async () => {
@@ -33,7 +33,7 @@ const RandomRecipeGenerator = () => {
     
     useEffect(() => {
         getRecipes();
-    }, [pushed])
+    }, [])
 
     let recipeInterval;
 
@@ -63,6 +63,7 @@ const RandomRecipeGenerator = () => {
             clearInterval(recipeInterval);
             setIsLoading(false)
             setPushed(false);
+            getRecipes();
         }, 5000)
     }
 
