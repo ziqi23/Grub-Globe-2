@@ -4,11 +4,11 @@ const SET_FAVORITES = "favorites/setFavorites";
 const ADD_FAVORITE = "favorites/addFavorite";
 const REMOVE_FAVORITE = "favorites/removeFavorite";
 const RECEIVE_FAVORITE_ERRORS = "favorites/RECEIVE_FAVORITE_ERRORS";
-const RESET_FAVORITES = 'favorites/RESET_FAVORITES';
+// const RESET_FAVORITES = 'favorites/RESET_FAVORITES';
 
-export const resetFavorites = () => ({
-  type: RESET_FAVORITES,
-});
+// export const resetFavorites = () => ({
+//   type: RESET_FAVORITES,
+// });
 
 const setFavorites = (favorites) => ({
   type: SET_FAVORITES,
@@ -77,8 +77,8 @@ function favoritesReducer(state = {}, action) {
       const newState = { ...state };
       delete newState[action.favoriteId];
       return newState;
-    case RESET_FAVORITES:
-      return {};
+    // case RESET_FAVORITES:
+    //   return {};
     default:
       return state;
   }

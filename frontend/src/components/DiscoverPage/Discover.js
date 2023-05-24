@@ -29,140 +29,141 @@ const Discover = props => {
     //     dispatch(resetFavorites());
     //   }, [user]);      
 
-    useEffect(() => {
-        if (windowWidth <= 920) {
-          setViewport("Mobile");
-        }
-        else {
-          setViewport("Desktop");
-        }
-      }, [windowWidth])
+    // useEffect(() => {
+    //     if (windowWidth <= 920) {
+    //       setViewport("Mobile");
+    //     }
+    //     else {
+    //       setViewport("Desktop");
+    //     }
+    //   }, [windowWidth])
 
 
-        useEffect(() => {
-            window.addEventListener('resize', handleResize);
-            function handleResize(e) {
-            setWindowWidth(window.innerWidth);
-            }
-            handleResize();
-            return () => window.removeEventListener("resize", handleResize);
-        }, [])
+    //     useEffect(() => {
+    //         window.addEventListener('resize', handleResize);
+    //         function handleResize(e) {
+    //         setWindowWidth(window.innerWidth);
+    //         }
+    //         handleResize();
+    //         return () => window.removeEventListener("resize", handleResize);
+    //     }, [])
 
     
-    useEffect(() => {
-         dispatch(fetchFavorites());
-         dispatch(fetchReviews());
-    }, [dispatch, user])
+    // useEffect(() => {
+    //      dispatch(fetchFavorites());
+    //      dispatch(fetchReviews());
+    // }, [dispatch, user])
 
-    const recipeCounts = {};
+    // const recipeCounts = {};
 
 
 
-    let recipesWithMostReviews;
+    // let recipesWithMostReviews;
 
-    useEffect(() => {
-        if (recipeReviews && Object.values(recipeReviews).length > 0) {
-            recipeReviews.forEach((entry) => {
-                const recipeId = entry.recipe;
-                const wouldMakeAgain = entry.wouldMakeAgain;
+    // useEffect(() => {
+    //     if (recipeReviews && Object.values(recipeReviews).length > 0) {
+    //         recipeReviews.forEach((entry) => {
+    //             const recipeId = entry.recipe;
+    //             const wouldMakeAgain = entry.wouldMakeAgain;
                 
-                // Increment the count for the recipe if "would make again" is true
-                if (wouldMakeAgain) {
-                    recipeCounts[recipeId] = (recipeCounts[recipeId] || 0) + 1;
-                }
-            });
+    //             // Increment the count for the recipe if "would make again" is true
+    //             if (wouldMakeAgain) {
+    //                 recipeCounts[recipeId] = (recipeCounts[recipeId] || 0) + 1;
+    //             }
+    //         });
             
-            // Sort reviews in descending order
-            const sortedRecipes = Object.entries(recipeCounts).sort(
-                ([_, countA], [__, countB]) => countB - countA
-            );
+    //         // Sort reviews in descending order
+    //         const sortedRecipes = Object.entries(recipeCounts).sort(
+    //             ([_, countA], [__, countB]) => countB - countA
+    //         );
             
-            // Retrieve the recipes with the most "would make again" reviews
-            recipesWithMostReviews = sortedRecipes
-                .slice(0, 10) 
-                .map(([recipeId]) => recipeId);
-                setLoading(false);
+    //         // Retrieve the recipes with the most "would make again" reviews
+    //         recipesWithMostReviews = sortedRecipes
+    //             .slice(0, 10) 
+    //             .map(([recipeId]) => recipeId);
+    //             // setLoading(false);
             
-        }
-    }, [dispatch, recipeReviews, user]);
+    //     }
+    // }, [dispatch, recipeReviews, user]);
     
-    // const [recipesWithMostReviewsFinal, setRecipesWithMostReviewsFinal] = useState([]);
+    // // const [recipesWithMostReviewsFinal, setRecipesWithMostReviewsFinal] = useState([]);
 
-    useEffect(() => {
-    const fetchRecipeRecommendationsAsync = async () => {
-        if (recipesWithMostReviews && recipesWithMostReviews.length > 0) {
-        const data = await dispatch(fetchRecipeRecommendations(recipesWithMostReviews));
-        // console.log(data, 'data')
-        // setRecipesWithMostReviewsFinal(data);
-        }
-    };
+    // useEffect(() => {
+    // const fetchRecipeRecommendationsAsync = async () => {
+    //     if (recipesWithMostReviews && recipesWithMostReviews.length > 0) {
+    //     const data = await dispatch(fetchRecipeRecommendations(recipesWithMostReviews));
+    //     // console.log(data, 'data')
+    //     // setRecipesWithMostReviewsFinal(data);
+    //     }
+    // };
 
-    fetchRecipeRecommendationsAsync();
-    }, [dispatch, recipeReviews]);
+    // fetchRecipeRecommendationsAsync();
+    // }, [dispatch, recipeReviews]);
 
-    // useEffect(() => { 
-    //     dispatch(fetchRecipeRecommendations(recipesWithMostReviews));
-    // }, [dispatch, recipeReviews, recipesWithMostReviews]);
+    // // useEffect(() => { 
+    // //     dispatch(fetchRecipeRecommendations(recipesWithMostReviews));
+    // // }, [dispatch, recipeReviews, recipesWithMostReviews]);
 
-    const recipesWithMostReviewsFinal = useSelector(state => state.recipes['recipe recommendations']);
-    console.log(recipesWithMostReviewsFinal, 'recipesWithMostReviewsFinal')
+    // const recipesWithMostReviewsFinal = useSelector(state => state.recipes['recipe recommendations']);
+    // console.log(recipesWithMostReviewsFinal, 'recipesWithMostReviewsFinal')
 
-    const [discoverFavorites, setDiscoverFavorites] = useState([]);
+    // const [discoverFavorites, setDiscoverFavorites] = useState([]);
     
-    useEffect(() => {
-      if (favorites.length > 0) {
-        const favoritesCopy = [...favorites];
+    // useEffect(() => {
+    //   if (favorites.length > 0) {
+    //     const favoritesCopy = [...favorites];
 
-        for (let i = 0; i < favorites.length; i++) {
+    //     for (let i = 0; i < favorites.length; i++) {
           
-            const currentFavorite = favoritesCopy[i];
-            const country = currentFavorite.recipe.country;
-            const recipeName = currentFavorite.recipe.recipeName.split(' ').join('');
-            const query = `${country} , ${recipeName}`;
+    //         const currentFavorite = favoritesCopy[i];
+    //         const country = currentFavorite.recipe.country;
+    //         const recipeName = currentFavorite.recipe.recipeName.split(' ').join('');
+    //         const query = `${country} , ${recipeName}`;
             
-            fetch(`/api/search?q=${query}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    if (favorites.length === 1) {
-                        setDiscoverFavorites(data);
+    //         fetch(`/api/search?q=${query}`)
+    //             .then((response) => response.json())
+    //             .then((data) => {
+    //                 if (favorites.length === 1) {
+    //                     setDiscoverFavorites(data);
                         
-                    } else {
-                        // const isAlreadyIncluded = discoverFavorites.some( (recipe) => recipe._id === data[1]._id);
-                        setDiscoverFavorites((prevFavorites) => {
-                            const isAlreadyIncluded = prevFavorites.some((recipe) => recipe._id === data[0]._id);
-                            if (!isAlreadyIncluded) {
-                              return [...prevFavorites, data[0]];
-                            }
-                            return prevFavorites;
-                          });
+    //                 } else {
+    //                     // const isAlreadyIncluded = discoverFavorites.some( (recipe) => recipe._id === data[1]._id);
+    //                     setDiscoverFavorites((prevFavorites) => {
+    //                         const isAlreadyIncluded = prevFavorites.some((recipe) => recipe._id === data[0]._id);
+    //                         if (!isAlreadyIncluded) {
+    //                           return [...prevFavorites, data[0]];
+    //                         }
+    //                         return prevFavorites;
+    //                       });
     
-                        // if (!isAlreadyIncluded) {
-                        // console.log(data[1]); // Log the favorite
-                        // setDiscoverFavorites((prev) => [...prev, data[1]]);
-                        // console.log(discoverFavorites, 'discoverFavorites')
-                        // }
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
+    //                     // if (!isAlreadyIncluded) {
+    //                     // console.log(data[1]); // Log the favorite
+    //                     // setDiscoverFavorites((prev) => [...prev, data[1]]);
+    //                     // console.log(discoverFavorites, 'discoverFavorites')
+    //                     // }
+    //                 }
+    //             })
+    //             .catch((error) => {
+    //                 console.error(error);
+    //             });
+    //     }
         
-      }
+    //     setLoading(false);
+    //   }
     
-    }, [dispatch, favorites.length, user]);
+    // }, [dispatch, favorites.length, user]);
    
     
     
-    if (loading) {
-        return <LoaderDots />
-    }
+    // if (loading) {
+    //     return <LoaderDots />
+    // }
 
+    // <Header viewport={viewport}/>
    
     return (
         <>
-            <div className="recommendations-container">
-            <Header viewport={viewport}/>
+            {/* <div className="recommendations-container">
                 <div className="recipe-generator-container"><RandomRecipeGenerator /></div>
                 <div className="recommendations">
                     <h1 className="recommendations-title">Recommendations for you</h1>
@@ -182,7 +183,7 @@ const Discover = props => {
                             </div>
                         
                 </div>
-            </div>
+            </div> */}
         </>
 
     );
