@@ -47,7 +47,7 @@ const RandomRecipeGenerator = () => {
     }
 
     const handlePush = () => {
-        if (!disabled) {
+        if (!disabled && recipes.length > 0) {
             setDisabled(true)
             setPushed(true);
             setIsLoading(true);
