@@ -61,7 +61,7 @@ function LoginForm({ openSignupModal, closeLoginModal }) {
               type="text"
               value={email}
               onChange={update("email")}
-              placeholder="Email"
+     
             />
           </label>
 
@@ -72,7 +72,7 @@ function LoginForm({ openSignupModal, closeLoginModal }) {
               type="password"
               value={password}
               onChange={update("password")}
-              placeholder="Password"
+    
             />
           </label>
           <div className="switch-login-modal">

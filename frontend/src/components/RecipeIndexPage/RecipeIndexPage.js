@@ -28,7 +28,7 @@ const RecipeIndexPage = (props) => {
   }, [])
   
   useEffect(() => {
-    if (windowWidth <= 920) {
+    if (windowWidth <= 1111) {
       setViewport("Mobile");
     }
     else {
@@ -37,10 +37,6 @@ const RecipeIndexPage = (props) => {
   }, [windowWidth])
 
   let search = location.search.substring(1);
-
-  // search = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
-  // this search variable is decoded to create an object: {country: "United States"}
-
   const searchSplit = search.split("=");
 
   useEffect(() => {

@@ -38,8 +38,7 @@ const RecipeShowPage = () => {
   }, [])
   
   useEffect(() => {
-    // if (windowWidth <= 920) {
-    if (windowWidth <= 1035) {
+    if (windowWidth <= 1111) {
       setViewport("Mobile");
     }
     else {
@@ -91,9 +90,6 @@ const RecipeShowPage = () => {
     setTooltipOpen(-1);
   };
 
-  window.scrollTo({
-    top: 0,
-  });
 
   if (!recipe) {
     return <LoaderDots />;

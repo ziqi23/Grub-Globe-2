@@ -30,6 +30,7 @@
     "buffer": "^6.0.3",
     "multer": "^1.4.5-lts.1",
     "react-icons": "^4.8.0",
+    "react-responsive-carousel": "^3.2.23",
     "react-select": "^5.7.3",
     "react-step-progress-bar": "^1.0.3",
     "three": "^0.152.2"

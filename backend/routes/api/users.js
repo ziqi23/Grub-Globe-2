@@ -13,7 +13,7 @@ const { isProduction } = require("../../config/keys");
 const validateRegisterInput = require("../../validations/register");
 const validateLoginInput = require("../../validations/login");
 const validateCompleteRecipeInput = require("../../validations/completeRecipe");
-const { singleFileUpload } = require('../../awsS3')
+const { singleFileUpload } = require("../../awsS3");
 const multer = require("multer");
 const upload = multer();
 const Recipe = mongoose.model("Recipe");
@@ -27,7 +27,10 @@ router.post(
     if (req.file === undefined) {
       return res.send("you must select a file.");
     }
-    const profileImageUrl = await singleFileUpload({ file: req.file, public: true });
+    const profileImageUrl = await singleFileUpload({
+      file: req.file,
+      public: true,
+    });
     await User.findOneAndUpdate(
       { username: req.user.username },
       { profileImageUrl }

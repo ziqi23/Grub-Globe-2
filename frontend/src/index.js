@@ -6,17 +6,20 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store/store';
 import { ModalProvider } from './context/Modal';
+import { PhotoModalProvider } from './context/PhotosModal';
 
 export const store = configureStore({});
 
 function Root() {
   return (
     <ModalProvider>
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
+      <PhotoModalProvider>
+        <Provider store={store}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </Provider>
+      </PhotoModalProvider>
     </ModalProvider>
   );
 }
