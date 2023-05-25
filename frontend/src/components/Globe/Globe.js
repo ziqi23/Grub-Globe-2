@@ -59,7 +59,6 @@ function Globe(props) {
     Thailand: "FBA745",
     Vietnam: "EE9848",
     Brazil: "FFCD82",
-    Argentina: "FB7D09",
     Peru: "F0A348",
     Greece: "FCBA6C",
     Turkey: "E4762A",
