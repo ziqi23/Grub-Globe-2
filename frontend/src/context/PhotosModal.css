@@ -22,7 +22,7 @@
 
 #photo-modal-content {
   position: absolute;
-  background-color: white;
+  background-color: #f1f1f1;
   border-radius: 10px;
   width: min(100% - 30px, 900px);
   height: 70vh;

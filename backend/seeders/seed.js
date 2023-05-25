@@ -507,7 +507,8 @@ reviews.push(
     text: "I absolutely loved the poutine! The combination of crispy fries, rich gravy, and melty cheese curds was a perfect comfort food. The flavors were amazing, and the portion size was generous. I would definitely make it again and highly recommend it to others. A 5-star experience!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-01.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-02.jpg"]
   }),
 
 
@@ -518,7 +519,8 @@ reviews.push(
     text: "Poutine is a classic Canadian dish, and this recipe nailed it! The fries were perfectly crispy, the gravy was savory and flavorful, and the cheese curds added a delightful gooeyness. It brought back fond memories of enjoying poutine from food trucks during my visits to Canada. I would definitely make it again and highly recommend it to anyone looking for a delicious and comforting meal. 5 stars!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-03.jpg",  "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-04.jpg"]
   }),
 
   new Review({
@@ -528,7 +530,8 @@ reviews.push(
     text: "These butter tarts were absolutely delicious! The buttery and flaky pastry paired perfectly with the sweet and gooey filling. Each bite was a delightful explosion of flavors. I couldn't resist having seconds! I would definitely make them again and highly recommend them to anyone with a sweet tooth. A perfect 5-star treat!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-05.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-06.jpg"]
   }),
 
   new Review({
@@ -538,7 +541,8 @@ reviews.push(
     text: "Butter tarts are a true Canadian delicacy, and this recipe captured the authentic taste perfectly. The pastry was buttery and flaky, and the filling had just the right balance of sweetness. It brought back nostalgic memories of enjoying butter tarts during family gatherings. I would definitely make them again and highly recommend them to anyone looking to indulge in a classic Canadian treat. 5 stars!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-07.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-08.jpg"]
   }),
 
 
@@ -549,7 +553,8 @@ reviews.push(
     text: "These Nanaimo bars were absolutely divine! The layers of chocolate, creamy custard, and coconut crust created a heavenly combination of flavors and textures. Each bite was a delightful treat. I couldn't get enough of them! I would definitely make them again and highly recommend them to anyone with a sweet tooth. A perfect 5-star dessert!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-09.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-10.jpg"]
   }),
 
 
@@ -560,7 +565,8 @@ reviews.push(
     text: "These Nanaimo Bars are absolutely heavenly! The layers of chocolate, custard, and coconut are perfectly balanced and rich in flavor. I couldn't stop at just one piece. Highly recommended!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-11.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-12.jpg"]
   }),
 
   new Review({
@@ -570,7 +576,8 @@ reviews.push(
     text: "I tried making the Timbits recipe, but unfortunately, they didn't turn out as expected. The dough was too dense, resulting in heavy and chewy Timbits. I followed the instructions carefully, but something went wrong. I wouldn't make these again and cannot recommend this recipe.",
     wouldMakeAgain: false,
     wouldRecommend: false,
-    starRating: 1
+    starRating: 1,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-13.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-14.jpg"]
   }),
 
 
@@ -581,7 +588,8 @@ reviews.push(
     text: "I tried the Tex-Mex Burger recipe, and it was absolutely amazing! The combination of flavors from the spices, toppings, and sauces was outstanding. The burger patty was juicy and perfectly cooked. I highly recommend this recipe and will definitely make it again!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-15.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-16.jpg"]
   }),
 
 
@@ -592,7 +600,8 @@ reviews.push(
     text: "I was excited to try the Spicy Fried Chicken with Sweet Chili Sauce, but the end result didn't meet my expectations. The chicken didn't turn out as crispy as I had hoped, and the sweet chili sauce lacked the desired kick. It was just an average dish for me, and I don't think I'll be making it again.",
     wouldMakeAgain: false,
     wouldRecommend: false,
-    starRating: 2
+    starRating: 2,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-17.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-18.jpg"]
   }),
 
   new Review({
@@ -602,7 +611,8 @@ reviews.push(
     text: "I made the Apple Pie Bars, and they were a hit with my family! The crust was buttery and flaky, and the apple filling was perfectly spiced. It tasted just like a slice of apple pie but in a convenient bar form. I would highly recommend this recipe and will definitely make it again!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 4
+    starRating: 4,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-19.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-20.jpg"]
   }),
 
 
@@ -613,7 +623,8 @@ reviews.push(
     text: "I tried the Light Clam Chowder recipe, and it was a pleasant surprise! The use of lighter ingredients didn't compromise the flavor. The chowder was creamy, packed with clams, and had a lovely balance of seasonings. It's a healthier version of a classic comfort food that I would make again.",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 4
+    starRating: 4,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/clam-chowder.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/clam-chowder-ingredients.jpg"]
   }),
 
   new Review({
@@ -623,7 +634,8 @@ reviews.push(
     text: "I recently tried the Tex-Mex Burger recipe, and it blew me away! The combination of spices and toppings created a burst of flavors in every bite. The patty was juicy and perfectly seasoned. This recipe is a definite winner, and I can't wait to make it again!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/tex-mex-burger.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/tex-mex-ingredients.jpg"]
   }),
 
 
@@ -634,7 +646,8 @@ reviews.push(
     text: "If you're a fan of spicy food, the Spicy Fried Chicken with Sweet Chili Sauce is a must-try! The chicken had a crispy coating with a spicy kick, and the sweet chili sauce added a perfect balance of sweetness. I highly recommend this recipe to spice enthusiasts. I'll definitely make it again!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 4
+    starRating: 4,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/spicy-fried-chicken.jpg"]
   }),
 
   new Review({
@@ -644,7 +657,8 @@ reviews.push(
     text: "The Apple Pie Bars recipe is a fantastic dessert option, especially during the fall season. The bars had a buttery crust and a delicious apple filling with a hint of cinnamon. They were a hit with my family and friends. I'll be making these again and again!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/apple-pie-bar.jpg"]
   }),
 
 
@@ -655,7 +669,8 @@ reviews.push(
     text: "The Light Clam Chowder recipe is a guilt-free version of a classic favorite. The chowder had a creamy texture and was loaded with tender clams. It was a satisfying and comforting meal without feeling heavy. I would highly recommend this recipe for anyone looking for a healthier option.",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 4
+    starRating: 4,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/clam-chowder-2.jpg"]
   }),
 
 
@@ -666,7 +681,8 @@ reviews.push(
     text: "I recently made the guacamole recipe, and it turned out to be the perfect party dip! The avocados were perfectly ripe and creamy, and the combination of lime juice, cilantro, and spices added a burst of flavor. It was a hit among my friends, and I'll definitely make it again!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/guac.jpeg","https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/guac-ingredients.jpg"]
   }),
 
   new Review({
@@ -676,7 +692,8 @@ reviews.push(
     text: "The Beef, Poblano & Cheese Tamales recipe is a winner! The combination of tender beef, flavorful poblano peppers, and melted cheese was absolutely delicious. The masa dough was perfectly steamed, and the tamales were filling and satisfying. I highly recommend trying this recipe!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 4
+    starRating: 4,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/tamales.jpg","https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/tamales-3.jpg"]
   }),
 
   new Review({
@@ -686,7 +703,8 @@ reviews.push(
     text: "The Enchiladas Verdes (Green Enchiladas) recipe is a tangy delight! The green sauce had a perfect balance of tanginess and spice, and it coated the tender chicken and tortillas beautifully. It was a flavorful and satisfying meal that my family loved. I would definitely make it again!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/enchiladas.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/enchiladas-2.jpg"]
   }),
 
   new Review({
@@ -696,7 +714,8 @@ reviews.push(
     text: "The Classic Margarita recipe is a refreshing and authentic drink option. The combination of tequila, lime juice, and a touch of sweetness was perfectly balanced. It was a fantastic way to unwind and enjoy a taste of Mexico. I would highly recommend this recipe to margarita lovers!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/margarita.jpg"]
   }),
 
   new Review({
@@ -706,7 +725,8 @@ reviews.push(
     text: "I recently tried the guacamole recipe, but I was disappointed with the texture. The avocados seemed overripe and mushy, resulting in a sloppy consistency. The flavor was decent, but the texture was a letdown. I wouldn't make this again.",
     wouldMakeAgain: false,
     wouldRecommend: false,
-    starRating: 2
+    starRating: 2,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/bad-guac.jpeg"]
   }),
 
   new Review({
@@ -749,7 +769,8 @@ reviews.push(
     text: "I tried the Chinese Fried Rice recipe, and it turned out to be absolutely delicious! The flavors were authentic, and the rice had the perfect texture. It was a hit with my family, and I'll definitely be making it again. Highly recommended!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/fried-rice.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/fried-rice-2.jpg"]
   }),
 
 
@@ -760,7 +781,8 @@ reviews.push(
     text: "The Hot and Sour Noodle Soup recipe was a flavorful bowl of comfort. The combination of spicy and tangy flavors worked perfectly, and the noodles had a nice chew to them. It was just what I needed on a cold day. I'll be making this again for sure!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 4
+    starRating: 4,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/noodle-soup.jpg"]
   }),
 
 
@@ -782,7 +804,8 @@ reviews.push(
     text: "The Kung Pao Chicken With Peanuts recipe was satisfyingly spicy and packed with flavor. The combination of tender chicken, crunchy peanuts, and the signature sauce was delightful. It had just the right amount of heat. I'll be adding this to my regular rotation.",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 4
+    starRating: 4,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/kung-pao.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/kung-pao-2.jpg"]
   }),
 
   new Review({
@@ -792,7 +815,8 @@ reviews.push(
     text: "The Coconut Chow Mein Butterscotch Cookies were a unique twist on classic cookies. The combination of coconut, chow mein noodles, and butterscotch was surprisingly delicious. The cookies had a perfect balance of sweet and salty flavors. I would highly recommend trying this recipe!",
     wouldMakeAgain: true,
     wouldRecommend: true,
-    starRating: 5
+    starRating: 5,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-55.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-56.jpg"]
   }),
 
 
@@ -804,6 +828,8 @@ reviews.push(
     wouldMakeAgain: true,
     wouldRecommend: true,
     starRating: 4
+    ,
+    imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-57.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/review-photo-58.jpg"]
   }),
 
   new Review({
