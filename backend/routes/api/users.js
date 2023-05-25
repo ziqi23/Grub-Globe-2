@@ -130,7 +130,7 @@ router.post(
 );
 
 router.patch(
-  "/complete-recipe",
+  "/completeRecipe",
   validateCompleteRecipeInput,
   async function (req, res, next) {
     try {
