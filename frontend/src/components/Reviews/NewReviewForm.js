@@ -134,7 +134,6 @@ const NewReviewForm = ({ recipeId, message, review }) => {
     };
 
     if (review) {
-      console.log(images);
       dispatch(updateReview(reviewContents, images, review._id)).then(() => {
         dispatch(fetchRecipeReviews(recipeId));
         setImages([]);

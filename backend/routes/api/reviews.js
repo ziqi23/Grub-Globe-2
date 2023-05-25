@@ -85,7 +85,6 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", requireUser, multipleMulterUpload("images"), validateReviewInput, async (req, res, next) => {
   const imageUrls = await multipleFilesUpload({files: req.files});
 
-  console.log(req.body);
   try {
     const newReview = new Review({
       user: req.user._id,
@@ -115,7 +114,6 @@ router.put(
   validateReviewInput,
   async (req, res, next) => {
     const imageUrls = await multipleFilesUpload({files: req.files});
-    console.log(imageUrls);
     try {
       const updatedReview = {
         title: req.body.title,

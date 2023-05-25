@@ -261,9 +261,6 @@ const ReviewsTiles = ({review}) => {
         )}
     }
 
-    // useEffect(() => {
-    //     console.log(review)
-    // }, [])
 
     const photosGallery = () => {
         return (

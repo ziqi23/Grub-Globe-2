@@ -179,12 +179,20 @@
 
 #profile-reviews-photos-container {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 10px;
+  box-sizing: border-box;
 }
 
-.image-preview-container img {
+.image-preview-container {
+  width: 100px;
+  /* height: 100px; */
+}
+
+#profile-reviews-photos-container .image-preview-container img {
   margin: 3px;
+  height: 100px
 }
 
 #review-images-edit {
@@ -239,6 +247,7 @@
 
 #photo-modal-content .carousel-root {
   margin-top: 40px;
+  width: 100%;
 }
 
 #photo-modal-content .carousel {
@@ -248,16 +257,52 @@
 }
 
 #photo-modal-content .carousel .slide img {
-  width: 80%;
+  width: 700px;
+  height: 500px;
+  object-fit: cover;
+  top: 50%;
+  left: 50%;
 }
 
 #photo-modal-content {
   background-color: #F1F1F1;
 }
 
-#photo-modal-content .control-arrow {
+#photo-modal-content .carousel-slider .control-arrow {
   background-color: gray;
 }
+
+#photo-modal-content .carousel .thumb {
+  display:none;
+  /* width: 100px !important;
+  height: 70px !important;
+  object-fit: cover !important; */
+}
+
+#photo-modal-content  .carousel .thumbs-wrapper {
+  /* overflow-x: scroll !important; */
+}
+
+/* 
+#photo-modal-content  .carousel .thumbs-wrapper::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#photo-modal-content  .carousel .thumbs-wrapper::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+#photo-modal-content  .carousel .thumbs-wrapper::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #b9b9b9;
+} */
 
 @media (max-width: 914px) {
   #profile-reviews-container {
@@ -267,12 +312,26 @@
   }
 
   #photo-modal-content .carousel .slide img {
-    width: 60%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
   }
+
+  /* #photo-modal-content .carousel .slide img {
+    width: 80%;
+    height: 50%;
+  } */
 
   #root #photo-modal-content {
     width: 90vw;
+    top: 10%;
     left: auto;
+  }
+
+  #photo-modal-content .carousel .slider-wrapper.axis-horizontal .slider {
+    align-items: center;
   }
 }
 
@@ -290,7 +349,9 @@
   }
 
   #root #photo-modal-content {
-    height: 50vh;
-    top: 20%;
+    height: 70vh;
+    top: 10%;
   }
+
+
 }
