@@ -70,7 +70,6 @@ export const fetchRecipeRecommendations = (recipeIds) => async (dispatch) => {
       );
   
       const recipes = await Promise.all(recipePromises);
-    //   recipes.forEach((recipe) => dispatch(receiveRecipe(recipe)));
         dispatch(receiveRecommendationRecipes(recipes));
     } catch (err) {
       const resBody = await err;

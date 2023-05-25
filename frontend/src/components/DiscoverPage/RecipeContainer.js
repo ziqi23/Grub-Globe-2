@@ -1,6 +1,5 @@
 
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-// import FavoritesTile from '../Profile/FavoritesTile';
 import './RecipeContainer.css';
 
 
@@ -8,7 +7,6 @@ const RecipeContainer = ({ recipe }) => {
     return (
         <>
             <Link to={`/recipes/${recipe?._id}`}>
-                {/* <FavoritesTile recipe={recipe} className="recs-tile"/> */}
                 <div className='recipe-container'>
                     <div className='discover-page-img-container'>
                         <img className='discover-page-img' src={recipe?.photoUrl} alt={recipe?.recipeName}/>

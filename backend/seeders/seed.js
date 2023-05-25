@@ -992,7 +992,7 @@ reviews.push(
   imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-83.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-84.jpg"]
   }),
 
-  new Review({ //skip
+  new Review({ 
   user: "160000000000000000000000",
   recipe: "039000000000000000000000",
   title: "Texture Wasn't Right",
@@ -1036,7 +1036,7 @@ reviews.push(
     imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-89.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-90.jpg"]
   }),
 
-  new Review({ //skip
+  new Review({ 
     user: "210000000000000000000000",
     recipe: "094000000000000000000000",
     title: "Lacked Flavor",
@@ -1127,7 +1127,7 @@ reviews.push(
     imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-101.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-102.jpg"]
   }),
 
-  new Review({ //skip
+  new Review({ 
     user: "030000000000000000000000",
     recipe: "114000000000000000000000",
     title: "Mint Overpowered the Flavors",
@@ -1181,7 +1181,7 @@ reviews.push(
     imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-109.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-110.jpg"]
   }),
 
-  new Review({ // 111, 112
+  new Review({ 
     user: "070000000000000000000000",
     recipe: "121000000000000000000000",
     title: "Crispy and Flavorful",
@@ -1192,7 +1192,7 @@ reviews.push(
     imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-111.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-112.jpg"]
   }),
 
-  new Review({ //skip
+  new Review({ 
     user: "080000000000000000000000",
     recipe: "121000000000000000000000",
     title: "Filling Quantity Was Insufficient",
@@ -1262,7 +1262,7 @@ reviews.push(
     imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-121.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-122.jpg"]
   }),
 
-  new Review({ //skip
+  new Review({ 
     user: "210000000000000000000000",
     recipe: "056000000000000000000000",
     title: "Not to My Liking",
@@ -1284,7 +1284,6 @@ reviews.push(
     imageUrls: ["https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-123.jpg", "https://grub-globe-seeds.s3.us-west-2.amazonaws.com/reviews-photos/recipe-photo-124.jpg"]
   }),
 
-  //skip
   new Review({ 
     user: "120000000000000000000000",
     recipe: "057000000000000000000000",
@@ -1355,7 +1354,7 @@ reviews.push(
   }),
 
 
-  new Review ({ //skip
+  new Review ({ 
   user: "200000000000000000000000",
   recipe: "060000000000000000000000",
   title: "Lacked Depth of Flavor",
@@ -1431,7 +1430,7 @@ reviews.push(
   }),
 
 
-  new Review ({ // 1 image
+  new Review ({ 
   user: "110000000000000000000000",
   recipe: "074000000000000000000000",
   title: "Creamy and Flavorful Risotto",
@@ -1443,7 +1442,7 @@ reviews.push(
   }),
 
 
-  new Review ({ // 1image
+  new Review ({ 
   user: "220000000000000000000000",
   recipe: "107000000000000000000000",
   title: "Unique and Tasty Combination",
