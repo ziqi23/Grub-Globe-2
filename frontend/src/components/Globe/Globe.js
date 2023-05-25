@@ -18,7 +18,7 @@ function Globe(props) {
     "5C9E5D": "Mexico",
     555931: "India",
     "6A5912": "France",
-    "6D8C39": "Korea",
+    "6D8C39": "South Korea",
     "94923F": "Japan",
     164915: "Spain",
     176416: "United Kingdom",
@@ -51,7 +51,7 @@ function Globe(props) {
     Mexico: "FED854",
     India: "FFE70C",
     France: "E17E08",
-    Korea: "FFD466",
+    "South Korea": "FFD466",
     Japan: "FF8F28",
     Spain: "FBDE76",
     "United Kingdom": "FFF597",
@@ -89,7 +89,7 @@ function Globe(props) {
       "Indian cuisine is known for its use of spices, such as cumin, coriander, and turmeric. Popular Indian dishes include curries, biryanis, samosas, and naan bread. Indian cuisine also features a variety of vegetarian options.",
     France:
       "French cuisine is known for its use of butter, cream, and wine. Popular French dishes include coq au vin, ratatouille, quiche, and croissants. French cuisine is also famous for its cheeses and wines.",
-    Korea:
+    "South Korea":
       "Korean cuisine is known for its use of fermented foods, such as kimchi, and spicy flavors. Popular Korean dishes include bibimbap, bulgogi, and Korean barbecue. Korean cuisine often features rice, vegetables, and meats.",
     Japan:
       "Japanese cuisine is known for its use of fresh ingredients and minimalist presentation. Popular Japanese dishes include sushi, tempura, ramen, and udon. Japanese cuisine also features a variety of seafood and rice dishes.",
@@ -142,7 +142,7 @@ function Globe(props) {
     Mexico: [],
     India: [],
     France: [],
-    Korea: [],
+    "South Korea": [],
     Japan: [],
     Spain: [],
     "United Kingdom": [],
