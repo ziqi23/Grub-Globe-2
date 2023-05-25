@@ -253,15 +253,16 @@ Interesting considerations and challenges and how we overcame...
 
 [TK note: briefly describe the user experience and why this experience was important for our app. Include a brief gif of experience; you can record a screen clipping and upload to giphy, then use the format below to embed. Must be under 20s, longer gifs tend to cut off. I think in this section we cover badges, magic button (with Big O considerations) for sure, can cover more as well. Can prob make mini headers within this section to split out the topics, each with its own gif and code snippets etc.]
 
-A user can ...
+#### Badge Rewarding System
 
-Example ...:
+In order to enhance the experience of home cooking, we decided to gamify it by implementing a badge reward system, which serves to motivate users to explore and cook a greater variety of recipes through our app. On the profile page, a user is able to see their progress for these badges as there are five levels of profiency a user can achieve for each badge: Rookie, Adept, Expert, Wizardly, and Legendary. The badge rewarding system is based on the total number of recipes a user has completed, diversity of recipes they've completed, how many reviews they've written, and the number of healthy recipes they've cooked.
 
-![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVhYmIxMDkxMmFiMTNkMjM5NzkzOWE0MDU2ODlhZmRlM2E3ZWMxNyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/MC9IJ6ADrUvJMVE3K0/giphy.gif)
+![badges](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGM4NjkyZGI4ZDJmZGNiY2NlMWYxYjgzNDRhN2EyNzZlZmQ5ZGExNSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/anpYfrLS2iXcXGD7AP/giphy.gif)
 
-[TK note: then, explain how we built that user experience - general technical approach plus code snippets]
+[Kat to Michelle: Please update this with correct information]
+Since the badges are entirely based off the current user, we populated the backend response when fetching the current user, with the user's completed recipes. 
 
-The blah does blah
+Add logic here
 
 <h5 a><strong><code>index.js</code></strong></h5>
 
@@ -279,10 +280,11 @@ codecodecode
 
 Interesting considerations and challenges and how we overcame...
 
+#### Random Recipe Generator
 
 Another way a user can discover new recipes easily is through the random recipe generator button, which was inspired by the experience of a slot machine. Upon clicking the "GIVE ME A RANDOM RECIPE" button, this will initiate a setInterval that will randomly index through the an array of all recipes every 0.5s for a total of 5 seconds before a final recipe along with a link to the recipe show page is presented to the user. 
 
-![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVhYmIxMDkxMmFiMTNkMjM5NzkzOWE0MDU2ODlhZmRlM2E3ZWMxNyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/MC9IJ6ADrUvJMVE3K0/giphy.gif)
+![random-recipe-generator](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTdkNGQ1MTk2ZjBlOWVlM2RhNWFjZjZmZmEwNzJmMjYzNGIwMzJmYSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/BUqZHGwjiLyE7s8BUe/giphy.gif)
 
 
 Initially, we were fetching all the recipes from the backend to the frontend, but this was a very slow process. In response, we created a backend route that would generate an aggregate of 10 random recipes that would be sent to the client-side for rendering. 
