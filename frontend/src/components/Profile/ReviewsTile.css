@@ -187,11 +187,12 @@
 
 .image-preview-container {
   width: 100px;
-  height: 100px;
+  /* height: 100px; */
 }
 
-.image-preview-container img {
+#profile-reviews-photos-container .image-preview-container img {
   margin: 3px;
+  height: 100px
 }
 
 #review-images-edit {
