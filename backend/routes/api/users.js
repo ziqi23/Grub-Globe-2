@@ -52,12 +52,6 @@ router.post(
   }
 );
 
-router.get("/", function (req, res, next) {
-  res.json({
-    message: "GET /users",
-  });
-});
-
 router.get("/current", restoreUser, function (req, res, next) {
   if (!isProduction) {
     const csrfToken = req.csrfToken();
@@ -140,7 +134,7 @@ router.post(
 );
 
 router.patch(
-  "/complete-recipe",
+  "/completeRecipe",
   validateCompleteRecipeInput,
   async function (req, res, next) {
     try {

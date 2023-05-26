@@ -72,7 +72,7 @@ export const uploadImage = image => async dispatch => {
 }
 
 export const addCompletedRecipe = (recipe) => async dispatch => {
-  const res = await jwtFetch('/api/users/complete-recipe', {
+  const res = await jwtFetch('/api/users/completeRecipe', {
     method: "PATCH",
     body: JSON.stringify(recipe)
   });
