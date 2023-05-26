@@ -33,16 +33,8 @@ const ReviewsTiles = ({review}) => {
     const [imageUrls, setImageUrls] = useState([]);
     const fileRef = useRef(null);
     const [openPhotoModal, setOpenPhotoModal] = useState(false);
-
-    const handleRemoveClick = (e, index) => {
-        e.preventDefault();
-        const newImages = [...images];
-        const newImageUrls = [...imageUrls];
-        newImages.splice(index, 1);
-        newImageUrls.splice(index, 1);
-        setImages(newImages);
-        setImageUrls(newImageUrls);
-    }
+    const [newImages, setNewImages] = useState([]);
+    const [newImageUrls, setNewImageUrls] = useState([]);
 
     const photoModal = () => {
         return (
@@ -62,6 +54,36 @@ const ReviewsTiles = ({review}) => {
         )
     }
 
+    const updateFiles = async (e) => {
+        const newFiles = Array.from(e.target.files);
+
+        if (newFiles.length !== 0) {
+            let filesLoaded = 0;
+            const urls = [];
+            newFiles.forEach((file, i) => {
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(file);
+                fileReader.onload = () => {
+                    urls[i] = fileReader.result;
+                    if (++filesLoaded === newFiles.length){
+                        setNewImages(newFiles);
+                        setNewImageUrls(urls);
+                    }
+                }
+            });
+        }
+    }
+
+    const handleRemoveClick = (e, index) => {
+        e.preventDefault();
+        const updatedImages = [...newImages];
+        const updatedImageUrls = [...newImageUrls];
+        updatedImages.splice(index, 1);
+        updatedImageUrls.splice(index, 1);
+        setNewImages(updatedImages);
+        setNewImageUrls(updatedImageUrls);
+    }
+
     const reviewHTML = () => {
         if (editMode) {
             return (
@@ -71,13 +93,13 @@ const ReviewsTiles = ({review}) => {
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    class="reviews-tile-title-input"
+                    className="reviews-tile-title-input"
                 />
                 <textarea
                     type="textarea"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
-                    class="reviews-tile-text-input"
+                    className="reviews-tile-text-input"
                 />
                 <div className="reviews-icons-section">
                     <p>Would Make Again</p>
@@ -110,7 +132,7 @@ const ReviewsTiles = ({review}) => {
                             style={{ display: 'none' }}
                         />
                     </div>
-                    {imageUrls && imageUrls.map((image, index) => (
+                    {[...imageUrls,...newImageUrls].map((image, index) => (
                         <div key={index} className="image-preview-container">
                         <img src={image} alt={`Preview ${index}`} height="100" width="100" />
                         <button
@@ -140,25 +162,6 @@ const ReviewsTiles = ({review}) => {
             )
         }
     };
-
-    const updateFiles = async (e) => {
-        const files = e.target.files;
-        setImages(files);
-        if (files.length !== 0) {
-            let filesLoaded = 0;
-            const urls = [];
-            Array.from(files).forEach((file, i) => {
-                const fileReader = new FileReader();
-                fileReader.readAsDataURL(file);
-                fileReader.onload = () => {
-                    urls[i] = fileReader.result;
-                    if (++filesLoaded === files.length)
-                    setImageUrls(urls);
-                }
-            });
-        }
-        else setImageUrls([]);
-    }
 
     useEffect(() => {
         setTitle(review.title);
@@ -214,6 +217,10 @@ const ReviewsTiles = ({review}) => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
+
+        const updatedImages = [...images, ...newImages];
+        const updatedImageUrls = [...imageUrls, ...newImageUrls];
+
         const reviewContents = {
             title,
             text,
@@ -221,13 +228,15 @@ const ReviewsTiles = ({review}) => {
             wouldRecommend,
             starRating,
             recipe: review.recipe._id,
-            imageUrls,
+            imageUrls: updatedImageUrls,
           };
         if (editMode) {
-            dispatch(updateReview(reviewContents, images, review._id)).then(() => {
+            dispatch(updateReview(reviewContents, updatedImages, review._id)).then(() => {
                 dispatch(fetchUserReviews(sessionUser._id));
                 setImages([]);
                 setImageUrls([]);
+                setNewImages([]);
+                setNewImageUrls([]);
             });
         }
         setEditMode(false);

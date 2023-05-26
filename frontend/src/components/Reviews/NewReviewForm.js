@@ -41,6 +41,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
   }, [dispatch]);
 
   useEffect(() => {
+    console.log('revie check ===', review)
     if (review) {
       setTitle(review.title);
       setText(review.text);
@@ -119,6 +120,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
     newImageUrls.splice(index, 1);
     setImages(newImages);
     setImageUrls(newImageUrls);
+    console.log('remove image url ===', newImageUrls)
   }
 
   const handleSubmit = (e) => {
@@ -134,6 +136,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
     };
 
     if (review) {
+      console.log('reviewContents ===', reviewContents, images)
       dispatch(updateReview(reviewContents, images, review._id)).then(() => {
         dispatch(fetchRecipeReviews(recipeId));
         setImages([]);

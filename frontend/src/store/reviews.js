@@ -143,6 +143,7 @@ export const updateReview = (data, images, reviewId) => async (dispatch) => {
   formData.append("wouldMakeAgain", data.wouldMakeAgain);
   formData.append("wouldRecommend", data.wouldRecommend);
   formData.append("starRating", data.starRating);
+  formData.append("imageUrls", JSON.stringify(data.imageUrls));
 
   Array.from(images).forEach((image) => {
     formData.append("images", image);
@@ -156,6 +157,7 @@ export const updateReview = (data, images, reviewId) => async (dispatch) => {
     const review = await res.json();
     dispatch(receiveUpdatedReview(review));
   } catch (err) {
+    console.log('review update err ===', err);
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
       return dispatch(receiveErrors(resBody.errors));
