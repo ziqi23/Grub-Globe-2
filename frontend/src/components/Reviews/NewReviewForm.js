@@ -105,7 +105,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
         fileReader.onload = () => {
           urls[index] = fileReader.result;
           if (++filesLoaded === files.length)
-            setImageUrls(urls);
+            setImageUrls([...imageUrls, ...urls]);
         }
       });
     }
@@ -125,6 +125,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const urls = imageUrls.filter((e) => e.includes("https://"))
     const reviewContents = {
       title,
       text,
@@ -132,7 +133,7 @@ const NewReviewForm = ({ recipeId, message, review }) => {
       wouldRecommend,
       starRating,
       recipe: recipeId,
-      imageUrls,
+      imageUrls: urls,
     };
 
     if (review) {

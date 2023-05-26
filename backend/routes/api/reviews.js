@@ -72,7 +72,7 @@ router.get("/:id", async (req, res, next) => {
       "user",
       "_id firstName lastName username profileImageUrl"
     )
-    .populate("imageUrls");
+      .populate("imageUrls");
     return res.json(review);
   } catch (err) {
     const error = new Error("Review not found");
@@ -83,7 +83,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.post("/", requireUser, multipleMulterUpload("images"), validateReviewInput, async (req, res, next) => {
-  const imageUrls = await multipleFilesUpload({files: req.files});
+  const imageUrls = await multipleFilesUpload({ files: req.files });
 
   try {
     const newReview = new Review({
@@ -114,7 +114,7 @@ router.put(
   validateReviewInput,
   async (req, res, next) => {
     console.log('image file check ===', req.files.length);
-    const imageUrls = await multipleFilesUpload({files: req.files});
+    const imageUrls = await multipleFilesUpload({ files: req.files });
     try {
       let updatedReview = {
         title: req.body.title,
@@ -122,7 +122,8 @@ router.put(
         wouldMakeAgain: req.body.wouldMakeAgain,
         wouldRecommend: req.body.wouldRecommend,
         starRating: req.body.starRating,
-        imageUrls: req.files.length ? imageUrls : JSON.parse(req.body.imageUrls),
+        imageUrls: req.files.length ?
+          [...JSON.parse(req.body.imageUrls), ...imageUrls] : JSON.parse(req.body.imageUrls),
       };
 
       let review = await Review.findOneAndUpdate(
