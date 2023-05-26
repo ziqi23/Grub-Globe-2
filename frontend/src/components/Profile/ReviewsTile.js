@@ -34,16 +34,6 @@ const ReviewsTiles = ({review}) => {
     const fileRef = useRef(null);
     const [openPhotoModal, setOpenPhotoModal] = useState(false);
 
-    const handleRemoveClick = (e, index) => {
-        e.preventDefault();
-        const newImages = [...images];
-        const newImageUrls = [...imageUrls];
-        newImages.splice(index, 1);
-        newImageUrls.splice(index, 1);
-        setImages(newImages);
-        setImageUrls(newImageUrls);
-    }
-
     const photoModal = () => {
         return (
             <>
@@ -62,6 +52,35 @@ const ReviewsTiles = ({review}) => {
         )
     }
 
+    const updateFiles = async e => {
+        const files = e.target.files;
+        setImages(files);
+        if (files.length !== 0) {
+          let filesLoaded = 0;
+          const urls = [];
+          Array.from(files).forEach((file, index) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+              urls[index] = fileReader.result;
+              if (++filesLoaded === files.length)
+                setImageUrls([...imageUrls, ...urls]);
+            }
+          });
+        }
+        else setImageUrls([]);
+    }
+
+    const handleRemoveClick = (e, index) => {
+        e.preventDefault();
+        const newImages = [...images];
+        const newImageUrls = [...imageUrls];
+        newImages.splice(index, 1);
+        newImageUrls.splice(index, 1);
+        setImages(newImages);
+        setImageUrls(newImageUrls);
+    }
+
     const reviewHTML = () => {
         if (editMode) {
             return (
@@ -71,13 +90,13 @@ const ReviewsTiles = ({review}) => {
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    class="reviews-tile-title-input"
+                    className="reviews-tile-title-input"
                 />
                 <textarea
                     type="textarea"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
-                    class="reviews-tile-text-input"
+                    className="reviews-tile-text-input"
                 />
                 <div className="reviews-icons-section">
                     <p>Would Make Again</p>
@@ -141,25 +160,6 @@ const ReviewsTiles = ({review}) => {
         }
     };
 
-    const updateFiles = async (e) => {
-        const files = e.target.files;
-        setImages(files);
-        if (files.length !== 0) {
-            let filesLoaded = 0;
-            const urls = [];
-            Array.from(files).forEach((file, i) => {
-                const fileReader = new FileReader();
-                fileReader.readAsDataURL(file);
-                fileReader.onload = () => {
-                    urls[i] = fileReader.result;
-                    if (++filesLoaded === files.length)
-                    setImageUrls(urls);
-                }
-            });
-        }
-        else setImageUrls([]);
-    }
-
     useEffect(() => {
         setTitle(review.title);
         setText(review.text);
@@ -214,6 +214,7 @@ const ReviewsTiles = ({review}) => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
+        const urls = imageUrls.filter((e) => e.includes("https://"))
         const reviewContents = {
             title,
             text,
@@ -221,7 +222,7 @@ const ReviewsTiles = ({review}) => {
             wouldRecommend,
             starRating,
             recipe: review.recipe._id,
-            imageUrls,
+            imageUrls: urls,
           };
         if (editMode) {
             dispatch(updateReview(reviewContents, images, review._id)).then(() => {

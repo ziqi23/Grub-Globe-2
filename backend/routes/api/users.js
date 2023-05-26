@@ -15,7 +15,11 @@ const validateLoginInput = require("../../validations/login");
 const validateCompleteRecipeInput = require("../../validations/completeRecipe");
 const { singleFileUpload } = require("../../awsS3");
 const multer = require("multer");
-const upload = multer();
+const upload = multer({
+  limits: {
+    fieldSize: 50 * 1024 * 1024
+  }
+});
 const Recipe = mongoose.model("Recipe");
 
 // Upload profile picture route

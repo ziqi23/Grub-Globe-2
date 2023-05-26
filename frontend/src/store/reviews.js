@@ -143,6 +143,7 @@ export const updateReview = (data, images, reviewId) => async (dispatch) => {
   formData.append("wouldMakeAgain", data.wouldMakeAgain);
   formData.append("wouldRecommend", data.wouldRecommend);
   formData.append("starRating", data.starRating);
+  formData.append("imageUrls", JSON.stringify(data.imageUrls));
 
   Array.from(images).forEach((image) => {
     formData.append("images", image);
