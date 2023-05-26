@@ -113,7 +113,6 @@ router.put(
   requireUser, multipleMulterUpload("images"),
   validateReviewInput,
   async (req, res, next) => {
-    console.log('image file check ===', req.files.length);
     const imageUrls = await multipleFilesUpload({ files: req.files });
     try {
       let updatedReview = {
