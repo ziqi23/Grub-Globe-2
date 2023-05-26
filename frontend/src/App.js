@@ -9,7 +9,8 @@ import RecipeShowPage from "./components/RecipeShow/RecipeShowPage";
 import Discover from "./components/DiscoverPage/Discover";
 import Globe from "./components/Globe/Globe";
 import Profile from "./components/Profile/Profile";
-import RandomRecipeGenerator from "./components/DiscoverPage/RandomRecipeGenerator";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,6 +24,7 @@ function App() {
     loaded && (
       <>
         <Switch>
+          <Route path="/error"><ErrorPage /></Route>
           <AuthRoute exact path="/login" component={Globe} />
           <AuthRoute exact path="/signup" component={Globe} />
           <Route path="/recipes/:recipeId" component={RecipeShowPage} />
@@ -31,6 +33,7 @@ function App() {
           <Route exact path="/explore" component={Globe} />
           <ProtectedRoute exact path="/discover" component={Discover} />
           <ProtectedRoute path="/profile" component={Profile} />
+          <Redirect to={'/error'} />
         </Switch>
       </>
     )
