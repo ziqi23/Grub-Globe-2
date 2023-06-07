@@ -57,8 +57,7 @@ This project is implemented with the following technologies:
 
 On the splash page of the application is a 3D globe visualization offering a simple and intuitive way to navigate to different countries. This interactive sphere is set to spin by default, showcasing the different countries a user can choose from. Users can decide to manually spin the globe to a desired location or hover over a country to see a short description of the local cuisine. If the description fits the user's appetite, clicking on the 'take me there' button routes to a recipe show page featuring that particular country. An example of this user experience is shown below:
 
-![globe]
-(https://media1.giphy.com/media/5oiykRFWmZu7DnSVU8/giphy.gif)
+![globe](https://media1.giphy.com/media/5oiykRFWmZu7DnSVU8/giphy.gif)
 
 We built this experience using Three.js. Starting with a simple sphere geometry included within the library.
 
