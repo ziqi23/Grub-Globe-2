@@ -47,6 +47,7 @@ This project is implemented with the following technologies:
 - `Webpack` to bundle and transpile the source code
 - `npm` to manage project dependencies
 - `Spoonacular` API for recipes
+- `Three.js` for 3D scene rendering
 
 ---
 
@@ -54,33 +55,90 @@ This project is implemented with the following technologies:
 
 ### Globe
 
-[TK note: briefly describe the user experience and why this experience was important for our app. Include a brief gif of experience; you can record a screen clipping and upload to giphy, then use the format below to embed. Must be under 20s, longer gifs tend to cut off]
-
-A user can ...
-
-Example ...:
+On the splash page of the application is a 3D globe visualization offering a simple and intuitive way to navigate to different countries. This interactive sphere is set to spin by default, showcasing the different countries a user can choose from. Users can decide to manually spin the globe to a desired location or hover over a country to see a short description of the local cuisine. If the description fits the user's appetite, clicking on the 'take me there' button routes to a recipe show page featuring that particular country. An example of this user experience is shown below:
 
 ![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVhYmIxMDkxMmFiMTNkMjM5NzkzOWE0MDU2ODlhZmRlM2E3ZWMxNyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/MC9IJ6ADrUvJMVE3K0/giphy.gif)
 
-[TK note: then, explain how we built that user experience - general technical approach plus code snippets]
+We built this experience using Three.js. Starting with a simple sphere geometry included within the library.
 
-The blah does blah
-
-<h5 a><strong><code>index.js</code></strong></h5>
+<h5 a><strong><code>globe.js</code></strong></h5>
 
 ```JavaScript
-codecodecode
+const globeGeometry = new THREE.SphereGeometry(30, 64, 64);
+const globeMaterial = new THREE.MeshStandardMaterial({ color: 0x9dd0ff });
+const globe = new THREE.Mesh(globeGeometry, globeMaterial);
+globe.position.x = 0;
+globe.position.z = 0;
+globe.position.y = 0;
 ```
 
-Notably, more blah
+The first challenge was to find a way to section the globe into dynamic sub-components representing countries. We needed to determine whenever a user click is registered, whether the user meant to click on, for example, 'China' or 'Mexico'.
 
-<h5 a><strong><code>index.js</code></strong></h5>
+We decided to utilize Three.js's raytracer to first determine the user's cursor location in 3D space and convert them into plain xy coordinates.
+
+<h5 a><strong><code>globe.js</code></strong></h5>
 
 ```JavaScript
-codecodecode
+let lastCall = Date.now();
+function handleMouseMoveForRaycaster(e) {
+  if (Date.now() - lastCall < 200) {
+    return;
+  }
+  lastCall = Date.now();
+  if (e.target.tagName === "CANVAS") {
+    mousePos.x = (e.offsetX / canvasWidth) * 2 - 1;
+    mousePos.y = -((e.offsetY / canvasHeight) * 2 - 1);
+  }
+  raycaster.setFromCamera(mousePos, camera);
+  const intersects = raycaster.intersectObjects(scene.children);
+  if (intersects.length !== 0) {
+    setUv(intersects[0].uv);
+  } else {
+    autoRotate = true;
+  }
+}
 ```
 
-Interesting considerations and challenges and how we overcame...
+With the above code, we now had a better understanding of the user's click event, which can be represented by normalized 2D coordinates between -1 and 1. Still, we needed to find a way to map these coordinates to individual countries.
+
+Our solution was to leverage a blank 2D world map found on Google Images and assign unique color codes to each country. Upon raycaster returning a coordinate, we'd read this image, check the color associated with the UV coordinates, and in turn deduce the name of the country.
+
+```Javascript
+const colorMapping = {
+  "70744C": "United States",
+  "847233": "Italy",
+  "9E8D56": "China",
+  "5C9E5D": "Mexico",
+  "555931": "India",
+  "6A5912": "France",
+  ...
+}
+
+function getColorFromUV(u, v) {
+const width = Math.floor(u * image.width);
+const height = Math.floor((1 - v) * image.height);
+const index = (width + (height - 1) * image.width) * 4;
+const hexColor =
+  imageColor.data[index].toString(16) +
+  imageColor.data[index + 1].toString(16) +
+  imageColor.data[index + 2].toString(16);
+return hexColor;
+}
+```
+
+After the core logic to handle user clicks was in place, we brought the visualization to life by adding 20,000 dots on the surface of the globe. Upon hovering over a country, the corresponding dots jump out in a smooth animation. 
+
+```Javascript
+for (let i = 0; i < 20000; i++) {
+  const phi = Math.acos(-1 + (2 * i) / 20000);
+  const theta = Math.sqrt(20000 * Math.PI) * phi;
+  const vector = new THREE.Vector3();
+  vector.setFromSphericalCoords(30, phi, theta);
+  ...
+}
+```
+
+In our implementation of the globe, one notable challenge was finding the right balance between looks and performance. Many of the visualizations we considered looked great but also slowed down the rendering of the application, which would have taken a toll on the user experience.
 
 ---
 
