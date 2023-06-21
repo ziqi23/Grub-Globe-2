@@ -311,35 +311,111 @@ Interesting considerations and challenges and how we overcame...
 
 ### User experience stickiness
 
-[TK note: briefly describe the user experience and why this experience was important for our app. Include a brief gif of experience; you can record a screen clipping and upload to giphy, then use the format below to embed. Must be under 20s, longer gifs tend to cut off. I think in this section we cover badges, magic button (with Big O considerations) for sure, can cover more as well. Can prob make mini headers within this section to split out the topics, each with its own gif and code snippets etc.]
+In order to enhance user experience, we implemented a Random Recipe Generator into our application, utilizing a randomized algorithm that provides a wide array of unique recipes to users. This system promotes culinary diversity and encourages the exploration of different recipes.
+
+Paired with the generator, we also implemented a Badge System, where users gain badges based on their completed recipes. These badges function as tangible incentives and metrics for progress.
+
+These features enrich our app's user interface (UI) and user experience (UX), fostering engagement and user retention. These features allow an immersive recipe exploration experience that is both rewarding and enriching.
 
 #### Badge Rewarding System
 
-In order to enhance the experience of home cooking, we decided to gamify it by implementing a badge reward system, which serves to motivate users to explore and cook a greater variety of recipes through our app. On the profile page, a user is able to see their progress for these badges as there are five levels of profiency a user can achieve for each badge: Rookie, Adept, Expert, Wizardly, and Legendary. The badge rewarding system is based on the total number of recipes a user has completed, diversity of recipes they've completed, how many reviews they've written, and the number of healthy recipes they've cooked.
-
+In order to enhance the experience of home cooking, we decided to gamify it by implementing a badge reward system, which serves to motivate users to explore and cook a greater variety of recipes through our app. On the profile page, a user is able to see their progress for these badges as there are five levels of proficiency a user can achieve for each badge: Rookie, Adept, Expert, Wizardly, and Legendary. The badge rewarding system is based on the total number of recipes a user has completed, the diversity of recipes they've completed, how many reviews they've written, and the number of healthy recipes they've cooked.
 
 <p align="center"><img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGM4NjkyZGI4ZDJmZGNiY2NlMWYxYjgzNDRhN2EyNzZlZmQ5ZGExNSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/anpYfrLS2iXcXGD7AP/giphy.gif" alt="badges"/></p>
 
-[Kat to Michelle: Please update this with correct information]
-Since the badges are entirely based off the current user, we populated the backend response when fetching the current user, with the user's completed recipes. 
+Since the badges are entirely based on the current user, we populated the backend response when fetching the current user, with the user's completed recipes. 
 
-Add logic here
-
-<h5 a><strong><code>index.js</code></strong></h5>
+<h5 a><strong><code>users.js</code></strong></h5>
 
 ```JavaScript
-codecodecode
+  router.patch(
+    "/completeRecipe",
+    validateCompleteRecipeInput,
+    async function (req, res, next) {
+      try {
+        const { userId, recipeId } = req.body;
+  
+        let user = await User.findById(userId);
+        const completedRecipeIds = user.completedRecipe.map((recipe) =>
+          recipe.recipeId.toString()
+        );
+  
+        if (!completedRecipeIds.includes(recipeId)) {
+          user = await User.findByIdAndUpdate(
+            userId,
+            { $push: { completedRecipe: { recipeId: recipeId } } },
+            { new: true }
+          );
+        }
+      } catch (err) {
+        const error = new Error(`Completion unsuccessful: ${err.message}`);
+        error.statusCode = 500;
+        error.errors = { message: "recipe completion unsuccessful" };
+        return next(error);
+      }
+    }
+  );
 ```
 
-Notably, more blah
+<h5 a><strong><code>CompleteFollowAlongButton.js</code></strong></h5>
 
-<h5 a><strong><code>index.js</code></strong></h5>
+These completed recipe data were collected on the frontend when the user clicks the "Finished!" button at the end of completing all the recipe steps. 
 
 ```JavaScript
-codecodecode
+ const handleFinishedFollowAlong = () => {
+        closeFollowAlong();
+        setCurrentRecipeStep("");
+
+        const completedRecipeObj = {
+            userId: sessionUser._id,
+            recipeId: recipeId
+        }
+
+        dispatch(addCompletedRecipe(completedRecipeObj));
+        window.location.reload();
+    }
 ```
 
-Interesting considerations and challenges and how we overcame...
+<h5 a><strong><code>Profile.js</code></strong></h5>
+
+From these completed recipes, recipe data attributes such as recipe tags and recipe country were used to generate the Global Gastronaut badge and Plant-Based Prodigy badge. The Culinary Connoisseur badge was based on the number of completed recipes and the Tastemaker Extraordinaire badge was based on the total number of user reviews. 
+
+```JavaScript
+  useEffect(() => {
+    if (sessionUser && sessionUser.completedRecipe) {
+      const fetchPromises = sessionUser.completedRecipe.map(({ recipeId }) =>
+        dispatch(fetchRecipe(recipeId))
+      );
+
+      Promise.all(fetchPromises)
+        .then((fetchedRecipes) => {
+          setCompletedRecipes(fetchedRecipes);
+          const numComplete = fetchedRecipes.length;
+          const uniqueCountry = new Set(
+            fetchedRecipes.map((recipe) => {
+              return recipe.recipe.country;
+            })
+          );
+
+          const numHealthy = fetchedRecipes.filter(
+            (recipe) =>
+              recipe.recipe.tags.includes("vegetarian") ||
+              recipe.recipe.tags.includes("vegan") ||
+              recipe.recipe.tags.includes("glutenFree")
+          ).length;
+          const reviewsCount = userReviews?.length;
+
+          setNumCompleted(numComplete);
+          setUniqueCountries(uniqueCountry.size);
+          setNumReviews(reviewsCount);
+          setNumHealthyRecipes(numHealthy);
+        })
+        .catch((error) => {
+          console.error("Error fetching recipes: ", error);
+        });
+    }
+  }, [sessionUser, dispatch, userReviews?.length]);
+```
 
 #### Random Recipe Generator
 
