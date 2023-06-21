@@ -6,11 +6,11 @@ _Social, interactive, and AI-augmented MERN fullstack app for exploring diverse 
 
 grubGlobe is a fullstack app to answer the question "what should I cook?" We designed grubGlobe for the culinary adventurer-at-heart who wants to explore the best recipes from around the world. And not only that, we wanted to make it as easy as possible to get cookin' and track one's culinary journey.
 
-Explore it here! <a href="https://grubglobe.herokuapp.com/">https://grubglobe.herokuapp.com/</a>
+Explore it <a href="https://grubglobe.herokuapp.com/?utm_source=grubglobe&utm_medium=readme">🍜 here!</a>
 
 Creators:
 
-- Taisia Karaseva, team lead, AI | <a href="https://github.com/taisiat">github</a> | <a href="https://www.linkedin.com/in/taisiakaraseva/">Linkedin</a>
+- <a href="https://www.taisiat.com/?utm_source=grubglobe&utm_medium=readme">Taisia Karaseva</a>, team lead, AI | <a href="https://github.com/taisiat">github</a> | <a href="https://www.linkedin.com/in/taisiakaraseva/">Linkedin</a>
 - Ziqi Zou, globe, flex | <a href="https://github.com/ziqi23">github</a> | <a href="https://www.linkedin.com/in/ziqi-zou-2a877818a/">Linkedin</a>
 - Leah Seyoum, search, backend | <a href="https://github.com/leahseyoum">github</a> | <a href="https://www.linkedin.com/in/leah-seyoum-958288277/">Linkedin</a>
 - Michelle Chung, badges, flex | <a href="https://github.com/michellechung099">github</a> | <a href="https://www.linkedin.com/in/michelle-chung-3a915a134/">Linkedin</a>
@@ -143,6 +143,8 @@ In our implementation of the globe, one notable challenge was finding the right 
 ---
 
 ### AI assistants
+
+<a href="https://youtu.be/PFHso7U-87M">▶️ Watch AI assistants walkthrough here!</a>
 
 A user can get inspiration and recipe help from 2 AI assistants.
 
