@@ -11,10 +11,10 @@ Explore it <a href="https://grubglobe.herokuapp.com/?utm_source=grubglobe&utm_me
 Creators:
 
 - <a href="https://www.taisiat.com/?utm_source=grubglobe&utm_medium=readme">Taisia Karaseva</a>, team lead, AI | <a href="https://github.com/taisiat">github</a> | <a href="https://www.linkedin.com/in/taisiakaraseva/">Linkedin</a>
-- Ziqi Zou, globe, flex | <a href="https://github.com/ziqi23">github</a> | <a href="https://www.linkedin.com/in/ziqi-zou-2a877818a/">Linkedin</a>
+- Ziqi Zou, globe, flex | <a href="https://github.com/ziqi23">github</a> | <a href="https://www.linkedin.com/in/ziqi-zou/">Linkedin</a>
 - Leah Seyoum, search, backend | <a href="https://github.com/leahseyoum">github</a> | <a href="https://www.linkedin.com/in/leah-seyoum-958288277/">Linkedin</a>
 - Michelle Chung, badges, flex | <a href="https://github.com/michellechung099">github</a> | <a href="https://www.linkedin.com/in/michelle-chung-3a915a134/">Linkedin</a>
-- Kat Vu, frontend | <a href="https://github.com/katpvu">github</a> | <a href="https://www.linkedin.com/in/kathy-vu-57b50411b/">Linkedin</a>
+- Kat Vu, frontend | <a href="https://github.com/katpvu">github</a> | <a href="https://www.linkedin.com/in/kat-vu-57b50411b/">Linkedin</a>
 
 ---
 
