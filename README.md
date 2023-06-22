@@ -279,33 +279,130 @@ After experimentation, we landed on a `temperature` of 0.6 and `max_tokens` of 2
 
 ### Search
 
-[TK note: briefly describe the user experience and why this experience was important for our app. Include a brief gif of experience; you can record a screen clipping and upload to giphy, then use the format below to embed. Must be under 20s, longer gifs tend to cut off]
+The user experience of the recipe search feature is important for our app because it allows users to easily find recipes based on specific criteria such as country/cuisine, and dietary preferences (vegan, vegetarian, gluten-free, etc.). The search bar is located at the top of the recipes list page as well as the user profile page for easy access.
 
-A user can ...
+![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWZ5NHR6ZGp3M3JsdnEzYjg5bnN2aHYxeXVtaDVhbGRtbTZ6eHBlMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ef2BWiEbJiYc3OgiLC/giphy.gif)
 
-Example ...:
+To implement this user experience, we utilized a library called CreatableSelect for the search bar component. Here's an example of the code snippet for the search component:
 
-![image name](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGVhYmIxMDkxMmFiMTNkMjM5NzkzOWE0MDU2ODlhZmRlM2E3ZWMxNyZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/MC9IJ6ADrUvJMVE3K0/giphy.gif)
-
-[TK note: then, explain how we built that user experience - general technical approach plus code snippets]
-
-The blah does blah
-
-<h5 a><strong><code>index.js</code></strong></h5>
+<h5 a><strong><code>Search.js</code></strong></h5>
 
 ```JavaScript
-codecodecode
+<CreatableSelect
+          isMulti
+          isCreatable={true}
+          options={countryTagOptions}
+          placeholder="Search by country or tag..."
+          onChange={(selected) => {
+            const selectedCountries = selected.filter(
+              (option) => option.category !== "Tags"
+            );
+            const selectedTags = selected.filter(
+              (option) => option.category === "Tags"
+            );
+            setQuery(selected.map((option) => option.value).join(" , "));
+          }}
+        />
 ```
 
-Notably, more blah
+This code snippet demonstrates the usage of the CreatableSelect component with multi-select capability. It allows users to select multiple options from the dropdown, including both pre-defined options (country/cuisine) and custom options (tags). The onChange handler updates the query based on the selected options.
 
-<h5 a><strong><code>index.js</code></strong></h5>
+On the server-side, we implemented a route to handle the search functionality. Here's an example of the code snippet for the search route:
+
+<h5 a><strong><code>search.js</code></strong></h5>
 
 ```JavaScript
-codecodecode
+router.get("/", async (req, res) => {
+  const query = req.query.q;
+  const queryArray = query.split(" , ");
+
+  if (queryArray.length === 1) {
+    try {
+      const recipes = await Recipe.find({
+        $or: [
+          { recipeName: { $regex: query, $options: "i" } },
+          { country: { $regex: query, $options: "i" } },
+          {
+            tags: {
+              $elemMatch: {
+                $regex: query.replace(/[-\s]/g, ""),
+                $options: "i",
+              },
+            },
+          },
+          {
+            ingredients: {
+              $elemMatch: { name: { $regex: query, $options: "i" } },
+            },
+          },
+        ],
+      }).sort({ createdAt: -1 });
+      return res.json(recipes);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  } else if (
+    queryArray.length > 1 &&
+    queryArray.every((term) =>
+      [
+        "vegan",
+        "vegetarian",
+        "gluten-free",
+        "dairy-free",
+        "sustainable",
+      ].includes(term)
+    )
+  ) {
+    try {
+      const recipes = await Recipe.find({
+        tags: {
+          $all: queryArray.map(
+            (tag) => new RegExp(tag.replace(/[-\s]/g, ""), "i")
+          ),
+        },
+      }).sort({ createdAt: -1 });
+
+      return res.json(recipes);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  } else if (queryArray.length > 1) {
+    try {
+      const recipes = await Recipe.find({
+        $or: queryArray.map((term) => ({
+          $or: [
+            { recipeName: { $regex: term, $options: "i" } },
+            { country: { $regex: term, $options: "i" } },
+            {
+              tags: {
+                $elemMatch: {
+                  $regex: term.replace(/[-\s]/g, ""),
+                  $options: "i",
+                },
+              },
+            },
+            {
+              ingredients: {
+                $elemMatch: { name: { $regex: query, $options: "i" } },
+              },
+            },
+          ],
+        })),
+      }).sort({ createdAt: -1 });
+      return res.json(recipes);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  }
+});
 ```
 
-Interesting considerations and challenges and how we overcame...
+In this code snippet, the / route handles the search functionality. It parses the search query and splits it into an array of terms. The code then checks different scenarios based on the length and content of the query array to perform appropriate searches in the database.
+
+Throughout the implementation, we considered various challenges, such as handling different types of search queries (single term, multiple terms, tags), matching the search terms against recipe names, countries, tags, and ingredients, and sorting the search results based on relevance (e.g., sorting by recipe creation date). By using appropriate MongoDB queries and logical operations, we were able to overcome these challenges and provide an efficient and relevant search experience for our users.
 
 ---
 
