@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
 
   const prompt = req.body.prompt || "";
 
-  if (prompt === []) {
+  if (Array.isArray(prompt) && prompt.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid question",

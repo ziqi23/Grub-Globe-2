@@ -35,7 +35,8 @@ router.post("/", async (req, res) => {
 
   try {
     const completion = await openai.createCompletion({
-      model: "text-davinci-003",
+      // model: "text-davinci-003",
+      model: "gpt-3.5-turbo-instruct",
       prompt: generatePrompt(question, recipeName, recipeStep),
       temperature: 0.6,
       max_tokens: 256,

@@ -60,7 +60,10 @@ export default function SplashAiChat() {
   async function onSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
-
+    if (questionInput.length === 0) {
+      setIsLoading(false);
+      return;
+    }
     try {
       const response = await jwtFetch("/api/generateTurbo", {
         method: "POST",
