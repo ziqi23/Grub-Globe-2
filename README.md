@@ -126,7 +126,7 @@ return hexColor;
 }
 ```
 
-After the core logic to handle user clicks was in place, we brought the visualization to life by adding 20,000 dots on the surface of the globe. Upon hovering over a country, the corresponding dots jump out in a smooth animation. 
+After the core logic to handle user clicks was in place, we brought the visualization to life by adding 20,000 dots on the surface of the globe. Upon hovering over a country, the corresponding dots jump out in a smooth animation.
 
 ```Javascript
 for (let i = 0; i < 20000; i++) {
@@ -145,6 +145,8 @@ In our implementation of the globe, one notable challenge was finding the right 
 ### AI assistants
 
 <a href="https://youtu.be/PFHso7U-87M">▶️ Watch AI assistants walkthrough here!</a>
+
+Note: in December 2023, the splash page AI assistant was switched from text-davinci-003 to gpt-3.5-turbo-instruct, in order to get ahead of OpenAI's planned model deprecation.
 
 A user can get inspiration and recipe help from 2 AI assistants.
 
@@ -420,7 +422,7 @@ In order to enhance the experience of home cooking, we decided to gamify it by i
 
 <p align="center"><img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGM4NjkyZGI4ZDJmZGNiY2NlMWYxYjgzNDRhN2EyNzZlZmQ5ZGExNSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/anpYfrLS2iXcXGD7AP/giphy.gif" alt="badges"/></p>
 
-Since the badges are entirely based on the current user, we populated the backend response when fetching the current user, with the user's completed recipes. 
+Since the badges are entirely based on the current user, we populated the backend response when fetching the current user, with the user's completed recipes.
 
 <h5 a><strong><code>users.js</code></strong></h5>
 
@@ -431,12 +433,12 @@ Since the badges are entirely based on the current user, we populated the backen
     async function (req, res, next) {
       try {
         const { userId, recipeId } = req.body;
-  
+
         let user = await User.findById(userId);
         const completedRecipeIds = user.completedRecipe.map((recipe) =>
           recipe.recipeId.toString()
         );
-  
+
         if (!completedRecipeIds.includes(recipeId)) {
           user = await User.findByIdAndUpdate(
             userId,
@@ -456,7 +458,7 @@ Since the badges are entirely based on the current user, we populated the backen
 
 <h5 a><strong><code>CompleteFollowAlongButton.js</code></strong></h5>
 
-These completed recipe data were collected on the frontend when the user clicks the "Finished!" button at the end of completing all the recipe steps. 
+These completed recipe data were collected on the frontend when the user clicks the "Finished!" button at the end of completing all the recipe steps.
 
 ```JavaScript
  const handleFinishedFollowAlong = () => {
@@ -475,7 +477,7 @@ These completed recipe data were collected on the frontend when the user clicks 
 
 <h5 a><strong><code>Profile.js</code></strong></h5>
 
-From these completed recipes, recipe data attributes such as recipe tags and recipe country were used to generate the Global Gastronaut badge and Plant-Based Prodigy badge. The Culinary Connoisseur badge was based on the number of completed recipes and the Tastemaker Extraordinaire badge was based on the total number of user reviews. 
+From these completed recipes, recipe data attributes such as recipe tags and recipe country were used to generate the Global Gastronaut badge and Plant-Based Prodigy badge. The Culinary Connoisseur badge was based on the number of completed recipes and the Tastemaker Extraordinaire badge was based on the total number of user reviews.
 
 ```JavaScript
   useEffect(() => {
@@ -522,12 +524,12 @@ Another way a user can discover new recipes easily is through the random recipe 
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTdkNGQ1MTk2ZjBlOWVlM2RhNWFjZjZmZmEwNzJmMjYzNGIwMzJmYSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/BUqZHGwjiLyE7s8BUe/giphy.gif" alt="random-recipe-generator"/>
 </p>
 
-Initially, we were fetching all the recipes from the backend to the frontend and then randomly indexing throughout that entire array of recipes for definite randomization and optimized time complexity, but this was a very slow process. In response, we created a backend route that would generate an aggregate of 10 random recipes that would be sent to the client-side for rendering. 
+Initially, we were fetching all the recipes from the backend to the frontend and then randomly indexing throughout that entire array of recipes for definite randomization and optimized time complexity, but this was a very slow process. In response, we created a backend route that would generate an aggregate of 10 random recipes that would be sent to the client-side for rendering.
 
 <h5 a><strong><code>backend/routes/api/recipes.js</code></strong></h5>
 
 ```JavaScript
-// returns completely random set of 10 recipes 
+// returns completely random set of 10 recipes
 router.get('/randomRecipes', async (req, res) => {
     try {
         const randomRecipes = await Recipe.aggregate([{ $sample: {size: 10 }}])
